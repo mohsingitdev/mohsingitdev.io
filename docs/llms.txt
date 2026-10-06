@@ -1,0 +1,35 @@
+# Mohsin Qureshi — AI Architect & Forward Deployment Engineer
+
+> Mohsin Qureshi is a Tier-1 AI Architect and Forward Deployment Engineer (FDE) based in Bengaluru, India. He specializes in designing deterministic, high-concurrency generative AI platforms, zero-hallucination grounded RAG systems, and sub-40ms multi-model routing architectures for enterprise scale. Track record includes Flipkart, Accenture, Novartis, and TCS.
+
+## Core Specializations & Architecture Pillars
+
+- **High-Concurrency Model Routing**: Two-tier routing architecture isolating lightweight SLMs from heavy LLMs, delivering sub-40ms p99 latency SLAs under peak traffic (engineered at Flipkart flash-sale scale).
+- **Zero-Hallucination Grounded RAG**: Reciprocal Rank Fusion (BM25 lexical + dense vector embeddings) with cross-encoder reranking and sentence-level bounding PDF character offsets (<0.5% hallucination risk at Novartis & Accenture).
+- **Production LLMOps & Cost Optimization**: Pydantic schema repair, deterministic caching with Redis, asynchronous queueing, and intelligent tier routing delivering -72% reduction in cloud inference bills.
+- **Multi-Domain AI Engineering**: Clinical entity extraction (90%+ clinical NER), streaming telco security telemetry (ML4SEC 100k+ events/sec), real-time edge computer vision safety (PyTorch 60 FPS), and digital twin simulation (TCS TwinX).
+
+## Caliber Assessment Benchmarks (Laya Algorithmic Evaluation)
+
+- Overall Caliber Rating: 9.6 / 10 (Calibrated Confidence: 97.4%)
+- Enterprise Bracket: Top 1% Architect (Forward Deployment Tier)
+- Hallucination Risk: < 0.5% (Strict Citation Guardrails)
+- Inference Cost Delta: -72% (Deterministic Gateway ROI)
+
+## Interactive Sandboxes & Demos
+
+- [Deterministic SLM Router Simulator](https://mohsingitdev.github.io/#interactive-demos): Real-time interactive latency and token cost simulation comparing monolithic LLM calls against two-tier SLM routing.
+- [Zero-Hallucination RAG Explorer](https://mohsingitdev.github.io/#interactive-demos): Interactive visualization of hybrid retrieval, cross-encoder reranking, and citation bounding box verification.
+- [Prototype vs Production Architecture Comparator](https://mohsingitdev.github.io/#interactive-demos): Direct architectural comparison between naive prompt scripts and enterprise fault-tolerant systems.
+
+## Advisory & Engagement Services
+
+- **AI Architecture Audit & Strategy Call**: 45-minute architectural review diagnosing latency bottlenecks, hallucination liabilities, and GPU/token cost overruns for Seed to Series B startups and Fortune 500 teams.
+- **Forward Deployment Sprint**: 4-week dedicated advisory and implementation embedding into engineering teams to deliver production-grade generative AI pipelines.
+
+## Contact & Profiles
+
+- Website: https://mohsingitdev.github.io/
+- LinkedIn: https://www.linkedin.com/in/mohd-mohsin-qureshi
+- GitHub: https://github.com/mohsingitdev
+- Architecture Audit Booking: https://mohsingitdev.github.io/#calendly

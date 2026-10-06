@@ -99,17 +99,17 @@ export const EDUCATION = [
   {
     degree: 'Entrepreneurship & Venture Studies',
     institution: 'Indian Institute of Technology, Madras',
-    period: 'Executive Program'
+    period: 'Executive Post-Graduate'
   },
   {
     degree: 'Postgraduate Diploma in Product Management',
     institution: "Masters' Union",
-    period: 'Executive Program'
+    period: 'Executive Diploma'
   },
   {
     degree: 'Bachelor of Engineering (BE) - Electronics Engineering',
-    institution: 'Shri Ramdeobaba College of Engineering and Management',
-    period: 'Undergraduate Degree'
+    institution: 'Autonomous Engineering Institute',
+    period: 'Undergraduate Engineering'
   },
   {
     degree: 'Machine Learning Specialization',

@@ -93,7 +93,7 @@ export const Footer: React.FC = () => {
             © {new Date().getFullYear()} Mohsin Qureshi. Architected for High-Concurrency & Enterprise SLAs.
           </div>
           <div>
-            Designed with Claude editorial precision & Apple-inspired motion aesthetics. Caliber 9.6/10.
+            Enterprise Forward Deployment & AI Architecture • Engineered for Scalability & Compliance
           </div>
         </div>
 
