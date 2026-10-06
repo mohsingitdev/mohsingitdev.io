@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { Terminal, Calendar, Menu, X, ArrowUpRight, Github, Linkedin, BarChart3 } from 'lucide-react';
+import { Terminal, Calendar, Menu, X, ArrowUpRight, Github, Linkedin, BarChart3, Sun, Moon } from 'lucide-react';
+import { useTheme } from '../context/ThemeContext';
 
 interface NavbarProps {
   onBookCall: () => void;
@@ -8,6 +9,7 @@ interface NavbarProps {
 export const Navbar: React.FC<NavbarProps> = ({ onBookCall }) => {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const { theme, toggleTheme } = useTheme();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -77,6 +79,21 @@ export const Navbar: React.FC<NavbarProps> = ({ onBookCall }) => {
           >
             <Linkedin className="w-4 h-4" />
           </a>
+
+          {/* Theme Toggle Button */}
+          <button
+            onClick={toggleTheme}
+            aria-label={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}
+            title={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}
+            className="p-2 text-slate-400 hover:text-terracotta rounded-xl bg-canvas-card border border-canvas-border transition-all duration-300 apple-spring hover:scale-105 active:scale-95 flex items-center justify-center shadow-sm"
+          >
+            {theme === 'dark' ? (
+              <Sun className="w-4 h-4 text-amber-400 transition-transform duration-300 hover:rotate-45" />
+            ) : (
+              <Moon className="w-4 h-4 text-terracotta transition-transform duration-300 hover:-rotate-12" />
+            )}
+          </button>
+
           <button
             onClick={onBookCall}
             className="px-4 py-2.5 text-xs font-bold uppercase tracking-wider rounded-full bg-terracotta text-white hover:bg-terracotta-dark transition-all shadow-luxury-glow flex items-center gap-1.5 hover:scale-[1.03] active:scale-[0.98]"
@@ -88,7 +105,20 @@ export const Navbar: React.FC<NavbarProps> = ({ onBookCall }) => {
         </div>
 
         {/* Mobile Action & Menu Button */}
-        <div className="md:hidden flex items-center space-x-2.5">
+        <div className="md:hidden flex items-center space-x-2">
+          {/* Mobile Theme Toggle */}
+          <button
+            onClick={toggleTheme}
+            aria-label={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}
+            className="p-2 text-slate-400 hover:text-terracotta rounded-lg bg-canvas-card border border-canvas-border transition-all"
+          >
+            {theme === 'dark' ? (
+              <Sun className="w-4 h-4 text-amber-400" />
+            ) : (
+              <Moon className="w-4 h-4 text-terracotta" />
+            )}
+          </button>
+
           <button
             onClick={onBookCall}
             className="px-3 py-1.5 text-xs font-bold rounded-full bg-terracotta text-white shadow-sm"

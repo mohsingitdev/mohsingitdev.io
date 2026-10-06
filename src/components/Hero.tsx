@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ArrowUpRight, Sparkles, Terminal, ChevronRight, Activity, Zap, ShieldAlert, Cpu } from 'lucide-react';
+import { ArrowUpRight, Sparkles, Terminal, ChevronRight, Activity, Zap, ShieldAlert, Cpu, Sun, Moon } from 'lucide-react';
+import { useTheme } from '../context/ThemeContext';
 
 interface HeroProps {
   onBookCall: () => void;
@@ -63,6 +64,7 @@ const SANDBOX_SLIDES: SandboxSlide[] = [
 ];
 
 export const Hero: React.FC<HeroProps> = ({ onBookCall, onExploreDemos, onViewMatrix }) => {
+  const { theme, toggleTheme } = useTheme();
   const [activeSlide, setActiveSlide] = useState(0);
 
   // Auto-cycle through slides every 5 seconds
@@ -222,13 +224,28 @@ export const Hero: React.FC<HeroProps> = ({ onBookCall, onExploreDemos, onViewMa
                   </button>
                 </nav>
 
-                {/* Caliber Pill */}
-                <button
-                  onClick={onViewMatrix}
-                  className="hidden sm:inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-neutral-200/80 text-[11px] font-mono text-neutral-800 hover:bg-neutral-300 transition-colors"
-                >
-                  <span className="font-bold text-terracotta">Caliber 9.6</span>/10
-                </button>
+                {/* Caliber Pill & Theme Toggle */}
+                <div className="flex items-center gap-2">
+                  <button
+                    onClick={onViewMatrix}
+                    className="hidden sm:inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-neutral-200/80 text-[11px] font-mono text-neutral-800 hover:bg-neutral-300 transition-colors"
+                  >
+                    <span className="font-bold text-terracotta">Caliber 9.6</span>/10
+                  </button>
+
+                  <button
+                    onClick={toggleTheme}
+                    aria-label={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}
+                    title={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}
+                    className="p-1.5 rounded-full bg-neutral-200/80 hover:bg-neutral-300 text-neutral-800 transition-all apple-spring hover:scale-110 active:scale-95 flex items-center justify-center shadow-sm"
+                  >
+                    {theme === 'dark' ? (
+                      <Sun className="w-3.5 h-3.5 text-amber-600 transition-transform hover:rotate-45" />
+                    ) : (
+                      <Moon className="w-3.5 h-3.5 text-terracotta transition-transform hover:-rotate-12" />
+                    )}
+                  </button>
+                </div>
               </div>
 
               {/* Right Content Statement & Status Beacon */}
