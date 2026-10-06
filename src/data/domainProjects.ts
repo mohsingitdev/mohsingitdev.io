@@ -8,7 +8,7 @@ export const DOMAIN_PROJECTS: DomainProject[] = [
     tagline: 'Deterministic fast-path routing + SLM intent classification for sub-100ms enterprise SLA',
     enterpriseContext: 'Inspired by high-concurrency production platforms like Flipkart, handling tens of thousands of complex real-time user intents.',
     challenge: 'Directly invoking monolithic LLMs (e.g., GPT-4 or Claude 3.5) for every customer inquiry results in prohibitive API costs, slow 2-3s p99 latency, and single-point-of-failure rate limit outages during peak flash sales.',
-    architectureSolution: 'Engineered a two-tier gateway: 80% of routine intents are resolved via deterministic regex/Pydantic schemas and fine-tuned sub-100M SLMs (e.g. Jev/BERT routing) in <45ms. Complex multi-step reasoning routes asynchronously to agentic LangGraph workflows with wall-clock retry budgets and automated failovers.',
+    architectureSolution: 'Engineered a two-tier gateway: 80% of routine intents are resolved via deterministic regex/Pydantic schemas and fine-tuned sub-100M SLMs (e.g. FastText/BERT routing) in <45ms. Complex multi-step reasoning routes asynchronously to agentic LangGraph workflows with wall-clock retry budgets and automated failovers.',
     metrics: [
       { label: 'Inference Cost Reduction', value: '72%' },
       { label: 'p99 Routing Latency', value: '<60ms' },

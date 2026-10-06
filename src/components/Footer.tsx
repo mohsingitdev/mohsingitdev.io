@@ -23,7 +23,7 @@ export const Footer: React.FC = () => {
               Forward Deployment Engineer (FDE) & AI Architect specializing in multi-agent orchestration, grounded enterprise RAG, and production LLMOps.
             </p>
             <div className="font-mono text-[11px] text-slate-500">
-              Bengaluru, Karnataka, India • Available for Global Remote Contracts & Consulting
+              Remote • Available Worldwide for Enterprise Advisory & Engineering Contracts
             </div>
           </div>
 
@@ -33,13 +33,13 @@ export const Footer: React.FC = () => {
               Navigation
             </div>
             <ul className="space-y-2 font-mono text-xs">
-              <li><a href="#hero" className="hover:text-luxury-gold transition-colors">Overview</a></li>
-              <li><a href="#assessment-matrix" className="hover:text-luxury-gold transition-colors">Laya Caliber Matrix</a></li>
-              <li><a href="#philosophy" className="hover:text-luxury-gold transition-colors">Production Philosophy</a></li>
-              <li><a href="#domains" className="hover:text-luxury-gold transition-colors">Domain Matrix</a></li>
-              <li><a href="#interactive-demos" className="hover:text-luxury-gold transition-colors">Interactive Demos</a></li>
-              <li><a href="#experience" className="hover:text-luxury-gold transition-colors">Enterprise Track Record</a></li>
-              <li><a href="#blog" className="hover:text-luxury-gold transition-colors">Technical Blog</a></li>
+              <li><a href="#hero" className="hover:text-terracotta transition-colors">Overview</a></li>
+              <li><a href="#assessment-matrix" className="hover:text-terracotta transition-colors">Architecture Benchmark Matrix</a></li>
+              <li><a href="#philosophy" className="hover:text-terracotta transition-colors">Production Philosophy</a></li>
+              <li><a href="#domains" className="hover:text-terracotta transition-colors">Domain Matrix</a></li>
+              <li><a href="#interactive-demos" className="hover:text-terracotta transition-colors">Interactive Demos</a></li>
+              <li><a href="#experience" className="hover:text-terracotta transition-colors">Enterprise Track Record</a></li>
+              <li><a href="#blog" className="hover:text-terracotta transition-colors">Technical Blog</a></li>
             </ul>
           </div>
 
@@ -93,7 +93,7 @@ export const Footer: React.FC = () => {
             © {new Date().getFullYear()} Mohsin Qureshi. Architected for High-Concurrency & Enterprise SLAs.
           </div>
           <div>
-            Design inspired by Product Designer editorial aesthetics. Caliber calibrated via Laya Algorithm.
+            Designed with Claude editorial precision & Apple-inspired motion aesthetics. Caliber 9.6/10.
           </div>
         </div>
 

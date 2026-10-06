@@ -60,12 +60,12 @@ export const PrototypeVsProduction: React.FC = () => {
         
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto space-y-3">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-canvas-card border border-canvas-border text-xs font-mono text-luxury-gold">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-terracotta/10 border border-terracotta/30 text-xs font-mono text-terracotta">
             <Zap className="w-3.5 h-3.5" />
             <span>THE ARCHITECTURAL DIFFERENCE</span>
           </div>
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white font-sans tracking-tight">
-            The Prototype-to-Production Gap
+            The Prototype-to-<span className="font-serif italic font-normal text-terracotta">Production Gap</span>
           </h2>
           <p className="text-slate-400 text-sm sm:text-base leading-relaxed">
             Why Series A/B startups and enterprise leaders bring me in when proof-of-concept GenAI fails to deliver under real-world SLA and budgetary constraints.
@@ -74,12 +74,12 @@ export const PrototypeVsProduction: React.FC = () => {
 
         {/* Tab Switcher */}
         <div className="flex justify-center mt-8">
-          <div className="inline-flex p-1.5 rounded-xl bg-canvas-card border border-canvas-border gap-1">
+          <div className="inline-flex p-1.5 rounded-2xl bg-canvas-card border border-canvas-border gap-1 shadow-apple-card">
             <button
               onClick={() => setActiveTab('architecture')}
-              className={`px-4 py-2 rounded-lg text-xs sm:text-sm font-medium transition-all ${
+              className={`px-4 py-2 rounded-xl text-xs sm:text-sm transition-all duration-300 apple-spring ${
                 activeTab === 'architecture'
-                  ? 'bg-luxury-gold text-black font-semibold'
+                  ? 'bg-terracotta text-white font-semibold shadow-apple-card scale-[1.02]'
                   : 'text-slate-400 hover:text-white'
               }`}
             >
@@ -87,9 +87,9 @@ export const PrototypeVsProduction: React.FC = () => {
             </button>
             <button
               onClick={() => setActiveTab('rag')}
-              className={`px-4 py-2 rounded-lg text-xs sm:text-sm font-medium transition-all ${
+              className={`px-4 py-2 rounded-xl text-xs sm:text-sm transition-all duration-300 apple-spring ${
                 activeTab === 'rag'
-                  ? 'bg-luxury-gold text-black font-semibold'
+                  ? 'bg-terracotta text-white font-semibold shadow-apple-card scale-[1.02]'
                   : 'text-slate-400 hover:text-white'
               }`}
             >
@@ -97,9 +97,9 @@ export const PrototypeVsProduction: React.FC = () => {
             </button>
             <button
               onClick={() => setActiveTab('llmops')}
-              className={`px-4 py-2 rounded-lg text-xs sm:text-sm font-medium transition-all ${
+              className={`px-4 py-2 rounded-xl text-xs sm:text-sm transition-all duration-300 apple-spring ${
                 activeTab === 'llmops'
-                  ? 'bg-luxury-gold text-black font-semibold'
+                  ? 'bg-terracotta text-white font-semibold shadow-apple-card scale-[1.02]'
                   : 'text-slate-400 hover:text-white'
               }`}
             >
@@ -112,7 +112,7 @@ export const PrototypeVsProduction: React.FC = () => {
         <div className="mt-10 grid grid-cols-1 md:grid-cols-2 gap-8">
           
           {/* Fragile Prototype Card */}
-          <div className="rounded-2xl bg-canvas-surface border border-white/5 p-6 sm:p-8 space-y-6 relative overflow-hidden shadow-subtle-card">
+          <div className="rounded-2xl bg-canvas-surface border border-white/5 p-6 sm:p-8 space-y-6 relative overflow-hidden shadow-apple-card apple-card-hover">
             <div className="flex items-center justify-between border-b border-canvas-border/80 pb-4">
               <div className="flex items-center gap-3">
                 <div className="w-10 h-10 rounded-xl bg-canvas-card border border-white/10 flex items-center justify-center">
@@ -123,7 +123,7 @@ export const PrototypeVsProduction: React.FC = () => {
                   <div className="text-xs text-slate-500 font-mono">What breaks under production load</div>
                 </div>
               </div>
-              <span className="text-[11px] font-mono uppercase px-2.5 py-0.5 rounded bg-canvas-card text-slate-400 border border-white/10">
+              <span className="text-[11px] font-mono uppercase px-2.5 py-0.5 rounded-full bg-canvas-card text-slate-400 border border-white/10">
                 High Risk
               </span>
             </div>
@@ -131,7 +131,7 @@ export const PrototypeVsProduction: React.FC = () => {
             <ul className="space-y-4 text-sm text-slate-400">
               {current.fragile.map((item, idx) => (
                 <li key={idx} className="flex items-start gap-3">
-                  <span className="text-slate-500 mt-1 font-bold">✕</span>
+                  <span className="text-rose-400/80 mt-1 font-bold">✕</span>
                   <span>{item}</span>
                 </li>
               ))}
@@ -139,18 +139,18 @@ export const PrototypeVsProduction: React.FC = () => {
           </div>
 
           {/* Production Standard Card */}
-          <div className="rounded-2xl bg-canvas-surface border border-luxury-gold/40 p-6 sm:p-8 space-y-6 relative overflow-hidden shadow-luxury-glow">
-            <div className="flex items-center justify-between border-b border-luxury-gold/20 pb-4">
+          <div className="rounded-2xl bg-canvas-surface border border-terracotta/40 p-6 sm:p-8 space-y-6 relative overflow-hidden shadow-apple-elevated apple-card-hover">
+            <div className="flex items-center justify-between border-b border-terracotta/20 pb-4">
               <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-xl bg-luxury-gold/15 border border-luxury-gold/30 flex items-center justify-center">
-                  <CheckCircle2 className="w-5 h-5 text-luxury-gold" />
+                <div className="w-10 h-10 rounded-xl bg-terracotta/15 border border-terracotta/30 flex items-center justify-center">
+                  <CheckCircle2 className="w-5 h-5 text-terracotta" />
                 </div>
                 <div>
-                  <h3 className="font-sans text-base font-bold text-luxury-gold">My Enterprise Standard</h3>
+                  <h3 className="font-sans text-base font-bold text-terracotta">My Enterprise Standard</h3>
                   <div className="text-xs text-slate-400 font-mono">Engineered for SLA & Compliance</div>
                 </div>
               </div>
-              <span className="text-[11px] font-mono uppercase px-2.5 py-0.5 rounded bg-luxury-gold/15 text-luxury-gold border border-luxury-gold/30">
+              <span className="text-[11px] font-mono uppercase px-2.5 py-0.5 rounded-full bg-terracotta/15 text-terracotta border border-terracotta/30">
                 Battle-Tested
               </span>
             </div>
@@ -158,7 +158,7 @@ export const PrototypeVsProduction: React.FC = () => {
             <ul className="space-y-4 text-sm text-slate-200">
               {current.production.map((item, idx) => (
                 <li key={idx} className="flex items-start gap-3">
-                  <span className="text-luxury-gold mt-1 font-bold">✓</span>
+                  <span className="text-terracotta mt-1 font-bold">✓</span>
                   <span>{item}</span>
                 </li>
               ))}
@@ -168,19 +168,19 @@ export const PrototypeVsProduction: React.FC = () => {
         </div>
 
         {/* Bottom Callout */}
-        <div className="mt-10 p-5 rounded-2xl bg-canvas-card border border-canvas-border flex flex-col sm:flex-row items-center justify-between gap-4">
+        <div className="mt-10 p-5 rounded-2xl bg-canvas-card border border-canvas-border flex flex-col sm:flex-row items-center justify-between gap-4 apple-card-hover">
           <div className="flex items-center gap-3">
-            <Zap className="w-5 h-5 text-luxury-gold flex-shrink-0" />
+            <Zap className="w-5 h-5 text-terracotta flex-shrink-0" />
             <span className="text-sm text-slate-300">
               Need your current architecture audited against these enterprise standards?
             </span>
           </div>
           <a
             href="#calendly"
-            className="text-xs font-mono font-semibold text-luxury-gold hover:text-white flex items-center gap-1.5 transition-colors whitespace-nowrap"
+            className="text-xs font-mono font-semibold text-terracotta hover:text-white flex items-center gap-1.5 transition-colors whitespace-nowrap group"
           >
             <span>Request an Architecture Audit</span>
-            <ArrowRight className="w-3.5 h-3.5" />
+            <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
           </a>
         </div>
 

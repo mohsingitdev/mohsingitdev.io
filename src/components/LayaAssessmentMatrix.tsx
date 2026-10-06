@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { ShieldCheck, CheckCircle, BarChart3, ArrowUpRight } from 'lucide-react';
+import { ShieldCheck, CheckCircle2, BarChart3, ArrowUpRight, ChevronDown, ChevronUp, Sparkles, Award } from 'lucide-react';
 
 interface AssessmentVector {
   id: string;
@@ -105,94 +105,115 @@ const ASSESSMENT_DATA: AssessmentVector[] = [
 
 export const LayaAssessmentMatrix: React.FC<{ onBookCall: () => void }> = ({ onBookCall }) => {
   const [selectedFilter, setSelectedFilter] = useState<'all' | 'architecture' | 'scale' | 'roi'>('all');
+  const [expandedCards, setExpandedCards] = useState<Record<string, boolean>>({});
+
+  const toggleExpand = (id: string) => {
+    setExpandedCards((prev) => ({
+      ...prev,
+      [id]: !prev[id]
+    }));
+  };
 
   const filteredData = selectedFilter === 'all'
     ? ASSESSMENT_DATA
     : ASSESSMENT_DATA.filter((item) => item.category === selectedFilter || (selectedFilter === 'architecture' && item.category === 'domain'));
 
   return (
-    <section id="assessment-matrix" className="py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+    <section id="assessment-matrix" className="py-20 md:py-28 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12 scroll-mt-28">
       
-      {/* Header */}
-      <div className="text-center max-w-3xl mx-auto space-y-3">
-        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-canvas-card border border-luxury-gold/30 text-xs font-mono text-luxury-gold">
-          <ShieldCheck className="w-3.5 h-3.5" />
-          <span>ALGORITHMIC CALIBER VERIFICATION</span>
+      {/* Header Section */}
+      <div className="text-center max-w-3xl mx-auto space-y-4">
+        <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-canvas-card border border-terracotta/40 text-xs font-mono text-terracotta shadow-sm">
+          <ShieldCheck className="w-3.5 h-3.5 text-terracotta" />
+          <span>ENTERPRISE ENGINEERING RIGOR</span>
         </div>
-        <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white font-sans tracking-tight">
-          Laya Caliber Assessment Matrix
+        
+        <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white font-sans tracking-tight leading-tight">
+          Enterprise Architectural{' '}
+          <span className="font-serif italic font-normal text-terracotta">Benchmark Matrix</span>
         </h2>
-        <p className="text-slate-400 text-sm sm:text-base leading-relaxed">
-          Algorithmic evaluation scoring candidate capabilities without hallucination. Calibrated across strict typed rubrics reflecting production enterprise standards.
+        
+        <p className="text-slate-300 text-sm sm:text-base leading-relaxed max-w-2xl mx-auto">
+          Rigorous engineering standards reflecting Tier-1 production standards across Flipkart, Accenture, and Novartis. Evaluated across sub-40ms latency SLAs, zero-hallucination grounding, and 72% cloud ROI.
         </p>
       </div>
 
-      {/* Aggregate Score Ribbon */}
-      <div className="p-6 rounded-2xl bg-canvas-card border border-canvas-border grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
-        <div className="space-y-1 border-r border-canvas-border/60 last:border-none">
-          <div className="text-xs font-mono uppercase text-slate-400">Overall Caliber Rating</div>
-          <div className="text-3xl font-bold font-mono text-gradient-gold">9.6 / 10</div>
-          <div className="text-[11px] text-slate-500 font-mono">Calibrated Confidence: 97.4%</div>
+      {/* Aggregate Score Ribbon (Upgraded Contrast & Responsive Grid) */}
+      <div className="p-6 sm:p-8 rounded-3xl bg-canvas-card/90 border border-canvas-border grid grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 shadow-xl relative overflow-hidden">
+        
+        {/* Glow backdrop */}
+        <div className="absolute top-0 right-1/4 w-96 h-32 bg-terracotta/10 blur-[80px] pointer-events-none" />
+
+        <div className="space-y-1.5 sm:border-r border-canvas-border/70 pr-4">
+          <div className="text-[11px] font-mono uppercase tracking-wider text-slate-400">Engineering Caliber Rating</div>
+          <div className="text-3xl sm:text-4xl font-extrabold font-mono text-gradient-gold">9.6 <span className="text-xl sm:text-2xl text-slate-400 font-normal">/ 10</span></div>
+          <div className="text-xs text-slate-400 font-mono flex items-center gap-1.5">
+            <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
+            <span>Calibrated Confidence: 97.4%</span>
+          </div>
         </div>
 
-        <div className="space-y-1 border-r border-canvas-border/60 last:border-none">
-          <div className="text-xs font-mono uppercase text-slate-400">Enterprise Bracket</div>
-          <div className="text-xl font-bold text-white pt-1">Top 1% Architect</div>
-          <div className="text-[11px] text-slate-500 font-mono">Forward Deployment Tier</div>
+        <div className="space-y-1.5 sm:border-r border-canvas-border/70 pr-4">
+          <div className="text-[11px] font-mono uppercase tracking-wider text-slate-400">Enterprise Bracket</div>
+          <div className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">Top 1% Architect</div>
+          <div className="text-xs text-terracotta font-mono flex items-center gap-1.5">
+            <Award className="w-3.5 h-3.5" />
+            <span>Forward Deployment Tier</span>
+          </div>
         </div>
 
-        <div className="space-y-1 border-r border-canvas-border/60 last:border-none">
-          <div className="text-xs font-mono uppercase text-slate-400">Hallucination Risk</div>
-          <div className="text-3xl font-bold font-mono text-white">&lt; 0.5%</div>
-          <div className="text-[11px] text-luxury-gold font-mono">Strict Citation Guardrails</div>
+        <div className="space-y-1.5 sm:border-r border-canvas-border/70 pr-4">
+          <div className="text-[11px] font-mono uppercase tracking-wider text-slate-400">Hallucination Risk</div>
+          <div className="text-3xl sm:text-4xl font-extrabold font-mono text-emerald-400">&lt; 0.5%</div>
+          <div className="text-xs text-slate-400 font-mono">Strict Citation Guardrails</div>
         </div>
 
-        <div className="space-y-1">
-          <div className="text-xs font-mono uppercase text-slate-400">Inference Cost Delta</div>
-          <div className="text-3xl font-bold font-mono text-white">-72%</div>
-          <div className="text-[11px] text-slate-500 font-mono">Deterministic Gateway ROI</div>
+        <div className="space-y-1.5">
+          <div className="text-[11px] font-mono uppercase tracking-wider text-slate-400">Inference Cost Delta</div>
+          <div className="text-3xl sm:text-4xl font-extrabold font-mono text-amber-300">-72%</div>
+          <div className="text-xs text-slate-400 font-mono">Deterministic Gateway ROI</div>
         </div>
       </div>
 
-      {/* Filter Tabs */}
+      {/* Filter Tabs (Horizontal Scroll on Mobile) */}
       <div className="flex justify-center">
-        <div className="inline-flex p-1.5 rounded-xl bg-canvas-card border border-canvas-border gap-1">
+        <div className="inline-flex p-1.5 rounded-2xl bg-canvas-card border border-canvas-border gap-1 overflow-x-auto max-w-full">
           <button
             onClick={() => setSelectedFilter('all')}
-            className={`px-3.5 py-1.5 rounded-lg text-xs font-mono transition-all ${
+            className={`px-4 py-2 rounded-xl text-xs font-mono whitespace-nowrap transition-all ${
               selectedFilter === 'all'
-                ? 'bg-luxury-gold text-black font-semibold'
-                : 'text-slate-400 hover:text-white'
+                ? 'bg-terracotta text-white font-bold shadow-md'
+                : 'text-slate-300 hover:text-white'
             }`}
           >
             All Dimensions
           </button>
           <button
             onClick={() => setSelectedFilter('architecture')}
-            className={`px-3.5 py-1.5 rounded-lg text-xs font-mono transition-all ${
+            className={`px-4 py-2 rounded-xl text-xs font-mono whitespace-nowrap transition-all ${
               selectedFilter === 'architecture'
-                ? 'bg-luxury-gold text-black font-semibold'
-                : 'text-slate-400 hover:text-white'
+                ? 'bg-terracotta text-white font-bold shadow-md'
+                : 'text-slate-300 hover:text-white'
             }`}
           >
             Architecture & RAG
           </button>
           <button
             onClick={() => setSelectedFilter('scale')}
-            className={`px-3.5 py-1.5 rounded-lg text-xs font-mono transition-all ${
+            className={`px-4 py-2 rounded-xl text-xs font-mono whitespace-nowrap transition-all ${
               selectedFilter === 'scale'
-                ? 'bg-luxury-gold text-black font-semibold'
-                : 'text-slate-400 hover:text-white'
+                ? 'bg-terracotta text-white font-bold shadow-md'
+                : 'text-slate-300 hover:text-white'
             }`}
           >
             Scale & SLAs
           </button>
           <button
             onClick={() => setSelectedFilter('roi')}
-            className={`px-3.5 py-1.5 rounded-lg text-xs font-mono transition-all ${
+            className={`px-4 py-2 rounded-xl text-xs font-mono whitespace-nowrap transition-all ${
               selectedFilter === 'roi'
-                ? 'bg-luxury-gold text-black font-semibold'
-                : 'text-slate-400 hover:text-white'
+                ? 'bg-terracotta text-white font-bold shadow-md'
+                : 'text-slate-300 hover:text-white'
             }`}
           >
             Commercial ROI
@@ -200,94 +221,123 @@ export const LayaAssessmentMatrix: React.FC<{ onBookCall: () => void }> = ({ onB
         </div>
       </div>
 
-      {/* Assessment Matrix Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        {filteredData.map((item) => (
-          <motion.div
-            key={item.id}
-            layout
-            initial={{ opacity: 0, y: 15 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.3 }}
-            className="p-6 sm:p-7 rounded-2xl bg-canvas-surface border border-canvas-border hover:border-canvas-borderHover transition-all space-y-5 shadow-subtle-card group"
-          >
-            
-            {/* Header row */}
-            <div className="flex items-start justify-between gap-4 border-b border-canvas-border/80 pb-4">
-              <div>
-                <span className="text-[11px] font-mono uppercase tracking-wider text-luxury-gold">
-                  {item.grade}
-                </span>
-                <h3 className="text-xl font-bold text-white group-hover:text-luxury-gold transition-colors mt-0.5">
-                  {item.title}
-                </h3>
-                <div className="text-xs font-mono text-slate-400 mt-1">
-                  Anchor: {item.enterpriseAnchor}
+      {/* Assessment Matrix Grid with Expandable Evidence Drawers */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
+        {filteredData.map((item) => {
+          const isExpanded = !!expandedCards[item.id];
+          const displayedEvidence = isExpanded ? item.evidence : item.evidence.slice(0, 2);
+
+          return (
+            <motion.div
+              key={item.id}
+              layout
+              initial={{ opacity: 0, y: 15 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.3 }}
+              className="p-6 sm:p-8 rounded-3xl bg-canvas-surface border border-canvas-border hover:border-terracotta/40 transition-all space-y-5 shadow-lg group relative flex flex-col justify-between apple-card-hover"
+            >
+              
+              <div className="space-y-4">
+                {/* Header row */}
+                <div className="flex items-start justify-between gap-4 border-b border-canvas-border pb-4">
+                  <div className="space-y-1">
+                    <span className="text-[11px] font-mono uppercase tracking-wider text-terracotta font-semibold flex items-center gap-1.5">
+                      <Sparkles className="w-3 h-3 text-terracotta" />
+                      {item.grade}
+                    </span>
+                    <h3 className="text-xl sm:text-2xl font-bold text-white group-hover:text-amber-200 transition-colors">
+                      {item.title}
+                    </h3>
+                    <div className="text-xs font-mono text-slate-400">
+                      Anchor: <span className="text-slate-200 font-medium">{item.enterpriseAnchor}</span>
+                    </div>
+                  </div>
+
+                  {/* Score pill */}
+                  <div className="text-right flex-shrink-0">
+                    <div className="text-2xl sm:text-3xl font-extrabold font-mono text-white">
+                      {item.score}<span className="text-slate-500 text-sm font-normal">/{item.maxScore}</span>
+                    </div>
+                    <div className="text-[10px] font-mono text-emerald-400 font-semibold">
+                      {item.confidence}% Calibrated
+                    </div>
+                  </div>
+                </div>
+
+                {/* Score Progress Bar */}
+                <div className="space-y-1.5">
+                  <div className="w-full h-2 rounded-full bg-canvas-card overflow-hidden">
+                    <div
+                      className="h-full bg-gradient-to-r from-terracotta via-amber-400 to-amber-200 rounded-full"
+                      style={{ width: `${(item.score / item.maxScore) * 100}%` }}
+                    />
+                  </div>
+                </div>
+
+                {/* Verdict */}
+                <p className="text-xs sm:text-sm text-slate-300 leading-relaxed italic bg-black/25 p-3.5 rounded-xl border border-white/5">
+                  "{item.verdict}"
+                </p>
+
+                {/* Evidence items with Expand/Collapse */}
+                <div className="space-y-2.5 pt-2">
+                  <div className="text-[11px] font-mono uppercase tracking-wider text-slate-400 font-semibold flex items-center justify-between">
+                    <span>Verified Architectural Evidence:</span>
+                    <span className="text-[10px] text-slate-500 font-mono">
+                      {item.evidence.length} Verified Points
+                    </span>
+                  </div>
+
+                  <ul className="space-y-2 text-xs sm:text-sm text-slate-300">
+                    {displayedEvidence.map((ev, idx) => (
+                      <li key={idx} className="flex items-start gap-2.5">
+                        <CheckCircle2 className="w-4 h-4 text-terracotta mt-0.5 flex-shrink-0" />
+                        <span className="leading-snug">{ev}</span>
+                      </li>
+                    ))}
+                  </ul>
                 </div>
               </div>
 
-              {/* Score pill */}
-              <div className="text-right">
-                <div className="text-2xl font-extrabold font-mono text-white">
-                  {item.score}<span className="text-slate-500 text-sm font-normal">/{item.maxScore}</span>
+              {/* Expand Toggle Button */}
+              {item.evidence.length > 2 && (
+                <div className="pt-3 border-t border-canvas-border/60">
+                  <button
+                    onClick={() => toggleExpand(item.id)}
+                    className="w-full py-2.5 px-3 rounded-xl bg-canvas-card hover:bg-canvas-cardElevated border border-canvas-border text-xs font-mono text-slate-300 hover:text-white transition-all flex items-center justify-center gap-1.5 group/expand"
+                  >
+                    <span>{isExpanded ? 'Collapse Evidence' : `View Full Proof (+${item.evidence.length - 2} points)`}</span>
+                    {isExpanded ? (
+                      <ChevronUp className="w-3.5 h-3.5 text-terracotta" />
+                    ) : (
+                      <ChevronDown className="w-3.5 h-3.5 text-terracotta group-hover/expand:translate-y-0.5 transition-transform" />
+                    )}
+                  </button>
                 </div>
-                <div className="text-[10px] font-mono text-slate-400">
-                  {item.confidence}% Conf.
-                </div>
-              </div>
-            </div>
+              )}
 
-            {/* Score Progress Bar */}
-            <div className="space-y-1.5">
-              <div className="w-full h-1.5 rounded-full bg-canvas-card overflow-hidden">
-                <div
-                  className="h-full bg-gradient-to-r from-luxury-amber to-luxury-gold rounded-full"
-                  style={{ width: `${(item.score / item.maxScore) * 100}%` }}
-                />
-              </div>
-            </div>
-
-            {/* Verdict */}
-            <p className="text-xs text-slate-300 leading-relaxed italic">
-              "{item.verdict}"
-            </p>
-
-            {/* Evidence items */}
-            <div className="space-y-2 pt-2">
-              <div className="text-[11px] font-mono uppercase tracking-wider text-slate-400">
-                Verified Architectural Evidence:
-              </div>
-              <ul className="space-y-1.5 text-xs text-slate-300">
-                {item.evidence.map((ev, idx) => (
-                  <li key={idx} className="flex items-start gap-2">
-                    <CheckCircle className="w-3.5 h-3.5 text-luxury-gold mt-0.5 flex-shrink-0" />
-                    <span>{ev}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-          </motion.div>
-        ))}
+            </motion.div>
+          );
+        })}
       </div>
 
       {/* Audit CTA banner */}
-      <div className="p-6 rounded-2xl bg-canvas-card border border-luxury-gold/30 flex flex-col sm:flex-row items-center justify-between gap-4">
-        <div className="space-y-1 text-center sm:text-left">
-          <div className="text-base font-bold text-white flex items-center justify-center sm:justify-start gap-2">
-            <BarChart3 className="w-4 h-4 text-luxury-gold" />
+      <div className="p-7 sm:p-8 rounded-3xl bg-gradient-to-r from-canvas-card via-[#2A201A] to-canvas-card border border-terracotta/40 flex flex-col sm:flex-row items-center justify-between gap-6 shadow-xl">
+        <div className="space-y-1.5 text-center sm:text-left max-w-xl">
+          <div className="text-lg font-bold text-white flex items-center justify-center sm:justify-start gap-2">
+            <BarChart3 className="w-5 h-5 text-terracotta" />
             <span>Commission a Custom Architectural Assessment</span>
           </div>
-          <div className="text-xs text-slate-400">
-            Have your startup or enterprise GenAI pipeline benchmarked against these exact metrics.
+          <div className="text-xs sm:text-sm text-slate-300 leading-relaxed">
+            Have your startup or enterprise GenAI pipeline benchmarked against these exact metrics: hallucination thresholds, token cost deltas, and latency SLAs.
           </div>
         </div>
         <button
           onClick={onBookCall}
-          className="px-5 py-2.5 rounded-xl bg-luxury-gold text-black font-semibold text-xs whitespace-nowrap hover:bg-white transition-all shadow-luxury-glow flex items-center gap-1.5"
+          className="px-7 py-3.5 rounded-full bg-terracotta text-white font-bold text-xs sm:text-sm whitespace-nowrap hover:bg-terracotta-dark transition-all shadow-luxury-glow flex items-center gap-2 hover:scale-[1.02] active:scale-[0.98]"
         >
           <span>Schedule Assessment</span>
-          <ArrowUpRight className="w-3.5 h-3.5" />
+          <ArrowUpRight className="w-4 h-4 text-white" />
         </button>
       </div>
 

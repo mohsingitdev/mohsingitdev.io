@@ -3,7 +3,7 @@ export interface ExperienceItem {
   role: string;
   company: string;
   location: string;
-  period: string;
+  period?: string;
   badge?: string;
   bullets: string[];
   technologies: string[];

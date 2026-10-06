@@ -76,8 +76,8 @@ export const NeuralBackground: React.FC = () => {
           const dist = Math.sqrt(dx * dx + dy * dy);
 
           if (dist < 130) {
-            const lineAlpha = (1 - dist / 130) * 0.12;
-            ctx.strokeStyle = `rgba(229, 192, 123, ${lineAlpha})`; // Subtle warm gold / champagne tint
+            const lineAlpha = (1 - dist / 130) * 0.14;
+            ctx.strokeStyle = `rgba(217, 119, 87, ${lineAlpha})`; // Claude terracotta connection tint
             ctx.lineWidth = 0.7;
             ctx.beginPath();
             ctx.moveTo(particles[i].x, particles[i].y);
@@ -108,13 +108,13 @@ export const NeuralBackground: React.FC = () => {
           const force = (1 - mDist / mouse.radius) * 0.6;
           p.x -= (mdx / mDist) * force;
           p.y -= (mdy / mDist) * force;
-          p.alpha = Math.min(p.baseAlpha + 0.3, 0.7);
+          p.alpha = Math.min(p.baseAlpha + 0.35, 0.75);
         } else {
           p.alpha = p.baseAlpha;
         }
 
-        // Draw particle node
-        ctx.fillStyle = `rgba(229, 192, 123, ${p.alpha})`;
+        // Draw particle node with Claude terracotta glow
+        ctx.fillStyle = `rgba(217, 119, 87, ${p.alpha})`;
         ctx.beginPath();
         ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
         ctx.fill();

@@ -21,15 +21,16 @@ export const DomainMatrix: React.FC<DomainMatrixProps> = ({ onBookCall, onExplor
       
       {/* Section Header */}
       <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 border-b border-canvas-border pb-8">
-        <div className="space-y-3 max-w-2xl">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-canvas-card border border-canvas-border text-xs font-mono text-luxury-gold">
-            <Layers className="w-3.5 h-3.5" />
+        <div className="space-y-4 max-w-2xl">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-canvas-card border border-terracotta/40 text-xs font-mono text-terracotta shadow-sm">
+            <Layers className="w-3.5 h-3.5 text-terracotta" />
             <span>DOMAIN-SPECIFIC PRODUCTION BLUEPRINTS</span>
           </div>
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white font-sans tracking-tight">
-            Architectural Case Studies
+            Architectural{' '}
+            <span className="font-serif italic font-normal text-terracotta">Case Studies</span>
           </h2>
-          <p className="text-slate-400 text-sm sm:text-base leading-relaxed">
+          <p className="text-slate-300 text-sm sm:text-base leading-relaxed">
             Deliberate systems engineered under rigid real-world enterprise constraints across high-concurrency retail, regulated life sciences, and industrial telemetry.
           </p>
         </div>
@@ -40,10 +41,10 @@ export const DomainMatrix: React.FC<DomainMatrixProps> = ({ onBookCall, onExplor
             <button
               key={d}
               onClick={() => setSelectedDomain(d)}
-              className={`px-3.5 py-1.5 rounded-full text-xs font-mono transition-all ${
+              className={`px-3.5 py-1.5 rounded-full text-xs font-mono transition-all duration-300 ${
                 selectedDomain === d
-                  ? 'bg-luxury-gold text-black font-semibold shadow-luxury-glow'
-                  : 'bg-canvas-card border border-canvas-border text-slate-400 hover:text-white'
+                  ? 'bg-terracotta text-white font-semibold shadow-luxury-glow'
+                  : 'bg-canvas-card border border-canvas-border text-slate-300 hover:text-white'
               }`}
             >
               {d === 'All' ? 'All Domains' : d.split('&')[0]}
@@ -60,7 +61,7 @@ export const DomainMatrix: React.FC<DomainMatrixProps> = ({ onBookCall, onExplor
           return (
             <div
               key={project.id}
-              className="rounded-3xl bg-canvas-card border border-canvas-border hover:border-luxury-gold/50 transition-all duration-300 p-8 sm:p-10 flex flex-col justify-between space-y-7 group shadow-subtle-card relative overflow-hidden"
+              className="rounded-3xl bg-canvas-card border border-canvas-border hover:border-terracotta/50 transition-all duration-300 p-8 sm:p-10 flex flex-col justify-between space-y-7 group shadow-apple-card apple-card-hover relative overflow-hidden"
             >
               {/* Card Watermark Number */}
               <div className="absolute top-4 right-6 select-none pointer-events-none text-4xl sm:text-5xl font-mono font-bold text-white/[0.04]">
@@ -70,7 +71,7 @@ export const DomainMatrix: React.FC<DomainMatrixProps> = ({ onBookCall, onExplor
               {/* Top metadata */}
               <div className="space-y-3 relative z-10">
                 <div className="flex items-center gap-3">
-                  <span className="font-mono text-xs font-bold text-luxury-gold">
+                  <span className="font-mono text-xs font-bold text-terracotta">
                     {formattedNumber}
                   </span>
                   <span className="text-[11px] font-mono uppercase px-3 py-0.5 rounded-full bg-canvas-surface text-slate-300 border border-canvas-border">
@@ -78,7 +79,7 @@ export const DomainMatrix: React.FC<DomainMatrixProps> = ({ onBookCall, onExplor
                   </span>
                 </div>
 
-                <h3 className="text-2xl font-bold text-white group-hover:text-luxury-gold transition-colors font-sans pt-1">
+                <h3 className="text-2xl font-bold text-white group-hover:text-terracotta transition-colors font-sans pt-1">
                   {project.title}
                 </h3>
 
@@ -94,8 +95,8 @@ export const DomainMatrix: React.FC<DomainMatrixProps> = ({ onBookCall, onExplor
                   <div className="leading-relaxed">{project.challenge}</div>
                 </div>
 
-                <div className="p-4 rounded-2xl bg-canvas-subtle border border-luxury-gold/20 space-y-1">
-                  <div className="font-mono text-luxury-gold uppercase text-[10px]">Architectural Solution</div>
+                <div className="p-4 rounded-2xl bg-canvas-subtle border border-terracotta/25 space-y-1">
+                  <div className="font-mono text-terracotta uppercase text-[10px]">Architectural Solution</div>
                   <div className="leading-relaxed">{project.architectureSolution}</div>
                 </div>
               </div>
@@ -104,7 +105,7 @@ export const DomainMatrix: React.FC<DomainMatrixProps> = ({ onBookCall, onExplor
               <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5 pt-1 relative z-10">
                 {project.metrics.map((m, mIdx) => (
                   <div key={mIdx} className="p-3 rounded-xl bg-canvas-surface border border-canvas-border text-center">
-                    <div className="font-mono text-base font-bold text-luxury-gold">{m.value}</div>
+                    <div className="font-mono text-base font-bold text-terracotta">{m.value}</div>
                     <div className="text-[10px] text-slate-400 mt-0.5 leading-tight">{m.label}</div>
                   </div>
                 ))}
@@ -116,7 +117,7 @@ export const DomainMatrix: React.FC<DomainMatrixProps> = ({ onBookCall, onExplor
                   {project.hasInteractiveDemo && (
                     <button
                       onClick={onExploreDemo}
-                      className="inline-flex items-center gap-1.5 text-xs font-mono font-semibold text-luxury-gold hover:underline"
+                      className="inline-flex items-center gap-1.5 text-xs font-mono font-semibold text-terracotta hover:underline"
                     >
                       <Sparkles className="w-3.5 h-3.5" />
                       <span>Test Live Simulator</span>
@@ -138,7 +139,7 @@ export const DomainMatrix: React.FC<DomainMatrixProps> = ({ onBookCall, onExplor
 
                 <button
                   onClick={onBookCall}
-                  className="text-xs font-mono font-semibold text-slate-200 hover:text-luxury-gold flex items-center gap-1 transition-colors"
+                  className="text-xs font-mono font-semibold text-slate-200 hover:text-terracotta flex items-center gap-1 transition-colors"
                 >
                   <span>Commission System</span>
                   <ArrowUpRight className="w-3.5 h-3.5" />

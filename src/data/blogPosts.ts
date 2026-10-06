@@ -16,7 +16,7 @@ export const BLOG_POSTS: BlogPost[] = [
       },
       {
         sectionTitle: 'The Two-Tier Architecture: Deterministic First, Probabilistic Second',
-        body: 'To achieve strict p99 latencies under 60ms, production architectures must decouple simple intent extraction from complex multi-step reasoning. Routine queries (order tracking, simple FAQs, account lookups) can be deterministically resolved or classified by small sub-100M parameter models (or fine-tuned Jev/DeBERTa classifiers) in under 30 milliseconds.',
+        body: 'To achieve strict p99 latencies under 60ms, production architectures must decouple simple intent extraction from complex multi-step reasoning. Routine queries (order tracking, simple FAQs, account lookups) can be deterministically resolved or classified by small sub-100M parameter models (or fine-tuned FastText/DeBERTa classifiers) in under 30 milliseconds.',
         codeSnippet: {
           language: 'python',
           caption: 'Intent Gateway with Strict Wall-Clock Retry Budget',
