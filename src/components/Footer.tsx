@@ -3,7 +3,7 @@ import { Terminal, Github, Linkedin, Mail, ArrowUpRight } from 'lucide-react';
 
 export const Footer: React.FC = () => {
   return (
-    <footer className="bg-cyber-bg border-t border-cyber-border py-16 text-slate-400 text-xs">
+    <footer className="bg-canvas border-t border-canvas-border py-16 text-slate-400 text-xs">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
         
         {/* Top Grid */}
@@ -12,17 +12,17 @@ export const Footer: React.FC = () => {
           {/* Brand Info */}
           <div className="md:col-span-2 space-y-4">
             <div className="flex items-center space-x-3">
-              <div className="w-8 h-8 rounded-lg bg-cyber-card border border-cyber-border flex items-center justify-center">
-                <Terminal className="w-4 h-4 text-cyber-green" />
+              <div className="w-8 h-8 rounded-lg bg-canvas-card border border-canvas-border flex items-center justify-center">
+                <Terminal className="w-4 h-4 text-luxury-gold" />
               </div>
-              <span className="font-mono text-sm tracking-wider font-bold text-white">
-                MOHSIN QURESHI
+              <span className="font-sans text-sm tracking-tight font-bold text-white">
+                Mohsin Qureshi
               </span>
             </div>
             <p className="text-xs text-slate-400 max-w-md leading-relaxed">
               Forward Deployment Engineer (FDE) & AI Architect specializing in multi-agent orchestration, grounded enterprise RAG, and production LLMOps.
             </p>
-            <div className="font-mono text-[11px] text-cyber-muted">
+            <div className="font-mono text-[11px] text-slate-500">
               Bengaluru, Karnataka, India • Available for Global Remote Contracts & Consulting
             </div>
           </div>
@@ -33,12 +33,13 @@ export const Footer: React.FC = () => {
               Navigation
             </div>
             <ul className="space-y-2 font-mono text-xs">
-              <li><a href="#hero" className="hover:text-cyber-green transition-colors">Overview</a></li>
-              <li><a href="#philosophy" className="hover:text-cyber-green transition-colors">Production Philosophy</a></li>
-              <li><a href="#domains" className="hover:text-cyber-green transition-colors">Domain Matrix</a></li>
-              <li><a href="#interactive-demos" className="hover:text-cyber-green transition-colors">Interactive Demos</a></li>
-              <li><a href="#experience" className="hover:text-cyber-green transition-colors">Enterprise Track Record</a></li>
-              <li><a href="#blog" className="hover:text-cyber-green transition-colors">Technical Blog</a></li>
+              <li><a href="#hero" className="hover:text-luxury-gold transition-colors">Overview</a></li>
+              <li><a href="#assessment-matrix" className="hover:text-luxury-gold transition-colors">Laya Caliber Matrix</a></li>
+              <li><a href="#philosophy" className="hover:text-luxury-gold transition-colors">Production Philosophy</a></li>
+              <li><a href="#domains" className="hover:text-luxury-gold transition-colors">Domain Matrix</a></li>
+              <li><a href="#interactive-demos" className="hover:text-luxury-gold transition-colors">Interactive Demos</a></li>
+              <li><a href="#experience" className="hover:text-luxury-gold transition-colors">Enterprise Track Record</a></li>
+              <li><a href="#blog" className="hover:text-luxury-gold transition-colors">Technical Blog</a></li>
             </ul>
           </div>
 
@@ -55,7 +56,7 @@ export const Footer: React.FC = () => {
                   rel="noopener noreferrer"
                   className="flex items-center gap-1.5 hover:text-white transition-colors"
                 >
-                  <Linkedin className="w-3.5 h-3.5 text-cyber-green" />
+                  <Linkedin className="w-3.5 h-3.5 text-luxury-gold" />
                   <span>LinkedIn Profile</span>
                   <ArrowUpRight className="w-3 h-3" />
                 </a>
@@ -67,7 +68,7 @@ export const Footer: React.FC = () => {
                   rel="noopener noreferrer"
                   className="flex items-center gap-1.5 hover:text-white transition-colors"
                 >
-                  <Github className="w-3.5 h-3.5 text-cyber-cyan" />
+                  <Github className="w-3.5 h-3.5 text-luxury-platinum" />
                   <span>GitHub Repositories</span>
                   <ArrowUpRight className="w-3 h-3" />
                 </a>
@@ -77,7 +78,7 @@ export const Footer: React.FC = () => {
                   href="mailto:mohsin.i.qureshi@hotmail.com"
                   className="flex items-center gap-1.5 hover:text-white transition-colors"
                 >
-                  <Mail className="w-3.5 h-3.5 text-cyber-purple" />
+                  <Mail className="w-3.5 h-3.5 text-luxury-gold" />
                   <span>mohsin.i.qureshi@hotmail.com</span>
                 </a>
               </li>
@@ -87,12 +88,12 @@ export const Footer: React.FC = () => {
         </div>
 
         {/* Bottom Bar */}
-        <div className="pt-8 border-t border-cyber-border/70 flex flex-col sm:flex-row items-center justify-between gap-4 font-mono text-[11px] text-cyber-muted">
+        <div className="pt-8 border-t border-canvas-border flex flex-col sm:flex-row items-center justify-between gap-4 font-mono text-[11px] text-slate-500">
           <div>
             © {new Date().getFullYear()} Mohsin Qureshi. Architected for High-Concurrency & Enterprise SLAs.
           </div>
           <div>
-            Built with React, TypeScript, Tailwind CSS & Vite. Deployed to GitHub Pages.
+            Design inspired by Product Designer editorial aesthetics. Caliber calibrated via Laya Algorithm.
           </div>
         </div>
 

@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { ArrowRight, Sparkles, Cpu, ShieldCheck, Database, BarChart3, ChevronDown } from 'lucide-react';
+import { ArrowRight, Sparkles, Cpu, ShieldCheck, Database, BarChart3 } from 'lucide-react';
 
 interface HeroProps {
   onBookCall: () => void;
@@ -82,7 +82,15 @@ export const Hero: React.FC<HeroProps> = ({ onBookCall, onExploreDemos, onViewMa
                 className="w-full sm:w-auto px-6 py-4 rounded-xl bg-canvas-card border border-canvas-border hover:border-luxury-gold/50 text-slate-200 font-semibold text-sm transition-all flex items-center justify-center gap-2"
               >
                 <BarChart3 className="w-4 h-4 text-luxury-gold" />
-                <span>View Laya Caliber Matrix</span>
+                <span>Laya Matrix</span>
+              </button>
+
+              <button
+                onClick={onExploreDemos}
+                className="w-full sm:w-auto px-5 py-4 rounded-xl bg-canvas-card border border-canvas-border hover:border-white/30 text-slate-300 font-semibold text-sm transition-all flex items-center justify-center gap-2"
+              >
+                <Sparkles className="w-4 h-4 text-luxury-gold" />
+                <span>Live Demos</span>
               </button>
             </div>
 

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { ShieldCheck, Cpu, Zap, Activity, CheckCircle, BarChart3, ArrowUpRight } from 'lucide-react';
+import { ShieldCheck, CheckCircle, BarChart3, ArrowUpRight } from 'lucide-react';
 
 interface AssessmentVector {
   id: string;

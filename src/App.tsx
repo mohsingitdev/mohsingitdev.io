@@ -1,6 +1,8 @@
 import React from 'react';
 import { Navbar } from './components/Navbar';
+import { NeuralBackground } from './components/NeuralBackground';
 import { Hero } from './components/Hero';
+import { LayaAssessmentMatrix } from './components/LayaAssessmentMatrix';
 import { PrototypeVsProduction } from './components/PrototypeVsProduction';
 import { DomainMatrix } from './components/DomainMatrix';
 import { InteractiveDemosSection } from './components/InteractiveDemosSection';
@@ -25,27 +27,43 @@ export const App: React.FC = () => {
     }
   };
 
+  const scrollToMatrix = () => {
+    const el = document.getElementById('assessment-matrix');
+    if (el) {
+      el.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
-    <div className="min-h-screen bg-cyber-bg text-slate-100 flex flex-col font-sans selection:bg-cyber-green selection:text-black">
+    <div className="relative min-h-screen bg-canvas text-slate-100 flex flex-col font-sans selection:bg-luxury-gold selection:text-black">
+      {/* Interactive AI Neural Background Canvas */}
+      <NeuralBackground />
+
       {/* Sticky Navigation */}
       <Navbar onBookCall={scrollToBooking} />
 
       {/* Main Content Sections */}
-      <main className="flex-1">
-        <Hero onBookCall={scrollToBooking} />
-        
+      <main className="flex-1 relative z-10">
+        <Hero
+          onBookCall={scrollToBooking}
+          onExploreDemos={scrollToDemos}
+          onViewMatrix={scrollToMatrix}
+        />
+
+        <LayaAssessmentMatrix onBookCall={scrollToBooking} />
+
         <PrototypeVsProduction />
-        
+
         <DomainMatrix onBookCall={scrollToBooking} onExploreDemo={scrollToDemos} />
-        
+
         <InteractiveDemosSection />
-        
+
         <ExperienceTimeline />
-        
+
         <TechRadar />
-        
+
         <BlogSection onBookCall={scrollToBooking} />
-        
+
         <CalendlySection />
       </main>
 
