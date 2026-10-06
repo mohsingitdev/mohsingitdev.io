@@ -130,18 +130,18 @@ export const LiveRoutingSimulator: React.FC = () => {
   };
 
   return (
-    <div className="rounded-2xl bg-cyber-card border border-cyber-border p-6 sm:p-8 space-y-6">
+    <div className="rounded-2xl bg-canvas-card border border-canvas-border p-6 sm:p-8 space-y-6 shadow-subtle-card">
       
       {/* Header */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-cyber-border pb-5">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-canvas-border pb-5">
         <div>
           <div className="flex items-center gap-2">
-            <Cpu className="w-5 h-5 text-cyber-green" />
-            <h3 className="font-mono text-lg font-bold text-white">
+            <Cpu className="w-5 h-5 text-luxury-gold" />
+            <h3 className="font-sans text-lg font-bold text-white">
               Live Architecture Simulator: Multi-Agent Enterprise Router
             </h3>
           </div>
-          <p className="text-xs text-cyber-muted mt-1">
+          <p className="text-xs text-slate-400 mt-1">
             Test how Mohsin's deterministic + SLM routing platform handles diverse enterprise traffic compared to naive monolithic LLMs.
           </p>
         </div>
@@ -150,7 +150,7 @@ export const LiveRoutingSimulator: React.FC = () => {
           href="https://github.com/mohsingitdev"
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-flex items-center gap-1.5 text-xs font-mono text-cyber-green hover:text-white transition-colors"
+          className="inline-flex items-center gap-1.5 text-xs font-mono text-luxury-gold hover:text-white transition-colors"
         >
           <span>View GitHub Architecture Repo</span>
           <ExternalLink className="w-3.5 h-3.5" />
@@ -167,41 +167,41 @@ export const LiveRoutingSimulator: React.FC = () => {
             <button
               key={sc.id}
               onClick={() => { setSelectedScenario(sc); runSimulation(); }}
-              className={`p-3 rounded-xl text-left border transition-all ${
+              className={`p-3.5 rounded-xl text-left border transition-all ${
                 selectedScenario.id === sc.id
-                  ? 'bg-cyber-surface border-cyber-green text-white shadow-neon'
-                  : 'bg-cyber-surface/40 border-cyber-border text-slate-400 hover:text-slate-200 hover:border-slate-600'
+                  ? 'bg-canvas-surface border-luxury-gold text-white shadow-luxury-glow'
+                  : 'bg-canvas-subtle border-canvas-border text-slate-400 hover:text-slate-200 hover:border-slate-600'
               }`}
             >
               <div className="text-xs font-mono font-semibold">{sc.name}</div>
-              <div className="text-[11px] text-cyber-muted truncate mt-1">{sc.tier}</div>
+              <div className="text-[11px] text-slate-400 truncate mt-1">{sc.tier}</div>
             </button>
           ))}
         </div>
       </div>
 
       {/* Simulated User Input Card */}
-      <div className="p-4 rounded-xl bg-cyber-bg border border-cyber-border font-mono text-xs space-y-2">
-        <div className="flex items-center justify-between text-cyber-muted">
+      <div className="p-4 rounded-xl bg-canvas-subtle border border-canvas-border font-mono text-xs space-y-2">
+        <div className="flex items-center justify-between text-slate-400">
           <span>INPUT_STREAM_PAYLOAD:</span>
-          <span className="text-[11px] text-cyber-cyan">{selectedScenario.tier}</span>
+          <span className="text-[11px] text-luxury-gold">{selectedScenario.tier}</span>
         </div>
-        <div className="text-slate-200 bg-cyber-card p-3 rounded-lg border border-cyber-border/70">
+        <div className="text-slate-200 bg-canvas-card p-3 rounded-lg border border-canvas-border">
           "{selectedScenario.query}"
         </div>
       </div>
 
       {/* Architecture Toggle */}
-      <div className="flex flex-col sm:flex-row items-center justify-between gap-4 p-3 rounded-xl bg-cyber-surface border border-cyber-border">
+      <div className="flex flex-col sm:flex-row items-center justify-between gap-4 p-3.5 rounded-xl bg-canvas-surface border border-canvas-border">
         <div className="text-xs font-mono text-slate-300">
           Compare Routing Architecture:
         </div>
-        <div className="inline-flex p-1 rounded-lg bg-cyber-bg border border-cyber-border">
+        <div className="inline-flex p-1 rounded-lg bg-canvas-card border border-canvas-border gap-1">
           <button
             onClick={() => setMode('agentic')}
             className={`px-3 py-1.5 rounded-md text-xs font-mono font-semibold transition-all ${
               mode === 'agentic'
-                ? 'bg-cyber-green text-black shadow-neon'
+                ? 'bg-luxury-gold text-black shadow-luxury-glow'
                 : 'text-slate-400 hover:text-white'
             }`}
           >
@@ -211,11 +211,11 @@ export const LiveRoutingSimulator: React.FC = () => {
             onClick={() => setMode('monolithic')}
             className={`px-3 py-1.5 rounded-md text-xs font-mono font-semibold transition-all ${
               mode === 'monolithic'
-                ? 'bg-red-500/20 text-red-300 border border-red-500/40'
+                ? 'bg-canvas-subtle text-slate-300 border border-white/10'
                 : 'text-slate-400 hover:text-white'
             }`}
           >
-            ❌ Naive Monolithic LLM
+            ✕ Naive Monolithic LLM
           </button>
         </div>
       </div>
@@ -224,13 +224,13 @@ export const LiveRoutingSimulator: React.FC = () => {
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
         
         {/* Metric 1: Latency */}
-        <div className="p-4 rounded-xl bg-cyber-surface border border-cyber-border space-y-1">
-          <div className="flex items-center gap-2 text-xs text-cyber-muted">
-            <Clock className="w-3.5 h-3.5 text-cyber-cyan" />
+        <div className="p-4 rounded-xl bg-canvas-surface border border-canvas-border space-y-1">
+          <div className="flex items-center gap-2 text-xs text-slate-400">
+            <Clock className="w-3.5 h-3.5 text-luxury-gold" />
             <span>End-to-End Latency</span>
           </div>
           <div className={`font-mono text-2xl font-bold ${
-            mode === 'agentic' ? 'text-cyber-green' : 'text-red-400'
+            mode === 'agentic' ? 'text-luxury-gold' : 'text-slate-400'
           }`}>
             {isRunning ? 'Calculating...' : (mode === 'agentic' ? selectedScenario.agentic.latency : selectedScenario.monolithic.latency)}
           </div>
@@ -240,13 +240,13 @@ export const LiveRoutingSimulator: React.FC = () => {
         </div>
 
         {/* Metric 2: Estimated Cost */}
-        <div className="p-4 rounded-xl bg-cyber-surface border border-cyber-border space-y-1">
-          <div className="flex items-center gap-2 text-xs text-cyber-muted">
-            <DollarSign className="w-3.5 h-3.5 text-cyber-green" />
+        <div className="p-4 rounded-xl bg-canvas-surface border border-canvas-border space-y-1">
+          <div className="flex items-center gap-2 text-xs text-slate-400">
+            <DollarSign className="w-3.5 h-3.5 text-luxury-gold" />
             <span>Cost per 10k Requests</span>
           </div>
           <div className={`font-mono text-2xl font-bold ${
-            mode === 'agentic' ? 'text-cyber-green' : 'text-red-400'
+            mode === 'agentic' ? 'text-luxury-gold' : 'text-slate-400'
           }`}>
             {isRunning ? 'Calculating...' : (mode === 'agentic' ? selectedScenario.agentic.costPer10k : selectedScenario.monolithic.costPer10k)}
           </div>
@@ -256,13 +256,13 @@ export const LiveRoutingSimulator: React.FC = () => {
         </div>
 
         {/* Metric 3: Safety & Resilience */}
-        <div className="p-4 rounded-xl bg-cyber-surface border border-cyber-border space-y-1">
-          <div className="flex items-center gap-2 text-xs text-cyber-muted">
-            <ShieldAlert className="w-3.5 h-3.5 text-cyber-purple" />
+        <div className="p-4 rounded-xl bg-canvas-surface border border-canvas-border space-y-1">
+          <div className="flex items-center gap-2 text-xs text-slate-400">
+            <ShieldAlert className="w-3.5 h-3.5 text-luxury-platinum" />
             <span>Failure & Hallucination Risk</span>
           </div>
           <div className={`font-mono text-lg font-bold ${
-            mode === 'agentic' ? 'text-cyber-green' : 'text-yellow-400'
+            mode === 'agentic' ? 'text-white' : 'text-slate-400'
           }`}>
             {isRunning ? 'Auditing...' : (mode === 'agentic' ? selectedScenario.agentic.risk : selectedScenario.monolithic.risk)}
           </div>
@@ -274,15 +274,15 @@ export const LiveRoutingSimulator: React.FC = () => {
       </div>
 
       {/* Execution Path Trace */}
-      <div className="p-4 rounded-xl bg-cyber-bg border border-cyber-border space-y-3 font-mono text-xs">
-        <div className="flex items-center justify-between border-b border-cyber-border/70 pb-2">
-          <span className="text-cyber-muted">TELEMETRY_EXECUTION_TRACE:</span>
-          <span className="text-cyber-green">STATUS: 200 OK</span>
+      <div className="p-4 rounded-xl bg-canvas-subtle border border-canvas-border space-y-3 font-mono text-xs">
+        <div className="flex items-center justify-between border-b border-canvas-border pb-2">
+          <span className="text-slate-400">TELEMETRY_EXECUTION_TRACE:</span>
+          <span className="text-luxury-gold">STATUS: 200 OK</span>
         </div>
 
         {mode === 'agentic' ? (
           <div className="space-y-2 text-slate-300">
-            <div className="text-cyber-cyan font-semibold">
+            <div className="text-white font-semibold">
               Routing Path: {selectedScenario.agentic.route}
             </div>
             <div className="text-slate-400 text-[11px]">
@@ -291,7 +291,7 @@ export const LiveRoutingSimulator: React.FC = () => {
             <div className="space-y-1 pt-2">
               {selectedScenario.agentic.executionSteps.map((step, i) => (
                 <div key={i} className="flex items-center gap-2 text-slate-300">
-                  <span className="text-cyber-green">▸</span>
+                  <span className="text-luxury-gold">▸</span>
                   <span>{step}</span>
                 </div>
               ))}
@@ -299,13 +299,13 @@ export const LiveRoutingSimulator: React.FC = () => {
           </div>
         ) : (
           <div className="space-y-2 text-slate-300">
-            <div className="text-red-400 font-semibold">
+            <div className="text-slate-300 font-semibold">
               Routing Path: {selectedScenario.monolithic.route}
             </div>
             <div className="text-slate-400 text-[11px]">
               {selectedScenario.monolithic.summary}
             </div>
-            <div className="text-red-400/80 text-[11px] pt-1">
+            <div className="text-slate-500 text-[11px] pt-1">
               Warning: High token consumption, unconstrained retry loops, and lack of deterministic schema validation.
             </div>
           </div>

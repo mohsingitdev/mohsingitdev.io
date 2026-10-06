@@ -8,30 +8,48 @@ export default {
   theme: {
     extend: {
       colors: {
-        cyber: {
-          bg: '#08090C',
-          surface: '#0F1318',
-          card: '#151921',
-          border: '#222936',
-          muted: '#8A94A6',
-          green: '#00FF87',
-          'green-glow': 'rgba(0, 255, 135, 0.15)',
-          cyan: '#60EFFF',
-          purple: '#A78BFA',
-          accent: '#00FF87'
+        canvas: {
+          DEFAULT: '#090A0E',
+          subtle: '#0D0F14',
+          surface: '#12151D',
+          card: '#161922',
+          cardElevated: '#1B1F2A',
+          border: 'rgba(255, 255, 255, 0.08)',
+          borderSubtle: 'rgba(255, 255, 255, 0.04)',
+          borderHover: 'rgba(255, 255, 255, 0.18)',
+        },
+        luxury: {
+          gold: '#E5C07B',
+          amber: '#F59E0B',
+          bronze: '#D97706',
+          champagne: '#F3E8D6',
+          platinum: '#E2E8F0',
+          silver: '#94A3B8',
+          charcoal: '#27272A',
+          indigo: '#6366F1',
+          violet: '#8B5CF6',
         }
       },
       fontFamily: {
-        sans: ['Inter', 'system-ui', '-apple-system', 'sans-serif'],
+        sans: ['"Plus Jakarta Sans"', 'Inter', 'system-ui', 'sans-serif'],
+        serif: ['"Playfair Display"', 'Georgia', 'serif'],
         mono: ['"JetBrains Mono"', 'monospace']
       },
       boxShadow: {
-        'neon': '0 0 20px -3px rgba(0, 255, 135, 0.25)',
-        'neon-strong': '0 0 35px -2px rgba(0, 255, 135, 0.45)',
-        'cyan-glow': '0 0 25px -3px rgba(96, 239, 255, 0.25)'
+        'luxury-glow': '0 0 35px -5px rgba(229, 192, 123, 0.15)',
+        'indigo-glow': '0 0 35px -5px rgba(99, 102, 241, 0.18)',
+        'subtle-card': '0 10px 30px -10px rgba(0, 0, 0, 0.7)',
+        'portrait-shadow': '0 25px 60px -15px rgba(0, 0, 0, 0.9)'
       },
       animation: {
-        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+        'float-slow': 'float 6s ease-in-out infinite',
+        'pulse-subtle': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+      },
+      keyframes: {
+        float: {
+          '0%, 100%': { transform: 'translateY(0px)' },
+          '50%': { transform: 'translateY(-10px)' },
+        }
       }
     },
   },
