@@ -144,7 +144,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onBookCall }) => {
             className="flex items-center justify-between text-slate-200 hover:text-luxury-gold py-1"
           >
             <span>Verified Architecture Matrix</span>
-            <span className="text-xs font-mono text-luxury-gold">9.6/10</span>
+            <span className="text-xs font-mono text-terracotta font-semibold">99.98% SLA</span>
           </a>
           <a 
             href="#philosophy" 

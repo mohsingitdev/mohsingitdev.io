@@ -38,9 +38,9 @@ export const DOMAIN_PROJECTS: DomainProject[] = [
     hasInteractiveDemo: true
   },
   {
-    id: 'telco-ml4sec',
+    id: 'telco-streaming-anomaly',
     domain: 'Telecommunications & Cyber Security',
-    title: 'Streaming Anomaly Detection & Automated Incident Triage (ML4SEC)',
+    title: 'Streaming Anomaly Detection & Automated Incident Triage',
     tagline: 'High-throughput unsupervised network security anomaly detection and LangChain Q&A resolver',
     enterpriseContext: 'Developed based on engineering engagements at Ericsson and Verizon, processing millions of network telemetry logs in near real-time.',
     challenge: 'Security teams were drowned in alerts across heterogeneous network nodes, taking hours of manual log correlation to isolate distributed denial and intrusion anomalies.',

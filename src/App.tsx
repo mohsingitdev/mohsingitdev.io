@@ -41,7 +41,7 @@ export const App: React.FC = () => {
       {/* Sticky Navigation */}
       <Navbar onBookCall={scrollToBooking} />
 
-      {/* Main Content Sections: Claude Editorial & Apple Motion Engineered */}
+      {/* Main Content Sections: Production AI Architecture Portfolio */}
       <main className="flex-1 relative z-10">
         <Hero
           onBookCall={scrollToBooking}

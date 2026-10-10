@@ -42,7 +42,7 @@ const SANDBOX_SLIDES: SandboxSlide[] = [
     icon: Activity,
   },
   {
-    id: 'ml4sec-stream',
+    id: 'streaming-guardrails',
     tag: 'NETWORK SECURITY ML',
     title: 'Real-Time Streaming Guardrails',
     metric: '100k+',
@@ -172,12 +172,12 @@ export const Hero: React.FC<HeroProps> = ({ onBookCall, onExploreDemos, onViewMa
                   </div>
                 </div>
 
-                {/* Mobile Cutout Overlap (Directly overlapping the seam into the cream panel) */}
-                <div className="lg:hidden -mb-12 sm:-mb-16 pt-4 flex justify-center relative z-30 pointer-events-none">
+                {/* Mobile Cutout Overlap (Gracefully grounded on mobile) */}
+                <div className="lg:hidden pt-6 pb-1 flex justify-center relative z-20 pointer-events-none">
                   <img
                     src="./images/mohsin_cutout.png"
                     alt="Mohsin Qureshi"
-                    className="h-[260px] sm:h-[320px] object-contain drop-shadow-[0_15px_25px_rgba(0,0,0,0.6)] select-none"
+                    className="h-[250px] sm:h-[300px] object-contain drop-shadow-[0_15px_25px_rgba(0,0,0,0.5)] select-none"
                   />
                 </div>
               </div>
@@ -185,64 +185,65 @@ export const Hero: React.FC<HeroProps> = ({ onBookCall, onExploreDemos, onViewMa
             </div>
 
             {/* ========================================================= */}
-            {/* RIGHT PANEL: Elegant Off-White / Cream Floating Card      */}
+            {/* RIGHT PANEL: Elegant Off-White / Dark Obsidian Floating Card */}
             {/* ========================================================= */}
-            <div className="lg:col-span-6 relative p-8 sm:p-12 lg:p-14 lg:pl-16 xl:pl-20 flex flex-col justify-between bg-[#F7F4EE] text-neutral-900 z-10">
+            <div className="lg:col-span-6 relative p-6 sm:p-10 lg:p-12 xl:p-14 flex flex-col justify-between bg-[#F7F4EE] dark:bg-[#1A1815] text-neutral-900 dark:text-neutral-100 z-10 transition-colors duration-300">
               
-              {/* Top Navigation Links (Directly matching reference image layout) */}
-              <div className="flex flex-wrap items-center justify-between gap-4 border-b border-black/10 pb-5">
-                <nav className="flex items-center space-x-6 text-xs sm:text-sm font-medium text-neutral-600">
+              {/* Top Navigation Links & Actions */}
+              <div className="flex items-center justify-between gap-3 border-b border-black/10 dark:border-white/10 pb-4">
+                <nav className="hidden md:flex items-center space-x-3.5 xl:space-x-5 text-xs xl:text-sm font-medium text-neutral-600 dark:text-neutral-400 shrink-0">
                   <button 
                     onClick={() => handleNavClick('hero')} 
-                    className="text-neutral-900 font-bold relative pb-1 after:absolute after:bottom-0 after:left-0 after:right-0 after:h-0.5 after:bg-terracotta"
+                    className="text-neutral-900 dark:text-white font-bold relative pb-1 after:absolute after:bottom-0 after:left-0 after:right-0 after:h-0.5 after:bg-terracotta"
                   >
                     Home
                   </button>
                   <button 
                     onClick={() => handleNavClick('assessment-matrix')} 
-                    className="hover:text-terracotta transition-colors"
+                    className="hover:text-terracotta dark:hover:text-terracotta transition-colors"
                   >
                     Architecture
                   </button>
                   <button 
                     onClick={() => handleNavClick('interactive-demos')} 
-                    className="hover:text-terracotta transition-colors"
+                    className="hover:text-terracotta dark:hover:text-terracotta transition-colors"
                   >
                     Sandboxes
                   </button>
                   <button 
                     onClick={() => handleNavClick('experience')} 
-                    className="hover:text-terracotta transition-colors"
+                    className="hover:text-terracotta dark:hover:text-terracotta transition-colors"
                   >
                     Track Record
                   </button>
                   <button 
                     onClick={onBookCall} 
-                    className="hover:text-terracotta transition-colors font-semibold text-terracotta"
+                    className="hover:text-terracotta dark:hover:text-terracotta transition-colors font-semibold text-terracotta"
                   >
                     Contact
                   </button>
                 </nav>
 
-                {/* Caliber Pill & Theme Toggle */}
-                <div className="flex items-center gap-2">
+                {/* Mobile Quick Benchmark Link & Theme Toggle */}
+                <div className="flex items-center justify-between w-full md:w-auto gap-2 shrink-0">
                   <button
                     onClick={onViewMatrix}
-                    className="hidden sm:inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-neutral-200/80 text-[11px] font-mono text-neutral-800 hover:bg-neutral-300 transition-colors"
+                    className="md:hidden inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-neutral-200/80 dark:bg-neutral-800 text-[11px] font-mono text-neutral-800 dark:text-neutral-200 hover:bg-neutral-300 dark:hover:bg-neutral-700 transition-colors shadow-sm whitespace-nowrap"
+                    title="Jump to Enterprise Architecture Benchmark Matrix"
                   >
-                    <span className="font-bold text-terracotta">Caliber 9.6</span>/10
+                    <span className="font-bold text-terracotta">Architecture Matrix</span> ↗
                   </button>
 
                   <button
                     onClick={toggleTheme}
                     aria-label={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}
                     title={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}
-                    className="p-1.5 rounded-full bg-neutral-200/80 hover:bg-neutral-300 text-neutral-800 transition-all apple-spring hover:scale-110 active:scale-95 flex items-center justify-center shadow-sm"
+                    className="p-1.5 sm:p-2 rounded-full bg-neutral-200/80 dark:bg-neutral-800 hover:bg-neutral-300 dark:hover:bg-neutral-700 text-neutral-800 dark:text-neutral-200 transition-all apple-spring hover:scale-110 active:scale-95 flex items-center justify-center shadow-sm shrink-0"
                   >
                     {theme === 'dark' ? (
-                      <Sun className="w-3.5 h-3.5 text-amber-600 transition-transform hover:rotate-45" />
+                      <Sun className="w-4 h-4 text-amber-400 transition-transform hover:rotate-45" />
                     ) : (
-                      <Moon className="w-3.5 h-3.5 text-terracotta transition-transform hover:-rotate-12" />
+                      <Moon className="w-4 h-4 text-terracotta transition-transform hover:-rotate-12" />
                     )}
                   </button>
                 </div>
@@ -255,7 +256,7 @@ export const Hero: React.FC<HeroProps> = ({ onBookCall, onExploreDemos, onViewMa
                   <span className="w-2.5 h-2.5 rounded-full bg-terracotta animate-ping" />
                 </div>
 
-                <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-neutral-900 tracking-tight leading-snug">
+                <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-neutral-900 dark:text-white tracking-tight leading-snug">
                   Designing Enterprise Systems{' '}
                   <span className="font-serif italic font-normal text-terracotta">that people enjoy using.</span>
                 </h2>
@@ -263,7 +264,7 @@ export const Hero: React.FC<HeroProps> = ({ onBookCall, onExploreDemos, onViewMa
 
               {/* Bottom Right Interactive Sandbox Showcase (Matching Reference Project Preview + Dots) */}
               <div className="space-y-4 pt-2">
-                <div className="rounded-2xl bg-white p-5 sm:p-6 border border-black/10 shadow-lg relative overflow-hidden group">
+                <div className="rounded-2xl bg-white dark:bg-[#23201C] p-5 sm:p-6 border border-black/10 dark:border-white/10 shadow-lg relative overflow-hidden group transition-colors duration-300">
                   
                   {/* Slide Content */}
                   <AnimatePresence mode="wait">
@@ -277,14 +278,14 @@ export const Hero: React.FC<HeroProps> = ({ onBookCall, onExploreDemos, onViewMa
                     >
                       <div className="flex items-center justify-between">
                         <div className="flex items-center gap-2">
-                          <div className="w-8 h-8 rounded-lg bg-orange-100 flex items-center justify-center text-terracotta">
+                          <div className="w-8 h-8 rounded-lg bg-orange-100 dark:bg-terracotta/20 flex items-center justify-center text-terracotta">
                             <currentSlide.icon className="w-4 h-4" />
                           </div>
                           <div>
                             <span className="text-[10px] font-mono font-bold tracking-wider text-terracotta uppercase">
                               {currentSlide.tag}
                             </span>
-                            <h4 className="text-sm sm:text-base font-bold text-neutral-900">
+                            <h4 className="text-sm sm:text-base font-bold text-neutral-900 dark:text-white">
                               {currentSlide.title}
                             </h4>
                           </div>
@@ -295,26 +296,26 @@ export const Hero: React.FC<HeroProps> = ({ onBookCall, onExploreDemos, onViewMa
                           <div className="text-lg font-black font-mono text-terracotta">
                             {currentSlide.metric}
                           </div>
-                          <div className="text-[9px] font-mono text-neutral-500 uppercase">
+                          <div className="text-[9px] font-mono text-neutral-500 dark:text-neutral-400 uppercase">
                             {currentSlide.metricLabel}
                           </div>
                         </div>
                       </div>
 
-                      <p className="text-xs text-neutral-600 leading-relaxed">
+                      <p className="text-xs text-neutral-600 dark:text-neutral-300 leading-relaxed">
                         {currentSlide.description}
                       </p>
 
-                      <div className="pt-2 flex items-center justify-between border-t border-neutral-100">
+                      <div className="pt-2 flex items-center justify-between border-t border-neutral-100 dark:border-neutral-800">
                         <button
                           onClick={() => handleNavClick(currentSlide.targetId)}
-                          className="text-xs font-bold text-neutral-900 hover:text-terracotta transition-colors flex items-center gap-1 group/btn"
+                          className="text-xs font-bold text-neutral-900 dark:text-white hover:text-terracotta transition-colors flex items-center gap-1 group/btn"
                         >
                           <span>Explore System Sandbox</span>
                           <ChevronRight className="w-3.5 h-3.5 group-hover/btn:translate-x-1 transition-transform" />
                         </button>
                         
-                        <span className="text-[10px] font-mono text-neutral-400">
+                        <span className="text-[10px] font-mono text-neutral-400 dark:text-neutral-500">
                           {activeSlide + 1} of {SANDBOX_SLIDES.length}
                         </span>
                       </div>
@@ -333,7 +334,7 @@ export const Hero: React.FC<HeroProps> = ({ onBookCall, onExploreDemos, onViewMa
                       className={`h-2.5 rounded-full transition-all duration-300 ${
                         activeSlide === idx
                           ? 'w-7 bg-terracotta'
-                          : 'w-2.5 bg-neutral-300 hover:bg-neutral-400'
+                          : 'w-2.5 bg-neutral-300 dark:bg-neutral-700 hover:bg-neutral-400 dark:hover:bg-neutral-600'
                       }`}
                     />
                   ))}

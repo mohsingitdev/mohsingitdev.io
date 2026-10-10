@@ -169,12 +169,16 @@ export const LiveRoutingSimulator: React.FC = () => {
               onClick={() => { setSelectedScenario(sc); runSimulation(); }}
               className={`p-3.5 rounded-xl text-left border transition-all duration-300 apple-spring ${
                 selectedScenario.id === sc.id
-                  ? 'bg-terracotta/15 border-terracotta text-white shadow-apple-card scale-[1.01]'
-                  : 'bg-canvas-subtle border-canvas-border text-slate-400 hover:text-slate-200 hover:border-slate-600'
+                  ? 'bg-terracotta border-terracotta text-white shadow-apple-card scale-[1.01]'
+                  : 'bg-canvas-subtle border-canvas-border text-slate-400 hover:text-neutral-900 dark:hover:text-slate-200 hover:border-slate-400 dark:hover:border-slate-600'
               }`}
             >
-              <div className="text-xs font-mono font-semibold">{sc.name}</div>
-              <div className="text-[11px] text-slate-400 truncate mt-1">{sc.tier}</div>
+              <div className={`text-xs font-mono font-semibold ${selectedScenario.id === sc.id ? 'text-white' : 'text-neutral-900 dark:text-white'}`}>
+                {sc.name}
+              </div>
+              <div className={`text-[11px] truncate mt-1 ${selectedScenario.id === sc.id ? 'text-white/90' : 'text-slate-500 dark:text-slate-400'}`}>
+                {sc.tier}
+              </div>
             </button>
           ))}
         </div>
@@ -193,16 +197,16 @@ export const LiveRoutingSimulator: React.FC = () => {
 
       {/* Architecture Toggle */}
       <div className="flex flex-col sm:flex-row items-center justify-between gap-4 p-3.5 rounded-xl bg-canvas-surface border border-canvas-border">
-        <div className="text-xs font-mono text-slate-300">
+        <div className="text-xs font-mono text-slate-300 w-full sm:w-auto text-center sm:text-left">
           Compare Routing Architecture:
         </div>
-        <div className="inline-flex p-1 rounded-xl bg-canvas-card border border-canvas-border gap-1 shadow-apple-card">
+        <div className="flex flex-col sm:inline-flex sm:flex-row w-full sm:w-auto p-1 rounded-xl bg-canvas-card border border-canvas-border gap-1 shadow-apple-card">
           <button
             onClick={() => setMode('agentic')}
             className={`px-3 py-1.5 rounded-lg text-xs font-mono font-semibold transition-all duration-300 apple-spring ${
               mode === 'agentic'
                 ? 'bg-terracotta text-white shadow-apple-card'
-                : 'text-slate-400 hover:text-white'
+                : 'text-slate-400 hover:text-neutral-900 dark:hover:text-white'
             }`}
           >
             ⚡ Mohsin's Multi-Tier Router
@@ -211,8 +215,8 @@ export const LiveRoutingSimulator: React.FC = () => {
             onClick={() => setMode('monolithic')}
             className={`px-3 py-1.5 rounded-lg text-xs font-mono font-semibold transition-all duration-300 apple-spring ${
               mode === 'monolithic'
-                ? 'bg-canvas-subtle text-slate-300 border border-white/10'
-                : 'text-slate-400 hover:text-white'
+                ? 'bg-canvas-subtle text-slate-600 dark:text-slate-300 border border-canvas-border'
+                : 'text-slate-400 hover:text-neutral-900 dark:hover:text-white'
             }`}
           >
             ✕ Naive Monolithic LLM

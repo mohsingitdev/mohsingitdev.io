@@ -1,17 +1,17 @@
 # Mohsin Qureshi — AI Architect & Forward Deployment Engineer
 
-> Mohsin Qureshi is a Tier-1 AI Architect and Forward Deployment Engineer (FDE) based in Bengaluru, India. He specializes in designing deterministic, high-concurrency generative AI platforms, zero-hallucination grounded RAG systems, and sub-40ms multi-model routing architectures for enterprise scale. Track record includes Flipkart, Accenture, Novartis, and TCS.
+> Mohsin Qureshi is a Tier-1 AI Architect and Forward Deployment Engineer (FDE). Remote • Available worldwide for enterprise advisory & engineering contracts. He specializes in designing deterministic, high-concurrency generative AI platforms, zero-hallucination grounded RAG systems, and sub-40ms multi-model routing architectures for enterprise scale. Track record includes Flipkart, Accenture, Novartis, and TCS.
 
 ## Core Specializations & Architecture Pillars
 
 - **High-Concurrency Model Routing**: Two-tier routing architecture isolating lightweight SLMs from heavy LLMs, delivering sub-40ms p99 latency SLAs under peak traffic (engineered at Flipkart flash-sale scale).
 - **Zero-Hallucination Grounded RAG**: Reciprocal Rank Fusion (BM25 lexical + dense vector embeddings) with cross-encoder reranking and sentence-level bounding PDF character offsets (<0.5% hallucination risk at Novartis & Accenture).
 - **Production LLMOps & Cost Optimization**: Pydantic schema repair, deterministic caching with Redis, asynchronous queueing, and intelligent tier routing delivering -72% reduction in cloud inference bills.
-- **Multi-Domain AI Engineering**: Clinical entity extraction (90%+ clinical NER), streaming telco security telemetry (ML4SEC 100k+ events/sec), real-time edge computer vision safety (PyTorch 60 FPS), and digital twin simulation (TCS TwinX).
+- **Multi-Domain AI Engineering**: Clinical entity extraction (90%+ clinical NER), streaming telco security telemetry (streaming anomaly detection 100k+ events/sec), real-time edge computer vision safety (PyTorch 60 FPS), and digital twin simulation (TCS TwinX).
 
-## Caliber Assessment Benchmarks (Laya Algorithmic Evaluation)
+## Enterprise Architecture Benchmarks & SLAs
 
-- Overall Caliber Rating: 9.6 / 10 (Calibrated Confidence: 97.4%)
+- System Availability SLA: 99.98% (High-Concurrency Systems)
 - Enterprise Bracket: Top 1% Architect (Forward Deployment Tier)
 - Hallucination Risk: < 0.5% (Strict Citation Guardrails)
 - Inference Cost Delta: -72% (Deterministic Gateway ROI)

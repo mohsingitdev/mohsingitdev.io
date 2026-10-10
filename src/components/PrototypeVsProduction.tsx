@@ -112,10 +112,10 @@ export const PrototypeVsProduction: React.FC = () => {
         <div className="mt-10 grid grid-cols-1 md:grid-cols-2 gap-8">
           
           {/* Fragile Prototype Card */}
-          <div className="rounded-2xl bg-canvas-surface border border-white/5 p-6 sm:p-8 space-y-6 relative overflow-hidden shadow-apple-card apple-card-hover">
+          <div className="rounded-2xl bg-canvas-surface border border-canvas-border p-6 sm:p-8 space-y-6 relative overflow-hidden shadow-apple-card apple-card-hover">
             <div className="flex items-center justify-between border-b border-canvas-border/80 pb-4">
               <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-xl bg-canvas-card border border-white/10 flex items-center justify-center">
+                <div className="w-10 h-10 rounded-xl bg-canvas-card border border-canvas-border flex items-center justify-center">
                   <AlertCircle className="w-5 h-5 text-slate-400" />
                 </div>
                 <div>
@@ -123,7 +123,7 @@ export const PrototypeVsProduction: React.FC = () => {
                   <div className="text-xs text-slate-500 font-mono">What breaks under production load</div>
                 </div>
               </div>
-              <span className="text-[11px] font-mono uppercase px-2.5 py-0.5 rounded-full bg-canvas-card text-slate-400 border border-white/10">
+              <span className="text-[11px] font-mono uppercase px-2.5 py-0.5 rounded-full bg-canvas-card text-slate-400 border border-canvas-border">
                 High Risk
               </span>
             </div>

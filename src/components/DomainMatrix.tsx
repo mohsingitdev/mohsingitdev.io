@@ -64,7 +64,7 @@ export const DomainMatrix: React.FC<DomainMatrixProps> = ({ onBookCall, onExplor
               className="rounded-3xl bg-canvas-card border border-canvas-border hover:border-terracotta/50 transition-all duration-300 p-8 sm:p-10 flex flex-col justify-between space-y-7 group shadow-apple-card apple-card-hover relative overflow-hidden"
             >
               {/* Card Watermark Number */}
-              <div className="absolute top-4 right-6 select-none pointer-events-none text-4xl sm:text-5xl font-mono font-bold text-white/[0.04]">
+              <div className="absolute top-4 right-6 select-none pointer-events-none text-4xl sm:text-5xl font-mono font-bold text-neutral-900/[0.05] dark:text-white/[0.04]">
                 {formattedNumber}
               </div>
 
@@ -128,7 +128,7 @@ export const DomainMatrix: React.FC<DomainMatrixProps> = ({ onBookCall, onExplor
                       href={project.githubRepo}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-1 text-xs font-mono text-slate-400 hover:text-white transition-colors"
+                      className="inline-flex items-center gap-1 text-xs font-mono text-slate-400 hover:text-terracotta transition-colors"
                     >
                       <Github className="w-3.5 h-3.5" />
                       <span>Repo</span>

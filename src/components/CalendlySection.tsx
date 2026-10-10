@@ -1,12 +1,17 @@
 import React, { useState } from 'react';
 import { Calendar, Clock, CheckCircle2, Shield, ArrowUpRight, MessageSquare, Filter } from 'lucide-react';
+import { useTheme } from '../context/ThemeContext';
 
 export const CalendlySection: React.FC = () => {
+  const { theme } = useTheme();
   const [selectedTimeline, setSelectedTimeline] = useState<string>('Immediately (1-2 weeks)');
   const [selectedBudget, setSelectedBudget] = useState<string>('Enterprise Advisory ($5k - $15k/mo)');
 
   const timelines = ['Immediately (1-2 weeks)', 'Within 30 Days', 'Exploratory Audit'];
   const budgets = ['Enterprise Advisory ($5k - $15k/mo)', 'Full-Cycle FDE Build', 'Targeted RAG/Routing Audit'];
+
+  const calendlyBg = theme === 'dark' ? '161513' : 'faf7f2';
+  const calendlyText = theme === 'dark' ? 'ffffff' : '1c1917';
 
   return (
     <section id="calendly" className="py-24 bg-canvas-subtle border-t border-canvas-border">
@@ -163,10 +168,11 @@ export const CalendlySection: React.FC = () => {
               </a>
             </div>
 
-            {/* Calendly iFrame */}
-            <div className="relative flex-1 w-full bg-[#161513]">
+            {/* Calendly iFrame with Dynamic Theme Sync */}
+            <div className="relative flex-1 w-full bg-canvas-card dark:bg-[#161513] transition-colors duration-300">
               <iframe
-                src="https://calendly.com/mohd-mohsin-qureshi/30min?embed_domain=mohsingitdev.github.io&embed_type=Inline&background_color=161513&text_color=ffffff&primary_color=d97757"
+                key={theme}
+                src={`https://calendly.com/mohd-mohsin-qureshi/30min?embed_domain=mohsingitdev.github.io&embed_type=Inline&background_color=${calendlyBg}&text_color=${calendlyText}&primary_color=d97757`}
                 width="100%"
                 height="620px"
                 frameBorder="0"

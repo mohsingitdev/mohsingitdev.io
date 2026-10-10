@@ -95,7 +95,7 @@ const ASSESSMENT_DATA: AssessmentVector[] = [
     verdict: 'Crosses enterprise boundaries effortlessly from E-Commerce to Healthcare NLP, Telco big data streaming, and Edge Computer Vision.',
     evidence: [
       'Healthcare: Custom NER pipeline delivering 90%+ clinical entity extraction',
-      'Telco Security: ML4SEC streaming anomaly detection on high-frequency logs',
+      'Telco Security: Real-time streaming anomaly detection on high-frequency logs',
       'Computer Vision: Real-time PyTorch video analytics for industrial safety',
       'Digital Twins: Real-time simulation state synchronization on TCS TwinX'
     ],
@@ -139,45 +139,45 @@ export const LayaAssessmentMatrix: React.FC<{ onBookCall: () => void }> = ({ onB
       </div>
 
       {/* Aggregate Score Ribbon (Upgraded Contrast & Responsive Grid) */}
-      <div className="p-6 sm:p-8 rounded-3xl bg-canvas-card/90 border border-canvas-border grid grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 shadow-xl relative overflow-hidden">
+      <div className="p-5 sm:p-8 rounded-3xl bg-canvas-card border border-canvas-border grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-8 shadow-xl relative overflow-hidden">
         
         {/* Glow backdrop */}
         <div className="absolute top-0 right-1/4 w-96 h-32 bg-terracotta/10 blur-[80px] pointer-events-none" />
 
-        <div className="space-y-1.5 sm:border-r border-canvas-border/70 pr-4">
-          <div className="text-[11px] font-mono uppercase tracking-wider text-slate-400">Engineering Caliber Rating</div>
-          <div className="text-3xl sm:text-4xl font-extrabold font-mono text-gradient-gold">9.6 <span className="text-xl sm:text-2xl text-slate-400 font-normal">/ 10</span></div>
+        <div className="space-y-1.5 border-r border-canvas-border/70 pr-3 sm:pr-4">
+          <div className="text-[11px] font-mono uppercase tracking-wider text-slate-400">System Availability SLA</div>
+          <div className="text-2xl sm:text-4xl font-extrabold font-mono text-gradient-gold">99.98%</div>
           <div className="text-xs text-slate-400 font-mono flex items-center gap-1.5">
             <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
-            <span>Calibrated Confidence: 97.4%</span>
+            <span className="truncate">High-Concurrency Standard</span>
           </div>
         </div>
 
-        <div className="space-y-1.5 sm:border-r border-canvas-border/70 pr-4">
+        <div className="space-y-1.5 lg:border-r border-canvas-border/70 pr-3 sm:pr-4">
           <div className="text-[11px] font-mono uppercase tracking-wider text-slate-400">Enterprise Bracket</div>
-          <div className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">Top 1% Architect</div>
+          <div className="text-xl sm:text-3xl font-extrabold text-white tracking-tight">Top 1% Architect</div>
           <div className="text-xs text-terracotta font-mono flex items-center gap-1.5">
-            <Award className="w-3.5 h-3.5" />
-            <span>Forward Deployment Tier</span>
+            <Award className="w-3.5 h-3.5 flex-shrink-0" />
+            <span className="truncate">Forward Deployment Tier</span>
           </div>
         </div>
 
-        <div className="space-y-1.5 sm:border-r border-canvas-border/70 pr-4">
+        <div className="space-y-1.5 border-r border-canvas-border/70 pr-3 sm:pr-4">
           <div className="text-[11px] font-mono uppercase tracking-wider text-slate-400">Hallucination Risk</div>
-          <div className="text-3xl sm:text-4xl font-extrabold font-mono text-emerald-400">&lt; 0.5%</div>
-          <div className="text-xs text-slate-400 font-mono">Strict Citation Guardrails</div>
+          <div className="text-2xl sm:text-4xl font-extrabold font-mono text-emerald-400">&lt; 0.5%</div>
+          <div className="text-xs text-slate-400 font-mono truncate">Strict Citation Guardrails</div>
         </div>
 
         <div className="space-y-1.5">
           <div className="text-[11px] font-mono uppercase tracking-wider text-slate-400">Inference Cost Delta</div>
-          <div className="text-3xl sm:text-4xl font-extrabold font-mono text-amber-300">-72%</div>
-          <div className="text-xs text-slate-400 font-mono">Deterministic Gateway ROI</div>
+          <div className="text-2xl sm:text-4xl font-extrabold font-mono text-amber-300">-72%</div>
+          <div className="text-xs text-slate-400 font-mono truncate">Deterministic Gateway ROI</div>
         </div>
       </div>
 
       {/* Filter Tabs (Horizontal Scroll on Mobile) */}
       <div className="flex justify-center">
-        <div className="inline-flex p-1.5 rounded-2xl bg-canvas-card border border-canvas-border gap-1 overflow-x-auto max-w-full">
+        <div className="inline-flex p-1.5 rounded-2xl bg-canvas-card border border-canvas-border gap-1 overflow-x-auto max-w-full no-scrollbar">
           <button
             onClick={() => setSelectedFilter('all')}
             className={`px-4 py-2 rounded-xl text-xs font-mono whitespace-nowrap transition-all ${
@@ -275,7 +275,7 @@ export const LayaAssessmentMatrix: React.FC<{ onBookCall: () => void }> = ({ onB
                 </div>
 
                 {/* Verdict */}
-                <p className="text-xs sm:text-sm text-slate-300 leading-relaxed italic bg-black/25 p-3.5 rounded-xl border border-white/5">
+                <p className="text-xs sm:text-sm text-neutral-700 dark:text-slate-300 leading-relaxed italic bg-neutral-100/90 dark:bg-black/25 p-3.5 rounded-xl border border-neutral-200/80 dark:border-white/5">
                   "{item.verdict}"
                 </p>
 
@@ -322,7 +322,7 @@ export const LayaAssessmentMatrix: React.FC<{ onBookCall: () => void }> = ({ onB
       </div>
 
       {/* Audit CTA banner */}
-      <div className="p-7 sm:p-8 rounded-3xl bg-gradient-to-r from-canvas-card via-[#2A201A] to-canvas-card border border-terracotta/40 flex flex-col sm:flex-row items-center justify-between gap-6 shadow-xl">
+      <div className="p-7 sm:p-8 rounded-3xl bg-gradient-to-r from-canvas-card via-amber-500/5 to-canvas-card dark:from-canvas-card dark:via-[#2A201A] dark:to-canvas-card border border-terracotta/40 flex flex-col sm:flex-row items-center justify-between gap-6 shadow-xl">
         <div className="space-y-1.5 text-center sm:text-left max-w-xl">
           <div className="text-lg font-bold text-white flex items-center justify-center sm:justify-start gap-2">
             <BarChart3 className="w-5 h-5 text-terracotta" />

@@ -79,15 +79,47 @@ html:not(.dark) .text-slate-500 {
   color: #78716C;
 }
 
-/* Preserve pure white text on terracotta cards & buttons */
+/* Preserve pure white text on solid terracotta cards & buttons */
 html:not(.dark) .bg-terracotta,
-html:not(.dark) .bg-terracotta *,
+html:not(.dark) .bg-terracotta *:not([class*="bg-"]):not([class*="text-terracotta"]):not([class*="text-neutral"]),
 html:not(.dark) .terracotta-gradient,
-html:not(.dark) .terracotta-gradient *,
-html:not(.dark) [class*="bg-terracotta"] *,
+html:not(.dark) .terracotta-gradient *:not(.bg-white):not(.bg-white *),
 html:not(.dark) .keep-white,
 html:not(.dark) .keep-white * {
   color: #FFFFFF !important;
+}
+
+/* Explicitly preserve terracotta accent color on transparent terracotta badges */
+html:not(.dark) [class*="bg-terracotta/"] .text-terracotta,
+html:not(.dark) [class*="bg-terracotta/"][class*="text-terracotta"] {
+  color: #D97757 !important;
+}
+
+/* Ensure dark text on white buttons inside terracotta gradient in light mode */
+html:not(.dark) .terracotta-gradient .bg-white,
+html:not(.dark) .terracotta-gradient .bg-white * {
+  color: #121110 !important;
+}
+
+/* Preserve crisp terminal text on code blocks and terminal wrappers */
+html:not(.dark) pre,
+html:not(.dark) pre code,
+html:not(.dark) pre *,
+html:not(.dark) .terminal-text {
+  color: #E2E8F0 !important;
+}
+
+/* Light mode gradient text overrides for crisp contrast */
+html:not(.dark) .text-gradient-gold {
+  background: linear-gradient(135deg, #D97757 0%, #C26243 50%, #8C3A27 100%) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+}
+
+html:not(.dark) .text-gradient-titanium {
+  background: linear-gradient(135deg, #1C1917 0%, #44403C 50%, #78716C 100%) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
 }
 
 /* Light mode shadows & borders */
@@ -99,6 +131,28 @@ html:not(.dark) .shadow-apple-elevated {
 }
 html:not(.dark) .apple-card-hover:hover {
   box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.1), 0 0 20px rgba(217, 119, 87, 0.12);
+}
+
+/* Smooth background & border theme transitions on surface elements */
+body,
+nav,
+footer,
+.bg-canvas,
+.bg-canvas-subtle,
+.bg-canvas-surface,
+.bg-canvas-card,
+.border-canvas,
+.border-canvas-border {
+  transition: background-color 0.25s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Mobile-friendly horizontal scrollbar hiding */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
 
 @layer utilities {
