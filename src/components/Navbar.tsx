@@ -48,7 +48,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onBookCall, onRequestResume }) =
               Mohsin Qureshi
               <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
             </div>
-            <div className="text-[10px] font-mono text-slate-500 dark:text-slate-400">AI Architect & FDE</div>
+            <div className="text-[10px] font-mono text-slate-500 dark:text-slate-400">AI Engineer & FDE</div>
           </div>
         </a>
 

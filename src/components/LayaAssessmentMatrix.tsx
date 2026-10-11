@@ -155,7 +155,7 @@ export const LayaAssessmentMatrix: React.FC<{ onBookCall: () => void }> = ({ onB
 
         <div className="space-y-1 sm:space-y-1.5 lg:border-r border-canvas-border/70 pr-2 sm:pr-4">
           <div className="text-[10px] sm:text-[11px] font-mono uppercase tracking-wider text-slate-400">Enterprise Bracket</div>
-          <div className="text-lg sm:text-2xl lg:text-3xl font-extrabold text-white tracking-tight truncate">Principal Systems Tier</div>
+          <div className="text-lg sm:text-2xl lg:text-3xl font-extrabold text-white tracking-tight truncate">AI Engineer Tier</div>
           <div className="text-[11px] sm:text-xs text-terracotta font-mono flex items-center gap-1.5">
             <Award className="w-3.5 h-3.5 shrink-0" />
             <span className="truncate">Forward Deployment Standard</span>
@@ -234,7 +234,9 @@ export const LayaAssessmentMatrix: React.FC<{ onBookCall: () => void }> = ({ onB
               initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.3 }}
-              className="p-5 sm:p-8 rounded-3xl bg-canvas-surface border border-canvas-border hover:border-terracotta/40 transition-all space-y-5 shadow-lg group relative flex flex-col justify-between apple-card-hover"
+              className={`p-5 sm:p-8 rounded-3xl bg-canvas-surface border border-canvas-border hover:border-terracotta/40 transition-all space-y-5 shadow-lg group relative flex flex-col justify-between apple-card-hover ${
+                item.id === 'cross-domain' && selectedFilter === 'all' ? 'md:col-span-2' : ''
+              }`}
             >
               
               <div className="space-y-4">

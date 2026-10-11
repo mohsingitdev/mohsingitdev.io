@@ -10,7 +10,7 @@ export const ResumeRequestModal: React.FC<ResumeRequestModalProps> = ({ isOpen, 
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [organization, setOrganization] = useState('');
-  const [roleType, setRoleType] = useState('Full-Time Staff/Principal AI Role');
+  const [roleType, setRoleType] = useState('Full-Time AI Engineer Role');
   const [notes, setNotes] = useState('');
   const [isSent, setIsSent] = useState(false);
   const [copied, setCopied] = useState(false);
@@ -18,7 +18,7 @@ export const ResumeRequestModal: React.FC<ResumeRequestModalProps> = ({ isOpen, 
   if (!isOpen) return null;
 
   const roleOptions = [
-    'Full-Time Staff/Principal AI Role',
+    'Full-Time AI Engineer Role',
     'Forward Deployment Engineer (FDE)',
     'Enterprise Advisory / Contract',
     'Keynote / Event Speaking Invite',

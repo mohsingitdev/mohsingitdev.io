@@ -112,14 +112,14 @@ export const Hero: React.FC<HeroProps> = ({ onBookCall, onExploreDemos, onViewMa
             {/* ========================================================= */}
             {/* LEFT PANEL: Rich Burnt Terracotta Gradient + Bold Display */}
             {/* ========================================================= */}
-            <div className="lg:col-span-6 relative p-5 sm:p-10 lg:p-14 flex flex-col justify-between terracotta-gradient overflow-hidden z-10">
+            <div className="lg:col-span-6 relative p-5 sm:p-10 lg:p-12 xl:p-14 flex flex-col justify-between terracotta-gradient overflow-hidden z-10">
               
-              {/* Giant Display Watermark Typography */}
+              {/* Giant Display Watermark Typography (Subtle Architectural Tone) */}
               <div 
                 aria-hidden="true" 
-                className="absolute -top-3 -left-3 select-none pointer-events-none watermark-text text-[58px] xs:text-[76px] sm:text-[110px] lg:text-[144px] tracking-tighter uppercase leading-[0.82] max-w-full overflow-hidden opacity-25"
+                className="absolute -top-3 -left-3 select-none pointer-events-none watermark-text text-[58px] xs:text-[76px] sm:text-[110px] lg:text-[144px] tracking-tighter uppercase leading-[0.82] max-w-full overflow-hidden opacity-[0.08]"
               >
-                AI<br />ARCHI<br />TECT
+                AI<br />ENGI<br />NEER
               </div>
 
               {/* Top Row: Brand Monogram / Pill */}
@@ -143,9 +143,9 @@ export const Hero: React.FC<HeroProps> = ({ onBookCall, onExploreDemos, onViewMa
                 </button>
               </div>
 
-              {/* Main Headline & Description */}
-              <div className="relative z-20 my-5 sm:my-8 lg:my-12 space-y-2.5 sm:space-y-4 w-full max-w-full lg:max-w-[360px] xl:max-w-[400px]">
-                <h1 className="text-[30px] xs:text-[34px] sm:text-[44px] lg:text-[50px] xl:text-[54px] font-extrabold text-white tracking-tight leading-[1.08] font-sans">
+              {/* Main Headline & Description (Strict Safe Column Bounds) */}
+              <div className="relative z-20 my-4 sm:my-6 lg:my-8 space-y-2.5 sm:space-y-3.5 w-full max-w-full lg:max-w-[380px] xl:max-w-[420px]">
+                <h1 className="text-[28px] xs:text-[32px] sm:text-[40px] lg:text-[46px] xl:text-[50px] font-extrabold text-white tracking-tight leading-[1.08] font-sans">
                   Engineering AI that survives{' '}
                   <span className="font-serif italic font-normal text-amber-200">production</span>{' '}
                   scale.
@@ -156,63 +156,64 @@ export const Hero: React.FC<HeroProps> = ({ onBookCall, onExploreDemos, onViewMa
                 </p>
               </div>
 
-              {/* Bottom Actions & Institutional Proof Strip */}
-              <div className="relative z-20 space-y-3.5 sm:space-y-5 pt-1">
-                <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2.5 sm:gap-3.5 w-full sm:w-auto">
+              {/* Bottom Actions & Institutional Proof Strip (Strict Clearance from Silhouette) */}
+              <div className="relative z-20 space-y-3.5 sm:space-y-4 pt-1 w-full max-w-full lg:max-w-[380px] xl:max-w-[420px]">
+                {/* 2x2 High-Converting Executive Action Grid */}
+                <div className="grid grid-cols-2 gap-2 sm:gap-2.5 w-full">
                   <button
                     onClick={() => handleNavClick('domains')}
-                    className="w-full sm:w-auto px-6 py-3 rounded-full bg-white text-neutral-900 font-bold text-xs sm:text-sm hover:bg-neutral-100 transition-all hero-pill-glow flex items-center justify-center gap-2 group hover:scale-[1.02] active:scale-[0.98] min-h-[44px]"
+                    className="w-full px-3.5 py-2.5 sm:py-3 rounded-2xl bg-white text-neutral-900 font-bold text-xs hover:bg-neutral-100 transition-all shadow-md flex items-center justify-center gap-1.5 group hover:scale-[1.02] active:scale-[0.98] min-h-[44px]"
                   >
-                    <span>Explore Case Studies</span>
-                    <ArrowUpRight className="w-4 h-4 text-neutral-900 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
-                  </button>
-
-                  <button
-                    onClick={onExploreDemos}
-                    className="w-full sm:w-auto px-5 py-3 rounded-full bg-black/35 backdrop-blur-md border border-white/25 text-white font-semibold text-xs sm:text-sm hover:bg-black/50 transition-all flex items-center justify-center gap-2 min-h-[44px]"
-                  >
-                    <Sparkles className="w-4 h-4 text-luxury-gold shrink-0" />
-                    <span>Run Architecture Lab</span>
-                  </button>
-
-                  <button
-                    onClick={onBookCall}
-                    className="w-full sm:w-auto px-4 py-3 rounded-full bg-transparent border border-white/30 text-white/90 font-mono text-xs hover:bg-white/10 transition-colors flex items-center justify-center gap-1.5 min-h-[44px]"
-                  >
-                    <span>Book Audit</span>
-                    <ArrowUpRight className="w-3.5 h-3.5 text-white/70" />
+                    <span>Case Studies</span>
+                    <ArrowUpRight className="w-3.5 h-3.5 text-neutral-900 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
                   </button>
 
                   {onRequestResume && (
                     <button
                       onClick={onRequestResume}
-                      className="w-full sm:w-auto px-4 py-3 rounded-full bg-white/15 hover:bg-white/25 backdrop-blur-md border border-white/30 text-white font-mono text-xs flex items-center justify-center gap-1.5 transition-all min-h-[44px] apple-spring hover:scale-[1.02] active:scale-[0.98]"
+                      className="w-full px-3.5 py-2.5 sm:py-3 rounded-2xl bg-amber-400 hover:bg-amber-300 text-neutral-950 font-bold text-xs transition-all shadow-md flex items-center justify-center gap-1.5 apple-spring hover:scale-[1.02] active:scale-[0.98] min-h-[44px]"
                     >
-                      <FileText className="w-3.5 h-3.5 text-amber-200" />
+                      <FileText className="w-3.5 h-3.5 text-neutral-950" />
                       <span>Request CV</span>
                     </button>
                   )}
+
+                  <button
+                    onClick={onExploreDemos}
+                    className="w-full px-3 py-2.5 rounded-2xl bg-black/35 hover:bg-black/50 backdrop-blur-md border border-white/20 text-white font-medium text-xs transition-all flex items-center justify-center gap-1.5 min-h-[42px]"
+                  >
+                    <Sparkles className="w-3.5 h-3.5 text-luxury-gold shrink-0" />
+                    <span>Systems Lab</span>
+                  </button>
+
+                  <button
+                    onClick={onBookCall}
+                    className="w-full px-3 py-2.5 rounded-2xl bg-white/10 hover:bg-white/20 backdrop-blur-md border border-white/25 text-white/90 font-mono text-xs transition-colors flex items-center justify-center gap-1.5 min-h-[42px]"
+                  >
+                    <span>Book Session</span>
+                    <ArrowUpRight className="w-3 h-3 text-white/70" />
+                  </button>
                 </div>
 
-                {/* Institutional Proof Strip (Clean, Verified, Free of Fake Avatar Clutter) */}
-                <div className="pt-1">
-                  <div className="text-[10px] font-mono uppercase tracking-wider text-white/70 mb-1.5 flex items-center justify-between">
-                    <span>Proven Enterprise Deployments</span>
+                {/* Institutional Proof Strip (Unobscured & High Legibility) */}
+                <div className="pt-2 border-t border-white/15 space-y-1.5">
+                  <div className="text-[10px] font-mono uppercase tracking-wider text-white/80 flex items-center justify-between">
+                    <span className="font-semibold">Proven Deployments</span>
                     <button
                       onClick={() => handleNavClick('evidence-ledger')}
-                      className="text-amber-200 hover:underline flex items-center gap-1 normal-case font-medium"
+                      className="text-amber-200 hover:text-white transition-colors underline-offset-4 hover:underline flex items-center gap-1 normal-case font-medium text-[10px]"
                     >
-                      <span>View Methodology</span> ↗
+                      <span>View Methodology ↗</span>
                     </button>
                   </div>
-                  <div className="flex flex-wrap items-center gap-2 sm:gap-3 font-mono text-xs text-white/95 font-semibold">
-                    <span className="px-2.5 py-1 rounded-lg bg-black/25 border border-white/15">Flipkart</span>
+                  <div className="flex flex-wrap items-center gap-1.5 sm:gap-2 font-mono text-[11px] sm:text-xs text-white/95 font-semibold">
+                    <span className="px-2.5 py-1 rounded-lg bg-black/30 border border-white/15">Flipkart</span>
                     <span className="text-white/40">•</span>
-                    <span className="px-2.5 py-1 rounded-lg bg-black/25 border border-white/15">Accenture Strategy</span>
+                    <span className="px-2.5 py-1 rounded-lg bg-black/30 border border-white/15">Accenture</span>
                     <span className="text-white/40">•</span>
-                    <span className="px-2.5 py-1 rounded-lg bg-black/25 border border-white/15">Novartis</span>
+                    <span className="px-2.5 py-1 rounded-lg bg-black/30 border border-white/15">Novartis</span>
                     <span className="text-white/40">•</span>
-                    <span className="px-2.5 py-1 rounded-lg bg-black/25 border border-white/15">Ericsson</span>
+                    <span className="px-2.5 py-1 rounded-lg bg-black/30 border border-amber-300/40 text-amber-200 font-bold">Ericsson</span>
                   </div>
                 </div>
 
@@ -250,7 +251,7 @@ export const Hero: React.FC<HeroProps> = ({ onBookCall, onExploreDemos, onViewMa
             {/* ========================================================= */}
             {/* RIGHT PANEL: Enterprise AI Observatory & Interactive Core */}
             {/* ========================================================= */}
-            <div className="lg:col-span-6 relative p-5 sm:p-8 lg:p-12 xl:p-14 flex flex-col justify-between bg-[#F7F4EE] dark:bg-[#1A1815] text-neutral-900 dark:text-neutral-100 z-10 transition-colors duration-300">
+            <div className="lg:col-span-6 relative p-5 sm:p-8 lg:p-12 xl:p-14 lg:pl-16 xl:pl-20 flex flex-col justify-between bg-[#F7F4EE] dark:bg-[#1A1815] text-neutral-900 dark:text-neutral-100 z-10 transition-colors duration-300">
               
               {/* Top Observatory Status Strip (Clean, No Duplicate Nav) */}
               <div className="flex items-center justify-between gap-3 border-b border-black/10 dark:border-white/10 pb-4">
@@ -388,11 +389,11 @@ export const Hero: React.FC<HeroProps> = ({ onBookCall, onExploreDemos, onViewMa
             className="pointer-events-none absolute inset-0 hidden lg:flex items-end justify-center z-30"
           >
             <div className="relative w-full max-w-7xl h-full flex justify-center items-end">
-              {/* Scaled cutout image positioned directly on the dividing seam */}
+              {/* Scaled cutout image positioned with editorial breathing room */}
               <img
                 src="./images/mohsin_cutout.png"
                 alt="Mohsin Qureshi"
-                className="h-[610px] object-contain drop-shadow-[0_20px_35px_rgba(0,0,0,0.6)] select-none translate-x-[-12px] translate-y-[10px]"
+                className="h-[560px] xl:h-[590px] object-contain drop-shadow-[0_20px_35px_rgba(0,0,0,0.6)] select-none translate-x-[20px] translate-y-[10px]"
               />
             </div>
           </div>

@@ -5,7 +5,7 @@ import { useTheme } from '../context/ThemeContext';
 export const CalendlySection: React.FC = () => {
   const { theme } = useTheme();
   const [selectedTimeline, setSelectedTimeline] = useState<string>('Immediately (1-2 weeks)');
-  const [selectedOpportunity, setSelectedOpportunity] = useState<string>('Staff/Principal AI Role');
+  const [selectedOpportunity, setSelectedOpportunity] = useState<string>('AI Engineer Role');
   const [openFaq, setOpenFaq] = useState<number | null>(null);
   const [activeTab, setActiveTab] = useState<'calendar' | 'directForm'>('calendar');
 
@@ -28,7 +28,7 @@ export const CalendlySection: React.FC = () => {
 
   const timelines = ['Immediately (1-2 weeks)', 'Within 30 Days', 'Quarterly / Flexible'];
   const opportunities = [
-    'Staff/Principal AI Role',
+    'AI Engineer Role',
     'Forward Deployment Engineer (FDE)',
     'Technical Advisory Discovery',
     'Keynote / Event Speaking Invite',
@@ -83,7 +83,7 @@ export const CalendlySection: React.FC = () => {
       title: 'Recruiter & Hiring Lead Sync',
       timing: '30 Mins • Google Meet / Zoom',
       icon: Briefcase,
-      description: 'Direct alignment for Staff/Principal AI Systems Architect and Forward Deployment Engineer roles with Tier-1 AI startups and enterprises.',
+      description: 'Direct alignment for AI Engineer and Forward Deployment Engineer roles with Tier-1 AI startups and enterprises.',
       deliverable: 'Mutual Fit Evaluation, Technical Defense & Compensation Calibration'
     },
     {
@@ -107,7 +107,7 @@ export const CalendlySection: React.FC = () => {
   const faqs = [
     {
       q: 'What full-time and contractual opportunities is Mohsin currently evaluating?',
-      a: 'I actively evaluate Principal/Staff AI Systems Architect, Forward Deployment Engineer (FDE), and selective enterprise advisory contracts. I specialize in building deterministic low-latency multi-agent gateways, evaluation guardrails, and enterprise RAG platforms.'
+      a: 'I actively evaluate AI Engineer, Forward Deployment Engineer (FDE), and selective enterprise advisory contracts. I specialize in building deterministic low-latency multi-agent gateways, evaluation guardrails, and enterprise RAG platforms.'
     },
     {
       q: 'How can recruiters and talent partners access the official unredacted resume?',
@@ -284,7 +284,7 @@ export const CalendlySection: React.FC = () => {
                 </li>
                 <li className="flex items-start gap-2.5">
                   <CheckCircle2 className="w-4 h-4 text-terracotta mt-0.5 flex-shrink-0" />
-                  <span><strong>Role & Mandate Scope:</strong> Establishing clear mutual expectations for Staff/Principal deliverables, FDE deployment, or advisory roadmap.</span>
+                  <span><strong>Role & Mandate Scope:</strong> Establishing clear mutual expectations for AI Engineer deliverables, FDE deployment, or advisory roadmap.</span>
                 </li>
                 <li className="flex items-start gap-2.5">
                   <CheckCircle2 className="w-4 h-4 text-terracotta mt-0.5 flex-shrink-0" />
