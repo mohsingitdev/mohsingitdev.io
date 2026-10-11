@@ -13,10 +13,20 @@ export const Navbar: React.FC<NavbarProps> = ({ onBookCall }) => {
 
   useEffect(() => {
     const handleScroll = () => {
-      setScrolled(window.scrollY > 80);
+      // On mobile, the hero split-card is tall (~700px).
+      // Only slide in the floating navbar once the user has scrolled past the hero card (480px on mobile, 120px on desktop)
+      // to ensure it NEVER obscures the headline or hero content.
+      const isMobile = window.innerWidth < 768;
+      const threshold = isMobile ? 480 : 120;
+      setScrolled(window.scrollY > threshold);
     };
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    handleScroll();
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    window.addEventListener('resize', handleScroll, { passive: true });
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('resize', handleScroll);
+    };
   }, []);
 
   return (

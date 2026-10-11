@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { BLOG_POSTS } from '../data/blogPosts';
 import { BlogPost } from '../types';
 import { BookOpen, Clock, Calendar, ArrowRight, X, Copy, Check, Sparkles, Terminal } from 'lucide-react';
+import { Card3D } from './common/Card3D';
 
 interface BlogSectionProps {
   onBookCall: () => void;
@@ -39,50 +40,56 @@ export const BlogSection: React.FC<BlogSectionProps> = ({ onBookCall }) => {
       {/* Blog Cards Grid */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-5 sm:gap-8">
         {BLOG_POSTS.map((post) => (
-          <div
+          <Card3D
             key={post.id}
-            onClick={() => setActivePost(post)}
-            className="rounded-3xl bg-canvas-surface border border-canvas-border p-5 sm:p-7 flex flex-col justify-between space-y-5 sm:space-y-6 hover:border-terracotta/50 cursor-pointer group transition-all duration-300 shadow-subtle-card apple-card-hover"
+            className="h-full rounded-3xl"
+            maxRotation={6}
+            glareOpacity={0.12}
           >
-            <div className="space-y-3">
-              <div className="flex items-center justify-between text-xs font-mono text-slate-400">
-                <span className="flex items-center gap-1.5">
-                  <Calendar className="w-3.5 h-3.5" />
-                  {post.date}
-                </span>
-                <span className="flex items-center gap-1.5 text-terracotta">
-                  <Clock className="w-3.5 h-3.5" />
-                  {post.readingTime}
-                </span>
-              </div>
-
-              <h3 className="text-base sm:text-lg font-bold text-white group-hover:text-amber-200 transition-colors leading-snug font-sans">
-                {post.title}
-              </h3>
-
-              <p className="text-xs text-slate-400 line-clamp-3 leading-relaxed">
-                {post.description}
-              </p>
-            </div>
-
-            <div className="space-y-3.5 pt-1">
-              <div className="flex flex-wrap gap-1.5">
-                {post.tags.map((tag, idx) => (
-                  <span
-                    key={idx}
-                    className="text-[10px] font-mono px-2.5 py-0.5 rounded bg-canvas-card border border-canvas-border text-slate-400"
-                  >
-                    #{tag}
+            <div
+              onClick={() => setActivePost(post)}
+              className="rounded-3xl bg-canvas-surface border border-canvas-border p-5 sm:p-7 flex flex-col justify-between space-y-5 sm:space-y-6 hover:border-terracotta/50 cursor-pointer group transition-all duration-300 shadow-subtle-card apple-card-hover h-full"
+            >
+              <div className="space-y-3">
+                <div className="flex items-center justify-between text-xs font-mono text-slate-400">
+                  <span className="flex items-center gap-1.5">
+                    <Calendar className="w-3.5 h-3.5" />
+                    {post.date}
                   </span>
-                ))}
+                  <span className="flex items-center gap-1.5 text-terracotta">
+                    <Clock className="w-3.5 h-3.5" />
+                    {post.readingTime}
+                  </span>
+                </div>
+
+                <h3 className="text-base sm:text-lg font-bold text-white group-hover:text-amber-200 transition-colors leading-snug font-sans">
+                  {post.title}
+                </h3>
+
+                <p className="text-xs text-slate-400 line-clamp-3 leading-relaxed">
+                  {post.description}
+                </p>
               </div>
 
-              <div className="pt-3 border-t border-canvas-border flex items-center justify-between text-xs font-mono text-terracotta font-semibold">
-                <span>Read Full Blueprint</span>
-                <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
+              <div className="space-y-3.5 pt-1">
+                <div className="flex flex-wrap gap-1.5">
+                  {post.tags.map((tag, idx) => (
+                    <span
+                      key={idx}
+                      className="text-[10px] font-mono px-2.5 py-0.5 rounded bg-canvas-card border border-canvas-border text-slate-400"
+                    >
+                      #{tag}
+                    </span>
+                  ))}
+                </div>
+
+                <div className="pt-3 border-t border-canvas-border flex items-center justify-between text-xs font-mono text-terracotta font-semibold">
+                  <span>Read Full Blueprint</span>
+                  <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
+                </div>
               </div>
             </div>
-          </div>
+          </Card3D>
         ))}
       </div>
 

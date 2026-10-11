@@ -6,9 +6,9 @@ interface AssessmentVector {
   id: string;
   category: 'architecture' | 'scale' | 'roi' | 'domain';
   title: string;
-  score: number;
-  maxScore: number;
-  confidence: number;
+  metricBenchmark: string;
+  metricLabel: string;
+  confidenceTag: string;
   grade: string;
   verdict: string;
   evidence: string[];
@@ -20,11 +20,11 @@ const ASSESSMENT_DATA: AssessmentVector[] = [
     id: 'system-rigor',
     category: 'architecture',
     title: 'System Architecture & FDE Rigor',
-    score: 9.7,
-    maxScore: 10,
-    confidence: 98.4,
-    grade: 'Tier-1 FDE Standard',
-    verdict: 'Ranks in the top 1% for moving generative models from unstable prompt scripts into fault-tolerant distributed platforms with deterministic fast paths.',
+    metricBenchmark: '< 40ms',
+    metricLabel: 'P99 Routing Fast-Path',
+    confidenceTag: 'Deterministic SLA',
+    grade: 'Forward Deployment Standard',
+    verdict: 'Hardens generative models from unstable prompt scripts into fault-tolerant distributed platforms with deterministic fast paths.',
     evidence: [
       'Two-tier routing architecture isolating SLM classifiers from heavy LLMs',
       'Pydantic schema enforcement with automated schema repair fallbacks',
@@ -37,10 +37,10 @@ const ASSESSMENT_DATA: AssessmentVector[] = [
     id: 'high-concurrency',
     category: 'scale',
     title: 'High-Concurrency & Latency SLAs',
-    score: 9.5,
-    maxScore: 10,
-    confidence: 96.1,
-    grade: 'Sub-60ms p99 SLA',
+    metricBenchmark: '100k+',
+    metricLabel: 'Req/Sec Peak Concurrency',
+    confidenceTag: 'Zero Cascade Failures',
+    grade: 'High-Concurrency SLA',
     verdict: 'Engineered for high-volume enterprise throughput; replaces monolithic bottlenecks with sub-40ms deterministic classification.',
     evidence: [
       'Handled high-volume real-time traffic under global flash-sale peak loads',
@@ -54,10 +54,10 @@ const ASSESSMENT_DATA: AssessmentVector[] = [
     id: 'rag-grounding',
     category: 'architecture',
     title: 'Zero-Hallucination Citation Grounding',
-    score: 9.8,
-    maxScore: 10,
-    confidence: 99.2,
-    grade: 'Auditable Regulatory Grade',
+    metricBenchmark: '< 0.5%',
+    metricLabel: 'Hallucination Threshold',
+    confidenceTag: 'Auditable Citations',
+    grade: 'Compliance & Verification',
     verdict: 'Achieves deterministic factual precision in high-stakes clinical and scientific documentation where hallucinations carry regulatory liability.',
     evidence: [
       'Reciprocal Rank Fusion uniting BM25 lexical precision with dense vector recall',
@@ -71,10 +71,10 @@ const ASSESSMENT_DATA: AssessmentVector[] = [
     id: 'commercial-roi',
     category: 'roi',
     title: 'Commercial ROI & Cost Optimization',
-    score: 9.6,
-    maxScore: 10,
-    confidence: 97.5,
-    grade: 'Exceptional ROI Appeal',
+    metricBenchmark: '-72%',
+    metricLabel: 'Token Expenditure Delta',
+    confidenceTag: 'FinOps Validated',
+    grade: 'FinOps & Token Efficiency',
     verdict: 'Demonstrates immediate client balance-sheet impact by driving down token burn and automating manual human oversight workflows.',
     evidence: [
       '72% direct cloud inference bill reduction via intelligent tier routing',
@@ -88,10 +88,10 @@ const ASSESSMENT_DATA: AssessmentVector[] = [
     id: 'cross-domain',
     category: 'domain',
     title: 'Multidisciplinary Product Engineering',
-    score: 9.4,
-    maxScore: 10,
-    confidence: 95.8,
-    grade: 'Full-Cycle Architect',
+    metricBenchmark: '60 FPS',
+    metricLabel: 'Edge Ingestion Rate',
+    confidenceTag: 'Zero Telemetry Loss',
+    grade: 'Multi-Modal Edge Systems',
     verdict: 'Crosses enterprise boundaries effortlessly from E-Commerce to Healthcare NLP, Telco big data streaming, and Edge Computer Vision.',
     evidence: [
       'Healthcare: Custom NER pipeline delivering 90%+ clinical entity extraction',
@@ -155,10 +155,10 @@ export const LayaAssessmentMatrix: React.FC<{ onBookCall: () => void }> = ({ onB
 
         <div className="space-y-1 sm:space-y-1.5 lg:border-r border-canvas-border/70 pr-2 sm:pr-4">
           <div className="text-[10px] sm:text-[11px] font-mono uppercase tracking-wider text-slate-400">Enterprise Bracket</div>
-          <div className="text-lg sm:text-2xl lg:text-3xl font-extrabold text-white tracking-tight truncate">Top 1% Architect</div>
+          <div className="text-lg sm:text-2xl lg:text-3xl font-extrabold text-white tracking-tight truncate">Principal Systems Tier</div>
           <div className="text-[11px] sm:text-xs text-terracotta font-mono flex items-center gap-1.5">
             <Award className="w-3.5 h-3.5 shrink-0" />
-            <span className="truncate">Forward Deployment Tier</span>
+            <span className="truncate">Forward Deployment Standard</span>
           </div>
         </div>
 
@@ -253,25 +253,28 @@ export const LayaAssessmentMatrix: React.FC<{ onBookCall: () => void }> = ({ onB
                     </div>
                   </div>
 
-                  {/* Score pill */}
+                  {/* Quantitative SLA Benchmark */}
                   <div className="text-right flex-shrink-0">
-                    <div className="text-2xl sm:text-3xl font-extrabold font-mono text-white">
-                      {item.score}<span className="text-slate-500 text-sm font-normal">/{item.maxScore}</span>
+                    <div className="text-2xl sm:text-3xl font-extrabold font-mono text-terracotta leading-none">
+                      {item.metricBenchmark}
                     </div>
-                    <div className="text-[10px] font-mono text-emerald-400 font-semibold">
-                      {item.confidence}% Calibrated
+                    <div className="text-[10px] font-mono text-slate-400 mt-1 uppercase whitespace-nowrap">
+                      {item.metricLabel}
+                    </div>
+                    <div className="text-[10px] font-mono text-emerald-400 font-semibold mt-0.5 flex items-center justify-end gap-1">
+                      <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                      <span>{item.confidenceTag}</span>
                     </div>
                   </div>
                 </div>
 
-                {/* Score Progress Bar */}
-                <div className="space-y-1.5">
-                  <div className="w-full h-2 rounded-full bg-canvas-card overflow-hidden">
-                    <div
-                      className="h-full bg-gradient-to-r from-terracotta via-amber-400 to-amber-200 rounded-full"
-                      style={{ width: `${(item.score / item.maxScore) * 100}%` }}
-                    />
-                  </div>
+                {/* Production Verification Badge */}
+                <div className="flex items-center justify-between px-3.5 py-2 rounded-xl bg-canvas-card border border-canvas-border text-[11px] font-mono">
+                  <span className="text-slate-400">Production Benchmark Status:</span>
+                  <span className="text-terracotta font-semibold flex items-center gap-1.5">
+                    <span className="w-1.5 h-1.5 rounded-full bg-terracotta" />
+                    Verified & Field Hardened
+                  </span>
                 </div>
 
                 {/* Verdict */}

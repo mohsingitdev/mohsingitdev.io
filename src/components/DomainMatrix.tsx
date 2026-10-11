@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { DOMAIN_PROJECTS } from '../data/domainProjects';
 import { Layers, ArrowUpRight, ExternalLink, Github, Sparkles } from 'lucide-react';
+import { Card3D } from './common/Card3D';
 
 interface DomainMatrixProps {
   onBookCall: () => void;
@@ -59,94 +60,100 @@ export const DomainMatrix: React.FC<DomainMatrixProps> = ({ onBookCall, onExplor
           const formattedNumber = `#0${idx + 1}`;
 
           return (
-            <div
+            <Card3D
               key={project.id}
-              className="rounded-3xl bg-canvas-card border border-canvas-border hover:border-terracotta/50 transition-all duration-300 p-5 sm:p-8 lg:p-10 flex flex-col justify-between space-y-6 sm:space-y-7 group shadow-apple-card apple-card-hover relative overflow-hidden"
+              className="h-full rounded-3xl"
+              maxRotation={5}
+              glareOpacity={0.12}
             >
-              {/* Card Watermark Number */}
-              <div className="absolute top-4 right-5 sm:right-6 select-none pointer-events-none text-4xl sm:text-5xl font-mono font-bold text-neutral-900/[0.05] dark:text-white/[0.04]">
-                {formattedNumber}
-              </div>
-
-              {/* Top metadata */}
-              <div className="space-y-2.5 sm:space-y-3 relative z-10">
-                <div className="flex items-center gap-2.5 sm:gap-3">
-                  <span className="font-mono text-xs font-bold text-terracotta">
-                    {formattedNumber}
-                  </span>
-                  <span className="text-[10px] sm:text-[11px] font-mono uppercase px-2.5 sm:px-3 py-0.5 rounded-full bg-canvas-surface text-slate-300 border border-canvas-border">
-                    {project.domain.split('&')[0]}
-                  </span>
+              <div
+                className="rounded-3xl bg-canvas-card border border-canvas-border hover:border-terracotta/50 transition-all duration-300 p-5 sm:p-8 lg:p-10 flex flex-col justify-between space-y-6 sm:space-y-7 group shadow-apple-card apple-card-hover relative overflow-hidden h-full"
+              >
+                {/* Card Watermark Number */}
+                <div className="absolute top-4 right-5 sm:right-6 select-none pointer-events-none text-4xl sm:text-5xl font-mono font-bold text-neutral-900/[0.05] dark:text-white/[0.04]">
+                  {formattedNumber}
                 </div>
 
-                <h3 className="text-xl sm:text-2xl font-bold text-white group-hover:text-terracotta transition-colors font-sans pt-1">
-                  {project.title}
-                </h3>
-
-                <p className="text-xs sm:text-sm font-mono text-slate-400 leading-relaxed">
-                  {project.tagline}
-                </p>
-              </div>
-
-              {/* Context & Architecture */}
-              <div className="space-y-3 text-xs text-slate-300 relative z-10">
-                <div className="p-3.5 sm:p-4 rounded-2xl bg-canvas-surface border border-canvas-border space-y-1">
-                  <div className="font-mono text-slate-500 uppercase text-[10px]">The Enterprise Bottleneck</div>
-                  <div className="leading-relaxed">{project.challenge}</div>
-                </div>
-
-                <div className="p-3.5 sm:p-4 rounded-2xl bg-canvas-subtle border border-terracotta/25 space-y-1">
-                  <div className="font-mono text-terracotta uppercase text-[10px]">Architectural Solution</div>
-                  <div className="leading-relaxed">{project.architectureSolution}</div>
-                </div>
-              </div>
-
-              {/* Quantified Metrics Grid */}
-              <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 sm:gap-2.5 pt-1 relative z-10">
-                {project.metrics.map((m, mIdx) => (
-                  <div key={mIdx} className="p-2.5 sm:p-3 rounded-xl bg-canvas-surface border border-canvas-border text-center">
-                    <div className="font-mono text-sm sm:text-base font-bold text-terracotta">{m.value}</div>
-                    <div className="text-[10px] text-slate-400 mt-0.5 leading-tight">{m.label}</div>
+                {/* Top metadata */}
+                <div className="space-y-2.5 sm:space-y-3 relative z-10">
+                  <div className="flex items-center gap-2.5 sm:gap-3">
+                    <span className="font-mono text-xs font-bold text-terracotta">
+                      {formattedNumber}
+                    </span>
+                    <span className="text-[10px] sm:text-[11px] font-mono uppercase px-2.5 sm:px-3 py-0.5 rounded-full bg-canvas-surface text-slate-300 border border-canvas-border">
+                      {project.domain.split('&')[0]}
+                    </span>
                   </div>
-                ))}
-              </div>
 
-              {/* Card Footer Actions */}
-              <div className="pt-4 border-t border-canvas-border flex flex-col sm:flex-row sm:items-center justify-between gap-3 relative z-10">
-                <div className="flex items-center gap-3 sm:gap-4">
-                  {project.hasInteractiveDemo && (
-                    <button
-                      onClick={onExploreDemo}
-                      className="inline-flex items-center gap-1.5 text-xs font-mono font-semibold text-terracotta hover:underline"
-                    >
-                      <Sparkles className="w-3.5 h-3.5" />
-                      <span>Test Live Simulator</span>
-                    </button>
-                  )}
-                  {project.githubRepo && (
-                    <a
-                      href={project.githubRepo}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center gap-1 text-xs font-mono text-slate-400 hover:text-terracotta transition-colors"
-                    >
-                      <Github className="w-3.5 h-3.5" />
-                      <span>Repo</span>
-                      <ExternalLink className="w-3 h-3" />
-                    </a>
-                  )}
+                  <h3 className="text-xl sm:text-2xl font-bold text-white group-hover:text-terracotta transition-colors font-sans pt-1">
+                    {project.title}
+                  </h3>
+
+                  <p className="text-xs sm:text-sm font-mono text-slate-400 leading-relaxed">
+                    {project.tagline}
+                  </p>
                 </div>
 
-                <button
-                  onClick={onBookCall}
-                  className="text-xs font-mono font-semibold text-slate-200 hover:text-terracotta flex items-center gap-1 transition-colors self-start sm:self-auto"
-                >
-                  <span>Commission System</span>
-                  <ArrowUpRight className="w-3.5 h-3.5" />
-                </button>
-              </div>
+                {/* Context & Architecture */}
+                <div className="space-y-3 text-xs text-slate-300 relative z-10">
+                  <div className="p-3.5 sm:p-4 rounded-2xl bg-canvas-surface border border-canvas-border space-y-1">
+                    <div className="font-mono text-slate-500 uppercase text-[10px]">The Enterprise Bottleneck</div>
+                    <div className="leading-relaxed">{project.challenge}</div>
+                  </div>
 
-            </div>
+                  <div className="p-3.5 sm:p-4 rounded-2xl bg-canvas-subtle border border-terracotta/25 space-y-1">
+                    <div className="font-mono text-terracotta uppercase text-[10px]">Architectural Solution</div>
+                    <div className="leading-relaxed">{project.architectureSolution}</div>
+                  </div>
+                </div>
+
+                {/* Quantified Metrics Grid */}
+                <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 sm:gap-2.5 pt-1 relative z-10">
+                  {project.metrics.map((m, mIdx) => (
+                    <div key={mIdx} className="p-2.5 sm:p-3 rounded-xl bg-canvas-surface border border-canvas-border text-center">
+                      <div className="font-mono text-sm sm:text-base font-bold text-terracotta">{m.value}</div>
+                      <div className="text-[10px] text-slate-400 mt-0.5 leading-tight">{m.label}</div>
+                    </div>
+                  ))}
+                </div>
+
+                {/* Card Footer Actions */}
+                <div className="pt-4 border-t border-canvas-border flex flex-col sm:flex-row sm:items-center justify-between gap-3 relative z-10">
+                  <div className="flex items-center gap-3 sm:gap-4">
+                    {project.hasInteractiveDemo && (
+                      <button
+                        onClick={onExploreDemo}
+                        className="inline-flex items-center gap-1.5 text-xs font-mono font-semibold text-terracotta hover:underline"
+                      >
+                        <Sparkles className="w-3.5 h-3.5" />
+                        <span>Test Live Simulator</span>
+                      </button>
+                    )}
+                    {project.githubRepo && (
+                      <a
+                        href={project.githubRepo}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-1 text-xs font-mono text-slate-400 hover:text-terracotta transition-colors"
+                      >
+                        <Github className="w-3.5 h-3.5" />
+                        <span>Repo</span>
+                        <ExternalLink className="w-3 h-3" />
+                      </a>
+                    )}
+                  </div>
+
+                  <button
+                    onClick={onBookCall}
+                    className="text-xs font-mono font-semibold text-slate-200 hover:text-terracotta flex items-center gap-1 transition-colors self-start sm:self-auto"
+                  >
+                    <span>Commission System</span>
+                    <ArrowUpRight className="w-3.5 h-3.5" />
+                  </button>
+                </div>
+
+              </div>
+            </Card3D>
           );
         })}
       </div>

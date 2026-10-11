@@ -85,7 +85,7 @@ export const Hero: React.FC<HeroProps> = ({ onBookCall, onExploreDemos, onViewMa
   };
 
   return (
-    <section id="hero" className="relative pt-6 pb-16 md:pt-10 md:pb-24 overflow-hidden">
+    <section id="hero" className="relative pt-8 sm:pt-12 md:pt-14 pb-12 md:pb-24 overflow-hidden">
       {/* Background ambient lighting */}
       <div className="absolute top-12 left-1/4 w-[550px] h-[550px] bg-terracotta/15 rounded-full blur-[150px] pointer-events-none" />
       <div className="absolute top-24 right-1/4 w-[450px] h-[450px] bg-amber-500/10 rounded-full blur-[150px] pointer-events-none" />
@@ -128,8 +128,8 @@ export const Hero: React.FC<HeroProps> = ({ onBookCall, onExploreDemos, onViewMa
               </div>
 
               {/* Main Headline & Description with clearance for central cutout */}
-              <div className="relative z-20 my-6 sm:my-10 lg:my-12 space-y-3 sm:space-y-4 w-full max-w-full lg:max-w-[360px] xl:max-w-[400px]">
-                <h1 className="text-[32px] sm:text-[44px] lg:text-[50px] xl:text-[54px] font-extrabold text-white tracking-tight leading-[1.08] font-sans">
+              <div className="relative z-20 my-5 sm:my-8 lg:my-12 space-y-2.5 sm:space-y-4 w-full max-w-full lg:max-w-[360px] xl:max-w-[400px]">
+                <h1 className="text-[30px] xs:text-[34px] sm:text-[44px] lg:text-[50px] xl:text-[54px] font-extrabold text-white tracking-tight leading-[1.08] font-sans">
                   Engineering AI that survives{' '}
                   <span className="font-serif italic font-normal text-amber-200">production</span>{' '}
                   scale.
@@ -141,7 +141,7 @@ export const Hero: React.FC<HeroProps> = ({ onBookCall, onExploreDemos, onViewMa
               </div>
 
               {/* Bottom Actions & Enterprise Social Proof */}
-              <div className="relative z-20 space-y-4 sm:space-y-5 pt-1">
+              <div className="relative z-20 space-y-3.5 sm:space-y-5 pt-1">
                 <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2.5 sm:gap-3.5 w-full sm:w-auto">
                   <button
                     onClick={onBookCall}
@@ -161,7 +161,7 @@ export const Hero: React.FC<HeroProps> = ({ onBookCall, onExploreDemos, onViewMa
                 </div>
 
                 {/* Social Proof Avatars */}
-                <div className="flex items-center gap-2.5 sm:gap-3 pt-1">
+                <div className="flex items-center gap-2.5 sm:gap-3 pt-0.5">
                   <div className="flex -space-x-2 shrink-0">
                     <div className="w-7 h-7 rounded-full bg-black/60 border-2 border-white/60 flex items-center justify-center text-[10px] font-bold text-white shadow-sm">FK</div>
                     <div className="w-7 h-7 rounded-full bg-[#3B2519] border-2 border-white/60 flex items-center justify-center text-[10px] font-bold text-amber-200 shadow-sm">AC</div>
@@ -172,13 +172,32 @@ export const Hero: React.FC<HeroProps> = ({ onBookCall, onExploreDemos, onViewMa
                   </div>
                 </div>
 
-                {/* Mobile Cutout Overlap (Calibrated height & grounding for mobile viewports) */}
-                <div className="lg:hidden pt-4 pb-0 flex justify-center relative z-20 pointer-events-none">
-                  <img
-                    src="./images/mohsin_cutout.png"
-                    alt="Mohsin Qureshi"
-                    className="h-[190px] xs:h-[220px] sm:h-[270px] object-contain drop-shadow-[0_12px_22px_rgba(0,0,0,0.45)] select-none"
-                  />
+                {/* Mobile Cutout Overlap (Curated Editorial 3D Framing) */}
+                <div className="lg:hidden pt-3 pb-0 flex flex-col items-center justify-end relative z-20 pointer-events-none mt-2">
+                  <div className="relative flex items-end justify-center w-full">
+                    {/* Ambient Glow */}
+                    <div className="absolute bottom-4 w-48 h-48 rounded-full bg-amber-400/20 blur-2xl pointer-events-none" />
+                    
+                    {/* Floating Tactical SLA Badges */}
+                    <div className="absolute top-2 left-0 sm:left-2 z-30 px-2.5 py-1 rounded-full bg-black/45 backdrop-blur-md border border-white/20 text-[10px] font-mono text-white/95 flex items-center gap-1.5 shadow-lg">
+                      <Zap className="w-3 h-3 text-luxury-gold shrink-0" />
+                      <span>Sub-40ms P99</span>
+                    </div>
+
+                    <div className="absolute top-8 right-0 sm:right-2 z-30 px-2.5 py-1 rounded-full bg-black/45 backdrop-blur-md border border-white/20 text-[10px] font-mono text-white/95 flex items-center gap-1.5 shadow-lg">
+                      <Activity className="w-3 h-3 text-emerald-400 shrink-0" />
+                      <span>&lt;0.5% Hallucination</span>
+                    </div>
+
+                    <img
+                      src="./images/mohsin_cutout.png"
+                      alt="Mohsin Qureshi"
+                      className="h-[200px] xs:h-[225px] sm:h-[275px] object-contain drop-shadow-[0_16px_28px_rgba(0,0,0,0.5)] select-none relative z-20"
+                    />
+
+                    {/* Grounding Pedestal */}
+                    <div className="absolute bottom-0 inset-x-0 h-8 bg-gradient-to-t from-black/35 to-transparent pointer-events-none z-20" />
+                  </div>
                 </div>
               </div>
 

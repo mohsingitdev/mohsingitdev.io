@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
-import { Calendar, Clock, CheckCircle2, Shield, ArrowUpRight, MessageSquare, Filter } from 'lucide-react';
+import { Calendar, Clock, CheckCircle2, ArrowUpRight, MessageSquare, Filter, ChevronDown, HelpCircle, ArrowRight, ShieldCheck, Zap } from 'lucide-react';
 import { useTheme } from '../context/ThemeContext';
 
 export const CalendlySection: React.FC = () => {
   const { theme } = useTheme();
   const [selectedTimeline, setSelectedTimeline] = useState<string>('Immediately (1-2 weeks)');
   const [selectedBudget, setSelectedBudget] = useState<string>('Enterprise Advisory ($5k - $15k/mo)');
+  const [openFaq, setOpenFaq] = useState<number | null>(null);
 
   const timelines = ['Immediately (1-2 weeks)', 'Within 30 Days', 'Exploratory Audit'];
   const budgets = ['Enterprise Advisory ($5k - $15k/mo)', 'Full-Cycle FDE Build', 'Targeted RAG/Routing Audit'];
@@ -13,9 +14,48 @@ export const CalendlySection: React.FC = () => {
   const calendlyBg = theme === 'dark' ? '161513' : 'faf7f2';
   const calendlyText = theme === 'dark' ? 'ffffff' : '1c1917';
 
+  const engagementSteps = [
+    {
+      phase: 'Phase 01',
+      title: '45-Min Architectural Diagnostic',
+      timing: 'Day 1 • NDA-Protected',
+      description: 'In-depth audit of current latency profile, token spend, schema failure rates, and rate-limit bottlenecks.',
+      deliverable: '1-Page Executive Gap Analysis & High-Leverage Architecture Spec'
+    },
+    {
+      phase: 'Phase 02',
+      title: '2-Week Production Hardening Sprint',
+      timing: 'Weeks 1–2 • Forward Deployment',
+      description: 'Implementation of deterministic SLM/regex fast-path gateway, schema fallback validation, and citation guardrails.',
+      deliverable: 'Measurable 50%+ Latency Reduction & Sub-Cent Classification on Test Suites'
+    },
+    {
+      phase: 'Phase 03',
+      title: 'Production SLA & Handoff',
+      timing: 'Week 3+ • Enterprise Handover',
+      description: 'Zero-downtime deployment, CI/CD regression guardrails, live telemetry monitoring, and engineering team runbook handoff.',
+      deliverable: 'Production Rollout, SLA Verification & Complete Runbook Documentation'
+    }
+  ];
+
+  const faqs = [
+    {
+      q: 'Do we have to rewrite our existing LangChain, LlamaIndex, or agentic codebase?',
+      a: 'No. Our architecture operates as a non-invasive ingress gateway and fallback layer around existing pipelines, preserving existing model investments while enforcing sub-40ms deterministic bounds, rate-limit resilience, and cost caps.'
+    },
+    {
+      q: 'How are intellectual property and enterprise data confidentiality handled?',
+      a: 'All engagements begin with an executed mutual enterprise NDA. All code, routing models, and guardrails are deployed directly inside your secure VPC, on-premise Kubernetes clusters, or air-gapped infrastructure with zero telemetry leakage.'
+    },
+    {
+      q: 'What is the typical time-to-value for an advisory or FDE engagement?',
+      a: 'Measurable latency reductions (often 40%–70%) and token expenditure drops are typically realized within the first 5 to 7 business days of the Phase 2 sprint, followed by rigorous load testing and production rollout.'
+    }
+  ];
+
   return (
-    <section id="calendly" className="py-24 bg-canvas-subtle border-t border-canvas-border">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+    <section id="calendly" className="py-20 sm:py-24 bg-canvas-subtle border-t border-canvas-border">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
         
         {/* Header */}
         <div className="text-center max-w-3xl mx-auto space-y-4">
@@ -30,6 +70,59 @@ export const CalendlySection: React.FC = () => {
           <p className="text-slate-300 text-sm sm:text-base leading-relaxed">
             Book a dedicated 30-minute technical session to dissect your AI system bottlenecks, evaluate RAG citation grounding, or plan a multi-agent migration.
           </p>
+        </div>
+
+        {/* 3-Step Engagement Protocol */}
+        <div className="space-y-6">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-canvas-border pb-3">
+            <div className="flex items-center gap-2">
+              <Zap className="w-4 h-4 text-terracotta" />
+              <span className="font-mono text-xs font-bold uppercase tracking-wider text-white">
+                The 3-Step Engagement Protocol
+              </span>
+            </div>
+            <span className="font-mono text-xs text-slate-400">
+              Clear milestone accountability from initial audit to production SLA handoff
+            </span>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6">
+            {engagementSteps.map((step, idx) => (
+              <div
+                key={idx}
+                className="p-5 sm:p-6 rounded-2xl bg-canvas-card border border-canvas-border space-y-4 hover:border-terracotta/40 transition-all duration-300 shadow-apple-card flex flex-col justify-between"
+              >
+                <div className="space-y-3">
+                  <div className="flex items-center justify-between">
+                    <span className="text-xs font-mono font-bold text-terracotta px-2.5 py-0.5 rounded-full bg-terracotta/10 border border-terracotta/25">
+                      {step.phase}
+                    </span>
+                    <span className="text-[11px] font-mono text-slate-400">
+                      {step.timing}
+                    </span>
+                  </div>
+
+                  <h3 className="font-bold text-base sm:text-lg text-white font-sans leading-snug">
+                    {step.title}
+                  </h3>
+
+                  <p className="text-xs text-slate-300 leading-relaxed font-sans">
+                    {step.description}
+                  </p>
+                </div>
+
+                <div className="pt-3 border-t border-canvas-border space-y-1">
+                  <span className="text-[10px] font-mono uppercase text-terracotta tracking-wider font-semibold">
+                    Core Deliverable:
+                  </span>
+                  <div className="text-xs text-white font-mono flex items-start gap-1.5 leading-snug">
+                    <ArrowRight className="w-3.5 h-3.5 text-terracotta shrink-0 mt-0.5" />
+                    <span>{step.deliverable}</span>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
 
         {/* 2-Column Booking Interface */}
@@ -127,11 +220,11 @@ export const CalendlySection: React.FC = () => {
             {/* Trust Assurance */}
             <div className="p-4 rounded-2xl bg-canvas-surface border border-canvas-border space-y-2 text-xs">
               <div className="flex items-center gap-2 text-terracotta font-mono font-semibold">
-                <Shield className="w-4 h-4" />
-                <span>Confidentiality & NDA Friendly</span>
+                <ShieldCheck className="w-4 h-4 text-emerald-400" />
+                <span>Confidentiality & Mutual NDA Friendly</span>
               </div>
               <p className="text-slate-400 text-[11px] leading-relaxed">
-                All architectural discussions, repository reviews, and business constraints shared during the consultation are strictly confidential.
+                All architectural discussions, repository reviews, and business constraints shared during the consultation are strictly confidential under mutual NDA.
               </p>
             </div>
 
@@ -183,6 +276,49 @@ export const CalendlySection: React.FC = () => {
 
           </div>
 
+        </div>
+
+        {/* Enterprise FAQ Accordion */}
+        <div className="space-y-6 pt-4 border-t border-canvas-border">
+          <div className="text-center max-w-2xl mx-auto space-y-2">
+            <div className="inline-flex items-center gap-1.5 font-mono text-xs text-terracotta uppercase tracking-wider">
+              <HelpCircle className="w-3.5 h-3.5" />
+              <span>FREQUENTLY ANSWERED QUESTIONS</span>
+            </div>
+            <h3 className="text-2xl sm:text-3xl font-extrabold text-white font-sans">
+              Enterprise Advisory & Engagement FAQ
+            </h3>
+          </div>
+
+          <div className="max-w-3xl mx-auto space-y-3">
+            {faqs.map((faq, idx) => {
+              const isOpen = openFaq === idx;
+              return (
+                <div
+                  key={idx}
+                  className="rounded-2xl bg-canvas-card border border-canvas-border overflow-hidden transition-all duration-300"
+                >
+                  <button
+                    onClick={() => setOpenFaq(isOpen ? null : idx)}
+                    className="w-full p-4 sm:p-5 text-left flex items-center justify-between gap-4 font-sans font-bold text-sm sm:text-base text-white hover:text-terracotta transition-colors"
+                  >
+                    <span>{faq.q}</span>
+                    <ChevronDown
+                      className={`w-4 h-4 text-terracotta shrink-0 transition-transform duration-300 ${
+                        isOpen ? 'rotate-180' : ''
+                      }`}
+                    />
+                  </button>
+
+                  {isOpen && (
+                    <div className="px-4 sm:px-5 pb-5 pt-1 text-xs sm:text-sm text-slate-300 leading-relaxed border-t border-canvas-border/60 bg-canvas-surface/50 font-sans">
+                      {faq.a}
+                    </div>
+                  )}
+                </div>
+              );
+            })}
+          </div>
         </div>
 
       </div>

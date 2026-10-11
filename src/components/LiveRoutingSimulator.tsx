@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Cpu, Clock, DollarSign, ShieldAlert, ExternalLink } from 'lucide-react';
+import { Cpu, Clock, DollarSign, ShieldAlert, ExternalLink, Layers, ShieldCheck, GitBranch, Database, Zap } from 'lucide-react';
 
 interface Scenario {
   id: string;
@@ -275,6 +275,124 @@ export const LiveRoutingSimulator: React.FC = () => {
           </div>
         </div>
 
+      </div>
+
+      {/* Visual Two-Tier Ingress Architecture Flow Schematic */}
+      <div className="p-4 sm:p-5 rounded-2xl bg-canvas-surface border border-canvas-border space-y-3.5 shadow-sm">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-canvas-border/80 pb-3">
+          <div className="flex items-center gap-2">
+            <Layers className="w-4 h-4 text-terracotta shrink-0" />
+            <span className="font-mono text-xs font-bold text-white uppercase tracking-wider">
+              Architecture Topology: Two-Tier Ingress Gateway
+            </span>
+          </div>
+          <div className="flex items-center gap-2 text-[11px] font-mono">
+            <span className={`w-2 h-2 rounded-full ${mode === 'agentic' ? 'bg-emerald-400 animate-pulse' : 'bg-red-400'}`} />
+            <span className="text-slate-400">Data Path:</span>
+            <span className={`font-semibold ${mode === 'agentic' ? 'text-terracotta' : 'text-red-400'}`}>
+              {mode === 'agentic'
+                ? selectedScenario.id === 'jailbreak'
+                  ? 'Tier 0 Edge Defense (12ms)'
+                  : selectedScenario.id === 'status'
+                  ? 'Tier 1 Deterministic SLM (<40ms)'
+                  : 'Tier 2 LangGraph Multi-Hop Orchestrator'
+                : 'Direct Monolithic Passthrough (Slow / Expensive)'}
+            </span>
+          </div>
+        </div>
+
+        {/* 4-Stage Interactive Architecture Grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 text-xs font-mono">
+          {/* Stage 0: Ingress & Schema Boundary */}
+          <div className={`p-3.5 rounded-xl border transition-all duration-300 ${
+            mode === 'agentic'
+              ? 'bg-canvas-card border-terracotta/40 shadow-sm'
+              : 'bg-canvas-card border-red-500/30'
+          }`}>
+            <div className="flex items-center justify-between text-[10px] text-slate-400 uppercase tracking-wider">
+              <span>Stage 0: Ingress</span>
+              <span className="text-terracotta">0-12ms</span>
+            </div>
+            <div className="font-bold text-white mt-1.5 flex items-center gap-1.5">
+              <ShieldCheck className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
+              <span>Schema & WAF Gate</span>
+            </div>
+            <div className="text-[11px] text-slate-400 mt-1.5 leading-relaxed font-sans">
+              {mode === 'agentic'
+                ? 'Regex boundary, semantic injection filter & Pydantic validation.'
+                : 'Direct passthrough without semantic injection guardrails.'}
+            </div>
+          </div>
+
+          {/* Stage 1: Dual-Path Routing Gate */}
+          <div className={`p-3.5 rounded-xl border transition-all duration-300 ${
+            mode === 'agentic'
+              ? selectedScenario.id === 'dispute'
+                ? 'bg-amber-500/10 border-amber-500/40 text-white'
+                : 'bg-canvas-card border-emerald-500/40'
+              : 'bg-canvas-card border-red-500/40'
+          }`}>
+            <div className="flex items-center justify-between text-[10px] text-slate-400 uppercase tracking-wider">
+              <span>Stage 1: Routing</span>
+              <span className={mode === 'agentic' ? 'text-emerald-400' : 'text-red-400'}>
+                {mode === 'agentic' ? (selectedScenario.id === 'dispute' ? 'LangGraph' : 'SLM Fast-Path') : 'Direct Prompt'}
+              </span>
+            </div>
+            <div className="font-bold text-white mt-1.5 flex items-center gap-1.5">
+              <GitBranch className="w-3.5 h-3.5 text-terracotta shrink-0" />
+              <span>{mode === 'agentic' ? 'Adaptive Classifier' : 'Monolithic LLM'}</span>
+            </div>
+            <div className="text-[11px] text-slate-400 mt-1.5 leading-relaxed font-sans">
+              {mode === 'agentic'
+                ? selectedScenario.id === 'dispute'
+                  ? 'Multi-hop LangGraph supervisor for financial reconciliation.'
+                  : 'Sub-100M SLM intent classifier (<40ms latency envelope).'
+                : '32k token system prompt forwarded to frontier model directly.'}
+            </div>
+          </div>
+
+          {/* Stage 2: Retrieval & Context Plane */}
+          <div className={`p-3.5 rounded-xl border transition-all duration-300 ${
+            mode === 'agentic' ? 'bg-canvas-card border-canvas-border' : 'bg-canvas-card border-canvas-border opacity-70'
+          }`}>
+            <div className="flex items-center justify-between text-[10px] text-slate-400 uppercase tracking-wider">
+              <span>Stage 2: Context</span>
+              <span className="text-terracotta">Cache / RRF</span>
+            </div>
+            <div className="font-bold text-white mt-1.5 flex items-center gap-1.5">
+              <Database className="w-3.5 h-3.5 text-amber-300 shrink-0" />
+              <span>{mode === 'agentic' ? (selectedScenario.id === 'status' ? 'Redis Semantic Cache' : 'Hybrid BM25 + Dense') : 'Unindexed Context'}</span>
+            </div>
+            <div className="text-[11px] text-slate-400 mt-1.5 leading-relaxed font-sans">
+              {mode === 'agentic'
+                ? selectedScenario.id === 'status'
+                  ? 'Pre-warmed memory cache eliminates database & model compute.'
+                  : 'Reciprocal Rank Fusion over vector + lexical indexes.'
+                : 'High token payload stuffed into prompt context window.'}
+            </div>
+          </div>
+
+          {/* Stage 3: Verification & Output Egress */}
+          <div className={`p-3.5 rounded-xl border transition-all duration-300 ${
+            mode === 'agentic' ? 'bg-canvas-card border-emerald-500/40' : 'bg-canvas-card border-red-500/40'
+          }`}>
+            <div className="flex items-center justify-between text-[10px] text-slate-400 uppercase tracking-wider">
+              <span>Stage 3: Egress</span>
+              <span className={mode === 'agentic' ? 'text-emerald-400' : 'text-red-400'}>
+                {mode === 'agentic' ? 'Verified SLA' : 'Unchecked Output'}
+              </span>
+            </div>
+            <div className="font-bold text-white mt-1.5 flex items-center gap-1.5">
+              <Zap className="w-3.5 h-3.5 text-terracotta shrink-0" />
+              <span>{mode === 'agentic' ? 'Audited Delivery' : 'Raw Model Text'}</span>
+            </div>
+            <div className="text-[11px] text-slate-400 mt-1.5 leading-relaxed font-sans">
+              {mode === 'agentic'
+                ? 'Strict Pydantic schema validation & auditable citation grounding.'
+                : 'Unvalidated completion prone to hallucination & schema drift.'}
+            </div>
+          </div>
+        </div>
       </div>
 
       {/* Execution Path Trace */}
