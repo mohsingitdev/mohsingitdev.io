@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Navbar } from './components/Navbar';
 import { NeuralBackground } from './components/NeuralBackground';
 import { Hero } from './components/Hero';
@@ -11,9 +11,12 @@ import { ExperienceTimeline } from './components/ExperienceTimeline';
 import { BlogSection } from './components/BlogSection';
 import { OfferingsShowcase } from './components/OfferingsShowcase';
 import { CalendlySection } from './components/CalendlySection';
+import { ResumeRequestModal } from './components/ResumeRequestModal';
 import { Footer } from './components/Footer';
 
 export const App: React.FC = () => {
+  const [isResumeModalOpen, setIsResumeModalOpen] = useState(false);
+
   const scrollToBooking = () => {
     const el = document.getElementById('calendly');
     if (el) {
@@ -49,7 +52,16 @@ export const App: React.FC = () => {
       <NeuralBackground />
 
       {/* Sticky Navigation */}
-      <Navbar onBookCall={scrollToBooking} />
+      <Navbar 
+        onBookCall={scrollToBooking} 
+        onRequestResume={() => setIsResumeModalOpen(true)}
+      />
+
+      {/* Recruiter & Hiring Lead Unredacted Resume Modal */}
+      <ResumeRequestModal
+        isOpen={isResumeModalOpen}
+        onClose={() => setIsResumeModalOpen(false)}
+      />
 
       {/* Main Content Sections: Production AI Architecture Portfolio */}
       <main id="main-content" className="flex-1 relative z-10">

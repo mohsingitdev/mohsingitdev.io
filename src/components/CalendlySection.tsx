@@ -1,21 +1,18 @@
 import React, { useState } from 'react';
-import { 
-  Calendar, Clock, CheckCircle2, ArrowUpRight, MessageSquare, 
-  Filter, ChevronDown, HelpCircle, ArrowRight, ShieldCheck, 
-  Zap, Globe, ExternalLink, Send, Copy, Check, AlertCircle, Sparkles 
-} from 'lucide-react';
+import { Calendar, Clock, CheckCircle2, ArrowUpRight, MessageSquare, Filter, ChevronDown, HelpCircle, ArrowRight, ShieldCheck, Zap, Globe, ExternalLink, Sparkles, Copy, Mail, Briefcase, Mic } from 'lucide-react';
 import { useTheme } from '../context/ThemeContext';
 
 export const CalendlySection: React.FC = () => {
   const { theme } = useTheme();
   const [selectedTimeline, setSelectedTimeline] = useState<string>('Immediately (1-2 weeks)');
-  const [selectedBudget, setSelectedBudget] = useState<string>('Enterprise Advisory ($5k - $15k/mo)');
-  const [activeTab, setActiveTab] = useState<'calendar' | 'directForm'>('calendar');
+  const [selectedOpportunity, setSelectedOpportunity] = useState<string>('Staff/Principal AI Role');
   const [openFaq, setOpenFaq] = useState<number | null>(null);
+  const [activeTab, setActiveTab] = useState<'calendar' | 'directForm'>('calendar');
 
-  // Direct VIP Form state
+  // Direct Form state
   const [clientName, setClientName] = useState<string>('');
   const [clientEmail, setClientEmail] = useState<string>('');
+  const [organization, setOrganization] = useState<string>('');
   const [preferredSlot, setPreferredSlot] = useState<string>('');
   const [notes, setNotes] = useState<string>('');
   const [copied, setCopied] = useState<boolean>(false);
@@ -29,92 +26,100 @@ export const CalendlySection: React.FC = () => {
     }
   });
 
-  const timelines = ['Immediately (1-2 weeks)', 'Within 30 Days', 'Exploratory Audit'];
-  const budgets = ['Enterprise Advisory ($5k - $15k/mo)', 'Full-Cycle FDE Build', 'Targeted RAG/Routing Audit'];
+  const timelines = ['Immediately (1-2 weeks)', 'Within 30 Days', 'Quarterly / Flexible'];
+  const opportunities = [
+    'Staff/Principal AI Role',
+    'Forward Deployment Engineer (FDE)',
+    'Technical Advisory Discovery',
+    'Keynote / Event Speaking Invite',
+    'Casual Tech Connect'
+  ];
 
   const calendlyBg = theme === 'dark' ? '161513' : 'faf7f2';
   const calendlyText = theme === 'dark' ? 'ffffff' : '1c1917';
 
-  const currentCalendlyEmbedUrl = `https://calendly.com/mohsin-qureshi/30min?embed_type=Inline&background_color=${calendlyBg}&text_color=${calendlyText}&primary_color=de5a35&hide_gdpr_banner=1`;
-  const directCalendlyLink = `https://calendly.com/mohsin-qureshi/30min`;
+  const currentCalendlyEmbedUrl = `https://calendly.com/mohsin-qureshi/15min?embed_type=Inline&background_color=${calendlyBg}&text_color=${calendlyText}&primary_color=de5a35&hide_gdpr_banner=1`;
+  const directCalendlyLink = `https://calendly.com/mohsin-qureshi`;
 
   const openCalendlyPopup = () => {
     if (typeof window !== 'undefined' && (window as any).Calendly) {
       (window as any).Calendly.initPopupWidget({
-        url: `https://calendly.com/mohsin-qureshi/30min?background_color=${calendlyBg}&text_color=${calendlyText}&primary_color=de5a35`
+        url: `https://calendly.com/mohsin-qureshi/15min?background_color=${calendlyBg}&text_color=${calendlyText}&primary_color=de5a35`
       });
     } else {
       window.open(directCalendlyLink, '_blank', 'noopener,noreferrer');
     }
   };
 
-  const directMailtoUrl = `mailto:mohsin.i.qureshi@hotmail.com?subject=${encodeURIComponent(
-    `[Advisory Request] 30-Min AI Architecture Audit (${selectedTimeline})`
-  )}&body=${encodeURIComponent(
-    `Hi Mohsin,\n\nI would like to schedule an AI Architecture Audit session with you.\n\nEngagement Scope: ${selectedBudget}\nTarget Timeline: ${selectedTimeline}\nMy Timezone: ${userTimezone}\nPreferred Meeting Dates/Times: \n\nKey System Bottlenecks / Architecture Needs:\n`
-  )}`;
-
   const handleDispatchForm = (e: React.FormEvent) => {
     e.preventDefault();
     const mailto = `mailto:mohsin.i.qureshi@hotmail.com?subject=${encodeURIComponent(
-      `[AI Advisory Dispatch] 30-Min Audit - ${clientName || 'Client'} (${selectedTimeline})`
+      `[Opportunity Brief] ${selectedOpportunity} - ${clientName || 'Partner'} (${organization || 'Organization'})`
     )}&body=${encodeURIComponent(
-      `Hi Mohsin,\n\nI would like to schedule an AI Architecture Audit session with you.\n\n` +
+      `Hi Mohsin,\n\nI would like to connect with you regarding an opportunity.\n\n` +
       `Contact Name: ${clientName || 'Not specified'}\n` +
+      `Organization / Company: ${organization || 'Not specified'}\n` +
       `Work Email: ${clientEmail || 'Not specified'}\n` +
-      `Engagement Scope: ${selectedBudget}\n` +
+      `Opportunity Nature: ${selectedOpportunity}\n` +
       `Target Timeline: ${selectedTimeline}\n` +
       `Timezone: ${userTimezone}\n` +
-      `Preferred Slot: ${preferredSlot || 'Flexible / First Available'}\n\n` +
-      `Architecture Focus / Bottlenecks:\n${notes || 'General multi-model latency and RAG accuracy audit.'}\n`
+      `Preferred Meeting Window: ${preferredSlot || 'Flexible / First Available'}\n\n` +
+      `Opportunity Overview / Job Description / Event Brief:\n${notes || 'Looking forward to scheduling an introductory sync.'}\n`
     )}`;
     window.location.href = mailto;
     setIsDispatched(true);
   };
 
   const handleCopyDetails = () => {
-    const text = `AI Architecture Audit Request\nName: ${clientName || 'N/A'}\nEmail: ${clientEmail || 'N/A'}\nScope: ${selectedBudget}\nTimeline: ${selectedTimeline}\nPreferred Slot: ${preferredSlot || 'Flexible'}\nNotes: ${notes || 'N/A'}`;
+    const text = `Opportunity Brief\nName: ${clientName || 'N/A'}\nOrganization: ${organization || 'N/A'}\nEmail: ${clientEmail || 'N/A'}\nNature: ${selectedOpportunity}\nTimeline: ${selectedTimeline}\nPreferred Slot: ${preferredSlot || 'Flexible'}\nNotes: ${notes || 'N/A'}`;
     navigator.clipboard.writeText(text);
     setCopied(true);
     setTimeout(() => setCopied(false), 2500);
   };
 
-  const engagementSteps = [
+  const opportunityTracks = [
     {
-      phase: 'Phase 01',
-      title: '45-Min Architectural Diagnostic',
-      timing: 'Day 1 • NDA-Protected',
-      description: 'In-depth audit of current latency profile, token spend, schema failure rates, and rate-limit bottlenecks.',
-      deliverable: '1-Page Executive Gap Analysis & High-Leverage Architecture Spec'
+      phase: 'Track 01',
+      title: 'Recruiter & Hiring Lead Sync',
+      timing: '30 Mins • Google Meet / Zoom',
+      icon: Briefcase,
+      description: 'Direct alignment for Staff/Principal AI Systems Architect and Forward Deployment Engineer roles with Tier-1 AI startups and enterprises.',
+      deliverable: 'Mutual Fit Evaluation, Technical Defense & Compensation Calibration'
     },
     {
-      phase: 'Phase 02',
-      title: '2-Week Production Hardening Sprint',
-      timing: 'Weeks 1–2 • Forward Deployment',
-      description: 'Implementation of deterministic SLM/regex fast-path gateway, schema fallback validation, and citation guardrails.',
-      deliverable: 'Measurable 50%+ Latency Reduction & Sub-Cent Classification on Test Suites'
+      phase: 'Track 02',
+      title: 'Technical Advisory Discovery',
+      timing: '30 Mins • NDA-Protected',
+      icon: Zap,
+      description: 'For CTOs and engineering directors diagnosing sub-40ms multi-agent routing bottlenecks, RAG hallucination budgets, or token FinOps burn.',
+      deliverable: '1-Page Architectural Gap Analysis & High-Leverage Blueprint'
     },
     {
-      phase: 'Phase 03',
-      title: 'Production SLA & Handoff',
-      timing: 'Week 3+ • Enterprise Handover',
-      description: 'Zero-downtime deployment, CI/CD regression guardrails, live telemetry monitoring, and engineering team runbook handoff.',
-      deliverable: 'Production Rollout, SLA Verification & Complete Runbook Documentation'
+      phase: 'Track 03',
+      title: 'Keynotes, Panels & Media',
+      timing: '20 Mins • Event Alignment',
+      icon: Mic,
+      description: 'For conference curators, developer summits, podcast hosts, and academic symposiums seeking authoritative talks on Production AI systems.',
+      deliverable: 'Session Abstract Customization & Keynote Logistics Alignment'
     }
   ];
 
   const faqs = [
     {
-      q: 'Do we have to rewrite our existing LangChain, LlamaIndex, or agentic codebase?',
-      a: 'No. Our architecture operates as a non-invasive ingress gateway and fallback layer around existing pipelines, preserving existing model investments while enforcing sub-40ms deterministic bounds, rate-limit resilience, and cost caps.'
+      q: 'What full-time and contractual opportunities is Mohsin currently evaluating?',
+      a: 'I actively evaluate Principal/Staff AI Systems Architect, Forward Deployment Engineer (FDE), and selective enterprise advisory contracts. I specialize in building deterministic low-latency multi-agent gateways, evaluation guardrails, and enterprise RAG platforms.'
     },
     {
-      q: 'How are intellectual property and enterprise data confidentiality handled?',
-      a: 'All engagements begin with an executed mutual enterprise NDA. All code, routing models, and guardrails are deployed directly inside your secure VPC, on-premise Kubernetes clusters, or air-gapped infrastructure with zero telemetry leakage.'
+      q: 'How can recruiters and talent partners access the official unredacted resume?',
+      a: 'You can request the official CV directly via the "Request Official Resume" button in the navigation or submit the opportunity form below. Verified role briefs receive a tailored, ATS-compliant CV and relevant project dossier within 4–6 hours.'
     },
     {
-      q: 'What is the typical time-to-value for an advisory or FDE engagement?',
-      a: 'Measurable latency reductions (often 40%–70%) and token expenditure drops are typically realized within the first 5 to 7 business days of the Phase 2 sprint, followed by rigorous load testing and production rollout.'
+      q: 'How are intellectual property and confidentiality handled for advisory conversations?',
+      a: 'All technical advisory sessions operate under strict mutual confidentiality (NDA). No proprietary code or client telemetry is ever stored, analyzed outside your secure perimeter, or used for model training.'
+    },
+    {
+      q: 'Are you open to keynote speaking, panel discussions, and podcast appearances?',
+      a: 'Yes. I regularly speak on sub-40ms multi-agent routing, production guardrails, and engineering AI that survives high-concurrency enterprise workloads. Inquiries can be scheduled directly through Track 03.'
     }
   ];
 
@@ -126,82 +131,88 @@ export const CalendlySection: React.FC = () => {
         <div className="text-center max-w-3xl mx-auto space-y-4">
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-canvas-card border border-terracotta/40 text-xs font-mono text-terracotta shadow-sm">
             <Calendar className="w-3.5 h-3.5 text-terracotta" />
-            <span>DIRECT CLIENT ONBOARDING</span>
+            <span>DIRECT CONNECT & SCHEDULING</span>
           </div>
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white font-sans tracking-tight">
-            Schedule an AI{' '}
-            <span className="font-serif italic font-normal text-terracotta">Architecture Audit</span>
+            Initiate Collaboration &{' '}
+            <span className="font-serif italic font-normal text-terracotta">Interviews</span>
           </h2>
           <p className="text-slate-300 text-sm sm:text-base leading-relaxed">
-            Reserve a technical session with Mohsin Qureshi to evaluate your multi-model routing bottlenecks, citation grounding coverage, or token FinOps efficiency.
+            Direct opportunity gateway with Mohsin Qureshi. Schedule an exploratory sync for full-time engineering roles, technical advisory, keynote invitations, or confidential inquiries.
           </p>
         </div>
 
-        {/* 3-Step Engagement Protocol */}
+        {/* 3 Opportunity Tracks */}
         <div className="space-y-6">
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-canvas-border pb-3">
             <div className="flex items-center gap-2">
-              <Zap className="w-4 h-4 text-terracotta" />
+              <Sparkles className="w-4 h-4 text-terracotta" />
               <span className="font-mono text-xs font-bold uppercase tracking-wider text-white">
-                The 3-Step Engagement Protocol
+                Opportunity Ingress Tracks
               </span>
             </div>
             <span className="font-mono text-xs text-slate-400">
-              Clear milestone accountability from initial audit to production SLA handoff
+              Clear milestone alignment from initial introduction to technical deep-dive
             </span>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6">
-            {engagementSteps.map((step, idx) => (
-              <div
-                key={idx}
-                className="p-5 sm:p-6 rounded-2xl bg-canvas-card border border-canvas-border space-y-4 hover:border-terracotta/40 transition-all duration-300 shadow-apple-card flex flex-col justify-between"
-              >
-                <div className="space-y-3">
-                  <div className="flex items-center justify-between">
-                    <span className="text-xs font-mono font-bold text-terracotta px-2.5 py-0.5 rounded-full bg-terracotta/10 border border-terracotta/25">
-                      {step.phase}
-                    </span>
-                    <span className="text-[11px] font-mono text-slate-400">
-                      {step.timing}
-                    </span>
+            {opportunityTracks.map((step, idx) => {
+              const IconComponent = step.icon;
+              return (
+                <div
+                  key={idx}
+                  className="p-5 sm:p-6 rounded-2xl bg-canvas-card border border-canvas-border space-y-4 hover:border-terracotta/40 transition-all duration-300 shadow-apple-card flex flex-col justify-between"
+                >
+                  <div className="space-y-3">
+                    <div className="flex items-center justify-between">
+                      <span className="text-xs font-mono font-bold text-terracotta px-2.5 py-0.5 rounded-full bg-terracotta/10 border border-terracotta/25">
+                        {step.phase}
+                      </span>
+                      <span className="text-[11px] font-mono text-slate-400">
+                        {step.timing}
+                      </span>
+                    </div>
+
+                    <div className="flex items-center gap-2">
+                      <IconComponent className="w-4 h-4 text-terracotta shrink-0" />
+                      <h3 className="font-bold text-base sm:text-lg text-white font-sans leading-snug">
+                        {step.title}
+                      </h3>
+                    </div>
+
+                    <p className="text-xs text-slate-300 leading-relaxed font-sans">
+                      {step.description}
+                    </p>
                   </div>
 
-                  <h3 className="font-bold text-base sm:text-lg text-white font-sans leading-snug">
-                    {step.title}
-                  </h3>
-
-                  <p className="text-xs text-slate-300 leading-relaxed font-sans">
-                    {step.description}
-                  </p>
-                </div>
-
-                <div className="pt-3 border-t border-canvas-border space-y-1">
-                  <span className="text-[10px] font-mono uppercase text-terracotta tracking-wider font-semibold">
-                    Core Deliverable:
-                  </span>
-                  <div className="text-xs text-white font-mono flex items-start gap-1.5 leading-snug">
-                    <ArrowRight className="w-3.5 h-3.5 text-terracotta shrink-0 mt-0.5" />
-                    <span>{step.deliverable}</span>
+                  <div className="pt-3 border-t border-canvas-border space-y-1">
+                    <span className="text-[10px] font-mono uppercase text-terracotta tracking-wider font-semibold">
+                      Primary Outcome:
+                    </span>
+                    <div className="text-xs text-white font-mono flex items-start gap-1.5 leading-snug">
+                      <ArrowRight className="w-3.5 h-3.5 text-terracotta shrink-0 mt-0.5" />
+                      <span>{step.deliverable}</span>
+                    </div>
                   </div>
                 </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
         </div>
 
         {/* 2-Column Booking Interface */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 items-start">
           
-          {/* Left Column: Qualification & What to Expect */}
+          {/* Left Column: Pre-Selection Filters */}
           <div className="lg:col-span-5 rounded-3xl bg-canvas-card border border-canvas-border p-5 sm:p-8 space-y-5 sm:space-y-6 shadow-subtle-card apple-card-hover">
             
             <div className="space-y-2 border-b border-canvas-border pb-4 sm:pb-5">
               <span className="text-[11px] sm:text-xs font-mono text-terracotta uppercase tracking-wider font-semibold">
-                1:1 Advisory & FDE Contract Discovery
+                Direct Scheduling Gateway
               </span>
               <h3 className="text-lg sm:text-xl font-bold text-white font-sans">
-                Technical Architecture Session
+                Exploratory Technical Session
               </h3>
               <div className="flex items-center gap-4 text-xs font-mono text-slate-400 pt-1">
                 <span className="flex items-center gap-1">
@@ -217,7 +228,27 @@ export const CalendlySection: React.FC = () => {
             <div className="space-y-4 pt-1">
               <div className="flex items-center gap-2 text-xs font-mono text-slate-400">
                 <Filter className="w-3.5 h-3.5 text-terracotta" />
-                <span>Pre-Call Project Scope:</span>
+                <span>Opportunity Nature:</span>
+              </div>
+
+              {/* Opportunity selector */}
+              <div className="space-y-1.5">
+                <div className="text-[11px] font-mono text-slate-400">Target Role / Inquiry:</div>
+                <div className="flex flex-wrap gap-1.5">
+                  {opportunities.map((opp) => (
+                    <button
+                      key={opp}
+                      onClick={() => setSelectedOpportunity(opp)}
+                      className={`px-3 py-1.5 rounded-xl text-[11px] font-mono transition-all duration-300 ${
+                        selectedOpportunity === opp
+                          ? 'bg-terracotta text-white font-semibold shadow-luxury-glow'
+                          : 'bg-canvas-surface border border-canvas-border text-slate-400 hover:text-white'
+                      }`}
+                    >
+                      {opp}
+                    </button>
+                  ))}
+                </div>
               </div>
 
               {/* Timeline selector */}
@@ -239,209 +270,104 @@ export const CalendlySection: React.FC = () => {
                   ))}
                 </div>
               </div>
-
-              {/* Scope selector */}
-              <div className="space-y-1.5">
-                <div className="text-[11px] font-mono text-slate-400">Engagement Scope:</div>
-                <div className="flex flex-wrap gap-1.5">
-                  {budgets.map((b) => (
-                    <button
-                      key={b}
-                      onClick={() => setSelectedBudget(b)}
-                      className={`px-3 py-1.5 rounded-xl text-[11px] font-mono transition-all duration-300 ${
-                        selectedBudget === b
-                          ? 'bg-terracotta text-white font-semibold shadow-luxury-glow'
-                          : 'bg-canvas-surface border border-canvas-border text-slate-400 hover:text-white'
-                      }`}
-                    >
-                      {b}
-                    </button>
-                  ))}
-                </div>
-              </div>
             </div>
 
             {/* Agenda List */}
             <div className="space-y-3 pt-2">
               <div className="text-xs font-mono uppercase text-slate-400 tracking-wider">
-                What We Will Diagnose:
+                What We Will Discuss:
               </div>
               <ul className="space-y-2.5 text-xs text-slate-300">
                 <li className="flex items-start gap-2.5">
                   <CheckCircle2 className="w-4 h-4 text-terracotta mt-0.5 flex-shrink-0" />
-                  <span><strong>System Bottleneck Audit:</strong> Reviewing your inference latency, token expenditures, and rate-limit risks.</span>
+                  <span><strong>Technical Defense & Alignment:</strong> In-depth walkthrough of production AI architectures, P99 latency bounds, and scaling patterns.</span>
                 </li>
                 <li className="flex items-start gap-2.5">
                   <CheckCircle2 className="w-4 h-4 text-terracotta mt-0.5 flex-shrink-0" />
-                  <span><strong>RAG Diagnostic:</strong> Assessing retrieval recall, chunking strategy, and hallucination guardrail coverage.</span>
+                  <span><strong>Role & Mandate Scope:</strong> Establishing clear mutual expectations for Staff/Principal deliverables, FDE deployment, or advisory roadmap.</span>
                 </li>
                 <li className="flex items-start gap-2.5">
                   <CheckCircle2 className="w-4 h-4 text-terracotta mt-0.5 flex-shrink-0" />
-                  <span><strong>Agentic Migration Roadmap:</strong> Moving from fragile single prompts to deterministic fast-path routers.</span>
+                  <span><strong>Next Steps & Logistics:</strong> Rapid progression to formal interview loops, mutual NDAs, or contract scheduling.</span>
                 </li>
               </ul>
             </div>
 
-            {/* Trust Assurance */}
-            <div className="p-4 rounded-2xl bg-canvas-surface border border-canvas-border space-y-2 text-xs">
-              <div className="flex items-center gap-2 text-terracotta font-mono font-semibold">
-                <ShieldCheck className="w-4 h-4 text-emerald-400" />
-                <span>Confidentiality & Mutual NDA Friendly</span>
-              </div>
-              <p className="text-slate-400 text-[11px] leading-relaxed">
-                All architectural discussions, repository reviews, and business constraints shared during the consultation are strictly confidential under mutual NDA.
-              </p>
-            </div>
-
-            {/* Direct Contact Option */}
-            <div className="pt-2 text-xs font-mono text-slate-400 space-y-1">
-              <div>
-                Direct email:{' '}
-                <a
-                  href="mailto:mohsin.i.qureshi@hotmail.com"
-                  className="text-terracotta hover:underline font-medium"
-                >
-                  mohsin.i.qureshi@hotmail.com
-                </a>
-              </div>
-              <div className="text-[11px] text-slate-500">
-                All calendar bookings automatically send Google Meet / Zoom invitations.
-              </div>
+            {/* Confidentiality Commitment */}
+            <div className="pt-3 border-t border-canvas-border flex items-center gap-2 text-[11px] font-mono text-slate-400">
+              <ShieldCheck className="w-4 h-4 text-terracotta shrink-0" />
+              <span>100% Mutual Confidentiality • Zero IP Leakage Guarantee</span>
             </div>
 
           </div>
 
-          {/* Right Column: Calendly Embed Container & VIP Form */}
-          <div className="lg:col-span-7 rounded-3xl bg-canvas-card border border-terracotta/30 shadow-luxury-glow overflow-hidden flex flex-col min-h-[580px] sm:min-h-[660px] apple-card-hover w-full">
+          {/* Right Column: Calendly Embed Container & Opportunity Form */}
+          <div className="lg:col-span-7 rounded-3xl bg-canvas-card border border-canvas-border overflow-hidden shadow-subtle-card flex flex-col min-h-[580px]">
             
-            {/* Header with Mode Tabs and Direct Launch Buttons */}
-            <div className="p-3.5 sm:p-4 bg-canvas-surface border-b border-canvas-border space-y-3">
-              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2.5">
-                <div className="flex items-center gap-2 font-mono text-[11px] sm:text-xs text-white">
-                  <span className="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse shrink-0" />
-                  <span>CALENDAR DISPATCH (mohsin-qureshi/30min)</span>
-                </div>
-
-                {/* Primary Action Buttons */}
-                <div className="flex items-center gap-2">
-                  <button
-                    type="button"
-                    onClick={openCalendlyPopup}
-                    className="px-2.5 py-1.5 rounded-lg bg-terracotta hover:bg-terracotta/90 text-white font-mono text-[11px] font-bold shadow-sm flex items-center gap-1.5 transition-all"
-                  >
-                    <Calendar className="w-3.5 h-3.5" />
-                    <span>Launch Calendly Modal</span>
-                  </button>
-                  <a
-                    href={directCalendlyLink}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="px-2.5 py-1.5 rounded-lg bg-canvas-card border border-canvas-border text-xs font-mono text-terracotta hover:text-white flex items-center gap-1 transition-colors"
-                  >
-                    <span>Full Tab</span>
-                    <ArrowUpRight className="w-3.5 h-3.5" />
-                  </a>
-                </div>
+            {/* Header Tabs: Switch between Instant Calendar & Direct Brief Form */}
+            <div className="p-4 sm:p-5 border-b border-canvas-border bg-canvas-surface flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+              <div className="flex items-center gap-2">
+                <button
+                  type="button"
+                  onClick={() => setActiveTab('calendar')}
+                  className={`px-3.5 py-1.5 rounded-full text-xs font-mono font-semibold transition-all ${
+                    activeTab === 'calendar'
+                      ? 'bg-terracotta text-white shadow-sm'
+                      : 'text-slate-400 hover:text-white'
+                  }`}
+                >
+                  Interactive Calendar
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setActiveTab('directForm')}
+                  className={`px-3.5 py-1.5 rounded-full text-xs font-mono font-semibold transition-all ${
+                    activeTab === 'directForm'
+                      ? 'bg-terracotta text-white shadow-sm'
+                      : 'text-slate-400 hover:text-white'
+                  }`}
+                >
+                  Direct Opportunity Form
+                </button>
               </div>
 
-              {/* Mode Selector Tabs */}
-              <div className="flex flex-wrap items-center justify-between gap-2 pt-1 border-t border-canvas-border/50">
-                <div className="flex flex-wrap gap-1.5">
-                  <button
-                    type="button"
-                    onClick={() => setActiveTab('calendar')}
-                    className={`px-3 py-1.5 rounded-xl text-xs font-mono transition-all duration-200 flex items-center gap-1.5 ${
-                      activeTab === 'calendar'
-                        ? 'bg-terracotta text-white font-bold shadow-sm'
-                        : 'bg-canvas-card border border-canvas-border text-slate-400 hover:text-white'
-                    }`}
-                  >
-                    <Calendar className="w-3.5 h-3.5" />
-                    <span>Interactive Calendar</span>
-                  </button>
-                  <button
-                    type="button"
-                    onClick={() => setActiveTab('directForm')}
-                    className={`px-3 py-1.5 rounded-xl text-xs font-mono transition-all duration-200 flex items-center gap-1.5 ${
-                      activeTab === 'directForm'
-                        ? 'bg-terracotta text-white font-bold shadow-sm'
-                        : 'bg-canvas-card border border-canvas-border text-slate-400 hover:text-white'
-                    }`}
-                  >
-                    <Sparkles className="w-3.5 h-3.5 text-amber-400" />
-                    <span>Direct VIP Booking (Zero-Cookie Safe)</span>
-                  </button>
-                </div>
-
-                <div className="flex items-center gap-1.5 text-[11px] font-mono text-slate-400">
-                  <Globe className="w-3 h-3 text-terracotta shrink-0" />
-                  <span>Timezone: <strong className="text-white">{userTimezone}</strong></span>
-                </div>
+              <div className="flex items-center gap-1.5 text-[11px] font-mono text-slate-400">
+                <Globe className="w-3 h-3 text-terracotta shrink-0" />
+                <span>Timezone: <strong className="text-white">{userTimezone}</strong></span>
               </div>
             </div>
 
-            {/* TAB 1: Live Calendar Embed */}
+            {/* TAB 1: Calendly iFrame Embed */}
             {activeTab === 'calendar' && (
-              <div className="relative flex-1 w-full bg-canvas-card dark:bg-[#161513] transition-colors duration-300 flex flex-col min-h-[520px] sm:min-h-[580px]">
-                
-                {/* Browser Tracking Prevention Alert */}
-                <div className="m-3 p-3 rounded-xl bg-amber-500/10 border border-amber-500/20 flex items-start gap-2.5 text-xs text-amber-200">
-                  <AlertCircle className="w-4 h-4 text-amber-400 shrink-0 mt-0.5" />
-                  <div className="space-y-1">
-                    <p className="font-semibold text-[11px]">Notice for Microsoft Edge & Safari Users:</p>
-                    <p className="text-[11px] text-amber-300/80 leading-relaxed">
-                      If browser Tracking Prevention blocks embedded iframe cookies, click{' '}
-                      <button type="button" onClick={openCalendlyPopup} className="underline font-bold text-white hover:text-amber-200">
-                        Launch Calendly Modal
-                      </button>
-                      {' '}or switch to{' '}
-                      <button type="button" onClick={() => setActiveTab('directForm')} className="underline font-bold text-white hover:text-amber-200">
-                        Direct VIP Booking
-                      </button>
-                      {' '}to schedule instantly.
-                    </p>
-                  </div>
-                </div>
-
-                {/* Calendly iFrame */}
-                <div className="relative flex-1 w-full min-h-[500px]">
-                  <iframe
-                    key={`${theme}-30min`}
-                    src={currentCalendlyEmbedUrl}
-                    width="100%"
-                    height="620px"
-                    frameBorder="0"
-                    title="Schedule 30-min AI Architecture Audit with Mohsin Qureshi"
-                    className="w-full h-full min-h-[500px]"
-                  />
-                </div>
+              <div className="relative flex-1 w-full bg-canvas-card dark:bg-[#161513] transition-colors duration-300 min-h-[520px] sm:min-h-[580px] flex flex-col">
+                <iframe
+                  key={`${theme}-${selectedOpportunity}`}
+                  src={currentCalendlyEmbedUrl}
+                  width="100%"
+                  height="600px"
+                  frameBorder="0"
+                  title="Schedule session with Mohsin Qureshi"
+                  className="w-full flex-1 min-h-[520px]"
+                />
 
                 {/* Direct Fallback Footer */}
-                <div className="p-3.5 bg-canvas-surface border-t border-canvas-border flex flex-col sm:flex-row sm:items-center justify-between gap-2.5 text-[11px] font-mono text-slate-400">
-                  <div className="flex items-center gap-1.5">
-                    <span className="w-2 h-2 rounded-full bg-emerald-400"></span>
-                    <span>Having trouble loading slots?</span>
-                  </div>
-                  <div className="flex flex-wrap items-center gap-2">
-                    <a
-                      href={directMailtoUrl}
-                      className="px-2.5 py-1 rounded-lg bg-terracotta/20 border border-terracotta/40 text-terracotta hover:bg-terracotta hover:text-white font-semibold transition-all flex items-center gap-1"
-                    >
-                      <MessageSquare className="w-3 h-3" />
-                      <span>Email Direct Dispatch</span>
-                    </a>
+                <div className="p-3 bg-canvas-surface border-t border-canvas-border flex flex-col sm:flex-row sm:items-center justify-between gap-2 text-[11px] font-mono text-slate-400">
+                  <span>Having trouble viewing the calendar?</span>
+                  <div className="flex items-center gap-3">
                     <button
                       type="button"
                       onClick={openCalendlyPopup}
-                      className="px-2.5 py-1 rounded-lg bg-canvas-card border border-canvas-border text-slate-300 hover:text-white font-semibold transition-all"
+                      className="text-terracotta hover:underline font-semibold flex items-center gap-1"
                     >
-                      Open Modal Overlay
+                      <span>Open Popup</span>
+                      <ArrowUpRight className="w-3 h-3" />
                     </button>
+                    <span className="text-slate-600">|</span>
                     <a
                       href={directCalendlyLink}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-slate-300 hover:text-terracotta hover:underline font-semibold flex items-center gap-1"
+                      className="text-terracotta hover:underline font-semibold flex items-center gap-1"
                     >
                       <span>Direct Tab</span>
                       <ExternalLink className="w-3 h-3" />
@@ -451,27 +377,27 @@ export const CalendlySection: React.FC = () => {
               </div>
             )}
 
-            {/* TAB 2: Instant VIP Direct Booking Form (Zero Cookies / Edge Safe) */}
+            {/* TAB 2: Direct Opportunity Form */}
             {activeTab === 'directForm' && (
               <form onSubmit={handleDispatchForm} className="flex-1 p-5 sm:p-6 space-y-4 flex flex-col justify-between">
                 <div className="space-y-4">
                   <div className="space-y-1">
                     <div className="flex items-center gap-2 text-xs font-mono text-terracotta font-semibold">
                       <Sparkles className="w-3.5 h-3.5" />
-                      <span>DIRECT ADVISORY RESERVATION</span>
+                      <span>DIRECT BRIEF DISPATCH</span>
                     </div>
                     <h4 className="text-lg font-bold text-white font-sans">
-                      Reserve Your 30-Minute Architecture Audit
+                      Send Opportunity Details or Job Description
                     </h4>
                     <p className="text-xs text-slate-400 leading-relaxed">
-                      Bypasses 3rd-party cookie tracking entirely. Your brief is sent directly to Mohsin Qureshi for priority confirmation within 4 hours.
+                      Bypasses 3rd-party calendar cookies entirely. Dispatches your role details directly to Mohsin Qureshi with priority confirmation within 4 hours.
                     </p>
                   </div>
 
                   {/* Active Scope Pill */}
                   <div className="p-3 rounded-xl bg-canvas-surface border border-canvas-border flex flex-wrap items-center justify-between gap-2 text-xs font-mono">
                     <div className="text-slate-400">
-                      Scope: <strong className="text-white">{selectedBudget}</strong>
+                      Inquiry: <strong className="text-white">{selectedOpportunity}</strong>
                     </div>
                     <div className="text-slate-400">
                       Timeline: <strong className="text-terracotta">{selectedTimeline}</strong>
@@ -481,78 +407,100 @@ export const CalendlySection: React.FC = () => {
                   {/* Form Fields */}
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
                     <div className="space-y-1.5">
-                      <label className="text-[11px] font-mono text-slate-300 uppercase">Your Name & Title *</label>
+                      <label htmlFor="brief-client-name" className="text-[11px] font-mono text-slate-300 uppercase cursor-pointer">Your Name & Title *</label>
                       <input
+                        id="brief-client-name"
                         type="text"
                         required
                         value={clientName}
                         onChange={(e) => setClientName(e.target.value)}
-                        placeholder="e.g. Alex Vance, VP Engineering"
+                        placeholder="e.g. Alex Vance, Talent Director"
                         className="w-full px-3.5 py-2.5 rounded-xl bg-canvas-surface border border-canvas-border text-white text-xs font-mono focus:border-terracotta focus:outline-none transition-colors"
                       />
                     </div>
                     <div className="space-y-1.5">
-                      <label className="text-[11px] font-mono text-slate-300 uppercase">Work Email *</label>
+                      <label htmlFor="brief-org" className="text-[11px] font-mono text-slate-300 uppercase cursor-pointer">Organization / Company *</label>
                       <input
+                        id="brief-org"
+                        type="text"
+                        required
+                        value={organization}
+                        onChange={(e) => setOrganization(e.target.value)}
+                        placeholder="e.g. OpenAI, Stripe, Scaleup AI"
+                        className="w-full px-3.5 py-2.5 rounded-xl bg-canvas-surface border border-canvas-border text-white text-xs font-mono focus:border-terracotta focus:outline-none transition-colors"
+                      />
+                    </div>
+                  </div>
+
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+                    <div className="space-y-1.5">
+                      <label htmlFor="brief-email" className="text-[11px] font-mono text-slate-300 uppercase cursor-pointer">Work Email *</label>
+                      <input
+                        id="brief-email"
                         type="email"
                         required
                         value={clientEmail}
                         onChange={(e) => setClientEmail(e.target.value)}
-                        placeholder="alex@enterprise.com"
+                        placeholder="alex@company.com"
+                        className="w-full px-3.5 py-2.5 rounded-xl bg-canvas-surface border border-canvas-border text-white text-xs font-mono focus:border-terracotta focus:outline-none transition-colors"
+                      />
+                    </div>
+                    <div className="space-y-1.5">
+                      <label htmlFor="brief-slot" className="text-[11px] font-mono text-slate-300 uppercase cursor-pointer">Preferred Window / Timezone *</label>
+                      <input
+                        id="brief-slot"
+                        type="text"
+                        required
+                        value={preferredSlot}
+                        onChange={(e) => setPreferredSlot(e.target.value)}
+                        placeholder={`e.g. Next Tuesday 3:00 PM (${userTimezone})`}
                         className="w-full px-3.5 py-2.5 rounded-xl bg-canvas-surface border border-canvas-border text-white text-xs font-mono focus:border-terracotta focus:outline-none transition-colors"
                       />
                     </div>
                   </div>
 
                   <div className="space-y-1.5">
-                    <label className="text-[11px] font-mono text-slate-300 uppercase">Preferred Meeting Window & Timezone *</label>
-                    <input
-                      type="text"
-                      required
-                      value={preferredSlot}
-                      onChange={(e) => setPreferredSlot(e.target.value)}
-                      placeholder={`e.g. Next Tuesday 3:00 PM (${userTimezone}) or flexible`}
-                      className="w-full px-3.5 py-2.5 rounded-xl bg-canvas-surface border border-canvas-border text-white text-xs font-mono focus:border-terracotta focus:outline-none transition-colors"
-                    />
-                  </div>
-
-                  <div className="space-y-1.5">
-                    <label className="text-[11px] font-mono text-slate-300 uppercase">Key Architecture Focus / Current Bottlenecks</label>
+                    <label htmlFor="brief-notes" className="text-[11px] font-mono text-slate-300 uppercase cursor-pointer">Role Overview / Job Description Link / Event Scope</label>
                     <textarea
+                      id="brief-notes"
                       rows={3}
                       value={notes}
                       onChange={(e) => setNotes(e.target.value)}
-                      placeholder="e.g. Multi-model routing latency >1200ms, RAG hallucination rate in production, or cloud GPU spend reduction."
+                      placeholder="Paste Job Description link, team scope, compensation bracket, or keynote theme..."
                       className="w-full px-3.5 py-2.5 rounded-xl bg-canvas-surface border border-canvas-border text-white text-xs font-mono focus:border-terracotta focus:outline-none transition-colors resize-none"
                     />
                   </div>
                 </div>
 
-                {/* Form Buttons */}
-                <div className="pt-3 border-t border-canvas-border space-y-2.5">
-                  <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2.5">
-                    <button
-                      type="submit"
-                      className="px-5 py-2.5 rounded-xl bg-terracotta hover:bg-terracotta/90 text-white font-mono text-xs font-bold shadow-luxury-glow flex items-center justify-center gap-2 transition-all"
-                    >
-                      <Send className="w-4 h-4" />
-                      <span>Dispatch Priority Booking Request</span>
-                    </button>
+                <div className="pt-4 border-t border-canvas-border space-y-2">
+                  <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                    <div className="flex items-center gap-2">
+                      <button
+                        type="button"
+                        onClick={handleCopyDetails}
+                        className="px-3 py-2 rounded-xl bg-canvas-surface border border-canvas-border text-xs font-mono text-slate-400 hover:text-white flex items-center gap-1.5 transition-colors"
+                      >
+                        <Copy className="w-3.5 h-3.5 text-terracotta" />
+                        <span>{copied ? 'Copied to Clipboard!' : 'Copy Brief'}</span>
+                      </button>
+                      <span className="text-[11px] font-mono text-slate-500">
+                        Direct to: mohsin.i.qureshi@hotmail.com
+                      </span>
+                    </div>
 
                     <button
-                      type="button"
-                      onClick={handleCopyDetails}
-                      className="px-3.5 py-2 rounded-xl bg-canvas-surface border border-canvas-border text-slate-300 hover:text-white font-mono text-xs flex items-center justify-center gap-1.5 transition-colors"
+                      type="submit"
+                      className="w-full sm:w-auto px-6 py-2.5 rounded-xl bg-terracotta text-white font-bold text-xs font-sans hover:bg-terracotta/90 flex items-center justify-center gap-1.5 shadow-md"
                     >
-                      {copied ? <Check className="w-3.5 h-3.5 text-emerald-400" /> : <Copy className="w-3.5 h-3.5" />}
-                      <span>{copied ? 'Copied Brief!' : 'Copy Brief'}</span>
+                      <Mail className="w-3.5 h-3.5" />
+                      <span>Dispatch Opportunity Brief</span>
                     </button>
                   </div>
 
                   {isDispatched && (
                     <div className="p-2.5 rounded-xl bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs font-mono flex items-center gap-2">
                       <CheckCircle2 className="w-4 h-4 shrink-0" />
-                      <span>Dispatch initiated! Your email client has opened with your pre-formatted brief.</span>
+                      <span>Dispatch initiated! Your default email client has opened with your formatted brief.</span>
                     </div>
                   )}
                 </div>
@@ -563,7 +511,7 @@ export const CalendlySection: React.FC = () => {
 
         </div>
 
-        {/* Enterprise FAQ Accordion */}
+        {/* Recruiter & Opportunity FAQ Accordion */}
         <div className="space-y-6 pt-4 border-t border-canvas-border">
           <div className="text-center max-w-2xl mx-auto space-y-2">
             <div className="inline-flex items-center gap-1.5 font-mono text-xs text-terracotta uppercase tracking-wider">
@@ -571,7 +519,7 @@ export const CalendlySection: React.FC = () => {
               <span>FREQUENTLY ANSWERED QUESTIONS</span>
             </div>
             <h3 className="text-2xl sm:text-3xl font-extrabold text-white font-sans">
-              Enterprise Advisory & Engagement FAQ
+              Recruiter & Opportunity FAQ
             </h3>
           </div>
 

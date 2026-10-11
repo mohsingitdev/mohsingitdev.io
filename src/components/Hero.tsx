@@ -6,6 +6,7 @@ interface HeroProps {
   onBookCall: () => void;
   onExploreDemos: () => void;
   onViewMatrix: () => void;
+  onRequestResume?: () => void;
 }
 
 interface IntelligenceNode {

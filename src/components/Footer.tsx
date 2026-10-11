@@ -1,5 +1,5 @@
 import React from 'react';
-import { Terminal, Github, Linkedin, Mail, ArrowUpRight } from 'lucide-react';
+import { Terminal, Github, Linkedin, Mail, ArrowUpRight, Sparkles } from 'lucide-react';
 
 export const Footer: React.FC = () => {
   return (
@@ -80,6 +80,18 @@ export const Footer: React.FC = () => {
                 >
                   <Mail className="w-3.5 h-3.5 text-luxury-gold" />
                   <span>mohsin.i.qureshi@hotmail.com</span>
+                </a>
+              </li>
+              <li className="pt-1 border-t border-canvas-border/50">
+                <a
+                  href="https://topmate.io/mohsin_qureshi"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-1.5 hover:text-terracotta transition-colors text-slate-300 font-medium"
+                >
+                  <Sparkles className="w-3.5 h-3.5 text-terracotta" />
+                  <span>Mentorship & Reviews (Topmate)</span>
+                  <ArrowUpRight className="w-3 h-3 text-terracotta" />
                 </a>
               </li>
             </ul>
