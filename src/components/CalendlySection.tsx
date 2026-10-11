@@ -38,13 +38,13 @@ export const CalendlySection: React.FC = () => {
   const calendlyBg = theme === 'dark' ? '161513' : 'faf7f2';
   const calendlyText = theme === 'dark' ? 'ffffff' : '1c1917';
 
-  const currentCalendlyEmbedUrl = `https://calendly.com/mohsin-qureshi/15min?embed_type=Inline&background_color=${calendlyBg}&text_color=${calendlyText}&primary_color=de5a35&hide_gdpr_banner=1`;
+  const currentCalendlyEmbedUrl = `https://calendly.com/mohsin-qureshi/15min?embed_type=Inline&background_color=${calendlyBg}&text_color=${calendlyText}&primary_color=de5a35&hide_gdpr_banner=1&a1=${encodeURIComponent(selectedOpportunity)}`;
   const directCalendlyLink = `https://calendly.com/mohsin-qureshi`;
 
   const openCalendlyPopup = () => {
     if (typeof window !== 'undefined' && (window as any).Calendly) {
       (window as any).Calendly.initPopupWidget({
-        url: `https://calendly.com/mohsin-qureshi/15min?background_color=${calendlyBg}&text_color=${calendlyText}&primary_color=de5a35`
+        url: `https://calendly.com/mohsin-qureshi/15min?background_color=${calendlyBg}&text_color=${calendlyText}&primary_color=de5a35&a1=${encodeURIComponent(selectedOpportunity)}`
       });
     } else {
       window.open(directCalendlyLink, '_blank', 'noopener,noreferrer');

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ArrowUpRight, Sparkles, Terminal, ChevronRight, Activity, Zap, ShieldCheck, Layers } from 'lucide-react';
+import { ArrowUpRight, Sparkles, Terminal, ChevronRight, Activity, Zap, ShieldCheck, Layers, FileText } from 'lucide-react';
 
 interface HeroProps {
   onBookCall: () => void;
@@ -73,7 +73,7 @@ const INTELLIGENCE_NODES: IntelligenceNode[] = [
   },
 ];
 
-export const Hero: React.FC<HeroProps> = ({ onBookCall, onExploreDemos, onViewMatrix }) => {
+export const Hero: React.FC<HeroProps> = ({ onBookCall, onExploreDemos, onViewMatrix, onRequestResume }) => {
   const [selectedNodeIndex, setSelectedNodeIndex] = useState(1); // Default to SLM router (crown jewel)
 
   // Auto-cycle only if user has not manually interacted recently
@@ -182,6 +182,16 @@ export const Hero: React.FC<HeroProps> = ({ onBookCall, onExploreDemos, onViewMa
                     <span>Book Audit</span>
                     <ArrowUpRight className="w-3.5 h-3.5 text-white/70" />
                   </button>
+
+                  {onRequestResume && (
+                    <button
+                      onClick={onRequestResume}
+                      className="w-full sm:w-auto px-4 py-3 rounded-full bg-white/15 hover:bg-white/25 backdrop-blur-md border border-white/30 text-white font-mono text-xs flex items-center justify-center gap-1.5 transition-all min-h-[44px] apple-spring hover:scale-[1.02] active:scale-[0.98]"
+                    >
+                      <FileText className="w-3.5 h-3.5 text-amber-200" />
+                      <span>Request CV</span>
+                    </button>
+                  )}
                 </div>
 
                 {/* Institutional Proof Strip (Clean, Verified, Free of Fake Avatar Clutter) */}
