@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Terminal, Calendar, Menu, X, ArrowUpRight, Github, Linkedin, BarChart3, Sun, Moon } from 'lucide-react';
+import { Terminal, Menu, X, ArrowUpRight, Github, Linkedin, Sun, Moon } from 'lucide-react';
 import { useTheme } from '../context/ThemeContext';
 
 interface NavbarProps {
@@ -20,53 +20,45 @@ export const Navbar: React.FC<NavbarProps> = ({ onBookCall }) => {
   }, []);
 
   return (
-    <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+    <header className={`fixed top-3 sm:top-4 left-0 right-0 z-50 flex justify-center px-3 sm:px-4 pointer-events-none transition-all duration-300 ${
       scrolled 
-        ? 'translate-y-0 opacity-100 py-3 bg-canvas/90 backdrop-blur-xl border-b border-canvas-border shadow-2xl' 
-        : '-translate-y-full opacity-0 pointer-events-none py-3'
+        ? 'translate-y-0 opacity-100' 
+        : '-translate-y-8 opacity-0 pointer-events-none'
     }`}>
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
+      <div className="pointer-events-auto max-w-5xl w-full rounded-full px-4 sm:px-6 py-2 sm:py-2.5 bg-canvas-card/90 dark:bg-[#161513]/90 backdrop-blur-2xl border border-canvas-border shadow-2xl shadow-black/5 dark:shadow-black/50 flex items-center justify-between transition-all duration-300">
         
         {/* Brand */}
-        <a href="#hero" className="flex items-center space-x-3 group">
-          <div className="w-10 h-10 rounded-xl bg-canvas-card border border-canvas-border flex items-center justify-center group-hover:border-luxury-gold/50 transition-colors shadow-md">
-            <Terminal className="w-5 h-5 text-luxury-gold" />
+        <a href="#hero" className="flex items-center gap-2.5 group shrink-0">
+          <div className="w-8 h-8 rounded-xl bg-canvas-subtle border border-canvas-border flex items-center justify-center group-hover:border-terracotta/50 transition-colors shadow-xs">
+            <Terminal className="w-4 h-4 text-terracotta" />
           </div>
-          <div>
-            <div className="font-sans text-sm tracking-tight font-bold text-white flex items-center gap-2">
+          <div className="leading-tight">
+            <div className="font-sans text-xs sm:text-sm font-bold text-neutral-900 dark:text-white flex items-center gap-1.5">
               Mohsin Qureshi
-              <span className="w-2 h-2 rounded-full bg-luxury-gold animate-pulse" />
+              <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
             </div>
-            <div className="text-[11px] font-mono text-slate-400 tracking-tight">AI Architect & FDE</div>
+            <div className="text-[10px] font-mono text-slate-500 dark:text-slate-400">AI Architect & FDE</div>
           </div>
         </a>
 
         {/* Desktop Navigation Links */}
-        <div className={`hidden md:flex items-center space-x-7 text-xs lg:text-sm font-medium transition-opacity duration-300 ${
-          scrolled ? 'opacity-100' : 'opacity-90'
-        }`}>
-          <a href="#assessment-matrix" className="text-slate-300 hover:text-luxury-gold transition-colors flex items-center gap-1.5">
-            <BarChart3 className="w-3.5 h-3.5 text-luxury-gold" />
-            <span>Architecture Matrix</span>
-          </a>
-          <a href="#philosophy" className="text-slate-300 hover:text-luxury-gold transition-colors">Philosophy</a>
-          <a href="#domains" className="text-slate-300 hover:text-luxury-gold transition-colors">Domain Solutions</a>
-          <a href="#interactive-demos" className="text-slate-300 hover:text-luxury-gold transition-colors flex items-center gap-1.5">
-            <span>Live Sandboxes</span>
-            <span className="text-[10px] bg-terracotta/20 text-terracotta px-1.5 py-0.5 rounded border border-terracotta/30 font-mono">Interactive</span>
-          </a>
-          <a href="#experience" className="text-slate-300 hover:text-luxury-gold transition-colors">Track Record</a>
-          <a href="#blog" className="text-slate-300 hover:text-luxury-gold transition-colors">Blog</a>
-        </div>
+        <nav className="hidden lg:flex items-center space-x-6 text-xs font-medium text-slate-600 dark:text-slate-400">
+          <a href="#assessment-matrix" className="hover:text-terracotta dark:hover:text-white transition-colors">Architecture</a>
+          <a href="#philosophy" className="hover:text-terracotta dark:hover:text-white transition-colors">Philosophy</a>
+          <a href="#domains" className="hover:text-terracotta dark:hover:text-white transition-colors">Solutions</a>
+          <a href="#interactive-demos" className="hover:text-terracotta dark:hover:text-white transition-colors">Sandboxes</a>
+          <a href="#experience" className="hover:text-terracotta dark:hover:text-white transition-colors">Track Record</a>
+          <a href="#blog" className="hover:text-terracotta dark:hover:text-white transition-colors">Blog</a>
+        </nav>
 
-        {/* Action Button & Links */}
-        <div className="hidden md:flex items-center space-x-3">
+        {/* Action Controls Cluster */}
+        <div className="hidden sm:flex items-center space-x-2 shrink-0">
           <a 
             href="https://github.com/mohsingitdev" 
             target="_blank" 
             rel="noopener noreferrer"
             aria-label="GitHub Profile"
-            className="p-2 text-slate-400 hover:text-white transition-colors"
+            className="p-1.5 text-slate-500 dark:text-slate-400 hover:text-terracotta dark:hover:text-white transition-colors"
           >
             <Github className="w-4 h-4" />
           </a>
@@ -75,17 +67,19 @@ export const Navbar: React.FC<NavbarProps> = ({ onBookCall }) => {
             target="_blank" 
             rel="noopener noreferrer"
             aria-label="LinkedIn Profile"
-            className="p-2 text-slate-400 hover:text-white transition-colors"
+            className="p-1.5 text-slate-500 dark:text-slate-400 hover:text-terracotta dark:hover:text-white transition-colors"
           >
             <Linkedin className="w-4 h-4" />
           </a>
+
+          <div className="h-4 w-px bg-canvas-border mx-1" />
 
           {/* Theme Toggle Button */}
           <button
             onClick={toggleTheme}
             aria-label={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}
             title={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}
-            className="p-2 text-slate-400 hover:text-terracotta rounded-xl bg-canvas-card border border-canvas-border transition-all duration-300 apple-spring hover:scale-105 active:scale-95 flex items-center justify-center shadow-sm"
+            className="p-1.5 rounded-full hover:bg-neutral-200/70 dark:hover:bg-neutral-800 text-neutral-700 dark:text-neutral-300 transition-all apple-spring hover:scale-105 active:scale-95 flex items-center justify-center"
           >
             {theme === 'dark' ? (
               <Sun className="w-4 h-4 text-amber-400 transition-transform duration-300 hover:rotate-45" />
@@ -96,21 +90,19 @@ export const Navbar: React.FC<NavbarProps> = ({ onBookCall }) => {
 
           <button
             onClick={onBookCall}
-            className="px-4 py-2.5 text-xs font-bold uppercase tracking-wider rounded-full bg-terracotta text-white hover:bg-terracotta-dark transition-all shadow-luxury-glow flex items-center gap-1.5 hover:scale-[1.03] active:scale-[0.98]"
+            className="px-4 py-1.5 text-xs font-semibold rounded-full bg-terracotta text-white hover:bg-terracotta-dark transition-all shadow-sm flex items-center gap-1.5 apple-spring hover:scale-[1.03] active:scale-[0.98]"
           >
-            <Calendar className="w-3.5 h-3.5" />
             <span>Book Audit</span>
             <ArrowUpRight className="w-3.5 h-3.5" />
           </button>
         </div>
 
         {/* Mobile Action & Menu Button */}
-        <div className="md:hidden flex items-center space-x-2">
-          {/* Mobile Theme Toggle */}
+        <div className="sm:hidden flex items-center space-x-1.5">
           <button
             onClick={toggleTheme}
             aria-label={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}
-            className="p-2 text-slate-400 hover:text-terracotta rounded-lg bg-canvas-card border border-canvas-border transition-all"
+            className="p-1.5 rounded-full hover:bg-neutral-200/70 dark:hover:bg-neutral-800 text-neutral-700 dark:text-neutral-300 transition-all"
           >
             {theme === 'dark' ? (
               <Sun className="w-4 h-4 text-amber-400" />
@@ -121,13 +113,14 @@ export const Navbar: React.FC<NavbarProps> = ({ onBookCall }) => {
 
           <button
             onClick={onBookCall}
-            className="px-3 py-1.5 text-xs font-bold rounded-full bg-terracotta text-white shadow-sm"
+            className="px-3 py-1 text-xs font-semibold rounded-full bg-terracotta text-white shadow-sm"
           >
-            Book Audit
+            Audit
           </button>
+          
           <button 
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="p-2 text-slate-300 hover:text-white rounded-lg bg-canvas-card border border-canvas-border"
+            className="p-1.5 text-slate-600 dark:text-slate-300 hover:text-terracotta rounded-lg"
             aria-label="Toggle Navigation Menu"
           >
             {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
@@ -135,72 +128,79 @@ export const Navbar: React.FC<NavbarProps> = ({ onBookCall }) => {
         </div>
       </div>
 
-      {/* Mobile Drawer */}
+      {/* Mobile Drawer (Clean floating glass card with backdrop click-away) */}
       {mobileMenuOpen && (
-        <div className="md:hidden bg-canvas-surface/98 backdrop-blur-2xl border-b border-canvas-border px-6 py-6 space-y-4 text-sm font-medium shadow-2xl animate-in slide-in-from-top-4 duration-200">
-          <a 
-            href="#assessment-matrix" 
+        <>
+          <div 
+            className="pointer-events-auto fixed inset-0 bg-black/60 backdrop-blur-xs z-40"
             onClick={() => setMobileMenuOpen(false)}
-            className="flex items-center justify-between text-slate-200 hover:text-luxury-gold py-1"
-          >
-            <span>Verified Architecture Matrix</span>
-            <span className="text-xs font-mono text-terracotta font-semibold">99.98% SLA</span>
-          </a>
-          <a 
-            href="#philosophy" 
-            onClick={() => setMobileMenuOpen(false)}
-            className="block text-slate-200 hover:text-luxury-gold py-1"
-          >
-            Production Philosophy
-          </a>
-          <a 
-            href="#domains" 
-            onClick={() => setMobileMenuOpen(false)}
-            className="block text-slate-200 hover:text-luxury-gold py-1"
-          >
-            Domain Blueprints
-          </a>
-          <a 
-            href="#interactive-demos" 
-            onClick={() => setMobileMenuOpen(false)}
-            className="flex items-center justify-between text-slate-200 hover:text-luxury-gold py-1"
-          >
-            <span>Live Architecture Sandboxes</span>
-            <span className="text-[10px] font-mono bg-luxury-gold/20 text-luxury-gold px-1.5 py-0.5 rounded">Live</span>
-          </a>
-          <a 
-            href="#experience" 
-            onClick={() => setMobileMenuOpen(false)}
-            className="block text-slate-200 hover:text-luxury-gold py-1"
-          >
-            Enterprise Track Record
-          </a>
-          <a 
-            href="#blog" 
-            onClick={() => setMobileMenuOpen(false)}
-            className="block text-slate-200 hover:text-luxury-gold py-1"
-          >
-            Technical Blog & Insights
-          </a>
-          
-          <div className="pt-4 border-t border-canvas-border flex items-center justify-between">
-            <div className="flex space-x-4">
-              <a href="https://github.com/mohsingitdev" target="_blank" rel="noreferrer" className="p-2 text-slate-400 hover:text-white rounded-lg bg-canvas-card">
-                <Github className="w-4 h-4" />
-              </a>
-              <a href="https://www.linkedin.com/in/mohd-mohsin-qureshi" target="_blank" rel="noreferrer" className="p-2 text-slate-400 hover:text-white rounded-lg bg-canvas-card">
-                <Linkedin className="w-4 h-4" />
-              </a>
-            </div>
-            <button
-              onClick={() => { setMobileMenuOpen(false); onBookCall(); }}
-              className="px-4 py-2 text-xs font-semibold rounded-full bg-terracotta text-white shadow-apple-card hover:bg-[#c26243] apple-spring active:scale-95 transition-all"
+            aria-hidden="true"
+          />
+          <div className="pointer-events-auto fixed top-16 left-4 right-4 max-w-md mx-auto bg-canvas-card/95 dark:bg-[#161513]/95 backdrop-blur-2xl border border-canvas-border rounded-3xl p-5 space-y-2 text-sm font-medium shadow-2xl animate-in slide-in-from-top-4 duration-200 z-50">
+            <a 
+              href="#assessment-matrix" 
+              onClick={() => setMobileMenuOpen(false)}
+              className="flex items-center justify-between text-neutral-800 dark:text-slate-200 hover:text-terracotta py-2 px-1 rounded-xl transition-colors"
             >
-              Book Strategy Call
-            </button>
+              <span>Architecture Matrix</span>
+              <span className="text-xs font-mono text-terracotta font-semibold">99.98% SLA</span>
+            </a>
+            <a 
+              href="#philosophy" 
+              onClick={() => setMobileMenuOpen(false)}
+              className="block text-neutral-800 dark:text-slate-200 hover:text-terracotta py-2 px-1 rounded-xl transition-colors"
+            >
+              Production Philosophy
+            </a>
+            <a 
+              href="#domains" 
+              onClick={() => setMobileMenuOpen(false)}
+              className="block text-neutral-800 dark:text-slate-200 hover:text-terracotta py-2 px-1 rounded-xl transition-colors"
+            >
+              Domain Blueprints
+            </a>
+            <a 
+              href="#interactive-demos" 
+              onClick={() => setMobileMenuOpen(false)}
+              className="flex items-center justify-between text-neutral-800 dark:text-slate-200 hover:text-terracotta py-2 px-1 rounded-xl transition-colors"
+            >
+              <span>Live Sandboxes</span>
+              <span className="text-[10px] font-mono bg-terracotta/20 text-terracotta px-1.5 py-0.5 rounded">Live</span>
+            </a>
+            <a 
+              href="#experience" 
+              onClick={() => setMobileMenuOpen(false)}
+              className="block text-neutral-800 dark:text-slate-200 hover:text-terracotta py-2 px-1 rounded-xl transition-colors"
+            >
+              Enterprise Track Record
+            </a>
+            <a 
+              href="#blog" 
+              onClick={() => setMobileMenuOpen(false)}
+              className="block text-neutral-800 dark:text-slate-200 hover:text-terracotta py-2 px-1 rounded-xl transition-colors"
+            >
+              Technical Blog & Insights
+            </a>
+            
+            <div className="pt-3 border-t border-canvas-border flex items-center justify-between">
+              <div className="flex space-x-2">
+                <a href="https://github.com/mohsingitdev" target="_blank" rel="noreferrer" className="p-2 text-slate-500 dark:text-slate-400 hover:text-terracotta rounded-lg bg-canvas-subtle">
+                  <Github className="w-4 h-4" />
+                </a>
+                <a href="https://www.linkedin.com/in/mohd-mohsin-qureshi" target="_blank" rel="noreferrer" className="p-2 text-slate-500 dark:text-slate-400 hover:text-terracotta rounded-lg bg-canvas-subtle">
+                  <Linkedin className="w-4 h-4" />
+                </a>
+              </div>
+              <button
+                onClick={() => { setMobileMenuOpen(false); onBookCall(); }}
+                className="px-4 py-2 text-xs font-semibold rounded-full bg-terracotta text-white shadow-sm hover:bg-terracotta-dark apple-spring active:scale-95 transition-all"
+              >
+                Book Strategy Call
+              </button>
+            </div>
           </div>
-        </div>
+        </>
       )}
-    </nav>
+    </header>
   );
 };

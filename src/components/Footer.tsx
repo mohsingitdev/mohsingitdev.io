@@ -88,11 +88,11 @@ export const Footer: React.FC = () => {
         </div>
 
         {/* Bottom Bar */}
-        <div className="pt-8 border-t border-canvas-border flex flex-col sm:flex-row items-center justify-between gap-4 font-mono text-[11px] text-slate-500">
+        <div className="pt-8 border-t border-canvas-border flex flex-col sm:flex-row items-center justify-between gap-3 text-center sm:text-left font-mono text-[11px] text-slate-500">
           <div>
             © {new Date().getFullYear()} Mohsin Qureshi. Architected for High-Concurrency & Enterprise SLAs.
           </div>
-          <div>
+          <div className="text-slate-600 dark:text-slate-500">
             Enterprise Forward Deployment & AI Architecture • Engineered for Scalability & Compliance
           </div>
         </div>

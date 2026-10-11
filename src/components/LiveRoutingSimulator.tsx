@@ -130,14 +130,14 @@ export const LiveRoutingSimulator: React.FC = () => {
   };
 
   return (
-    <div className="rounded-2xl bg-canvas-card border border-canvas-border p-6 sm:p-8 space-y-6 shadow-apple-card">
+    <div className="rounded-2xl bg-canvas-card border border-canvas-border p-5 sm:p-8 space-y-5 sm:space-y-6 shadow-apple-card">
       
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-canvas-border pb-5">
         <div>
           <div className="flex items-center gap-2">
-            <Cpu className="w-5 h-5 text-terracotta" />
-            <h3 className="font-sans text-lg font-bold text-white">
+            <Cpu className="w-5 h-5 text-terracotta shrink-0" />
+            <h3 className="font-sans text-base sm:text-lg font-bold text-white">
               Live Architecture Simulator: Multi-Agent Enterprise Router
             </h3>
           </div>
@@ -150,7 +150,7 @@ export const LiveRoutingSimulator: React.FC = () => {
           href="https://github.com/mohsingitdev"
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-flex items-center gap-1.5 text-xs font-mono text-terracotta hover:text-white transition-colors"
+          className="inline-flex items-center gap-1.5 text-xs font-mono text-terracotta hover:text-white transition-colors shrink-0"
         >
           <span>View GitHub Architecture Repo</span>
           <ExternalLink className="w-3.5 h-3.5" />
@@ -167,7 +167,7 @@ export const LiveRoutingSimulator: React.FC = () => {
             <button
               key={sc.id}
               onClick={() => { setSelectedScenario(sc); runSimulation(); }}
-              className={`p-3.5 rounded-xl text-left border transition-all duration-300 apple-spring ${
+              className={`p-3 sm:p-3.5 rounded-xl text-left border transition-all duration-300 apple-spring ${
                 selectedScenario.id === sc.id
                   ? 'bg-terracotta border-terracotta text-white shadow-apple-card scale-[1.01]'
                   : 'bg-canvas-subtle border-canvas-border text-slate-400 hover:text-neutral-900 dark:hover:text-slate-200 hover:border-slate-400 dark:hover:border-slate-600'
@@ -185,12 +185,12 @@ export const LiveRoutingSimulator: React.FC = () => {
       </div>
 
       {/* Simulated User Input Card */}
-      <div className="p-4 rounded-xl bg-canvas-subtle border border-canvas-border font-mono text-xs space-y-2">
+      <div className="p-3.5 sm:p-4 rounded-xl bg-canvas-subtle border border-canvas-border font-mono text-xs space-y-2">
         <div className="flex items-center justify-between text-slate-400">
           <span>INPUT_STREAM_PAYLOAD:</span>
           <span className="text-[11px] text-terracotta">{selectedScenario.tier}</span>
         </div>
-        <div className="text-slate-200 bg-canvas-card p-3 rounded-lg border border-canvas-border">
+        <div className="text-slate-200 bg-canvas-card p-3 rounded-lg border border-canvas-border break-words leading-relaxed">
           "{selectedScenario.query}"
         </div>
       </div>
@@ -278,24 +278,24 @@ export const LiveRoutingSimulator: React.FC = () => {
       </div>
 
       {/* Execution Path Trace */}
-      <div className="p-4 rounded-xl bg-canvas-subtle border border-canvas-border space-y-3 font-mono text-xs">
+      <div className="p-3.5 sm:p-4 rounded-xl bg-canvas-subtle border border-canvas-border space-y-3 font-mono text-xs overflow-x-auto">
         <div className="flex items-center justify-between border-b border-canvas-border pb-2">
           <span className="text-slate-400">TELEMETRY_EXECUTION_TRACE:</span>
-          <span className="text-terracotta">STATUS: 200 OK</span>
+          <span className="text-terracotta shrink-0">STATUS: 200 OK</span>
         </div>
 
         {mode === 'agentic' ? (
           <div className="space-y-2 text-slate-300">
-            <div className="text-white font-semibold">
+            <div className="text-white font-semibold break-words">
               Routing Path: {selectedScenario.agentic.route}
             </div>
-            <div className="text-slate-400 text-[11px]">
+            <div className="text-slate-400 text-[11px] leading-relaxed break-words">
               {selectedScenario.agentic.summary}
             </div>
-            <div className="space-y-1 pt-2">
+            <div className="space-y-1.5 pt-1">
               {selectedScenario.agentic.executionSteps.map((step, i) => (
-                <div key={i} className="flex items-center gap-2 text-slate-300">
-                  <span className="text-terracotta">▸</span>
+                <div key={i} className="flex items-start gap-2 text-slate-300 break-words leading-relaxed text-[11px] sm:text-xs">
+                  <span className="text-terracotta shrink-0 mt-0.5">▸</span>
                   <span>{step}</span>
                 </div>
               ))}
@@ -303,13 +303,13 @@ export const LiveRoutingSimulator: React.FC = () => {
           </div>
         ) : (
           <div className="space-y-2 text-slate-300">
-            <div className="text-slate-300 font-semibold">
+            <div className="text-slate-300 font-semibold break-words">
               Routing Path: {selectedScenario.monolithic.route}
             </div>
-            <div className="text-slate-400 text-[11px]">
+            <div className="text-slate-400 text-[11px] leading-relaxed break-words">
               {selectedScenario.monolithic.summary}
             </div>
-            <div className="text-slate-500 text-[11px] pt-1">
+            <div className="text-slate-500 text-[11px] pt-1 leading-relaxed break-words">
               Warning: High token consumption, unconstrained retry loops, and lack of deterministic schema validation.
             </div>
           </div>

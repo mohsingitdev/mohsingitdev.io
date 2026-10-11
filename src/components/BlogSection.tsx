@@ -36,12 +36,13 @@ export const BlogSection: React.FC<BlogSectionProps> = ({ onBookCall }) => {
       </div>
 
       {/* Blog Cards Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
+      {/* Blog Cards Grid */}
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-5 sm:gap-8">
         {BLOG_POSTS.map((post) => (
           <div
             key={post.id}
             onClick={() => setActivePost(post)}
-            className="rounded-3xl bg-canvas-surface border border-canvas-border p-7 flex flex-col justify-between space-y-6 hover:border-terracotta/50 cursor-pointer group transition-all duration-300 shadow-subtle-card apple-card-hover"
+            className="rounded-3xl bg-canvas-surface border border-canvas-border p-5 sm:p-7 flex flex-col justify-between space-y-5 sm:space-y-6 hover:border-terracotta/50 cursor-pointer group transition-all duration-300 shadow-subtle-card apple-card-hover"
           >
             <div className="space-y-3">
               <div className="flex items-center justify-between text-xs font-mono text-slate-400">
@@ -55,7 +56,7 @@ export const BlogSection: React.FC<BlogSectionProps> = ({ onBookCall }) => {
                 </span>
               </div>
 
-              <h3 className="text-lg font-bold text-white group-hover:text-amber-200 transition-colors leading-snug font-sans">
+              <h3 className="text-base sm:text-lg font-bold text-white group-hover:text-amber-200 transition-colors leading-snug font-sans">
                 {post.title}
               </h3>
 
@@ -64,7 +65,7 @@ export const BlogSection: React.FC<BlogSectionProps> = ({ onBookCall }) => {
               </p>
             </div>
 
-            <div className="space-y-4 pt-2">
+            <div className="space-y-3.5 pt-1">
               <div className="flex flex-wrap gap-1.5">
                 {post.tags.map((tag, idx) => (
                   <span
@@ -87,18 +88,18 @@ export const BlogSection: React.FC<BlogSectionProps> = ({ onBookCall }) => {
 
       {/* Active Post Reader Modal */}
       {activePost && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 bg-black/85 backdrop-blur-md overflow-y-auto">
-          <div className="relative w-full max-w-4xl rounded-2xl bg-canvas-surface border border-terracotta/40 shadow-apple-elevated max-h-[90vh] overflow-y-auto p-6 sm:p-10 space-y-8 my-8 text-slate-200">
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 bg-black/85 backdrop-blur-md overflow-y-auto">
+          <div className="relative w-full max-w-4xl rounded-2xl bg-canvas-surface border border-terracotta/40 shadow-apple-elevated max-h-[92vh] overflow-y-auto p-5 sm:p-10 space-y-6 sm:space-y-8 my-4 sm:my-8 text-slate-200 touch-scroll">
             
             {/* Modal Header */}
-            <div className="flex items-start justify-between border-b border-canvas-border pb-5 gap-4">
+            <div className="flex items-start justify-between border-b border-canvas-border pb-4 sm:pb-5 gap-3">
               <div className="space-y-2">
-                <div className="flex items-center gap-3 text-xs font-mono text-slate-400">
+                <div className="flex items-center gap-2.5 text-xs font-mono text-slate-400">
                   <span>{activePost.date}</span>
                   <span>•</span>
                   <span className="text-terracotta">{activePost.readingTime}</span>
                 </div>
-                <h2 className="text-2xl sm:text-3xl font-bold text-white leading-tight font-sans">
+                <h2 className="text-xl sm:text-3xl font-bold text-white leading-tight font-sans">
                   {activePost.title}
                 </h2>
                 <div className="flex flex-wrap gap-1.5 pt-1">
@@ -112,7 +113,8 @@ export const BlogSection: React.FC<BlogSectionProps> = ({ onBookCall }) => {
 
               <button
                 onClick={() => setActivePost(null)}
-                className="p-2 rounded-xl bg-canvas-card border border-canvas-border text-slate-400 hover:text-white hover:border-terracotta transition-colors"
+                aria-label="Close article modal"
+                className="p-2 min-h-[40px] min-w-[40px] rounded-xl bg-canvas-card border border-canvas-border text-slate-400 hover:text-white hover:border-terracotta transition-colors flex items-center justify-center shrink-0"
               >
                 <X className="w-5 h-5" />
               </button>

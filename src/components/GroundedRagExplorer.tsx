@@ -16,14 +16,14 @@ export const GroundedRagExplorer: React.FC = () => {
   };
 
   return (
-    <div className="rounded-2xl bg-canvas-card border border-canvas-border p-6 sm:p-8 space-y-6 shadow-apple-card">
+    <div className="rounded-2xl bg-canvas-card border border-canvas-border p-5 sm:p-8 space-y-5 sm:space-y-6 shadow-apple-card">
       
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-canvas-border pb-5">
         <div>
           <div className="flex items-center gap-2">
-            <Database className="w-5 h-5 text-terracotta" />
-            <h3 className="font-sans text-lg font-bold text-white">
+            <Database className="w-5 h-5 text-terracotta shrink-0" />
+            <h3 className="font-sans text-base sm:text-lg font-bold text-white">
               Live Architecture Simulator: Citation-Grounded Enterprise RAG
             </h3>
           </div>
@@ -36,7 +36,7 @@ export const GroundedRagExplorer: React.FC = () => {
           href="https://github.com/mohsingitdev"
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-flex items-center gap-1.5 text-xs font-mono text-terracotta hover:text-white transition-colors"
+          className="inline-flex items-center gap-1.5 text-xs font-mono text-terracotta hover:text-white transition-colors shrink-0"
         >
           <span>View RAG Pipeline Repo</span>
           <ExternalLink className="w-3.5 h-3.5" />
@@ -44,43 +44,43 @@ export const GroundedRagExplorer: React.FC = () => {
       </div>
 
       {/* Query Bar */}
-      <div className="p-4 rounded-xl bg-canvas-subtle border border-canvas-border space-y-2">
+      <div className="p-3.5 sm:p-4 rounded-xl bg-canvas-subtle border border-canvas-border space-y-2">
         <div className="flex items-center gap-2 text-xs font-mono text-slate-400">
-          <Search className="w-3.5 h-3.5 text-terracotta" />
+          <Search className="w-3.5 h-3.5 text-terracotta shrink-0" />
           <span>RESEARCHER_QUERY:</span>
         </div>
-        <div className="text-sm font-medium text-white pl-5 border-l-2 border-terracotta font-sans">
+        <div className="text-xs sm:text-sm font-medium text-white pl-4 sm:pl-5 border-l-2 border-terracotta font-sans leading-relaxed break-words">
           "What was the biomarker reduction and safety profile for Formulation TX-892 at week 12 in the Phase II trial?"
         </div>
       </div>
 
       {/* Multi-Stage Retrieval Breakdown */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
-        <div className="p-4 rounded-xl bg-canvas-surface border border-canvas-border space-y-1 apple-card-hover">
-          <div className="text-[11px] font-mono text-slate-400 uppercase">Stage 1: Lexical Search</div>
+        <div className="p-3.5 sm:p-4 rounded-xl bg-canvas-surface border border-canvas-border space-y-1 apple-card-hover">
+          <div className="text-[10px] sm:text-[11px] font-mono text-slate-400 uppercase">Stage 1: Lexical Search</div>
           <div className="text-xs font-semibold text-slate-200">BM25 Token Match</div>
-          <div className="text-[11px] text-slate-400">Exact match on `Formulation TX-892` & `Phase II`</div>
+          <div className="text-[11px] text-slate-400 leading-snug">Exact match on `Formulation TX-892` & `Phase II`</div>
         </div>
 
-        <div className="p-4 rounded-xl bg-canvas-surface border border-canvas-border space-y-1 apple-card-hover">
-          <div className="text-[11px] font-mono text-slate-400 uppercase">Stage 2: Dense Semantic</div>
+        <div className="p-3.5 sm:p-4 rounded-xl bg-canvas-surface border border-canvas-border space-y-1 apple-card-hover">
+          <div className="text-[10px] sm:text-[11px] font-mono text-slate-400 uppercase">Stage 2: Dense Semantic</div>
           <div className="text-xs font-semibold text-slate-200">Cohere / BGE Embedding</div>
-          <div className="text-[11px] text-slate-400">Cosine similarity retrieved top 50 passages</div>
+          <div className="text-[11px] text-slate-400 leading-snug">Cosine similarity retrieved top 50 passages</div>
         </div>
 
-        <div className="p-4 rounded-xl bg-canvas-surface border border-terracotta/40 space-y-1 apple-card-hover shadow-apple-card">
-          <div className="text-[11px] font-mono text-terracotta uppercase">Stage 3: Cross-Encoder</div>
+        <div className="p-3.5 sm:p-4 rounded-xl bg-canvas-surface border border-terracotta/40 space-y-1 apple-card-hover shadow-apple-card">
+          <div className="text-[10px] sm:text-[11px] font-mono text-terracotta uppercase">Stage 3: Cross-Encoder</div>
           <div className="text-xs font-semibold text-terracotta">Reranked Top-5 Chunks</div>
-          <div className="text-[11px] text-slate-300">Confidence Score: 0.962 (Passes Threshold)</div>
+          <div className="text-[11px] text-slate-300 leading-snug">Confidence Score: 0.962 (Passes Threshold)</div>
         </div>
       </div>
 
       {/* Generated Response with Interactive Grounding Badges */}
-      <div className="p-5 rounded-xl bg-canvas-surface border border-canvas-border space-y-3 apple-card-hover">
-        <div className="flex items-center justify-between text-xs font-mono text-slate-400 border-b border-canvas-border pb-2">
+      <div className="p-4 sm:p-5 rounded-xl bg-canvas-surface border border-canvas-border space-y-3 apple-card-hover">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between text-xs font-mono text-slate-400 border-b border-canvas-border pb-2 gap-1 sm:gap-0">
           <span className="flex items-center gap-1.5 text-terracotta font-semibold">
-            <CheckCircle2 className="w-4 h-4" />
-            GROUNDED GENERATION (100% ATTRIBUTED)
+            <CheckCircle2 className="w-4 h-4 shrink-0" />
+            <span>GROUNDED GENERATION (100% ATTRIBUTED)</span>
           </span>
           <span className="text-[11px] text-slate-400">Latency: 140ms</span>
         </div>

@@ -33,16 +33,16 @@ export const CalendlySection: React.FC = () => {
         </div>
 
         {/* 2-Column Booking Interface */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 items-start">
           
           {/* Left Column: Qualification & What to Expect */}
-          <div className="lg:col-span-5 rounded-3xl bg-canvas-card border border-canvas-border p-6 sm:p-8 space-y-6 shadow-subtle-card apple-card-hover">
+          <div className="lg:col-span-5 rounded-3xl bg-canvas-card border border-canvas-border p-5 sm:p-8 space-y-5 sm:space-y-6 shadow-subtle-card apple-card-hover">
             
-            <div className="space-y-2 border-b border-canvas-border pb-5">
-              <span className="text-xs font-mono text-terracotta uppercase tracking-wider font-semibold">
+            <div className="space-y-2 border-b border-canvas-border pb-4 sm:pb-5">
+              <span className="text-[11px] sm:text-xs font-mono text-terracotta uppercase tracking-wider font-semibold">
                 1:1 Advisory & FDE Contract Discovery
               </span>
-              <h3 className="text-xl font-bold text-white font-sans">
+              <h3 className="text-lg sm:text-xl font-bold text-white font-sans">
                 30-Minute Technical Audit
               </h3>
               <div className="flex items-center gap-4 text-xs font-mono text-slate-400 pt-1">
@@ -149,11 +149,11 @@ export const CalendlySection: React.FC = () => {
           </div>
 
           {/* Right Column: Calendly Embed Container */}
-          <div className="lg:col-span-7 rounded-3xl bg-canvas-card border border-terracotta/30 shadow-luxury-glow overflow-hidden flex flex-col min-h-[580px] apple-card-hover">
+          <div className="lg:col-span-7 rounded-3xl bg-canvas-card border border-terracotta/30 shadow-luxury-glow overflow-hidden flex flex-col min-h-[520px] sm:min-h-[580px] apple-card-hover w-full">
             
             {/* Embedded Calendar Header */}
-            <div className="p-4 bg-canvas-surface border-b border-canvas-border flex items-center justify-between">
-              <div className="flex items-center gap-2 font-mono text-xs text-white">
+            <div className="p-3.5 sm:p-4 bg-canvas-surface border-b border-canvas-border flex items-center justify-between">
+              <div className="flex items-center gap-2 font-mono text-[11px] sm:text-xs text-white">
                 <span className="w-2.5 h-2.5 rounded-full bg-terracotta animate-ping" />
                 <span>LIVE CALENDAR RESERVATION</span>
               </div>
@@ -177,7 +177,7 @@ export const CalendlySection: React.FC = () => {
                 height="620px"
                 frameBorder="0"
                 title="Schedule 1:1 Architecture Audit with Mohsin Qureshi"
-                className="w-full h-full min-h-[600px]"
+                className="w-full h-full min-h-[520px] sm:min-h-[600px]"
               />
             </div>
 

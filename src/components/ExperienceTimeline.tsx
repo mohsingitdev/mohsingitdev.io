@@ -22,39 +22,39 @@ export const ExperienceTimeline: React.FC = () => {
       </div>
 
       {/* Experience Cards */}
-      <div className="space-y-6">
+      <div className="space-y-5 sm:space-y-6">
         {EXPERIENCES.map((exp) => (
           <div
             key={exp.id}
-            className="rounded-3xl bg-canvas-surface border border-canvas-border p-6 sm:p-8 space-y-6 hover:border-terracotta/40 transition-all duration-300 shadow-subtle-card apple-card-hover"
+            className="rounded-3xl bg-canvas-surface border border-canvas-border p-5 sm:p-8 space-y-5 sm:space-y-6 hover:border-terracotta/40 transition-all duration-300 shadow-subtle-card apple-card-hover"
           >
             {/* Header row */}
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-canvas-border/80 pb-4">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2.5 sm:gap-3 border-b border-canvas-border/80 pb-3.5 sm:pb-4">
               <div>
-                <div className="flex flex-wrap items-center gap-2.5">
-                  <h3 className="text-xl font-bold text-white font-sans">{exp.company}</h3>
+                <div className="flex flex-wrap items-center gap-2 sm:gap-2.5">
+                  <h3 className="text-lg sm:text-xl font-bold text-white font-sans">{exp.company}</h3>
                   {exp.badge && (
-                    <span className="text-[11px] font-mono px-3 py-0.5 rounded-full bg-terracotta/15 text-terracotta border border-terracotta/30">
+                    <span className="text-[10px] sm:text-[11px] font-mono px-2.5 sm:px-3 py-0.5 rounded-full bg-terracotta/15 text-terracotta border border-terracotta/30">
                       {exp.badge}
                     </span>
                   )}
                 </div>
-                <div className="text-sm font-medium text-slate-300 mt-1">{exp.role}</div>
+                <div className="text-xs sm:text-sm font-medium text-slate-300 mt-1">{exp.role}</div>
               </div>
 
-              <div className="flex items-center sm:justify-end">
-                <span className="inline-flex items-center gap-1.5 text-xs font-mono px-3 py-1 rounded-full bg-terracotta/10 text-terracotta border border-terracotta/25 shadow-sm">
-                  <MapPin className="w-3 h-3" />
+              <div className="flex items-center self-start sm:self-auto">
+                <span className="inline-flex items-center gap-1.5 text-[11px] sm:text-xs font-mono px-2.5 sm:px-3 py-1 rounded-full bg-terracotta/10 text-terracotta border border-terracotta/25 shadow-sm">
+                  <MapPin className="w-3 h-3 shrink-0" />
                   <span>{exp.location}</span>
                 </span>
               </div>
             </div>
 
             {/* Bullets */}
-            <ul className="space-y-2.5 text-sm text-slate-300">
+            <ul className="space-y-2.5 text-xs sm:text-sm text-slate-300">
               {exp.bullets.map((bullet, idx) => (
                 <li key={idx} className="flex items-start gap-2.5">
-                  <CheckCircle2 className="w-4 h-4 text-terracotta mt-1 flex-shrink-0" />
+                  <CheckCircle2 className="w-4 h-4 text-terracotta mt-0.5 flex-shrink-0" />
                   <span className="leading-relaxed">{bullet}</span>
                 </li>
               ))}
@@ -65,7 +65,7 @@ export const ExperienceTimeline: React.FC = () => {
               {exp.technologies.map((tech, idx) => (
                 <span
                   key={idx}
-                  className="text-[11px] font-mono px-2.5 py-0.5 rounded bg-canvas-card border border-canvas-border text-slate-400"
+                  className="text-[10px] sm:text-[11px] font-mono px-2 sm:px-2.5 py-0.5 rounded bg-canvas-card border border-canvas-border text-slate-400"
                 >
                   {tech}
                 </span>
@@ -76,20 +76,20 @@ export const ExperienceTimeline: React.FC = () => {
       </div>
 
       {/* Education & Credentials Grid */}
-      <div className="pt-10 border-t border-canvas-border space-y-8">
+      <div className="pt-8 sm:pt-10 border-t border-canvas-border space-y-6 sm:space-y-8">
         <div className="flex items-center gap-2 font-mono text-xs uppercase tracking-wider text-terracotta">
-          <GraduationCap className="w-4 h-4 text-terracotta" />
+          <GraduationCap className="w-4 h-4 text-terracotta shrink-0" />
           <span>Academic Pedigree & Advanced Specializations</span>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3.5 sm:gap-4">
           {EDUCATION.map((edu, idx) => (
             <div
               key={idx}
-              className="p-5 rounded-2xl bg-canvas-surface border border-canvas-border space-y-1.5 hover:border-terracotta/40 transition-all duration-300 shadow-apple-card apple-card-hover"
+              className="p-4 sm:p-5 rounded-2xl bg-canvas-surface border border-canvas-border space-y-1.5 hover:border-terracotta/40 transition-all duration-300 shadow-apple-card apple-card-hover"
             >
               <div className="text-xs font-mono text-terracotta">{edu.period}</div>
-              <div className="font-semibold text-sm text-white font-sans">{edu.degree}</div>
+              <div className="font-semibold text-xs sm:text-sm text-white font-sans">{edu.degree}</div>
               <div className="text-xs text-slate-400">{edu.institution}</div>
             </div>
           ))}

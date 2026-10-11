@@ -25,30 +25,32 @@ export const InteractiveDemosSection: React.FC = () => {
           </p>
         </div>
 
-        {/* Demo Selector Tabs */}
-        <div className="flex justify-center">
-          <div className="inline-flex p-1.5 rounded-2xl bg-canvas-card border border-canvas-border gap-1 overflow-x-auto max-w-full">
+        {/* Demo Selector Tabs (Horizontal Touch Scroll on Mobile) */}
+        <div className="flex justify-center -mx-4 px-4 sm:mx-0 sm:px-0">
+          <div className="inline-flex p-1.5 rounded-2xl bg-canvas-card border border-canvas-border gap-1 overflow-x-auto max-w-full no-scrollbar touch-scroll">
             <button
               onClick={() => setActiveDemo('routing')}
-              className={`flex items-center gap-2 px-4 py-2.5 rounded-xl text-xs sm:text-sm font-mono font-semibold transition-all duration-300 ${
+              className={`flex items-center gap-2 px-3.5 sm:px-4 py-2.5 rounded-xl text-xs sm:text-sm font-mono font-semibold transition-all duration-300 shrink-0 whitespace-nowrap ${
                 activeDemo === 'routing'
                   ? 'bg-terracotta text-white shadow-luxury-glow'
                   : 'text-slate-400 hover:text-white'
               }`}
             >
-              <Cpu className="w-4 h-4" />
-              <span>Multi-Agent Intent Router (Flipkart Scale)</span>
+              <Cpu className="w-4 h-4 shrink-0" />
+              <span className="sm:hidden">Router Simulator</span>
+              <span className="hidden sm:inline">Multi-Agent Intent Router (Flipkart Scale)</span>
             </button>
             <button
               onClick={() => setActiveDemo('rag')}
-              className={`flex items-center gap-2 px-4 py-2.5 rounded-xl text-xs sm:text-sm font-mono font-semibold transition-all duration-300 ${
+              className={`flex items-center gap-2 px-3.5 sm:px-4 py-2.5 rounded-xl text-xs sm:text-sm font-mono font-semibold transition-all duration-300 shrink-0 whitespace-nowrap ${
                 activeDemo === 'rag'
                   ? 'bg-terracotta text-white shadow-luxury-glow'
                   : 'text-slate-400 hover:text-white'
               }`}
             >
-              <Database className="w-4 h-4" />
-              <span>Grounded Citation RAG (Novartis Rigor)</span>
+              <Database className="w-4 h-4 shrink-0" />
+              <span className="sm:hidden">Grounded RAG</span>
+              <span className="hidden sm:inline">Grounded Citation RAG (Novartis Rigor)</span>
             </button>
           </div>
         </div>

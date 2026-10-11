@@ -139,48 +139,48 @@ export const LayaAssessmentMatrix: React.FC<{ onBookCall: () => void }> = ({ onB
       </div>
 
       {/* Aggregate Score Ribbon (Upgraded Contrast & Responsive Grid) */}
-      <div className="p-5 sm:p-8 rounded-3xl bg-canvas-card border border-canvas-border grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-8 shadow-xl relative overflow-hidden">
+      <div className="p-4 sm:p-8 rounded-3xl bg-canvas-card border border-canvas-border grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-6 shadow-xl relative overflow-hidden">
         
         {/* Glow backdrop */}
         <div className="absolute top-0 right-1/4 w-96 h-32 bg-terracotta/10 blur-[80px] pointer-events-none" />
 
-        <div className="space-y-1.5 border-r border-canvas-border/70 pr-3 sm:pr-4">
-          <div className="text-[11px] font-mono uppercase tracking-wider text-slate-400">System Availability SLA</div>
-          <div className="text-2xl sm:text-4xl font-extrabold font-mono text-gradient-gold">99.98%</div>
-          <div className="text-xs text-slate-400 font-mono flex items-center gap-1.5">
-            <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
+        <div className="space-y-1 sm:space-y-1.5 border-r border-canvas-border/70 pr-2 sm:pr-4">
+          <div className="text-[10px] sm:text-[11px] font-mono uppercase tracking-wider text-slate-400">System Availability SLA</div>
+          <div className="text-xl sm:text-3xl lg:text-4xl font-extrabold font-mono text-gradient-gold">99.98%</div>
+          <div className="text-[11px] sm:text-xs text-slate-400 font-mono flex items-center gap-1.5">
+            <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 shrink-0" />
             <span className="truncate">High-Concurrency Standard</span>
           </div>
         </div>
 
-        <div className="space-y-1.5 lg:border-r border-canvas-border/70 pr-3 sm:pr-4">
-          <div className="text-[11px] font-mono uppercase tracking-wider text-slate-400">Enterprise Bracket</div>
-          <div className="text-xl sm:text-3xl font-extrabold text-white tracking-tight">Top 1% Architect</div>
-          <div className="text-xs text-terracotta font-mono flex items-center gap-1.5">
-            <Award className="w-3.5 h-3.5 flex-shrink-0" />
+        <div className="space-y-1 sm:space-y-1.5 lg:border-r border-canvas-border/70 pr-2 sm:pr-4">
+          <div className="text-[10px] sm:text-[11px] font-mono uppercase tracking-wider text-slate-400">Enterprise Bracket</div>
+          <div className="text-lg sm:text-2xl lg:text-3xl font-extrabold text-white tracking-tight truncate">Top 1% Architect</div>
+          <div className="text-[11px] sm:text-xs text-terracotta font-mono flex items-center gap-1.5">
+            <Award className="w-3.5 h-3.5 shrink-0" />
             <span className="truncate">Forward Deployment Tier</span>
           </div>
         </div>
 
-        <div className="space-y-1.5 border-r border-canvas-border/70 pr-3 sm:pr-4">
-          <div className="text-[11px] font-mono uppercase tracking-wider text-slate-400">Hallucination Risk</div>
-          <div className="text-2xl sm:text-4xl font-extrabold font-mono text-emerald-400">&lt; 0.5%</div>
-          <div className="text-xs text-slate-400 font-mono truncate">Strict Citation Guardrails</div>
+        <div className="space-y-1 sm:space-y-1.5 border-r border-canvas-border/70 pr-2 sm:pr-4">
+          <div className="text-[10px] sm:text-[11px] font-mono uppercase tracking-wider text-slate-400">Hallucination Risk</div>
+          <div className="text-xl sm:text-3xl lg:text-4xl font-extrabold font-mono text-emerald-400">&lt; 0.5%</div>
+          <div className="text-[11px] sm:text-xs text-slate-400 font-mono truncate">Strict Citation Guardrails</div>
         </div>
 
-        <div className="space-y-1.5">
-          <div className="text-[11px] font-mono uppercase tracking-wider text-slate-400">Inference Cost Delta</div>
-          <div className="text-2xl sm:text-4xl font-extrabold font-mono text-amber-300">-72%</div>
-          <div className="text-xs text-slate-400 font-mono truncate">Deterministic Gateway ROI</div>
+        <div className="space-y-1 sm:space-y-1.5">
+          <div className="text-[10px] sm:text-[11px] font-mono uppercase tracking-wider text-slate-400">Inference Cost Delta</div>
+          <div className="text-xl sm:text-3xl lg:text-4xl font-extrabold font-mono text-amber-300">-72%</div>
+          <div className="text-[11px] sm:text-xs text-slate-400 font-mono truncate">Deterministic Gateway ROI</div>
         </div>
       </div>
 
-      {/* Filter Tabs (Horizontal Scroll on Mobile) */}
-      <div className="flex justify-center">
-        <div className="inline-flex p-1.5 rounded-2xl bg-canvas-card border border-canvas-border gap-1 overflow-x-auto max-w-full no-scrollbar">
+      {/* Filter Tabs (Horizontal Touch Scroll on Mobile) */}
+      <div className="flex justify-center -mx-4 px-4 sm:mx-0 sm:px-0">
+        <div className="inline-flex p-1.5 rounded-2xl bg-canvas-card border border-canvas-border gap-1 overflow-x-auto max-w-full no-scrollbar touch-scroll">
           <button
             onClick={() => setSelectedFilter('all')}
-            className={`px-4 py-2 rounded-xl text-xs font-mono whitespace-nowrap transition-all ${
+            className={`px-3.5 sm:px-4 py-2 rounded-xl text-xs font-mono whitespace-nowrap transition-all shrink-0 ${
               selectedFilter === 'all'
                 ? 'bg-terracotta text-white font-bold shadow-md'
                 : 'text-slate-300 hover:text-white'
@@ -190,7 +190,7 @@ export const LayaAssessmentMatrix: React.FC<{ onBookCall: () => void }> = ({ onB
           </button>
           <button
             onClick={() => setSelectedFilter('architecture')}
-            className={`px-4 py-2 rounded-xl text-xs font-mono whitespace-nowrap transition-all ${
+            className={`px-3.5 sm:px-4 py-2 rounded-xl text-xs font-mono whitespace-nowrap transition-all shrink-0 ${
               selectedFilter === 'architecture'
                 ? 'bg-terracotta text-white font-bold shadow-md'
                 : 'text-slate-300 hover:text-white'
@@ -200,7 +200,7 @@ export const LayaAssessmentMatrix: React.FC<{ onBookCall: () => void }> = ({ onB
           </button>
           <button
             onClick={() => setSelectedFilter('scale')}
-            className={`px-4 py-2 rounded-xl text-xs font-mono whitespace-nowrap transition-all ${
+            className={`px-3.5 sm:px-4 py-2 rounded-xl text-xs font-mono whitespace-nowrap transition-all shrink-0 ${
               selectedFilter === 'scale'
                 ? 'bg-terracotta text-white font-bold shadow-md'
                 : 'text-slate-300 hover:text-white'
@@ -210,7 +210,7 @@ export const LayaAssessmentMatrix: React.FC<{ onBookCall: () => void }> = ({ onB
           </button>
           <button
             onClick={() => setSelectedFilter('roi')}
-            className={`px-4 py-2 rounded-xl text-xs font-mono whitespace-nowrap transition-all ${
+            className={`px-3.5 sm:px-4 py-2 rounded-xl text-xs font-mono whitespace-nowrap transition-all shrink-0 ${
               selectedFilter === 'roi'
                 ? 'bg-terracotta text-white font-bold shadow-md'
                 : 'text-slate-300 hover:text-white'
@@ -234,7 +234,7 @@ export const LayaAssessmentMatrix: React.FC<{ onBookCall: () => void }> = ({ onB
               initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.3 }}
-              className="p-6 sm:p-8 rounded-3xl bg-canvas-surface border border-canvas-border hover:border-terracotta/40 transition-all space-y-5 shadow-lg group relative flex flex-col justify-between apple-card-hover"
+              className="p-5 sm:p-8 rounded-3xl bg-canvas-surface border border-canvas-border hover:border-terracotta/40 transition-all space-y-5 shadow-lg group relative flex flex-col justify-between apple-card-hover"
             >
               
               <div className="space-y-4">

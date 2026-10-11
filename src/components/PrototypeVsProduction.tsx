@@ -73,11 +73,11 @@ export const PrototypeVsProduction: React.FC = () => {
         </div>
 
         {/* Tab Switcher */}
-        <div className="flex justify-center mt-8">
-          <div className="inline-flex p-1.5 rounded-2xl bg-canvas-card border border-canvas-border gap-1 shadow-apple-card">
+        <div className="flex justify-center mt-6 sm:mt-8 -mx-4 px-4 sm:mx-0 sm:px-0">
+          <div className="inline-flex p-1.5 rounded-2xl bg-canvas-card border border-canvas-border gap-1 shadow-apple-card overflow-x-auto max-w-full no-scrollbar touch-scroll">
             <button
               onClick={() => setActiveTab('architecture')}
-              className={`px-4 py-2 rounded-xl text-xs sm:text-sm transition-all duration-300 apple-spring ${
+              className={`px-3.5 sm:px-4 py-2 rounded-xl text-xs sm:text-sm transition-all duration-300 apple-spring shrink-0 whitespace-nowrap ${
                 activeTab === 'architecture'
                   ? 'bg-terracotta text-white font-semibold shadow-apple-card scale-[1.02]'
                   : 'text-slate-400 hover:text-white'
@@ -87,7 +87,7 @@ export const PrototypeVsProduction: React.FC = () => {
             </button>
             <button
               onClick={() => setActiveTab('rag')}
-              className={`px-4 py-2 rounded-xl text-xs sm:text-sm transition-all duration-300 apple-spring ${
+              className={`px-3.5 sm:px-4 py-2 rounded-xl text-xs sm:text-sm transition-all duration-300 apple-spring shrink-0 whitespace-nowrap ${
                 activeTab === 'rag'
                   ? 'bg-terracotta text-white font-semibold shadow-apple-card scale-[1.02]'
                   : 'text-slate-400 hover:text-white'
@@ -97,7 +97,7 @@ export const PrototypeVsProduction: React.FC = () => {
             </button>
             <button
               onClick={() => setActiveTab('llmops')}
-              className={`px-4 py-2 rounded-xl text-xs sm:text-sm transition-all duration-300 apple-spring ${
+              className={`px-3.5 sm:px-4 py-2 rounded-xl text-xs sm:text-sm transition-all duration-300 apple-spring shrink-0 whitespace-nowrap ${
                 activeTab === 'llmops'
                   ? 'bg-terracotta text-white font-semibold shadow-apple-card scale-[1.02]'
                   : 'text-slate-400 hover:text-white'
@@ -109,48 +109,48 @@ export const PrototypeVsProduction: React.FC = () => {
         </div>
 
         {/* Comparison Grid */}
-        <div className="mt-10 grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div className="mt-8 sm:mt-10 grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
           
           {/* Fragile Prototype Card */}
-          <div className="rounded-2xl bg-canvas-surface border border-canvas-border p-6 sm:p-8 space-y-6 relative overflow-hidden shadow-apple-card apple-card-hover">
+          <div className="rounded-2xl bg-canvas-surface border border-canvas-border p-5 sm:p-8 space-y-5 sm:space-y-6 relative overflow-hidden shadow-apple-card apple-card-hover">
             <div className="flex items-center justify-between border-b border-canvas-border/80 pb-4">
               <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-xl bg-canvas-card border border-canvas-border flex items-center justify-center">
+                <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-canvas-card border border-canvas-border flex items-center justify-center shrink-0">
                   <AlertCircle className="w-5 h-5 text-slate-400" />
                 </div>
                 <div>
-                  <h3 className="font-sans text-base font-bold text-slate-200">The Fragile AI Prototype</h3>
-                  <div className="text-xs text-slate-500 font-mono">What breaks under production load</div>
+                  <h3 className="font-sans text-sm sm:text-base font-bold text-slate-200">The Fragile AI Prototype</h3>
+                  <div className="text-[11px] sm:text-xs text-slate-500 font-mono">What breaks under production load</div>
                 </div>
               </div>
-              <span className="text-[11px] font-mono uppercase px-2.5 py-0.5 rounded-full bg-canvas-card text-slate-400 border border-canvas-border">
+              <span className="text-[10px] sm:text-[11px] font-mono uppercase px-2 sm:px-2.5 py-0.5 rounded-full bg-canvas-card text-slate-400 border border-canvas-border shrink-0">
                 High Risk
               </span>
             </div>
 
-            <ul className="space-y-4 text-sm text-slate-400">
+            <ul className="space-y-3.5 sm:space-y-4 text-xs sm:text-sm text-slate-400">
               {current.fragile.map((item, idx) => (
-                <li key={idx} className="flex items-start gap-3">
-                  <span className="text-rose-400/80 mt-1 font-bold">✕</span>
-                  <span>{item}</span>
+                <li key={idx} className="flex items-start gap-2.5 sm:gap-3">
+                  <span className="text-rose-400/80 mt-0.5 font-bold shrink-0">✕</span>
+                  <span className="leading-relaxed">{item}</span>
                 </li>
               ))}
             </ul>
           </div>
 
           {/* Production Standard Card */}
-          <div className="rounded-2xl bg-canvas-surface border border-terracotta/40 p-6 sm:p-8 space-y-6 relative overflow-hidden shadow-apple-elevated apple-card-hover">
+          <div className="rounded-2xl bg-canvas-surface border border-terracotta/40 p-5 sm:p-8 space-y-5 sm:space-y-6 relative overflow-hidden shadow-apple-elevated apple-card-hover">
             <div className="flex items-center justify-between border-b border-terracotta/20 pb-4">
               <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-xl bg-terracotta/15 border border-terracotta/30 flex items-center justify-center">
+                <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-terracotta/15 border border-terracotta/30 flex items-center justify-center shrink-0">
                   <CheckCircle2 className="w-5 h-5 text-terracotta" />
                 </div>
                 <div>
-                  <h3 className="font-sans text-base font-bold text-terracotta">My Enterprise Standard</h3>
-                  <div className="text-xs text-slate-400 font-mono">Engineered for SLA & Compliance</div>
+                  <h3 className="font-sans text-sm sm:text-base font-bold text-terracotta">My Enterprise Standard</h3>
+                  <div className="text-[11px] sm:text-xs text-slate-400 font-mono">Engineered for SLA & Compliance</div>
                 </div>
               </div>
-              <span className="text-[11px] font-mono uppercase px-2.5 py-0.5 rounded-full bg-terracotta/15 text-terracotta border border-terracotta/30">
+              <span className="text-[10px] sm:text-[11px] font-mono uppercase px-2 sm:px-2.5 py-0.5 rounded-full bg-terracotta/15 text-terracotta border border-terracotta/30 shrink-0">
                 Battle-Tested
               </span>
             </div>

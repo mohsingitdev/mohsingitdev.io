@@ -35,13 +35,13 @@ export const DomainMatrix: React.FC<DomainMatrixProps> = ({ onBookCall, onExplor
           </p>
         </div>
 
-        {/* Domain Filter Pills */}
-        <div className="flex flex-wrap gap-2">
+        {/* Domain Filter Pills (Horizontal swipe on mobile, wrap on tablet/desktop) */}
+        <div className="flex flex-nowrap overflow-x-auto no-scrollbar touch-scroll gap-2 pb-1.5 pt-0.5 -mx-4 px-4 sm:mx-0 sm:px-0 sm:flex-wrap">
           {domains.map((d) => (
             <button
               key={d}
               onClick={() => setSelectedDomain(d)}
-              className={`px-3.5 py-1.5 rounded-full text-xs font-mono transition-all duration-300 ${
+              className={`px-3.5 py-1.5 rounded-full text-xs font-mono transition-all duration-300 shrink-0 whitespace-nowrap ${
                 selectedDomain === d
                   ? 'bg-terracotta text-white font-semibold shadow-luxury-glow'
                   : 'bg-canvas-card border border-canvas-border text-slate-300 hover:text-white'
@@ -54,66 +54,66 @@ export const DomainMatrix: React.FC<DomainMatrixProps> = ({ onBookCall, onExplor
       </div>
 
       {/* Projects Grid (Solt Wagner Numbered Layout: #01, #02, #03) */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
         {filteredProjects.map((project, idx) => {
           const formattedNumber = `#0${idx + 1}`;
 
           return (
             <div
               key={project.id}
-              className="rounded-3xl bg-canvas-card border border-canvas-border hover:border-terracotta/50 transition-all duration-300 p-8 sm:p-10 flex flex-col justify-between space-y-7 group shadow-apple-card apple-card-hover relative overflow-hidden"
+              className="rounded-3xl bg-canvas-card border border-canvas-border hover:border-terracotta/50 transition-all duration-300 p-5 sm:p-8 lg:p-10 flex flex-col justify-between space-y-6 sm:space-y-7 group shadow-apple-card apple-card-hover relative overflow-hidden"
             >
               {/* Card Watermark Number */}
-              <div className="absolute top-4 right-6 select-none pointer-events-none text-4xl sm:text-5xl font-mono font-bold text-neutral-900/[0.05] dark:text-white/[0.04]">
+              <div className="absolute top-4 right-5 sm:right-6 select-none pointer-events-none text-4xl sm:text-5xl font-mono font-bold text-neutral-900/[0.05] dark:text-white/[0.04]">
                 {formattedNumber}
               </div>
 
               {/* Top metadata */}
-              <div className="space-y-3 relative z-10">
-                <div className="flex items-center gap-3">
+              <div className="space-y-2.5 sm:space-y-3 relative z-10">
+                <div className="flex items-center gap-2.5 sm:gap-3">
                   <span className="font-mono text-xs font-bold text-terracotta">
                     {formattedNumber}
                   </span>
-                  <span className="text-[11px] font-mono uppercase px-3 py-0.5 rounded-full bg-canvas-surface text-slate-300 border border-canvas-border">
+                  <span className="text-[10px] sm:text-[11px] font-mono uppercase px-2.5 sm:px-3 py-0.5 rounded-full bg-canvas-surface text-slate-300 border border-canvas-border">
                     {project.domain.split('&')[0]}
                   </span>
                 </div>
 
-                <h3 className="text-2xl font-bold text-white group-hover:text-terracotta transition-colors font-sans pt-1">
+                <h3 className="text-xl sm:text-2xl font-bold text-white group-hover:text-terracotta transition-colors font-sans pt-1">
                   {project.title}
                 </h3>
 
-                <p className="text-sm font-mono text-slate-400 leading-relaxed">
+                <p className="text-xs sm:text-sm font-mono text-slate-400 leading-relaxed">
                   {project.tagline}
                 </p>
               </div>
 
               {/* Context & Architecture */}
-              <div className="space-y-3.5 text-xs text-slate-300 relative z-10">
-                <div className="p-4 rounded-2xl bg-canvas-surface border border-canvas-border space-y-1">
+              <div className="space-y-3 text-xs text-slate-300 relative z-10">
+                <div className="p-3.5 sm:p-4 rounded-2xl bg-canvas-surface border border-canvas-border space-y-1">
                   <div className="font-mono text-slate-500 uppercase text-[10px]">The Enterprise Bottleneck</div>
                   <div className="leading-relaxed">{project.challenge}</div>
                 </div>
 
-                <div className="p-4 rounded-2xl bg-canvas-subtle border border-terracotta/25 space-y-1">
+                <div className="p-3.5 sm:p-4 rounded-2xl bg-canvas-subtle border border-terracotta/25 space-y-1">
                   <div className="font-mono text-terracotta uppercase text-[10px]">Architectural Solution</div>
                   <div className="leading-relaxed">{project.architectureSolution}</div>
                 </div>
               </div>
 
               {/* Quantified Metrics Grid */}
-              <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5 pt-1 relative z-10">
+              <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 sm:gap-2.5 pt-1 relative z-10">
                 {project.metrics.map((m, mIdx) => (
-                  <div key={mIdx} className="p-3 rounded-xl bg-canvas-surface border border-canvas-border text-center">
-                    <div className="font-mono text-base font-bold text-terracotta">{m.value}</div>
+                  <div key={mIdx} className="p-2.5 sm:p-3 rounded-xl bg-canvas-surface border border-canvas-border text-center">
+                    <div className="font-mono text-sm sm:text-base font-bold text-terracotta">{m.value}</div>
                     <div className="text-[10px] text-slate-400 mt-0.5 leading-tight">{m.label}</div>
                   </div>
                 ))}
               </div>
 
               {/* Card Footer Actions */}
-              <div className="pt-4 border-t border-canvas-border flex flex-wrap items-center justify-between gap-3 relative z-10">
-                <div className="flex items-center gap-4">
+              <div className="pt-4 border-t border-canvas-border flex flex-col sm:flex-row sm:items-center justify-between gap-3 relative z-10">
+                <div className="flex items-center gap-3 sm:gap-4">
                   {project.hasInteractiveDemo && (
                     <button
                       onClick={onExploreDemo}
@@ -139,7 +139,7 @@ export const DomainMatrix: React.FC<DomainMatrixProps> = ({ onBookCall, onExplor
 
                 <button
                   onClick={onBookCall}
-                  className="text-xs font-mono font-semibold text-slate-200 hover:text-terracotta flex items-center gap-1 transition-colors"
+                  className="text-xs font-mono font-semibold text-slate-200 hover:text-terracotta flex items-center gap-1 transition-colors self-start sm:self-auto"
                 >
                   <span>Commission System</span>
                   <ArrowUpRight className="w-3.5 h-3.5" />

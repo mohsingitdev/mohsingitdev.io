@@ -34,7 +34,7 @@ export const App: React.FC = () => {
   };
 
   return (
-    <div className="relative min-h-screen bg-canvas text-slate-100 flex flex-col font-sans selection:bg-[#D97757] selection:text-white">
+    <div className="relative min-h-screen bg-canvas text-slate-100 flex flex-col font-sans selection:bg-[#D97757] selection:text-white overflow-x-hidden w-full">
       {/* Interactive AI Neural Background Canvas */}
       <NeuralBackground />
 
