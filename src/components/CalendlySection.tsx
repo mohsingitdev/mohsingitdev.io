@@ -6,7 +6,7 @@ export const CalendlySection: React.FC = () => {
   const { theme } = useTheme();
   const [selectedTimeline, setSelectedTimeline] = useState<string>('Immediately (1-2 weeks)');
   const [selectedBudget, setSelectedBudget] = useState<string>('Enterprise Advisory ($5k - $15k/mo)');
-  const [selectedMeetingType, setSelectedMeetingType] = useState<'30min' | '15min' | '60min'>('30min');
+  const [selectedMeetingView, setSelectedMeetingView] = useState<'30min' | 'all'>('30min');
   const [openFaq, setOpenFaq] = useState<number | null>(null);
 
   const [userTimezone] = useState<string>(() => {
@@ -20,17 +20,23 @@ export const CalendlySection: React.FC = () => {
   const timelines = ['Immediately (1-2 weeks)', 'Within 30 Days', 'Exploratory Audit'];
   const budgets = ['Enterprise Advisory ($5k - $15k/mo)', 'Full-Cycle FDE Build', 'Targeted RAG/Routing Audit'];
 
-  const meetingTypes = [
-    { id: '30min' as const, label: '30-Min Architecture Audit (Recommended)', short: '30 Min' },
-    { id: '15min' as const, label: '15-Min Exploratory Sync', short: '15 Min' },
-    { id: '60min' as const, label: '60-Min Deep Technical Advisory', short: '60 Min' },
+  const meetingViews = [
+    { id: '30min' as const, label: '30-Min Architecture Audit (Primary)', short: '30 Min Slot' },
+    { id: 'all' as const, label: 'All Event Types (Calendly Hub)', short: 'All Events' },
   ];
 
   const calendlyBg = theme === 'dark' ? '161513' : 'faf7f2';
   const calendlyText = theme === 'dark' ? 'ffffff' : '1c1917';
 
-  const currentCalendlyEmbedUrl = `https://calendly.com/mohsin-qureshi/${selectedMeetingType}?embed_type=Inline&background_color=${calendlyBg}&text_color=${calendlyText}&primary_color=de5a35`;
-  const directCalendlyLink = `https://calendly.com/mohsin-qureshi/${selectedMeetingType}`;
+  const calendlyPath = selectedMeetingView === '30min' ? '30min' : '';
+  const currentCalendlyEmbedUrl = `https://calendly.com/mohsin-qureshi/${calendlyPath}?embed_type=Inline&background_color=${calendlyBg}&text_color=${calendlyText}&primary_color=de5a35&hide_gdpr_banner=1`;
+  const directCalendlyLink = `https://calendly.com/mohsin-qureshi/${calendlyPath}`;
+
+  const directMailtoUrl = `mailto:mohsin.i.qureshi@hotmail.com?subject=${encodeURIComponent(
+    `[Advisory Request] 30-Min AI Architecture Audit (${selectedTimeline})`
+  )}&body=${encodeURIComponent(
+    `Hi Mohsin,\n\nI would like to schedule an AI Architecture Audit session with you.\n\nEngagement Scope: ${selectedBudget}\nTarget Timeline: ${selectedTimeline}\nMy Timezone: ${userTimezone}\nPreferred Meeting Dates/Times: \n\nKey System Bottlenecks / Architecture Needs:\n`
+  )}`;
 
   const engagementSteps = [
     {
@@ -291,12 +297,12 @@ export const CalendlySection: React.FC = () => {
               {/* Session Duration Selector Tabs */}
               <div className="flex items-center justify-between gap-2 pt-1">
                 <div className="flex flex-wrap gap-1.5">
-                  {meetingTypes.map((m) => (
+                  {meetingViews.map((m) => (
                     <button
                       key={m.id}
-                      onClick={() => setSelectedMeetingType(m.id)}
+                      onClick={() => setSelectedMeetingView(m.id)}
                       className={`px-3 py-1.5 rounded-xl text-xs font-mono transition-all duration-200 ${
-                        selectedMeetingType === m.id
+                        selectedMeetingView === m.id
                           ? 'bg-terracotta text-white font-bold shadow-sm'
                           : 'bg-canvas-card border border-canvas-border text-slate-400 hover:text-white'
                       }`}
@@ -307,37 +313,56 @@ export const CalendlySection: React.FC = () => {
                 </div>
               </div>
 
-              {/* Timezone detection pill */}
-              <div className="flex items-center gap-1.5 text-[11px] font-mono text-slate-400">
-                <Globe className="w-3 h-3 text-terracotta shrink-0" />
-                <span>Detected Timezone: <strong className="text-white">{userTimezone}</strong> (Slots adjust automatically)</span>
+              {/* Timezone detection pill & Fallback indicator */}
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 text-[11px] font-mono text-slate-400">
+                <div className="flex items-center gap-1.5">
+                  <Globe className="w-3 h-3 text-terracotta shrink-0" />
+                  <span>Detected Timezone: <strong className="text-white">{userTimezone}</strong> (Slots adjust automatically)</span>
+                </div>
+                <a
+                  href={directMailtoUrl}
+                  className="inline-flex items-center gap-1 text-terracotta hover:underline font-semibold"
+                >
+                  <MessageSquare className="w-3 h-3" />
+                  <span>Email Priority Dispatch</span>
+                </a>
               </div>
             </div>
 
-            {/* Calendly iFrame with Dynamic Theme & Meeting Type Sync */}
+            {/* Calendly iFrame with Dynamic Theme & View Sync */}
             <div className="relative flex-1 w-full bg-canvas-card dark:bg-[#161513] transition-colors duration-300 min-h-[520px] sm:min-h-[580px]">
               <iframe
-                key={`${theme}-${selectedMeetingType}`}
+                key={`${theme}-${selectedMeetingView}`}
                 src={currentCalendlyEmbedUrl}
                 width="100%"
                 height="620px"
                 frameBorder="0"
-                title={`Schedule ${selectedMeetingType} session with Mohsin Qureshi`}
+                title={`Schedule session with Mohsin Qureshi`}
                 className="w-full h-full min-h-[520px] sm:min-h-[580px]"
               />
             </div>
 
             {/* Direct Fallback Footer */}
-            <div className="p-3 bg-canvas-surface border-t border-canvas-border flex flex-col sm:flex-row sm:items-center justify-between gap-2 text-[11px] font-mono text-slate-400">
-              <span>Having trouble viewing the calendar?</span>
-              <div className="flex items-center gap-3">
+            <div className="p-3.5 bg-canvas-surface border-t border-canvas-border flex flex-col sm:flex-row sm:items-center justify-between gap-2.5 text-[11px] font-mono text-slate-400">
+              <div className="flex items-center gap-1.5">
+                <span className="w-2 h-2 rounded-full bg-emerald-400"></span>
+                <span>Having trouble loading slots? Book directly via:</span>
+              </div>
+              <div className="flex flex-wrap items-center gap-3">
                 <a
-                  href="https://calendly.com/mohsin-qureshi"
+                  href={directMailtoUrl}
+                  className="px-2.5 py-1 rounded-lg bg-terracotta/15 border border-terracotta/40 text-terracotta hover:bg-terracotta hover:text-white font-semibold flex items-center gap-1 transition-all"
+                >
+                  <span>Direct Email Booking</span>
+                  <ArrowRight className="w-3 h-3" />
+                </a>
+                <a
+                  href="https://calendly.com/mohsin-qureshi/30min"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-terracotta hover:underline font-semibold flex items-center gap-1"
+                  className="text-slate-300 hover:text-terracotta hover:underline font-semibold flex items-center gap-1"
                 >
-                  <span>View All Meeting Slots on Calendly</span>
+                  <span>Open 30-Min Tab</span>
                   <ExternalLink className="w-3 h-3" />
                 </a>
               </div>
