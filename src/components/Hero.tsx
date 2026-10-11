@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ArrowUpRight, Sparkles, Terminal, ChevronRight, Activity, Zap, ShieldAlert, Cpu, Sun, Moon } from 'lucide-react';
-import { useTheme } from '../context/ThemeContext';
+import { ArrowUpRight, Sparkles, Terminal, ChevronRight, Activity, Zap, ShieldCheck, Layers } from 'lucide-react';
 
 interface HeroProps {
   onBookCall: () => void;
@@ -9,73 +8,85 @@ interface HeroProps {
   onViewMatrix: () => void;
 }
 
-interface SandboxSlide {
+interface IntelligenceNode {
   id: string;
   tag: string;
   title: string;
   metric: string;
   metricLabel: string;
   description: string;
+  latencySla: string;
+  mechanism: string;
   targetId: string;
   icon: React.ElementType;
 }
 
-const SANDBOX_SLIDES: SandboxSlide[] = [
+const INTELLIGENCE_NODES: IntelligenceNode[] = [
+  {
+    id: 'ingress-gate',
+    tag: 'STAGE 0: INGRESS & SCHEMA GATE',
+    title: 'Regex & Semantic WAF Boundary',
+    metric: '12ms',
+    metricLabel: 'Gateway Intercept',
+    description: 'Intercepts prompt injection vectors and validates Pydantic payloads at the network edge before model invocation.',
+    latencySla: '< 15ms Bound',
+    mechanism: 'Vector similarity against jailbreak vectors + Pydantic schema validation.',
+    targetId: 'interactive-demos',
+    icon: ShieldCheck,
+  },
   {
     id: 'slm-router',
-    tag: 'HIGH-CONCURRENCY ROUTING',
-    title: 'Sub-40ms SLM/LLM Router',
-    metric: '38ms',
-    metricLabel: 'p99 Routing Latency',
-    description: 'Two-tier classifier fast-pathing 80% of routine queries with sub-40ms SLAs under high peak concurrency.',
+    tag: 'STAGE 1: ADAPTIVE ROUTER',
+    title: 'Deterministic SLM Fast-Path',
+    metric: '34ms',
+    metricLabel: 'P99 Latency SLA',
+    description: 'Sub-100M SLM intent classifier bypasses monolithic frontier LLMs for 78% of routine enterprise workflows.',
+    latencySla: '< 40ms P99 SLA',
+    mechanism: 'Fine-tuned DistilBERT / regex classification with Redis semantic caching.',
     targetId: 'interactive-demos',
     icon: Zap,
   },
   {
     id: 'grounded-rag',
-    tag: 'ENTERPRISE CITATION RAG',
-    title: 'Zero-Hallucination Grounded RAG',
-    metric: '<0.5%',
-    metricLabel: 'Hallucination Risk',
-    description: 'Reciprocal Rank Fusion uniting BM25 lexical precision with dense vector recall and strict character-level PDF citations.',
+    tag: 'STAGE 2: RETRIEVAL & GROUNDING',
+    title: 'Reciprocal Rank Fusion RAG',
+    metric: '< 0.5%',
+    metricLabel: 'Hallucination Drift',
+    description: 'Fuses BM25 lexical precision with dense vector embeddings across 50,000+ regulatory enterprise documents.',
+    latencySla: '100% Citation Recall',
+    mechanism: 'RRF reranking + sentence-level citation bounding guardrails.',
     targetId: 'assessment-matrix',
     icon: Activity,
   },
   {
-    id: 'streaming-guardrails',
-    tag: 'NETWORK SECURITY ML',
-    title: 'Real-Time Streaming Guardrails',
+    id: 'egress-verification',
+    tag: 'STAGE 3: VERIFIED EGRESS',
+    title: 'Audited SLA Output & Circuit Breakers',
     metric: '100k+',
-    metricLabel: 'Events / Sec Streamed',
-    description: 'Real-time anomaly detection identifying prompt injection and anomalous telemetry with sub-millisecond edge latency.',
+    metricLabel: 'Peak Req/Sec',
+    description: 'Enforces strict JSON schema validation, wall-clock retry budgets, and automated fallback pathways under surge loads.',
+    latencySla: 'Zero Cascade Failures',
+    mechanism: 'Asynchronous message queues, Kafka event streaming, and fallback schemas.',
     targetId: 'interactive-demos',
-    icon: ShieldAlert,
-  },
-  {
-    id: 'edge-cv',
-    tag: 'INDUSTRIAL VISION',
-    title: 'Edge Computer Vision Platform',
-    metric: '60 FPS',
-    metricLabel: 'Edge Telemetry Rate',
-    description: 'Autonomous worker safety & hazard prevention pipeline powered by PyTorch edge acceleration.',
-    targetId: 'domains',
-    icon: Cpu,
+    icon: Layers,
   },
 ];
 
 export const Hero: React.FC<HeroProps> = ({ onBookCall, onExploreDemos, onViewMatrix }) => {
-  const { theme, toggleTheme } = useTheme();
-  const [activeSlide, setActiveSlide] = useState(0);
+  const [selectedNodeIndex, setSelectedNodeIndex] = useState(1); // Default to SLM router (crown jewel)
 
-  // Auto-cycle through slides every 5 seconds
+  // Auto-cycle only if user has not manually interacted recently
   useEffect(() => {
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (prefersReducedMotion) return;
+
     const timer = setInterval(() => {
-      setActiveSlide((prev) => (prev + 1) % SANDBOX_SLIDES.length);
-    }, 5000);
+      setSelectedNodeIndex((prev) => (prev + 1) % INTELLIGENCE_NODES.length);
+    }, 6000);
     return () => clearInterval(timer);
   }, []);
 
-  const currentSlide = SANDBOX_SLIDES[activeSlide];
+  const currentNode = INTELLIGENCE_NODES[selectedNodeIndex];
 
   const handleNavClick = (anchorId: string) => {
     const el = document.getElementById(anchorId);
@@ -102,7 +113,7 @@ export const Hero: React.FC<HeroProps> = ({ onBookCall, onExploreDemos, onViewMa
             {/* ========================================================= */}
             <div className="lg:col-span-6 relative p-5 sm:p-10 lg:p-14 flex flex-col justify-between terracotta-gradient overflow-hidden z-10">
               
-              {/* Giant Display Watermark Typography (Mobile calibrated to prevent horizontal overflow) */}
+              {/* Giant Display Watermark Typography */}
               <div 
                 aria-hidden="true" 
                 className="absolute -top-3 -left-3 select-none pointer-events-none watermark-text text-[58px] xs:text-[76px] sm:text-[110px] lg:text-[144px] tracking-tighter uppercase leading-[0.82] max-w-full overflow-hidden opacity-25"
@@ -121,13 +132,17 @@ export const Hero: React.FC<HeroProps> = ({ onBookCall, onExploreDemos, onViewMa
                   </span>
                 </div>
 
-                <div className="inline-flex items-center gap-1.5 sm:gap-2 px-2.5 sm:px-3 py-1 rounded-full bg-black/30 backdrop-blur-md border border-white/20 text-[10px] sm:text-[11px] font-mono text-white/90 shrink-0">
-                  <span className="w-2 h-2 rounded-full bg-luxury-gold animate-pulse shrink-0" />
-                  <span>FORWARD DEPLOYMENT TIER</span>
-                </div>
+                <button
+                  onClick={onViewMatrix}
+                  title="Jump to Enterprise Architecture Benchmark Matrix"
+                  className="inline-flex items-center gap-1.5 sm:gap-2 px-2.5 sm:px-3 py-1 rounded-full bg-black/30 backdrop-blur-md border border-white/20 text-[10px] sm:text-[11px] font-mono text-white/90 shrink-0 hover:bg-black/50 transition-colors"
+                >
+                  <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse shrink-0" />
+                  <span>FORWARD DEPLOYMENT STANDARD</span>
+                </button>
               </div>
 
-              {/* Main Headline & Description with clearance for central cutout */}
+              {/* Main Headline & Description */}
               <div className="relative z-20 my-5 sm:my-8 lg:my-12 space-y-2.5 sm:space-y-4 w-full max-w-full lg:max-w-[360px] xl:max-w-[400px]">
                 <h1 className="text-[30px] xs:text-[34px] sm:text-[44px] lg:text-[50px] xl:text-[54px] font-extrabold text-white tracking-tight leading-[1.08] font-sans">
                   Engineering AI that survives{' '}
@@ -136,18 +151,18 @@ export const Hero: React.FC<HeroProps> = ({ onBookCall, onExploreDemos, onViewMa
                 </h1>
                 
                 <p className="text-white/90 text-xs sm:text-sm leading-relaxed font-normal">
-                  Helping enterprise leaders and high-growth startups turn fragile generative prototypes into deterministic, sub-40ms platforms without hallucination.
+                  Hardening fragile generative prototypes into deterministic, sub-40ms enterprise systems with zero hallucination and verifiable FinOps efficiency.
                 </p>
               </div>
 
-              {/* Bottom Actions & Enterprise Social Proof */}
+              {/* Bottom Actions & Institutional Proof Strip */}
               <div className="relative z-20 space-y-3.5 sm:space-y-5 pt-1">
                 <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2.5 sm:gap-3.5 w-full sm:w-auto">
                   <button
-                    onClick={onBookCall}
+                    onClick={() => handleNavClick('domains')}
                     className="w-full sm:w-auto px-6 py-3 rounded-full bg-white text-neutral-900 font-bold text-xs sm:text-sm hover:bg-neutral-100 transition-all hero-pill-glow flex items-center justify-center gap-2 group hover:scale-[1.02] active:scale-[0.98] min-h-[44px]"
                   >
-                    <span>View Work</span>
+                    <span>Explore Case Studies</span>
                     <ArrowUpRight className="w-4 h-4 text-neutral-900 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
                   </button>
 
@@ -156,19 +171,37 @@ export const Hero: React.FC<HeroProps> = ({ onBookCall, onExploreDemos, onViewMa
                     className="w-full sm:w-auto px-5 py-3 rounded-full bg-black/35 backdrop-blur-md border border-white/25 text-white font-semibold text-xs sm:text-sm hover:bg-black/50 transition-all flex items-center justify-center gap-2 min-h-[44px]"
                   >
                     <Sparkles className="w-4 h-4 text-luxury-gold shrink-0" />
-                    <span>Live Sandboxes</span>
+                    <span>Run Architecture Lab</span>
+                  </button>
+
+                  <button
+                    onClick={onBookCall}
+                    className="w-full sm:w-auto px-4 py-3 rounded-full bg-transparent border border-white/30 text-white/90 font-mono text-xs hover:bg-white/10 transition-colors flex items-center justify-center gap-1.5 min-h-[44px]"
+                  >
+                    <span>Book Audit</span>
+                    <ArrowUpRight className="w-3.5 h-3.5 text-white/70" />
                   </button>
                 </div>
 
-                {/* Social Proof Avatars */}
-                <div className="flex items-center gap-2.5 sm:gap-3 pt-0.5">
-                  <div className="flex -space-x-2 shrink-0">
-                    <div className="w-7 h-7 rounded-full bg-black/60 border-2 border-white/60 flex items-center justify-center text-[10px] font-bold text-white shadow-sm">FK</div>
-                    <div className="w-7 h-7 rounded-full bg-[#3B2519] border-2 border-white/60 flex items-center justify-center text-[10px] font-bold text-amber-200 shadow-sm">AC</div>
-                    <div className="w-7 h-7 rounded-full bg-[#182635] border-2 border-white/60 flex items-center justify-center text-[10px] font-bold text-slate-100 shadow-sm">NV</div>
+                {/* Institutional Proof Strip (Clean, Verified, Free of Fake Avatar Clutter) */}
+                <div className="pt-1">
+                  <div className="text-[10px] font-mono uppercase tracking-wider text-white/70 mb-1.5 flex items-center justify-between">
+                    <span>Proven Enterprise Deployments</span>
+                    <button
+                      onClick={() => handleNavClick('evidence-ledger')}
+                      className="text-amber-200 hover:underline flex items-center gap-1 normal-case font-medium"
+                    >
+                      <span>View Methodology</span> ↗
+                    </button>
                   </div>
-                  <div className="text-[11px] sm:text-xs text-white/90 font-medium">
-                    Trusted across Flipkart • Accenture • Novartis
+                  <div className="flex flex-wrap items-center gap-2 sm:gap-3 font-mono text-xs text-white/95 font-semibold">
+                    <span className="px-2.5 py-1 rounded-lg bg-black/25 border border-white/15">Flipkart</span>
+                    <span className="text-white/40">•</span>
+                    <span className="px-2.5 py-1 rounded-lg bg-black/25 border border-white/15">Accenture Strategy</span>
+                    <span className="text-white/40">•</span>
+                    <span className="px-2.5 py-1 rounded-lg bg-black/25 border border-white/15">Novartis</span>
+                    <span className="text-white/40">•</span>
+                    <span className="px-2.5 py-1 rounded-lg bg-black/25 border border-white/15">Ericsson</span>
                   </div>
                 </div>
 
@@ -204,160 +237,131 @@ export const Hero: React.FC<HeroProps> = ({ onBookCall, onExploreDemos, onViewMa
             </div>
 
             {/* ========================================================= */}
-            {/* RIGHT PANEL: Elegant Off-White / Dark Obsidian Floating Card */}
+            {/* RIGHT PANEL: Enterprise AI Observatory & Interactive Core */}
             {/* ========================================================= */}
             <div className="lg:col-span-6 relative p-5 sm:p-8 lg:p-12 xl:p-14 flex flex-col justify-between bg-[#F7F4EE] dark:bg-[#1A1815] text-neutral-900 dark:text-neutral-100 z-10 transition-colors duration-300">
               
-              {/* Top Navigation Links & Actions */}
+              {/* Top Observatory Status Strip (Clean, No Duplicate Nav) */}
               <div className="flex items-center justify-between gap-3 border-b border-black/10 dark:border-white/10 pb-4">
-                <nav className="hidden md:flex items-center space-x-3.5 xl:space-x-5 text-xs xl:text-sm font-medium text-neutral-600 dark:text-neutral-400 shrink-0">
-                  <button 
-                    onClick={() => handleNavClick('hero')} 
-                    className="text-neutral-900 dark:text-white font-bold relative pb-1 after:absolute after:bottom-0 after:left-0 after:right-0 after:h-0.5 after:bg-terracotta"
-                  >
-                    Home
-                  </button>
-                  <button 
-                    onClick={() => handleNavClick('assessment-matrix')} 
-                    className="hover:text-terracotta dark:hover:text-terracotta transition-colors"
-                  >
-                    Architecture
-                  </button>
-                  <button 
-                    onClick={() => handleNavClick('interactive-demos')} 
-                    className="hover:text-terracotta dark:hover:text-terracotta transition-colors"
-                  >
-                    Sandboxes
-                  </button>
-                  <button 
-                    onClick={() => handleNavClick('experience')} 
-                    className="hover:text-terracotta dark:hover:text-terracotta transition-colors"
-                  >
-                    Track Record
-                  </button>
-                  <button 
-                    onClick={onBookCall} 
-                    className="hover:text-terracotta dark:hover:text-terracotta transition-colors font-semibold text-terracotta"
-                  >
-                    Contact
-                  </button>
-                </nav>
+                <div className="flex items-center gap-2">
+                  <div className="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse" />
+                  <span className="font-mono text-xs font-bold uppercase tracking-wider text-neutral-800 dark:text-neutral-200">
+                    AI SYSTEM OBSERVATORY
+                  </span>
+                </div>
 
-                {/* Mobile Quick Benchmark Link & Theme Toggle */}
-                <div className="flex items-center justify-between w-full md:w-auto gap-2 shrink-0">
-                  <button
-                    onClick={onViewMatrix}
-                    className="md:hidden inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-neutral-200/80 dark:bg-neutral-800 text-[11px] font-mono text-neutral-800 dark:text-neutral-200 hover:bg-neutral-300 dark:hover:bg-neutral-700 transition-colors shadow-sm whitespace-nowrap"
-                    title="Jump to Enterprise Architecture Benchmark Matrix"
-                  >
-                    <span className="font-bold text-terracotta">Architecture Matrix</span> ↗
-                  </button>
-
-                  <button
-                    onClick={toggleTheme}
-                    aria-label={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}
-                    title={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}
-                    className="p-1.5 sm:p-2 rounded-full bg-neutral-200/80 dark:bg-neutral-800 hover:bg-neutral-300 dark:hover:bg-neutral-700 text-neutral-800 dark:text-neutral-200 transition-all apple-spring hover:scale-110 active:scale-95 flex items-center justify-center shadow-sm shrink-0"
-                  >
-                    {theme === 'dark' ? (
-                      <Sun className="w-4 h-4 text-amber-400 transition-transform hover:rotate-45" />
-                    ) : (
-                      <Moon className="w-4 h-4 text-terracotta transition-transform hover:-rotate-12" />
-                    )}
-                  </button>
+                <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-canvas-card border border-canvas-border text-[11px] font-mono text-terracotta">
+                  <span>Routing Topology: Live</span>
                 </div>
               </div>
 
-              {/* Right Content Statement & Status Beacon */}
-              <div className="my-5 sm:my-8 lg:my-10 space-y-2.5 sm:space-y-4 w-full max-w-none">
-                <div className="inline-flex items-center gap-2 text-xs font-mono font-semibold tracking-wider text-terracotta uppercase">
-                  <span>AVAILABLE FOR ADVISORY & CONTRACTS</span>
-                  <span className="w-2.5 h-2.5 rounded-full bg-terracotta animate-ping" />
-                </div>
-
-                <h2 className="text-xl sm:text-3xl lg:text-4xl font-extrabold text-neutral-900 dark:text-white tracking-tight leading-snug">
-                  Designing Enterprise Systems{' '}
-                  <span className="font-serif italic font-normal text-terracotta">that people enjoy using.</span>
+              {/* Right Content Statement */}
+              <div className="my-4 sm:my-6 space-y-2 w-full max-w-none">
+                <span className="text-[11px] font-mono text-terracotta uppercase tracking-wider font-semibold">
+                  INTERACTIVE INTELLIGENCE CORE
+                </span>
+                <h2 className="text-xl sm:text-2xl lg:text-3xl font-extrabold text-neutral-900 dark:text-white tracking-tight leading-snug">
+                  Select an architectural node to inspect{' '}
+                  <span className="font-serif italic font-normal text-terracotta">production telemetry.</span>
                 </h2>
               </div>
 
-              {/* Bottom Right Interactive Sandbox Showcase */}
-              <div className="space-y-4 pt-1">
-                <div className="rounded-2xl bg-white dark:bg-[#23201C] p-4 sm:p-6 border border-black/10 dark:border-white/10 shadow-lg relative overflow-hidden group transition-colors duration-300">
-                  
-                  {/* Slide Content */}
-                  <AnimatePresence mode="wait">
-                    <motion.div
-                      key={currentSlide.id}
-                      initial={{ opacity: 0, y: 10 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      exit={{ opacity: 0, y: -10 }}
-                      transition={{ duration: 0.3 }}
-                      className="space-y-3"
+              {/* 4-Node Interactive Selection Strip */}
+              <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 pb-2">
+                {INTELLIGENCE_NODES.map((node, idx) => {
+                  const isSelected = selectedNodeIndex === idx;
+                  const Icon = node.icon;
+
+                  return (
+                    <button
+                      key={node.id}
+                      onClick={() => setSelectedNodeIndex(idx)}
+                      className={`p-2.5 rounded-xl text-left border transition-all duration-200 apple-spring ${
+                        isSelected
+                          ? 'bg-terracotta border-terracotta text-white shadow-apple-card scale-[1.02]'
+                          : 'bg-white/80 dark:bg-canvas-card border-black/10 dark:border-white/10 text-neutral-600 dark:text-slate-400 hover:border-terracotta/40'
+                      }`}
                     >
-                      <div className="flex items-start justify-between gap-3">
-                        <div className="flex items-center gap-2.5 min-w-0">
-                          <div className="w-8 h-8 rounded-lg bg-orange-100 dark:bg-terracotta/20 flex items-center justify-center text-terracotta shrink-0">
-                            <currentSlide.icon className="w-4 h-4" />
-                          </div>
-                          <div className="min-w-0">
-                            <span className="text-[10px] font-mono font-bold tracking-wider text-terracotta uppercase block truncate">
-                              {currentSlide.tag}
-                            </span>
-                            <h4 className="text-sm sm:text-base font-bold text-neutral-900 dark:text-white truncate sm:whitespace-normal">
-                              {currentSlide.title}
-                            </h4>
-                          </div>
-                        </div>
-
-                        {/* Highlight Metric */}
-                        <div className="text-right shrink-0">
-                          <div className="text-base sm:text-lg font-black font-mono text-terracotta leading-none">
-                            {currentSlide.metric}
-                          </div>
-                          <div className="text-[9px] font-mono text-neutral-500 dark:text-neutral-400 uppercase mt-0.5 whitespace-nowrap">
-                            {currentSlide.metricLabel}
-                          </div>
-                        </div>
-                      </div>
-
-                      <p className="text-xs text-neutral-600 dark:text-neutral-300 leading-relaxed">
-                        {currentSlide.description}
-                      </p>
-
-                      <div className="pt-2 flex items-center justify-between gap-2 border-t border-neutral-100 dark:border-neutral-800">
-                        <button
-                          onClick={() => handleNavClick(currentSlide.targetId)}
-                          className="text-xs font-bold text-neutral-900 dark:text-white hover:text-terracotta transition-colors flex items-center gap-1 group/btn"
-                        >
-                          <span>Explore System Sandbox</span>
-                          <ChevronRight className="w-3.5 h-3.5 group-hover/btn:translate-x-1 transition-transform" />
-                        </button>
-                        
-                        <span className="text-[10px] font-mono text-neutral-400 dark:text-neutral-500 shrink-0">
-                          {activeSlide + 1} of {SANDBOX_SLIDES.length}
+                      <div className="flex items-center justify-between">
+                        <Icon className={`w-3.5 h-3.5 ${isSelected ? 'text-white' : 'text-terracotta'}`} />
+                        <span className={`text-[10px] font-mono font-bold ${isSelected ? 'text-white' : 'text-terracotta'}`}>
+                          {node.metric}
                         </span>
                       </div>
-                    </motion.div>
-                  </AnimatePresence>
+                      <div className={`text-[11px] font-bold mt-1.5 truncate ${isSelected ? 'text-white' : 'text-neutral-900 dark:text-white'}`}>
+                        {node.title.split(' ')[0]}
+                      </div>
+                    </button>
+                  );
+                })}
+              </div>
 
-                </div>
+              {/* Glass Inspector Panel for the Selected Node */}
+              <div className="rounded-2xl bg-white/90 dark:bg-[#23201C] p-4 sm:p-6 border border-black/10 dark:border-white/10 shadow-lg relative overflow-hidden transition-colors duration-300">
+                <AnimatePresence mode="wait">
+                  <motion.div
+                    key={currentNode.id}
+                    initial={{ opacity: 0, y: 8 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -8 }}
+                    transition={{ duration: 0.25 }}
+                    className="space-y-3.5"
+                  >
+                    <div className="flex items-start justify-between gap-3">
+                      <div className="flex items-center gap-2.5 min-w-0">
+                        <div className="w-8 h-8 rounded-lg bg-orange-100 dark:bg-terracotta/20 flex items-center justify-center text-terracotta shrink-0">
+                          <currentNode.icon className="w-4 h-4" />
+                        </div>
+                        <div className="min-w-0">
+                          <span className="text-[10px] font-mono font-bold tracking-wider text-terracotta uppercase block truncate">
+                            {currentNode.tag}
+                          </span>
+                          <h3 className="text-sm sm:text-base font-bold text-neutral-900 dark:text-white truncate sm:whitespace-normal font-sans">
+                            {currentNode.title}
+                          </h3>
+                        </div>
+                      </div>
 
-                {/* Pagination Dots (Matching Reference Carousel Dots) */}
-                <div className="flex items-center justify-center gap-2 pt-1">
-                  {SANDBOX_SLIDES.map((_, idx) => (
-                    <button
-                      key={idx}
-                      onClick={() => setActiveSlide(idx)}
-                      aria-label={`Go to slide ${idx + 1}`}
-                      className={`h-2.5 rounded-full transition-all duration-300 ${
-                        activeSlide === idx
-                          ? 'w-7 bg-terracotta'
-                          : 'w-2.5 bg-neutral-300 dark:bg-neutral-700 hover:bg-neutral-400 dark:hover:bg-neutral-600'
-                      }`}
-                    />
-                  ))}
-                </div>
+                      {/* Highlight Metric */}
+                      <div className="text-right shrink-0">
+                        <div className="text-base sm:text-xl font-black font-mono text-terracotta leading-none">
+                          {currentNode.metric}
+                        </div>
+                        <div className="text-[9px] font-mono text-neutral-500 dark:text-neutral-400 uppercase mt-0.5 whitespace-nowrap">
+                          {currentNode.metricLabel}
+                        </div>
+                      </div>
+                    </div>
+
+                    <p className="text-xs text-neutral-600 dark:text-neutral-300 leading-relaxed font-sans">
+                      {currentNode.description}
+                    </p>
+
+                    <div className="p-3 rounded-xl bg-neutral-100 dark:bg-canvas-card border border-neutral-200 dark:border-canvas-border space-y-1 text-[11px] font-mono">
+                      <div className="flex items-center justify-between text-slate-400">
+                        <span>ENFORCEMENT SLA:</span>
+                        <span className="text-emerald-500 font-semibold">{currentNode.latencySla}</span>
+                      </div>
+                      <div className="text-neutral-700 dark:text-slate-300 truncate">
+                        {currentNode.mechanism}
+                      </div>
+                    </div>
+
+                    <div className="pt-2 flex items-center justify-between gap-2 border-t border-neutral-100 dark:border-neutral-800">
+                      <button
+                        onClick={() => handleNavClick(currentNode.targetId)}
+                        className="text-xs font-bold text-neutral-900 dark:text-white hover:text-terracotta transition-colors flex items-center gap-1 group/btn"
+                      >
+                        <span>Test in Live Sandbox</span>
+                        <ChevronRight className="w-3.5 h-3.5 group-hover/btn:translate-x-1 transition-transform" />
+                      </button>
+                      
+                      <span className="text-[10px] font-mono text-neutral-400 dark:text-neutral-500 shrink-0">
+                        Node {selectedNodeIndex + 1} of {INTELLIGENCE_NODES.length}
+                      </span>
+                    </div>
+                  </motion.div>
+                </AnimatePresence>
               </div>
 
             </div>

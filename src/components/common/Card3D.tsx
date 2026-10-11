@@ -1,5 +1,5 @@
 import React, { useRef, useState } from 'react';
-import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
+import { motion, useMotionValue, useSpring, useTransform, useReducedMotion } from 'framer-motion';
 
 interface Card3DProps {
   children: React.ReactNode;
@@ -14,6 +14,7 @@ export const Card3D: React.FC<Card3DProps> = ({
   maxRotation = 7,
   glareOpacity = 0.12
 }) => {
+  const shouldReduceMotion = useReducedMotion();
   const cardRef = useRef<HTMLDivElement>(null);
   const [isHovered, setIsHovered] = useState(false);
 
@@ -52,6 +53,10 @@ export const Card3D: React.FC<Card3DProps> = ({
     x.set(0);
     y.set(0);
   };
+
+  if (shouldReduceMotion) {
+    return <div className={className}>{children}</div>;
+  }
 
   return (
     <div

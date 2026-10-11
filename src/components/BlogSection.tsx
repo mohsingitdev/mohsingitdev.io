@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { BLOG_POSTS } from '../data/blogPosts';
 import { BlogPost } from '../types';
 import { BookOpen, Clock, Calendar, ArrowRight, X, Copy, Check, Sparkles, Terminal } from 'lucide-react';
@@ -11,6 +11,22 @@ interface BlogSectionProps {
 export const BlogSection: React.FC<BlogSectionProps> = ({ onBookCall }) => {
   const [activePost, setActivePost] = useState<BlogPost | null>(null);
   const [copiedCodeId, setCopiedCodeId] = useState<string | null>(null);
+
+  useEffect(() => {
+    if (!activePost) return;
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        setActivePost(null);
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    const prevOverflow = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+      document.body.style.overflow = prevOverflow;
+    };
+  }, [activePost]);
 
   const handleCopy = (code: string, id: string) => {
     navigator.clipboard.writeText(code);
@@ -37,7 +53,6 @@ export const BlogSection: React.FC<BlogSectionProps> = ({ onBookCall }) => {
       </div>
 
       {/* Blog Cards Grid */}
-      {/* Blog Cards Grid */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-5 sm:gap-8">
         {BLOG_POSTS.map((post) => (
           <Card3D
@@ -46,9 +61,18 @@ export const BlogSection: React.FC<BlogSectionProps> = ({ onBookCall }) => {
             maxRotation={6}
             glareOpacity={0.12}
           >
-            <div
+            <article
               onClick={() => setActivePost(post)}
-              className="rounded-3xl bg-canvas-surface border border-canvas-border p-5 sm:p-7 flex flex-col justify-between space-y-5 sm:space-y-6 hover:border-terracotta/50 cursor-pointer group transition-all duration-300 shadow-subtle-card apple-card-hover h-full"
+              onKeyDown={(e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                  e.preventDefault();
+                  setActivePost(post);
+                }
+              }}
+              role="button"
+              tabIndex={0}
+              aria-label={`Read architectural blueprint: ${post.title}`}
+              className="rounded-3xl bg-canvas-surface border border-canvas-border p-5 sm:p-7 flex flex-col justify-between space-y-5 sm:space-y-6 hover:border-terracotta/50 cursor-pointer group transition-all duration-300 shadow-subtle-card apple-card-hover h-full focus:outline-none focus:ring-2 focus:ring-terracotta"
             >
               <div className="space-y-3">
                 <div className="flex items-center justify-between text-xs font-mono text-slate-400">
@@ -88,14 +112,19 @@ export const BlogSection: React.FC<BlogSectionProps> = ({ onBookCall }) => {
                   <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
                 </div>
               </div>
-            </div>
+            </article>
           </Card3D>
         ))}
       </div>
 
       {/* Active Post Reader Modal */}
       {activePost && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 bg-black/85 backdrop-blur-md overflow-y-auto">
+        <div 
+          role="dialog" 
+          aria-modal="true" 
+          aria-labelledby="active-blog-modal-title"
+          className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 bg-black/85 backdrop-blur-md overflow-y-auto"
+        >
           <div className="relative w-full max-w-4xl rounded-2xl bg-canvas-surface border border-terracotta/40 shadow-apple-elevated max-h-[92vh] overflow-y-auto p-5 sm:p-10 space-y-6 sm:space-y-8 my-4 sm:my-8 text-slate-200 touch-scroll">
             
             {/* Modal Header */}
@@ -106,7 +135,7 @@ export const BlogSection: React.FC<BlogSectionProps> = ({ onBookCall }) => {
                   <span>•</span>
                   <span className="text-terracotta">{activePost.readingTime}</span>
                 </div>
-                <h2 className="text-xl sm:text-3xl font-bold text-white leading-tight font-sans">
+                <h2 id="active-blog-modal-title" className="text-xl sm:text-3xl font-bold text-white leading-tight font-sans">
                   {activePost.title}
                 </h2>
                 <div className="flex flex-wrap gap-1.5 pt-1">
@@ -121,7 +150,7 @@ export const BlogSection: React.FC<BlogSectionProps> = ({ onBookCall }) => {
               <button
                 onClick={() => setActivePost(null)}
                 aria-label="Close article modal"
-                className="p-2 min-h-[40px] min-w-[40px] rounded-xl bg-canvas-card border border-canvas-border text-slate-400 hover:text-white hover:border-terracotta transition-colors flex items-center justify-center shrink-0"
+                className="p-2.5 min-h-[44px] min-w-[44px] rounded-xl bg-canvas-card border border-canvas-border text-slate-400 hover:text-white hover:border-terracotta transition-colors flex items-center justify-center shrink-0 focus:outline-none focus:ring-2 focus:ring-terracotta"
               >
                 <X className="w-5 h-5" />
               </button>

@@ -54,7 +54,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onBookCall }) => {
         {/* Desktop Navigation Links */}
         <nav className="hidden lg:flex items-center space-x-6 text-xs font-medium text-slate-600 dark:text-slate-400">
           <a href="#assessment-matrix" className="hover:text-terracotta dark:hover:text-white transition-colors">Architecture</a>
-          <a href="#philosophy" className="hover:text-terracotta dark:hover:text-white transition-colors">Philosophy</a>
+          <a href="#evidence-ledger" className="hover:text-terracotta dark:hover:text-white transition-colors">Evidence</a>
           <a href="#domains" className="hover:text-terracotta dark:hover:text-white transition-colors">Solutions</a>
           <a href="#interactive-demos" className="hover:text-terracotta dark:hover:text-white transition-colors">Sandboxes</a>
           <a href="#experience" className="hover:text-terracotta dark:hover:text-white transition-colors">Track Record</a>
@@ -130,8 +130,10 @@ export const Navbar: React.FC<NavbarProps> = ({ onBookCall }) => {
           
           <button 
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="p-1.5 text-slate-600 dark:text-slate-300 hover:text-terracotta rounded-lg"
+            className="p-2 text-slate-600 dark:text-slate-300 hover:text-terracotta rounded-lg min-h-[44px] min-w-[44px] flex items-center justify-center"
             aria-label="Toggle Navigation Menu"
+            aria-expanded={mobileMenuOpen}
+            aria-controls="mobile-nav-drawer"
           >
             {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
           </button>
@@ -146,14 +148,25 @@ export const Navbar: React.FC<NavbarProps> = ({ onBookCall }) => {
             onClick={() => setMobileMenuOpen(false)}
             aria-hidden="true"
           />
-          <div className="pointer-events-auto fixed top-16 left-4 right-4 max-w-md mx-auto bg-canvas-card/95 dark:bg-[#161513]/95 backdrop-blur-2xl border border-canvas-border rounded-3xl p-5 space-y-2 text-sm font-medium shadow-2xl animate-in slide-in-from-top-4 duration-200 z-50">
+          <div 
+            id="mobile-nav-drawer"
+            className="pointer-events-auto fixed top-16 left-4 right-4 max-w-md mx-auto bg-canvas-card/95 dark:bg-[#161513]/95 backdrop-blur-2xl border border-canvas-border rounded-3xl p-5 space-y-2 text-sm font-medium shadow-2xl animate-in slide-in-from-top-4 duration-200 z-50"
+          >
             <a 
               href="#assessment-matrix" 
               onClick={() => setMobileMenuOpen(false)}
               className="flex items-center justify-between text-neutral-800 dark:text-slate-200 hover:text-terracotta py-2 px-1 rounded-xl transition-colors"
             >
               <span>Architecture Matrix</span>
-              <span className="text-xs font-mono text-terracotta font-semibold">99.98% SLA</span>
+              <span className="text-xs font-mono text-terracotta font-semibold">&lt;40ms SLA</span>
+            </a>
+            <a 
+              href="#evidence-ledger" 
+              onClick={() => setMobileMenuOpen(false)}
+              className="flex items-center justify-between text-neutral-800 dark:text-slate-200 hover:text-terracotta py-2 px-1 rounded-xl transition-colors"
+            >
+              <span>Evidence Ledger</span>
+              <span className="text-[10px] font-mono bg-emerald-500/15 text-emerald-400 px-1.5 py-0.5 rounded">Verified</span>
             </a>
             <a 
               href="#philosophy" 

@@ -3,6 +3,7 @@ import { Navbar } from './components/Navbar';
 import { NeuralBackground } from './components/NeuralBackground';
 import { Hero } from './components/Hero';
 import { LayaAssessmentMatrix } from './components/LayaAssessmentMatrix';
+import { ArchitectureProofLedger } from './components/ArchitectureProofLedger';
 import { PrototypeVsProduction } from './components/PrototypeVsProduction';
 import { InteractiveDemosSection } from './components/InteractiveDemosSection';
 import { DomainMatrix } from './components/DomainMatrix';
@@ -35,6 +36,14 @@ export const App: React.FC = () => {
 
   return (
     <div className="relative min-h-screen bg-canvas text-slate-100 flex flex-col font-sans selection:bg-[#D97757] selection:text-white overflow-x-hidden w-full">
+      {/* Accessible Skip Navigation Link */}
+      <a
+        href="#main-content"
+        className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2.5 focus:bg-terracotta focus:text-white focus:rounded-full focus:shadow-2xl font-mono text-xs focus:ring-2 focus:ring-white transition-all pointer-events-auto"
+      >
+        Skip to main content
+      </a>
+
       {/* Interactive AI Neural Background Canvas */}
       <NeuralBackground />
 
@@ -42,7 +51,7 @@ export const App: React.FC = () => {
       <Navbar onBookCall={scrollToBooking} />
 
       {/* Main Content Sections: Production AI Architecture Portfolio */}
-      <main className="flex-1 relative z-10">
+      <main id="main-content" className="flex-1 relative z-10">
         <Hero
           onBookCall={scrollToBooking}
           onExploreDemos={scrollToDemos}
@@ -52,22 +61,25 @@ export const App: React.FC = () => {
         {/* 1. Enterprise Architectural Benchmark Matrix */}
         <LayaAssessmentMatrix onBookCall={scrollToBooking} />
 
-        {/* 2. Production Philosophy (Prototype vs Production) */}
+        {/* 2. Evidence Architecture & Benchmark Proof Ledger (Methodology & Baselines) */}
+        <ArchitectureProofLedger />
+
+        {/* 3. Production Philosophy (Prototype vs Production) */}
         <PrototypeVsProduction />
 
-        {/* 3. Tangible Interactive Evidence (Elevated) */}
+        {/* 4. Tangible Interactive Evidence (Routing & Grounded RAG Sandboxes) */}
         <InteractiveDemosSection />
 
-        {/* 3. Domain Blueprints (Solt Wagner Folioblox Style) */}
+        {/* 5. Domain Blueprints (Solt Wagner Folioblox Style) */}
         <DomainMatrix onBookCall={scrollToBooking} onExploreDemo={scrollToDemos} />
 
-        {/* 4. Enterprise Pedigree & Academic Track Record */}
+        {/* 6. Enterprise Pedigree & Academic Track Record */}
         <ExperienceTimeline />
 
-        {/* 5. Software Craftsmanship & Thought Leadership Blog */}
+        {/* 7. Software Craftsmanship & Thought Leadership Blog */}
         <BlogSection onBookCall={scrollToBooking} />
 
-        {/* 6. High-Converting Booking Funnel */}
+        {/* 8. High-Converting Booking Funnel */}
         <CalendlySection />
       </main>
 

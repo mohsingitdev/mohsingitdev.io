@@ -19,6 +19,9 @@ export const NeuralBackground: React.FC = () => {
     let centerX = width / 2;
     let centerY = height / 2;
 
+    // Accessibility check: honor prefers-reduced-motion
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
     // Mouse & Camera Parallax state
     let mouse = { x: -1000, y: -1000, active: false };
     let cameraAngleX = 0;
@@ -31,6 +34,7 @@ export const NeuralBackground: React.FC = () => {
     let scrollDelta = 0;
 
     const handleMouseMove = (e: MouseEvent) => {
+      if (prefersReducedMotion) return;
       mouse.x = e.clientX;
       mouse.y = e.clientY;
       mouse.active = true;
@@ -45,6 +49,7 @@ export const NeuralBackground: React.FC = () => {
     };
 
     const handleScroll = () => {
+      if (prefersReducedMotion) return;
       const currentScrollY = window.scrollY;
       scrollDelta += (currentScrollY - lastScrollY) * 0.4;
       lastScrollY = currentScrollY;
@@ -57,11 +62,25 @@ export const NeuralBackground: React.FC = () => {
       centerX = width / 2;
       centerY = height / 2;
       initParticles();
+      if (prefersReducedMotion) {
+        render(); // render single frame on resize
+      }
     };
 
-    window.addEventListener('mousemove', handleMouseMove, { passive: true });
-    document.addEventListener('mouseleave', handleMouseLeave);
-    window.addEventListener('scroll', handleScroll, { passive: true });
+    const handleVisibilityChange = () => {
+      if (document.hidden) {
+        cancelAnimationFrame(animationFrameId);
+      } else if (!prefersReducedMotion) {
+        animationFrameId = requestAnimationFrame(render);
+      }
+    };
+
+    if (!prefersReducedMotion) {
+      window.addEventListener('mousemove', handleMouseMove, { passive: true });
+      document.addEventListener('mouseleave', handleMouseLeave);
+      window.addEventListener('scroll', handleScroll, { passive: true });
+    }
+    document.addEventListener('visibilitychange', handleVisibilityChange);
     window.addEventListener('resize', handleResize, { passive: true });
 
     // 3D Particle Structure
@@ -225,15 +244,20 @@ export const NeuralBackground: React.FC = () => {
         }
       }
 
-      animationFrameId = requestAnimationFrame(render);
+      if (!prefersReducedMotion) {
+        animationFrameId = requestAnimationFrame(render);
+      }
     };
 
     render();
 
     return () => {
-      window.removeEventListener('mousemove', handleMouseMove);
-      document.removeEventListener('mouseleave', handleMouseLeave);
-      window.removeEventListener('scroll', handleScroll);
+      if (!prefersReducedMotion) {
+        window.removeEventListener('mousemove', handleMouseMove);
+        document.removeEventListener('mouseleave', handleMouseLeave);
+        window.removeEventListener('scroll', handleScroll);
+      }
+      document.removeEventListener('visibilitychange', handleVisibilityChange);
       window.removeEventListener('resize', handleResize);
       cancelAnimationFrame(animationFrameId);
     };
