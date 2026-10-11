@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Terminal, Menu, X, ArrowUpRight, Github, Linkedin, Sun, Moon } from 'lucide-react';
+import { Terminal, Menu, X, ArrowUpRight, Github, Linkedin, Sun, Moon, FileText } from 'lucide-react';
 import { useTheme } from '../context/ThemeContext';
 
 interface NavbarProps {
@@ -99,11 +99,21 @@ export const Navbar: React.FC<NavbarProps> = ({ onBookCall, onRequestResume }) =
             )}
           </button>
 
+          {onRequestResume && (
+            <button
+              onClick={onRequestResume}
+              className="px-3.5 py-1.5 text-xs font-semibold rounded-full bg-canvas-subtle hover:bg-canvas-card border border-canvas-border text-white transition-all shadow-sm flex items-center gap-1.5 apple-spring hover:scale-[1.03] active:scale-[0.98]"
+            >
+              <FileText className="w-3.5 h-3.5 text-amber-400" />
+              <span>Request CV</span>
+            </button>
+          )}
+
           <button
             onClick={onBookCall}
             className="px-4 py-1.5 text-xs font-semibold rounded-full bg-terracotta text-white hover:bg-terracotta-dark transition-all shadow-sm flex items-center gap-1.5 apple-spring hover:scale-[1.03] active:scale-[0.98]"
           >
-            <span>Book Audit</span>
+            <span>Schedule Sync</span>
             <ArrowUpRight className="w-3.5 h-3.5" />
           </button>
         </div>
@@ -224,12 +234,23 @@ export const Navbar: React.FC<NavbarProps> = ({ onBookCall, onRequestResume }) =
                   <Linkedin className="w-4 h-4" />
                 </a>
               </div>
-              <button
-                onClick={() => { setMobileMenuOpen(false); onBookCall(); }}
-                className="px-4 py-2 text-xs font-semibold rounded-full bg-terracotta text-white shadow-sm hover:bg-terracotta-dark apple-spring active:scale-95 transition-all"
-              >
-                Book Strategy Call
-              </button>
+              <div className="flex items-center gap-2">
+                {onRequestResume && (
+                  <button
+                    onClick={() => { setMobileMenuOpen(false); onRequestResume(); }}
+                    className="px-3.5 py-2 text-xs font-semibold rounded-full bg-canvas-subtle border border-canvas-border text-white shadow-sm flex items-center gap-1.5"
+                  >
+                    <FileText className="w-3.5 h-3.5 text-amber-400" />
+                    <span>Request CV</span>
+                  </button>
+                )}
+                <button
+                  onClick={() => { setMobileMenuOpen(false); onBookCall(); }}
+                  className="px-4 py-2 text-xs font-semibold rounded-full bg-terracotta text-white shadow-sm hover:bg-terracotta-dark apple-spring active:scale-95 transition-all"
+                >
+                  Schedule Sync
+                </button>
+              </div>
             </div>
           </div>
         </>

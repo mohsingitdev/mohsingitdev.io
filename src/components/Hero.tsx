@@ -195,7 +195,7 @@ export const Hero: React.FC<HeroProps> = ({ onBookCall, onExploreDemos, onViewMa
                       onClick={onBookCall}
                       className="px-4 py-2 sm:px-4.5 sm:py-2.5 rounded-full bg-white/10 hover:bg-white/20 backdrop-blur-md border border-white/25 text-white/90 font-mono text-xs transition-colors flex items-center justify-center gap-1.5 min-h-[38px]"
                     >
-                      <span>Book Audit</span>
+                      <span>Schedule Sync</span>
                       <ArrowUpRight className="w-3 h-3 text-white/70" />
                     </button>
                   </div>

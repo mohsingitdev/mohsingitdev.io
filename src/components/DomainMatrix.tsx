@@ -147,7 +147,7 @@ export const DomainMatrix: React.FC<DomainMatrixProps> = ({ onBookCall, onExplor
                     onClick={onBookCall}
                     className="text-xs font-mono font-semibold text-slate-200 hover:text-terracotta flex items-center gap-1 transition-colors self-start sm:self-auto"
                   >
-                    <span>Commission System</span>
+                    <span>Discuss Architecture</span>
                     <ArrowUpRight className="w-3.5 h-3.5" />
                   </button>
                 </div>

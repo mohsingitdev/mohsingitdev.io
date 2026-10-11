@@ -9,7 +9,6 @@ import { InteractiveDemosSection } from './components/InteractiveDemosSection';
 import { DomainMatrix } from './components/DomainMatrix';
 import { ExperienceTimeline } from './components/ExperienceTimeline';
 import { BlogSection } from './components/BlogSection';
-import { OfferingsShowcase } from './components/OfferingsShowcase';
 import { CalendlySection } from './components/CalendlySection';
 import { ResumeRequestModal } from './components/ResumeRequestModal';
 import { Footer } from './components/Footer';
@@ -93,10 +92,7 @@ export const App: React.FC = () => {
         {/* 7. Software Craftsmanship & Thought Leadership Blog */}
         <BlogSection onBookCall={scrollToBooking} />
 
-        {/* 8. Topmate & Mentorship Offerings with Animated Banners */}
-        <OfferingsShowcase onBookCall={scrollToBooking} />
-
-        {/* 9. Direct Client Onboarding & High-Converting Booking Funnel */}
+        {/* 8. Direct Opportunity & Multi-Intent Interview Gateway */}
         <CalendlySection />
       </main>
 

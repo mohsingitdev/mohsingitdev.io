@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { X, FileText, Send, CheckCircle2, ShieldCheck, Copy, Building2, Mail, User } from 'lucide-react';
 
 interface ResumeRequestModalProps {
@@ -14,6 +14,17 @@ export const ResumeRequestModal: React.FC<ResumeRequestModalProps> = ({ isOpen, 
   const [notes, setNotes] = useState('');
   const [isSent, setIsSent] = useState(false);
   const [copied, setCopied] = useState(false);
+
+  useEffect(() => {
+    if (!isOpen) return;
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        onClose();
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [isOpen, onClose]);
 
   if (!isOpen) return null;
 
@@ -50,7 +61,10 @@ export const ResumeRequestModal: React.FC<ResumeRequestModalProps> = ({ isOpen, 
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md animate-fade-in">
+    <div 
+      onClick={onClose}
+      className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md animate-fade-in"
+    >
       <div 
         className="relative w-full max-w-lg rounded-3xl bg-canvas-card border border-canvas-border shadow-2xl overflow-hidden flex flex-col"
         onClick={(e) => e.stopPropagation()}
