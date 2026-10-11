@@ -1,18 +1,36 @@
 import React, { useState } from 'react';
-import { Calendar, Clock, CheckCircle2, ArrowUpRight, MessageSquare, Filter, ChevronDown, HelpCircle, ArrowRight, ShieldCheck, Zap } from 'lucide-react';
+import { Calendar, Clock, CheckCircle2, ArrowUpRight, MessageSquare, Filter, ChevronDown, HelpCircle, ArrowRight, ShieldCheck, Zap, Globe, ExternalLink } from 'lucide-react';
 import { useTheme } from '../context/ThemeContext';
 
 export const CalendlySection: React.FC = () => {
   const { theme } = useTheme();
   const [selectedTimeline, setSelectedTimeline] = useState<string>('Immediately (1-2 weeks)');
   const [selectedBudget, setSelectedBudget] = useState<string>('Enterprise Advisory ($5k - $15k/mo)');
+  const [selectedMeetingType, setSelectedMeetingType] = useState<'30min' | '15min' | '60min'>('30min');
   const [openFaq, setOpenFaq] = useState<number | null>(null);
+
+  const [userTimezone] = useState<string>(() => {
+    try {
+      return Intl.DateTimeFormat().resolvedOptions().timeZone || 'UTC';
+    } catch {
+      return 'UTC';
+    }
+  });
 
   const timelines = ['Immediately (1-2 weeks)', 'Within 30 Days', 'Exploratory Audit'];
   const budgets = ['Enterprise Advisory ($5k - $15k/mo)', 'Full-Cycle FDE Build', 'Targeted RAG/Routing Audit'];
 
+  const meetingTypes = [
+    { id: '30min' as const, label: '30-Min Architecture Audit (Recommended)', short: '30 Min' },
+    { id: '15min' as const, label: '15-Min Exploratory Sync', short: '15 Min' },
+    { id: '60min' as const, label: '60-Min Deep Technical Advisory', short: '60 Min' },
+  ];
+
   const calendlyBg = theme === 'dark' ? '161513' : 'faf7f2';
   const calendlyText = theme === 'dark' ? 'ffffff' : '1c1917';
+
+  const currentCalendlyEmbedUrl = `https://calendly.com/mohsin-qureshi/${selectedMeetingType}?embed_type=Inline&background_color=${calendlyBg}&text_color=${calendlyText}&primary_color=de5a35`;
+  const directCalendlyLink = `https://calendly.com/mohsin-qureshi/${selectedMeetingType}`;
 
   const engagementSteps = [
     {
@@ -68,7 +86,7 @@ export const CalendlySection: React.FC = () => {
             <span className="font-serif italic font-normal text-terracotta">Architecture Audit</span>
           </h2>
           <p className="text-slate-300 text-sm sm:text-base leading-relaxed">
-            Book a dedicated 30-minute technical session to dissect your AI system bottlenecks, evaluate RAG citation grounding, or plan a multi-agent migration.
+            Reserve a technical session with Mohsin Qureshi to evaluate your multi-model routing bottlenecks, citation grounding coverage, or token FinOps efficiency.
           </p>
         </div>
 
@@ -136,11 +154,11 @@ export const CalendlySection: React.FC = () => {
                 1:1 Advisory & FDE Contract Discovery
               </span>
               <h3 className="text-lg sm:text-xl font-bold text-white font-sans">
-                30-Minute Technical Audit
+                Technical Architecture Session
               </h3>
               <div className="flex items-center gap-4 text-xs font-mono text-slate-400 pt-1">
                 <span className="flex items-center gap-1">
-                  <Clock className="w-3.5 h-3.5 text-terracotta" /> 30 Minutes
+                  <Clock className="w-3.5 h-3.5 text-terracotta" /> 15 – 60 Minutes
                 </span>
                 <span className="flex items-center gap-1">
                   <MessageSquare className="w-3.5 h-3.5 text-slate-300" /> Google Meet / Zoom
@@ -229,49 +247,100 @@ export const CalendlySection: React.FC = () => {
             </div>
 
             {/* Direct Contact Option */}
-            <div className="pt-2 text-xs font-mono text-slate-400">
-              Prefer direct email? Contact:{' '}
-              <a
-                href="mailto:mohsin.i.qureshi@hotmail.com"
-                className="text-terracotta hover:underline font-medium"
-              >
-                mohsin.i.qureshi@hotmail.com
-              </a>
+            <div className="pt-2 text-xs font-mono text-slate-400 space-y-1">
+              <div>
+                Direct email:{' '}
+                <a
+                  href="mailto:mohsin.i.qureshi@hotmail.com"
+                  className="text-terracotta hover:underline font-medium"
+                >
+                  mohsin.i.qureshi@hotmail.com
+                </a>
+              </div>
+              <div className="text-[11px] text-slate-500">
+                All calendar bookings automatically send Google Meet / Zoom invitations.
+              </div>
             </div>
 
           </div>
 
           {/* Right Column: Calendly Embed Container */}
-          <div className="lg:col-span-7 rounded-3xl bg-canvas-card border border-terracotta/30 shadow-luxury-glow overflow-hidden flex flex-col min-h-[520px] sm:min-h-[580px] apple-card-hover w-full">
+          <div className="lg:col-span-7 rounded-3xl bg-canvas-card border border-terracotta/30 shadow-luxury-glow overflow-hidden flex flex-col min-h-[580px] sm:min-h-[660px] apple-card-hover w-full">
             
             {/* Embedded Calendar Header */}
-            <div className="p-3.5 sm:p-4 bg-canvas-surface border-b border-canvas-border flex items-center justify-between">
-              <div className="flex items-center gap-2 font-mono text-[11px] sm:text-xs text-white">
-                <span className="w-2.5 h-2.5 rounded-full bg-terracotta animate-ping" />
-                <span>LIVE CALENDAR RESERVATION</span>
+            <div className="p-3.5 sm:p-4 bg-canvas-surface border-b border-canvas-border space-y-3">
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2.5">
+                <div className="flex items-center gap-2 font-mono text-[11px] sm:text-xs text-white">
+                  <span className="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse shrink-0" />
+                  <span>LIVE CALENDAR CONNECTED (mohsin-qureshi)</span>
+                </div>
+
+                <div className="flex items-center gap-2">
+                  <a
+                    href={directCalendlyLink}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-xs font-mono text-terracotta hover:text-white flex items-center gap-1 transition-colors"
+                  >
+                    <span>Open in Full Tab</span>
+                    <ArrowUpRight className="w-3.5 h-3.5" />
+                  </a>
+                </div>
               </div>
-              <a
-                href="https://calendly.com/mohd-mohsin-qureshi/30min"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-xs font-mono text-terracotta hover:text-white flex items-center gap-1 transition-colors"
-              >
-                <span>Open in Full Tab</span>
-                <ArrowUpRight className="w-3.5 h-3.5" />
-              </a>
+
+              {/* Session Duration Selector Tabs */}
+              <div className="flex items-center justify-between gap-2 pt-1">
+                <div className="flex flex-wrap gap-1.5">
+                  {meetingTypes.map((m) => (
+                    <button
+                      key={m.id}
+                      onClick={() => setSelectedMeetingType(m.id)}
+                      className={`px-3 py-1.5 rounded-xl text-xs font-mono transition-all duration-200 ${
+                        selectedMeetingType === m.id
+                          ? 'bg-terracotta text-white font-bold shadow-sm'
+                          : 'bg-canvas-card border border-canvas-border text-slate-400 hover:text-white'
+                      }`}
+                    >
+                      {m.label}
+                    </button>
+                  ))}
+                </div>
+              </div>
+
+              {/* Timezone detection pill */}
+              <div className="flex items-center gap-1.5 text-[11px] font-mono text-slate-400">
+                <Globe className="w-3 h-3 text-terracotta shrink-0" />
+                <span>Detected Timezone: <strong className="text-white">{userTimezone}</strong> (Slots adjust automatically)</span>
+              </div>
             </div>
 
-            {/* Calendly iFrame with Dynamic Theme Sync */}
-            <div className="relative flex-1 w-full bg-canvas-card dark:bg-[#161513] transition-colors duration-300">
+            {/* Calendly iFrame with Dynamic Theme & Meeting Type Sync */}
+            <div className="relative flex-1 w-full bg-canvas-card dark:bg-[#161513] transition-colors duration-300 min-h-[520px] sm:min-h-[580px]">
               <iframe
-                key={theme}
-                src={`https://calendly.com/mohd-mohsin-qureshi/30min?embed_domain=mohsingitdev.github.io&embed_type=Inline&background_color=${calendlyBg}&text_color=${calendlyText}&primary_color=d97757`}
+                key={`${theme}-${selectedMeetingType}`}
+                src={currentCalendlyEmbedUrl}
                 width="100%"
                 height="620px"
                 frameBorder="0"
-                title="Schedule 1:1 Architecture Audit with Mohsin Qureshi"
-                className="w-full h-full min-h-[520px] sm:min-h-[600px]"
+                title={`Schedule ${selectedMeetingType} session with Mohsin Qureshi`}
+                className="w-full h-full min-h-[520px] sm:min-h-[580px]"
               />
+            </div>
+
+            {/* Direct Fallback Footer */}
+            <div className="p-3 bg-canvas-surface border-t border-canvas-border flex flex-col sm:flex-row sm:items-center justify-between gap-2 text-[11px] font-mono text-slate-400">
+              <span>Having trouble viewing the calendar?</span>
+              <div className="flex items-center gap-3">
+                <a
+                  href="https://calendly.com/mohsin-qureshi"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-terracotta hover:underline font-semibold flex items-center gap-1"
+                >
+                  <span>View All Meeting Slots on Calendly</span>
+                  <ExternalLink className="w-3 h-3" />
+                </a>
+              </div>
             </div>
 
           </div>
