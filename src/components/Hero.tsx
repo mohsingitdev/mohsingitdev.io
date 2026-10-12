@@ -220,7 +220,7 @@ export const Hero: React.FC<HeroProps> = ({ onBookCall, onExploreDemos, onViewMa
                     <span className="text-white/40">•</span>
                     <span className="px-2.5 py-1 rounded-lg bg-black/30 border border-white/15">Novartis</span>
                     <span className="text-white/40">•</span>
-                    <span className="px-2.5 py-1 rounded-lg bg-black/30 border border-amber-300/40 text-amber-200 font-bold">Ericsson</span>
+                    <span className="px-2.5 py-1 rounded-lg bg-black/30 border border-white/15">Ericsson</span>
                   </div>
                 </div>
 
