@@ -12,6 +12,7 @@ import { BlogSection } from './components/BlogSection';
 import { OfferingsShowcase } from './components/OfferingsShowcase';
 import { CalendlySection } from './components/CalendlySection';
 import { ResumeRequestModal } from './components/ResumeRequestModal';
+import { WelcomingVideoWidget } from './components/WelcomingVideoWidget';
 import { Footer } from './components/Footer';
 
 export const App: React.FC = () => {
@@ -99,6 +100,13 @@ export const App: React.FC = () => {
         {/* 9. Direct Client Onboarding & High-Converting Booking Funnel */}
         <CalendlySection />
       </main>
+
+      {/* Floating GenZ Welcoming Video Intro & Audio Tour Widget */}
+      <WelcomingVideoWidget
+        onBookCall={scrollToBooking}
+        onExploreDemos={scrollToDemos}
+        onRequestResume={() => setIsResumeModalOpen(true)}
+      />
 
       {/* Footer */}
       <Footer />
