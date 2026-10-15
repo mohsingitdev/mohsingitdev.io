@@ -13,6 +13,7 @@ import { OfferingsShowcase } from './components/OfferingsShowcase';
 import { CalendlySection } from './components/CalendlySection';
 import { ResumeRequestModal } from './components/ResumeRequestModal';
 import { WelcomingVideoWidget } from './components/WelcomingVideoWidget';
+import { StudioVideoSection } from './components/StudioVideoSection';
 import { Footer } from './components/Footer';
 
 export const App: React.FC = () => {
@@ -34,6 +35,13 @@ export const App: React.FC = () => {
 
   const scrollToMatrix = () => {
     const el = document.getElementById('assessment-matrix');
+    if (el) {
+      el.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
+  const scrollToStudioIntro = () => {
+    const el = document.getElementById('studio-intro');
     if (el) {
       el.scrollIntoView({ behavior: 'smooth' });
     }
@@ -71,6 +79,14 @@ export const App: React.FC = () => {
           onExploreDemos={scrollToDemos}
           onViewMatrix={scrollToMatrix}
           onRequestResume={() => setIsResumeModalOpen(true)}
+          onWatchVideo={scrollToStudioIntro}
+        />
+
+        {/* Executive Studio Video Introduction & Keynote (Steve Jobs Aesthetic) */}
+        <StudioVideoSection
+          onBookCall={scrollToBooking}
+          onRequestResume={() => setIsResumeModalOpen(true)}
+          onExploreDemos={scrollToDemos}
         />
 
         {/* 1. Enterprise Architectural Benchmark Matrix */}

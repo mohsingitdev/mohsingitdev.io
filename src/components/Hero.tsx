@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ArrowUpRight, Sparkles, Terminal, ChevronRight, Activity, Zap, ShieldCheck, Layers, FileText } from 'lucide-react';
+import { ArrowUpRight, Sparkles, Terminal, ChevronRight, Activity, Zap, ShieldCheck, Layers, FileText, Play } from 'lucide-react';
 
 interface HeroProps {
   onBookCall: () => void;
   onExploreDemos: () => void;
   onViewMatrix: () => void;
   onRequestResume?: () => void;
+  onWatchVideo?: () => void;
 }
 
 interface IntelligenceNode {
@@ -73,7 +74,7 @@ const INTELLIGENCE_NODES: IntelligenceNode[] = [
   },
 ];
 
-export const Hero: React.FC<HeroProps> = ({ onBookCall, onExploreDemos, onViewMatrix, onRequestResume }) => {
+export const Hero: React.FC<HeroProps> = ({ onBookCall, onExploreDemos, onViewMatrix, onRequestResume, onWatchVideo }) => {
   const [selectedNodeIndex, setSelectedNodeIndex] = useState(1); // Default to SLM router (crown jewel)
 
   // Auto-cycle only if user has not manually interacted recently
@@ -184,18 +185,26 @@ export const Hero: React.FC<HeroProps> = ({ onBookCall, onExploreDemos, onViewMa
                   {/* Secondary Architectural Discovery Row */}
                   <div className="flex flex-wrap items-center gap-2">
                     <button
+                      onClick={onWatchVideo || (() => handleNavClick('studio-intro'))}
+                      className="px-3.5 py-2 sm:px-4 sm:py-2.5 rounded-full bg-emerald-500/20 hover:bg-emerald-500/30 backdrop-blur-md border border-emerald-400/40 text-emerald-200 font-semibold text-xs transition-all flex items-center justify-center gap-1.5 min-h-[38px] apple-spring hover:scale-[1.02] active:scale-[0.98]"
+                    >
+                      <Play className="w-3 h-3 text-emerald-400 fill-emerald-400" />
+                      <span>Watch Studio Intro</span>
+                    </button>
+
+                    <button
                       onClick={onExploreDemos}
                       className="px-4 py-2 sm:px-4.5 sm:py-2.5 rounded-full bg-black/35 hover:bg-black/50 backdrop-blur-md border border-white/25 text-white font-semibold text-xs transition-all flex items-center justify-center gap-1.5 min-h-[38px] hover:border-white/40"
                     >
                       <Sparkles className="w-3.5 h-3.5 text-luxury-gold shrink-0" />
-                      <span>Run Architecture Lab</span>
+                      <span>Run Labs</span>
                     </button>
 
                     <button
                       onClick={onBookCall}
                       className="px-4 py-2 sm:px-4.5 sm:py-2.5 rounded-full bg-white/10 hover:bg-white/20 backdrop-blur-md border border-white/25 text-white/90 font-mono text-xs transition-colors flex items-center justify-center gap-1.5 min-h-[38px]"
                     >
-                      <span>Schedule Sync</span>
+                      <span>Sync</span>
                       <ArrowUpRight className="w-3 h-3 text-white/70" />
                     </button>
                   </div>
