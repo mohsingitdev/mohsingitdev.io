@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { X, FileText, Send, CheckCircle2, ShieldCheck, Copy, Building2, Mail, User } from 'lucide-react';
+import { X, FileText, Send, CheckCircle2, ShieldCheck, Copy, Building2, Mail, User, Loader2 } from 'lucide-react';
+import { submitLeadInquiry, trackVisitorEvent } from '../utils/visitorTelemetry';
 
 interface ResumeRequestModalProps {
   isOpen: boolean;
@@ -12,11 +13,13 @@ export const ResumeRequestModal: React.FC<ResumeRequestModalProps> = ({ isOpen, 
   const [organization, setOrganization] = useState('');
   const [roleType, setRoleType] = useState('Full-Time AI Engineer Role');
   const [notes, setNotes] = useState('');
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSent, setIsSent] = useState(false);
   const [copied, setCopied] = useState(false);
 
   useEffect(() => {
     if (!isOpen) return;
+    trackVisitorEvent('RESUME_MODAL_OPENED');
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === 'Escape') {
         onClose();
@@ -36,20 +39,21 @@ export const ResumeRequestModal: React.FC<ResumeRequestModalProps> = ({ isOpen, 
     'Exploratory / Other'
   ];
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    const mailto = `mailto:mohsin.i.qureshi@hotmail.com?subject=${encodeURIComponent(
-      `[Resume & Dossier Request] ${name || 'Recruiter'} - ${organization || 'Organization'} (${roleType})`
-    )}&body=${encodeURIComponent(
-      `Hi Mohsin,\n\nI would like to request your official, confidential resume and technical track record dossier.\n\n` +
-      `Requester Name: ${name || 'N/A'}\n` +
-      `Organization / Company: ${organization || 'N/A'}\n` +
-      `Work Email: ${email || 'N/A'}\n` +
-      `Target Opportunity: ${roleType}\n\n` +
-      `Role Details / Job Description Notes:\n${notes || 'Interested in discussing relevant opportunities.'}\n\n` +
-      `Looking forward to your response.`
-    )}`;
-    window.location.href = mailto;
+    setIsSubmitting(true);
+
+    // Asynchronously dispatch via zero-loss form telemetry
+    await submitLeadInquiry({
+      name,
+      email,
+      organization,
+      roleType,
+      notes,
+      inquiryType: 'cv_request',
+    });
+
+    setIsSubmitting(false);
     setIsSent(true);
   };
 
@@ -100,10 +104,10 @@ export const ResumeRequestModal: React.FC<ResumeRequestModalProps> = ({ isOpen, 
               <CheckCircle2 className="w-7 h-7" />
             </div>
             <h4 className="text-lg font-bold text-white font-sans">
-              Dispatch Request Prepared
+              Request Dispatched Directly
             </h4>
             <p className="text-xs text-slate-300 leading-relaxed max-w-sm mx-auto">
-              Your default email client was opened with the pre-filled briefing. Once sent, Mohsin will reply with the official confidential CV and relevant project dossier within 4–6 hours.
+              Your confidential inquiry has been logged directly to Mohsin Qureshi. You will receive the official verified CV, project dossier, and calibrated case studies directly in your inbox.
             </p>
             <div className="flex items-center justify-center gap-3 pt-2">
               <button
@@ -112,14 +116,14 @@ export const ResumeRequestModal: React.FC<ResumeRequestModalProps> = ({ isOpen, 
                 className="px-4 py-2 rounded-xl bg-canvas-surface border border-canvas-border text-xs font-mono text-slate-300 hover:text-white flex items-center gap-1.5"
               >
                 <Copy className="w-3.5 h-3.5 text-terracotta" />
-                <span>{copied ? 'Copied to Clipboard!' : 'Copy Request Text'}</span>
+                <span>{copied ? 'Copied to Clipboard!' : 'Copy Summary'}</span>
               </button>
               <button
                 type="button"
                 onClick={onClose}
                 className="px-5 py-2 rounded-xl bg-terracotta text-white font-bold text-xs font-sans hover:bg-terracotta/90"
               >
-                Close Window
+                Done
               </button>
             </div>
           </div>
@@ -217,10 +221,20 @@ export const ResumeRequestModal: React.FC<ResumeRequestModalProps> = ({ isOpen, 
               </span>
               <button
                 type="submit"
-                className="px-5 py-2.5 rounded-xl bg-terracotta text-white font-bold text-xs font-sans hover:bg-terracotta/90 flex items-center gap-1.5 shadow-md"
+                disabled={isSubmitting}
+                className="px-5 py-2.5 rounded-xl bg-terracotta text-white font-bold text-xs font-sans hover:bg-terracotta/90 flex items-center gap-1.5 shadow-md disabled:opacity-75 transition-all"
               >
-                <Send className="w-3.5 h-3.5" />
-                <span>Submit & Dispatch</span>
+                {isSubmitting ? (
+                  <>
+                    <Loader2 className="w-3.5 h-3.5 animate-spin" />
+                    <span>Transmitting...</span>
+                  </>
+                ) : (
+                  <>
+                    <Send className="w-3.5 h-3.5" />
+                    <span>Submit & Dispatch</span>
+                  </>
+                )}
               </button>
             </div>
           </form>
