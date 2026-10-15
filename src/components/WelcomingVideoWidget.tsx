@@ -110,7 +110,7 @@ export const WelcomingVideoWidget: React.FC<WelcomingVideoWidgetProps> = ({
                 title="Open Video Intro"
               >
                 <div className="relative">
-                  <Video className="w-5 h-5 text-amber-300" />
+                  <Video className="w-5 h-5 text-terracotta" />
                   <span className="absolute -top-1 -right-1 w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse border-2 border-black" />
                 </div>
               </button>
@@ -131,7 +131,7 @@ export const WelcomingVideoWidget: React.FC<WelcomingVideoWidgetProps> = ({
                     aria-label="Watch Welcoming Video Intro"
                   >
                     {/* Animated Avatar / Looping Studio Thumbnail */}
-                    <div className="relative w-12 h-12 rounded-full overflow-hidden border-2 border-amber-300/60 shadow-inner shrink-0 bg-neutral-900">
+                    <div className="relative w-12 h-12 rounded-full overflow-hidden border-2 border-terracotta/60 shadow-inner shrink-0 bg-neutral-900">
                       <img
                         src="./images/steve_jobs_studio_cinematic_intro.webp"
                         alt="Mohsin Qureshi Welcoming Video"
@@ -149,20 +149,20 @@ export const WelcomingVideoWidget: React.FC<WelcomingVideoWidgetProps> = ({
                     {/* Welcoming Text & Soundwave Animation */}
                     <div className="flex flex-col text-left">
                       <div className="flex items-center gap-1.5">
-                        <span className="text-[10px] font-mono font-bold tracking-wider uppercase text-amber-300 flex items-center gap-1">
+                        <span className="text-[10px] font-mono font-bold tracking-wider uppercase text-terracotta flex items-center gap-1">
                           <span>👋 QUICK INTRO</span>
                         </span>
                         <span className="text-white/30">•</span>
                         {/* GenZ Audio Equalizer bars */}
                         <div className="flex items-end gap-0.5 h-3">
                           <span className="w-0.5 bg-terracotta rounded-full animate-bounce [animation-delay:-0.3s] h-full" />
-                          <span className="w-0.5 bg-amber-300 rounded-full animate-bounce [animation-delay:-0.15s] h-2/3" />
+                          <span className="w-0.5 bg-terracotta/70 rounded-full animate-bounce [animation-delay:-0.15s] h-2/3" />
                           <span className="w-0.5 bg-emerald-400 rounded-full animate-bounce [animation-delay:-0.45s] h-4/5" />
                           <span className="w-0.5 bg-terracotta rounded-full animate-bounce [animation-delay:-0.2s] h-1/2" />
                         </div>
                       </div>
 
-                      <span className="text-xs font-sans font-bold text-white group-hover:text-amber-200 transition-colors flex items-center gap-1">
+                      <span className="text-xs font-sans font-bold text-white group-hover:text-terracotta-light transition-colors flex items-center gap-1">
                         Meet Mohsin Qureshi <ArrowUpRight className="w-3 h-3 text-terracotta" />
                       </span>
                     </div>
@@ -249,8 +249,8 @@ export const WelcomingVideoWidget: React.FC<WelcomingVideoWidgetProps> = ({
 
               {/* Top Floating Badge */}
               <div className="absolute top-3 left-3 z-10">
-                <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[10px] font-mono font-bold uppercase bg-black/60 text-amber-300 border border-amber-300/30 backdrop-blur-md">
-                  <Sparkles className="w-3 h-3 text-amber-300" />
+                <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[10px] font-mono font-bold uppercase bg-black/60 text-terracotta border border-terracotta/30 backdrop-blur-md">
+                  <Sparkles className="w-3 h-3 text-terracotta" />
                   <span>AI Systems Engineer</span>
                 </span>
               </div>
@@ -302,7 +302,7 @@ export const WelcomingVideoWidget: React.FC<WelcomingVideoWidgetProps> = ({
                       className="p-1 rounded-lg hover:text-white hover:bg-white/10 transition-colors"
                       title={isMuted ? "Unmute" : "Mute"}
                     >
-                      {isMuted ? <VolumeX className="w-4 h-4 text-amber-300" /> : <Volume2 className="w-4 h-4 text-emerald-400" />}
+                      {isMuted ? <VolumeX className="w-4 h-4 text-slate-400" /> : <Volume2 className="w-4 h-4 text-emerald-400" />}
                     </button>
 
                     <button
@@ -356,7 +356,7 @@ export const WelcomingVideoWidget: React.FC<WelcomingVideoWidgetProps> = ({
                   }}
                   className="py-2.5 px-3 rounded-xl bg-white/10 hover:bg-white/15 border border-white/15 text-white font-sans font-semibold text-xs flex items-center justify-center gap-1.5 transition-all"
                 >
-                  <Sparkles className="w-3.5 h-3.5 text-amber-300" />
+                  <Sparkles className="w-3.5 h-3.5 text-terracotta" />
                   <span>Test Demos</span>
                 </button>
               </div>
@@ -367,9 +367,9 @@ export const WelcomingVideoWidget: React.FC<WelcomingVideoWidgetProps> = ({
                   setIsOpen(false);
                   onRequestResume();
                 }}
-                className="w-full py-1.5 text-center text-[11px] font-mono text-slate-400 hover:text-amber-200 transition-colors flex items-center justify-center gap-1"
+                className="w-full py-1.5 text-center text-[11px] font-mono text-slate-400 hover:text-terracotta transition-colors flex items-center justify-center gap-1.5 group"
               >
-                <FileText className="w-3 h-3" />
+                <FileText className="w-3.5 h-3.5 text-terracotta/70 group-hover:text-terracotta transition-colors" />
                 <span>Need my unredacted CV & Dossier? Click here</span>
               </button>
             </div>

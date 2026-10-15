@@ -170,7 +170,7 @@ export const LayaAssessmentMatrix: React.FC<{ onBookCall: () => void }> = ({ onB
 
         <div className="space-y-1 sm:space-y-1.5">
           <div className="text-[10px] sm:text-[11px] font-mono uppercase tracking-wider text-slate-400">Inference Cost Delta</div>
-          <div className="text-xl sm:text-3xl lg:text-4xl font-extrabold font-mono text-amber-300">-72%</div>
+          <div className="text-xl sm:text-3xl lg:text-4xl font-extrabold font-mono text-terracotta">-72%</div>
           <div className="text-[11px] sm:text-xs text-slate-400 font-mono truncate">Deterministic Gateway ROI</div>
         </div>
       </div>
@@ -247,7 +247,7 @@ export const LayaAssessmentMatrix: React.FC<{ onBookCall: () => void }> = ({ onB
                       <Sparkles className="w-3 h-3 text-terracotta" />
                       {item.grade}
                     </span>
-                    <h3 className="text-xl sm:text-2xl font-bold text-white group-hover:text-amber-200 transition-colors">
+                    <h3 className="text-xl sm:text-2xl font-bold text-white group-hover:text-terracotta-soft transition-colors">
                       {item.title}
                     </h3>
                     <div className="text-xs font-mono text-slate-400">
@@ -327,7 +327,7 @@ export const LayaAssessmentMatrix: React.FC<{ onBookCall: () => void }> = ({ onB
       </div>
 
       {/* Audit CTA banner */}
-      <div className="p-7 sm:p-8 rounded-3xl bg-gradient-to-r from-canvas-card via-amber-500/5 to-canvas-card dark:from-canvas-card dark:via-[#2A201A] dark:to-canvas-card border border-terracotta/40 flex flex-col sm:flex-row items-center justify-between gap-6 shadow-xl">
+      <div className="p-7 sm:p-8 rounded-3xl bg-gradient-to-r from-canvas-card via-terracotta/5 to-canvas-card dark:from-canvas-card dark:via-[#2A201A] dark:to-canvas-card border border-terracotta/40 flex flex-col sm:flex-row items-center justify-between gap-6 shadow-xl">
         <div className="space-y-1.5 text-center sm:text-left max-w-xl">
           <div className="text-lg font-bold text-white flex items-center justify-center sm:justify-start gap-2">
             <BarChart3 className="w-5 h-5 text-terracotta" />

@@ -93,7 +93,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onBookCall, onRequestResume }) =
             className="p-1.5 rounded-full hover:bg-neutral-200/70 dark:hover:bg-neutral-800 text-neutral-700 dark:text-neutral-300 transition-all apple-spring hover:scale-105 active:scale-95 flex items-center justify-center"
           >
             {theme === 'dark' ? (
-              <Sun className="w-4 h-4 text-amber-400 transition-transform duration-300 hover:rotate-45" />
+              <Sun className="w-4 h-4 text-terracotta transition-transform duration-300 hover:rotate-45" />
             ) : (
               <Moon className="w-4 h-4 text-terracotta transition-transform duration-300 hover:-rotate-12" />
             )}
@@ -102,9 +102,9 @@ export const Navbar: React.FC<NavbarProps> = ({ onBookCall, onRequestResume }) =
           {onRequestResume && (
             <button
               onClick={onRequestResume}
-              className="px-3.5 py-1.5 text-xs font-semibold rounded-full bg-canvas-subtle hover:bg-canvas-card border border-canvas-border text-white transition-all shadow-sm flex items-center gap-1.5 apple-spring hover:scale-[1.03] active:scale-[0.98]"
+              className="px-3.5 py-1.5 text-xs font-semibold rounded-full bg-neutral-100 hover:bg-neutral-200/80 dark:bg-canvas-card dark:hover:bg-canvas-cardElevated border border-neutral-200/90 dark:border-canvas-border text-neutral-800 dark:text-neutral-100 hover:text-neutral-950 dark:hover:text-white transition-all shadow-sm flex items-center gap-1.5 apple-spring hover:scale-[1.03] active:scale-[0.98]"
             >
-              <FileText className="w-3.5 h-3.5 text-amber-400" />
+              <FileText className="w-3.5 h-3.5 text-terracotta shrink-0" />
               <span>Request CV</span>
             </button>
           )}
@@ -126,7 +126,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onBookCall, onRequestResume }) =
             className="p-1.5 rounded-full hover:bg-neutral-200/70 dark:hover:bg-neutral-800 text-neutral-700 dark:text-neutral-300 transition-all"
           >
             {theme === 'dark' ? (
-              <Sun className="w-4 h-4 text-amber-400" />
+              <Sun className="w-4 h-4 text-terracotta" />
             ) : (
               <Moon className="w-4 h-4 text-terracotta" />
             )}
@@ -135,7 +135,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onBookCall, onRequestResume }) =
           {onRequestResume && (
             <button
               onClick={onRequestResume}
-              className="px-2.5 py-1 text-[11px] font-mono rounded-full bg-canvas-subtle border border-canvas-border text-white"
+              className="px-2.5 py-1 text-[11px] font-mono font-medium rounded-full bg-neutral-100 hover:bg-neutral-200/80 dark:bg-canvas-card dark:hover:bg-canvas-cardElevated border border-neutral-200/90 dark:border-canvas-border text-neutral-800 dark:text-neutral-100 transition-all"
             >
               CV
             </button>
@@ -238,9 +238,9 @@ export const Navbar: React.FC<NavbarProps> = ({ onBookCall, onRequestResume }) =
                 {onRequestResume && (
                   <button
                     onClick={() => { setMobileMenuOpen(false); onRequestResume(); }}
-                    className="px-3.5 py-2 text-xs font-semibold rounded-full bg-canvas-subtle border border-canvas-border text-white shadow-sm flex items-center gap-1.5"
+                    className="px-3.5 py-2 text-xs font-semibold rounded-full bg-neutral-100 hover:bg-neutral-200/80 dark:bg-canvas-card border border-neutral-200/90 dark:border-canvas-border text-neutral-800 dark:text-neutral-100 shadow-sm flex items-center gap-1.5 transition-all"
                   >
-                    <FileText className="w-3.5 h-3.5 text-amber-400" />
+                    <FileText className="w-3.5 h-3.5 text-terracotta shrink-0" />
                     <span>Request CV</span>
                   </button>
                 )}

@@ -184,7 +184,7 @@ export const ArchitectureProofLedger: React.FC = () => {
 
                       <div className="p-4 rounded-xl bg-canvas-card border border-canvas-border space-y-1.5">
                         <div className="font-mono text-[10px] uppercase tracking-wider text-slate-400 font-bold flex items-center gap-1.5">
-                          <FileText className="w-3.5 h-3.5 text-amber-300" />
+                          <FileText className="w-3.5 h-3.5 text-terracotta" />
                           <span>Naive Prototype Baseline</span>
                         </div>
                         <p className="text-slate-300 leading-relaxed text-xs">

@@ -146,7 +146,7 @@ export const BlogSection: React.FC<BlogSectionProps> = ({ onBookCall }) => {
                   </span>
                 </div>
 
-                <h3 className="text-base sm:text-lg font-bold text-white group-hover:text-amber-200 transition-colors leading-snug font-sans">
+                <h3 className="text-base sm:text-lg font-bold text-white group-hover:text-terracotta-soft transition-colors leading-snug font-sans">
                   {post.title}
                 </h3>
 
@@ -314,11 +314,11 @@ export const BlogSection: React.FC<BlogSectionProps> = ({ onBookCall }) => {
             </div>
 
             {/* Lead Magnet Blueprint Capture Box */}
-            <div className="p-5 sm:p-6 rounded-2xl bg-[#0F131D] border border-amber-400/30 space-y-4">
+            <div className="p-5 sm:p-6 rounded-2xl bg-canvas-card border border-terracotta/30 space-y-4">
               <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
                 <div className="space-y-1">
-                  <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-amber-400/10 border border-amber-400/30 text-[10px] font-mono font-bold text-amber-300">
-                    <Download className="w-3 h-3" />
+                  <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-terracotta/15 border border-terracotta/30 text-[10px] font-mono font-bold text-terracotta-soft">
+                    <Download className="w-3 h-3 text-terracotta" />
                     <span>PRODUCTION ARCHITECTURE BLUEPRINT</span>
                   </div>
                   <h4 className="text-sm sm:text-base font-bold text-white font-sans">
@@ -348,7 +348,7 @@ export const BlogSection: React.FC<BlogSectionProps> = ({ onBookCall }) => {
                   <button
                     type="submit"
                     disabled={isSubmittingBlueprint}
-                    className="w-full sm:w-auto px-5 py-2.5 rounded-xl bg-amber-400 hover:bg-amber-300 text-neutral-950 font-bold text-xs font-sans flex items-center justify-center gap-1.5 shadow-md disabled:opacity-75 transition-all"
+                    className="w-full sm:w-auto px-5 py-2.5 rounded-xl bg-terracotta hover:bg-terracotta-dark text-white font-bold text-xs font-sans flex items-center justify-center gap-1.5 shadow-md disabled:opacity-75 transition-all"
                   >
                     {isSubmittingBlueprint ? (
                       <>
@@ -357,7 +357,7 @@ export const BlogSection: React.FC<BlogSectionProps> = ({ onBookCall }) => {
                       </>
                     ) : (
                       <>
-                        <Download className="w-3.5 h-3.5 text-neutral-950" />
+                        <Download className="w-3.5 h-3.5 text-white" />
                         <span>Instant Access</span>
                       </>
                     )}

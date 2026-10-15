@@ -360,7 +360,7 @@ export const LiveRoutingSimulator: React.FC = () => {
               <span className="text-terracotta">Cache / RRF</span>
             </div>
             <div className="font-bold text-white mt-1.5 flex items-center gap-1.5">
-              <Database className="w-3.5 h-3.5 text-amber-300 shrink-0" />
+              <Database className="w-3.5 h-3.5 text-terracotta shrink-0" />
               <span>{mode === 'agentic' ? (selectedScenario.id === 'status' ? 'Redis Semantic Cache' : 'Hybrid BM25 + Dense') : 'Unindexed Context'}</span>
             </div>
             <div className="text-[11px] text-slate-400 mt-1.5 leading-relaxed font-sans">

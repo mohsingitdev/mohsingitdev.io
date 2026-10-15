@@ -101,7 +101,7 @@ export const Hero: React.FC<HeroProps> = ({ onBookCall, onExploreDemos, onViewMa
     <section id="hero" className="relative pt-8 sm:pt-12 md:pt-14 pb-12 md:pb-24 overflow-hidden">
       {/* Background ambient lighting */}
       <div className="absolute top-12 left-1/4 w-[550px] h-[550px] bg-terracotta/15 rounded-full blur-[150px] pointer-events-none" />
-      <div className="absolute top-24 right-1/4 w-[450px] h-[450px] bg-amber-500/10 rounded-full blur-[150px] pointer-events-none" />
+      <div className="absolute top-24 right-1/4 w-[450px] h-[450px] bg-terracotta/10 rounded-full blur-[150px] pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
@@ -148,7 +148,7 @@ export const Hero: React.FC<HeroProps> = ({ onBookCall, onExploreDemos, onViewMa
               <div className="relative z-20 my-4 sm:my-6 lg:my-8 space-y-2.5 sm:space-y-3.5 w-full max-w-full lg:max-w-[400px] xl:max-w-[430px]">
                 <h1 className="text-[30px] xs:text-[34px] sm:text-[44px] lg:text-[48px] xl:text-[52px] font-extrabold text-white tracking-tight leading-[1.08] font-sans">
                   Engineering AI that survives{' '}
-                  <span className="font-serif italic font-normal text-amber-200">production</span>{' '}
+                  <span className="font-serif italic font-normal text-luxury-champagne">production</span>{' '}
                   scale.
                 </h1>
                 
@@ -174,9 +174,11 @@ export const Hero: React.FC<HeroProps> = ({ onBookCall, onExploreDemos, onViewMa
                     {onRequestResume && (
                       <button
                         onClick={onRequestResume}
-                        className="px-4 py-2.5 sm:px-5 sm:py-3 rounded-full bg-amber-400 hover:bg-amber-300 text-neutral-950 font-bold text-xs sm:text-sm transition-all shadow-md flex items-center justify-center gap-1.5 apple-spring hover:scale-[1.02] active:scale-[0.98] min-h-[44px]"
+                        className="px-4 py-2.5 sm:px-5 sm:py-3 rounded-full bg-black/40 hover:bg-black/60 active:bg-black/75 backdrop-blur-md border border-white/25 hover:border-white/45 text-white font-semibold text-xs sm:text-sm transition-all shadow-sm flex items-center justify-center gap-2 group apple-spring hover:scale-[1.02] active:scale-[0.98] min-h-[44px]"
                       >
-                        <FileText className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-neutral-950" />
+                        <span className="p-1 rounded-full bg-white/10 group-hover:bg-white/20 transition-colors">
+                          <FileText className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-white" />
+                        </span>
                         <span>Request CV</span>
                       </button>
                     )}
@@ -216,10 +218,10 @@ export const Hero: React.FC<HeroProps> = ({ onBookCall, onExploreDemos, onViewMa
                     <span className="font-semibold">Proven Enterprise Deployments</span>
                     <button
                       onClick={() => handleNavClick('evidence-ledger')}
-                      className="text-amber-200 hover:text-white transition-colors underline-offset-4 hover:underline flex items-center gap-1 normal-case font-medium text-[11px]"
+                      className="text-white/80 hover:text-white transition-colors underline-offset-4 hover:underline flex items-center gap-1 normal-case font-medium text-[11px]"
                     >
                       <span>View Methodology</span>
-                      <ArrowUpRight className="w-3 h-3 text-amber-200" />
+                      <ArrowUpRight className="w-3 h-3 text-white/80" />
                     </button>
                   </div>
                   <div className="flex flex-wrap items-center gap-1.5 font-mono text-[11px] sm:text-xs text-white/95 font-semibold">
@@ -237,7 +239,7 @@ export const Hero: React.FC<HeroProps> = ({ onBookCall, onExploreDemos, onViewMa
                 <div className="lg:hidden pt-3 pb-0 flex flex-col items-center justify-end relative z-20 pointer-events-none mt-2">
                   <div className="relative flex items-end justify-center w-full">
                     {/* Ambient Glow */}
-                    <div className="absolute bottom-4 w-48 h-48 rounded-full bg-amber-400/20 blur-2xl pointer-events-none" />
+                    <div className="absolute bottom-4 w-48 h-48 rounded-full bg-terracotta/20 blur-2xl pointer-events-none" />
                     
                     {/* Floating Tactical SLA Badges */}
                     <div className="absolute top-2 left-0 sm:left-2 z-30 px-2.5 py-1 rounded-full bg-black/45 backdrop-blur-md border border-white/20 text-[10px] font-mono text-white/95 flex items-center gap-1.5 shadow-lg">

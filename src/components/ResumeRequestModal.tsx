@@ -70,28 +70,28 @@ export const ResumeRequestModal: React.FC<ResumeRequestModalProps> = ({ isOpen, 
       className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md animate-fade-in"
     >
       <div 
-        className="relative w-full max-w-lg rounded-3xl bg-canvas-card border border-canvas-border shadow-2xl overflow-hidden flex flex-col"
+        className="relative w-full max-w-lg rounded-3xl bg-white dark:bg-canvas-card border border-neutral-200 dark:border-canvas-border shadow-2xl overflow-hidden flex flex-col"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Header */}
-        <div className="p-5 sm:p-6 border-b border-canvas-border flex items-center justify-between bg-canvas-surface/80">
+        <div className="p-5 sm:p-6 border-b border-neutral-200 dark:border-canvas-border flex items-center justify-between bg-neutral-50/90 dark:bg-canvas-surface/80">
           <div className="flex items-center gap-2.5">
             <div className="w-9 h-9 rounded-xl bg-terracotta/15 border border-terracotta/30 flex items-center justify-center text-terracotta">
               <FileText className="w-5 h-5" />
             </div>
             <div>
-              <h3 className="font-bold text-base sm:text-lg text-white font-sans flex items-center gap-2">
+              <h3 className="font-bold text-base sm:text-lg text-neutral-900 dark:text-white font-sans flex items-center gap-2">
                 Request Official Resume
                 <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
               </h3>
-              <p className="text-xs font-mono text-slate-400">
+              <p className="text-xs font-mono text-neutral-500 dark:text-slate-400">
                 Direct Recruiter & Opportunity Ingress
               </p>
             </div>
           </div>
           <button
             onClick={onClose}
-            className="w-8 h-8 rounded-full bg-canvas-card border border-canvas-border flex items-center justify-center text-slate-400 hover:text-white transition-colors"
+            className="w-8 h-8 rounded-full bg-neutral-100 dark:bg-canvas-card border border-neutral-200 dark:border-canvas-border flex items-center justify-center text-neutral-500 dark:text-slate-400 hover:text-neutral-900 dark:hover:text-white transition-colors"
           >
             <X className="w-4 h-4" />
           </button>
@@ -103,17 +103,17 @@ export const ResumeRequestModal: React.FC<ResumeRequestModalProps> = ({ isOpen, 
             <div className="w-14 h-14 rounded-full bg-emerald-500/15 border border-emerald-500/30 flex items-center justify-center mx-auto text-emerald-400">
               <CheckCircle2 className="w-7 h-7" />
             </div>
-            <h4 className="text-lg font-bold text-white font-sans">
+            <h4 className="text-lg font-bold text-neutral-900 dark:text-white font-sans">
               Request Dispatched Directly
             </h4>
-            <p className="text-xs text-slate-300 leading-relaxed max-w-sm mx-auto">
+            <p className="text-xs text-neutral-600 dark:text-slate-300 leading-relaxed max-w-sm mx-auto">
               Your confidential inquiry has been logged directly to Mohsin Qureshi. You will receive the official verified CV, project dossier, and calibrated case studies directly in your inbox.
             </p>
             <div className="flex items-center justify-center gap-3 pt-2">
               <button
                 type="button"
                 onClick={handleCopy}
-                className="px-4 py-2 rounded-xl bg-canvas-surface border border-canvas-border text-xs font-mono text-slate-300 hover:text-white flex items-center gap-1.5"
+                className="px-4 py-2 rounded-xl bg-neutral-100 dark:bg-canvas-surface border border-neutral-200 dark:border-canvas-border text-xs font-mono text-neutral-700 dark:text-slate-300 hover:text-neutral-900 dark:hover:text-white flex items-center gap-1.5"
               >
                 <Copy className="w-3.5 h-3.5 text-terracotta" />
                 <span>{copied ? 'Copied to Clipboard!' : 'Copy Summary'}</span>
@@ -129,7 +129,7 @@ export const ResumeRequestModal: React.FC<ResumeRequestModalProps> = ({ isOpen, 
           </div>
         ) : (
           <form onSubmit={handleSubmit} className="p-5 sm:p-6 space-y-4">
-            <div className="p-3 rounded-xl bg-canvas-surface border border-canvas-border text-[11px] font-mono text-slate-300 flex items-start gap-2">
+            <div className="p-3 rounded-xl bg-neutral-100/80 dark:bg-canvas-surface border border-neutral-200/90 dark:border-canvas-border text-[11px] font-mono text-neutral-600 dark:text-slate-300 flex items-start gap-2">
               <ShieldCheck className="w-4 h-4 text-terracotta shrink-0 mt-0.5" />
               <span>
                 To preserve enterprise NDA compliance, verified ATS resumes and unredacted architecture dossiers are shared directly upon verified role request.
@@ -138,7 +138,7 @@ export const ResumeRequestModal: React.FC<ResumeRequestModalProps> = ({ isOpen, 
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
               <div className="space-y-1">
-                <label htmlFor="resume-name" className="text-[11px] font-mono text-slate-300 uppercase flex items-center gap-1 cursor-pointer">
+                <label htmlFor="resume-name" className="text-[11px] font-mono text-neutral-700 dark:text-slate-300 uppercase flex items-center gap-1 cursor-pointer">
                   <User className="w-3 h-3 text-terracotta" /> Your Name *
                 </label>
                 <input
@@ -148,12 +148,12 @@ export const ResumeRequestModal: React.FC<ResumeRequestModalProps> = ({ isOpen, 
                   value={name}
                   onChange={(e) => setName(e.target.value)}
                   placeholder="e.g. Sarah Jenkins"
-                  className="w-full px-3 py-2 rounded-xl bg-canvas-surface border border-canvas-border text-white text-xs font-mono focus:border-terracotta focus:outline-none"
+                  className="w-full px-3 py-2 rounded-xl bg-neutral-50 dark:bg-canvas-surface border border-neutral-200 dark:border-canvas-border text-neutral-900 dark:text-white text-xs font-mono focus:border-terracotta focus:outline-none placeholder:text-neutral-400 dark:placeholder:text-slate-500"
                 />
               </div>
 
               <div className="space-y-1">
-                <label htmlFor="resume-org" className="text-[11px] font-mono text-slate-300 uppercase flex items-center gap-1 cursor-pointer">
+                <label htmlFor="resume-org" className="text-[11px] font-mono text-neutral-700 dark:text-slate-300 uppercase flex items-center gap-1 cursor-pointer">
                   <Building2 className="w-3 h-3 text-terracotta" /> Organization / Company *
                 </label>
                 <input
@@ -163,13 +163,13 @@ export const ResumeRequestModal: React.FC<ResumeRequestModalProps> = ({ isOpen, 
                   value={organization}
                   onChange={(e) => setOrganization(e.target.value)}
                   placeholder="e.g. Stripe, OpenAI, Series A AI Co"
-                  className="w-full px-3 py-2 rounded-xl bg-canvas-surface border border-canvas-border text-white text-xs font-mono focus:border-terracotta focus:outline-none"
+                  className="w-full px-3 py-2 rounded-xl bg-neutral-50 dark:bg-canvas-surface border border-neutral-200 dark:border-canvas-border text-neutral-900 dark:text-white text-xs font-mono focus:border-terracotta focus:outline-none placeholder:text-neutral-400 dark:placeholder:text-slate-500"
                 />
               </div>
             </div>
 
             <div className="space-y-1">
-              <label htmlFor="resume-email" className="text-[11px] font-mono text-slate-300 uppercase flex items-center gap-1 cursor-pointer">
+              <label htmlFor="resume-email" className="text-[11px] font-mono text-neutral-700 dark:text-slate-300 uppercase flex items-center gap-1 cursor-pointer">
                 <Mail className="w-3 h-3 text-terracotta" /> Work Email *
               </label>
               <input
@@ -179,22 +179,22 @@ export const ResumeRequestModal: React.FC<ResumeRequestModalProps> = ({ isOpen, 
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="sarah@company.com"
-                className="w-full px-3 py-2 rounded-xl bg-canvas-surface border border-canvas-border text-white text-xs font-mono focus:border-terracotta focus:outline-none"
+                className="w-full px-3 py-2 rounded-xl bg-neutral-50 dark:bg-canvas-surface border border-neutral-200 dark:border-canvas-border text-neutral-900 dark:text-white text-xs font-mono focus:border-terracotta focus:outline-none placeholder:text-neutral-400 dark:placeholder:text-slate-500"
               />
             </div>
 
             <div className="space-y-1">
-              <label htmlFor="resume-role" className="text-[11px] font-mono text-slate-300 uppercase cursor-pointer">
+              <label htmlFor="resume-role" className="text-[11px] font-mono text-neutral-700 dark:text-slate-300 uppercase cursor-pointer">
                 Opportunity Nature *
               </label>
               <select
                 id="resume-role"
                 value={roleType}
                 onChange={(e) => setRoleType(e.target.value)}
-                className="w-full px-3 py-2 rounded-xl bg-canvas-surface border border-canvas-border text-white text-xs font-mono focus:border-terracotta focus:outline-none"
+                className="w-full px-3 py-2 rounded-xl bg-neutral-50 dark:bg-canvas-surface border border-neutral-200 dark:border-canvas-border text-neutral-900 dark:text-white text-xs font-mono focus:border-terracotta focus:outline-none"
               >
                 {roleOptions.map((opt) => (
-                  <option key={opt} value={opt} className="bg-[#11141C] text-white">
+                  <option key={opt} value={opt} className="bg-white dark:bg-[#11141C] text-neutral-900 dark:text-white">
                     {opt}
                   </option>
                 ))}
@@ -202,7 +202,7 @@ export const ResumeRequestModal: React.FC<ResumeRequestModalProps> = ({ isOpen, 
             </div>
 
             <div className="space-y-1">
-              <label htmlFor="resume-notes" className="text-[11px] font-mono text-slate-300 uppercase cursor-pointer">
+              <label htmlFor="resume-notes" className="text-[11px] font-mono text-neutral-700 dark:text-slate-300 uppercase cursor-pointer">
                 Role Brief / Key Technical Requirements (Optional)
               </label>
               <textarea
@@ -211,18 +211,18 @@ export const ResumeRequestModal: React.FC<ResumeRequestModalProps> = ({ isOpen, 
                 value={notes}
                 onChange={(e) => setNotes(e.target.value)}
                 placeholder="Paste Job Description link, team scope, or location/remote details..."
-                className="w-full px-3 py-2 rounded-xl bg-canvas-surface border border-canvas-border text-white text-xs font-mono focus:border-terracotta focus:outline-none resize-none"
+                className="w-full px-3 py-2 rounded-xl bg-neutral-50 dark:bg-canvas-surface border border-neutral-200 dark:border-canvas-border text-neutral-900 dark:text-white text-xs font-mono focus:border-terracotta focus:outline-none placeholder:text-neutral-400 dark:placeholder:text-slate-500 resize-none"
               />
             </div>
 
-            <div className="pt-2 flex items-center justify-between gap-3 border-t border-canvas-border">
-              <span className="text-[10px] font-mono text-slate-400">
+            <div className="pt-2 flex items-center justify-between gap-3 border-t border-neutral-200 dark:border-canvas-border">
+              <span className="text-[10px] font-mono text-neutral-500 dark:text-slate-400">
                 Direct to: mohsin.i.qureshi@hotmail.com
               </span>
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="px-5 py-2.5 rounded-xl bg-terracotta text-white font-bold text-xs font-sans hover:bg-terracotta/90 flex items-center gap-1.5 shadow-md disabled:opacity-75 transition-all"
+                className="px-5 py-2.5 rounded-xl bg-terracotta text-white font-bold text-xs font-sans hover:bg-terracotta-dark flex items-center gap-1.5 shadow-md disabled:opacity-75 transition-all"
               >
                 {isSubmitting ? (
                   <>
