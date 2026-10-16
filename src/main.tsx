@@ -4,6 +4,7 @@ import App from './App';
 import { ThemeProvider } from './context/ThemeContext';
 import { getVisitorIntel } from './utils/visitorTelemetry';
 import './index.css';
+import '@designcodeio/threeui/style.css';
 
 // Initialize session intelligence and UTM attribution
 getVisitorIntel();

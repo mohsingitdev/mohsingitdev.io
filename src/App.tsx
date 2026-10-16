@@ -2,16 +2,15 @@ import React, { useState, Suspense, lazy } from 'react';
 import { Navbar } from './components/Navbar';
 import { NeuralBackground } from './components/NeuralBackground';
 import { Hero } from './components/Hero';
+import { HowIDeploy } from './components/HowIDeploy';
+import { SystemsSection } from './components/SystemsSection';
+import { SelectedWork } from './components/SelectedWork';
 import { LayaAssessmentMatrix } from './components/LayaAssessmentMatrix';
-import { PrototypeVsProduction } from './components/PrototypeVsProduction';
 import { Footer } from './components/Footer';
 
-// Code Splitting & Performance Optimization: Lazy load heavy interactive & off-screen sections
+// Code Splitting & Performance Optimization: Lazy load lower interactive & off-screen sections
 const InteractiveDemosSection = lazy(() =>
   import('./components/InteractiveDemosSection').then((m) => ({ default: m.InteractiveDemosSection }))
-);
-const DomainMatrix = lazy(() =>
-  import('./components/DomainMatrix').then((m) => ({ default: m.DomainMatrix }))
 );
 const ExperienceTimeline = lazy(() =>
   import('./components/ExperienceTimeline').then((m) => ({ default: m.ExperienceTimeline }))
@@ -94,6 +93,7 @@ export const App: React.FC = () => {
 
       {/* Main Content Sections: Production AI Architecture Portfolio */}
       <main id="main-content" className="flex-1 relative z-10">
+        {/* 1. Cinematic Higgsfield Hero */}
         <Hero
           onBookCall={scrollToBooking}
           onExploreDemos={scrollToDemos}
@@ -101,30 +101,36 @@ export const App: React.FC = () => {
           onRequestResume={() => setIsResumeModalOpen(true)}
         />
 
-        {/* 1. Unified Enterprise Architectural Benchmark Matrix & Audited Proof Ledger */}
-        <LayaAssessmentMatrix onBookCall={scrollToBooking} />
+        {/* 2. Section 1: How I Deploy (4 Stacked Architecture Layers + Signal Path) */}
+        <HowIDeploy />
 
-        {/* 2. Production Philosophy (Prototype vs Production) */}
-        <PrototypeVsProduction />
+        {/* 3. Section 2: Systems Section (Topological Schematic + 4 Infrastructure Chapters) */}
+        <SystemsSection />
+
+        {/* 4. Section 3: Selected Work (3D Fanned Card Stack + Capabilities Row) */}
+        <SelectedWork 
+          onBookCall={scrollToBooking}
+          onExploreDemo={scrollToDemos}
+        />
+
+        {/* 5. Unified Enterprise Architectural Benchmark Matrix & Audited Proof Ledger */}
+        <LayaAssessmentMatrix onBookCall={scrollToBooking} />
 
         {/* Lazy Loaded Lower Sections */}
         <Suspense fallback={<SectionLoader />}>
-          {/* 3. Tangible Interactive Evidence (Routing & Grounded RAG Sandboxes) */}
+          {/* 6. Tangible Interactive Evidence (Routing & Grounded RAG Sandboxes) */}
           <InteractiveDemosSection />
 
-          {/* 4. Domain Blueprints (Solt Wagner Folioblox Style) */}
-          <DomainMatrix onBookCall={scrollToBooking} onExploreDemo={scrollToDemos} />
-
-          {/* 5. Enterprise Pedigree & Academic Track Record */}
+          {/* 7. Enterprise Pedigree & Academic Track Record */}
           <ExperienceTimeline />
 
-          {/* 6. Software Craftsmanship & Thought Leadership Blog */}
+          {/* 8. Software Craftsmanship & Thought Leadership Blog */}
           <BlogSection onBookCall={scrollToBooking} />
 
-          {/* 7. Topmate & Mentorship Offerings with Animated Banners */}
+          {/* 9. Topmate & Mentorship Offerings with Animated Banners */}
           <OfferingsShowcase onBookCall={scrollToBooking} />
 
-          {/* 8. Direct Client Onboarding & High-Converting Booking Funnel */}
+          {/* 10. Direct Client Onboarding & High-Converting Booking Funnel */}
           <CalendlySection />
         </Suspense>
       </main>

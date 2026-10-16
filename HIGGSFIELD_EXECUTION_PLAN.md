@@ -33,7 +33,7 @@ This plan hardens `mohsingitdev.io` into a tactile, Higgsfield-grade AI Systems 
 
 | Asset Path | Status | Resolution / Details | Fallback |
 | :--- | :--- | :--- | :--- |
-| `public/assets/hero/higgsfield-hero-poster.webp` | **Generated & Staged** (96 KB) | 16:9 cinematic studio portrait derived from user photo with terracotta rim lights & 3D circuit traces. | `mohsin_cutout.png` |
+| `public/assets/hero/higgsfield-hero-poster.webp` | **Generated & Staged** (69 KB) | 16:9 executive editorial studio portrait derived from user photo with authentic facial features, charcoal blazer, and low-key obsidian architectural depth. | `mohsin_cutout.png` |
 | `public/assets/hero/higgsfield-hero.mp4` | **Staged** (2.6 MB) | Muted push-in video loop (under 6 MB threshold). | Poster WebP |
 | `src/components/Hero.tsx` | **To Modify** | 900ms wipe reveal, unbaked HTML typography, mobile bypass. | Instant display on mobile / reduced-motion |
 | `src/components/HowIDeploy.tsx` | **To Create** | Section 1: 4 stacked collapsible architecture layers + signal path + keyboard a11y. | Static accessible list |

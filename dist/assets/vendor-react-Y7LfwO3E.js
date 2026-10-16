@@ -1,4 +1,4 @@
-import{r as yc}from"./vendor-lucide-Y15yDNPV.js";var hi={exports:{}},ve={},yi={exports:{}},gi={};/**
+import{r as yc}from"./vendor-lucide-LgKdAFRU.js";var hi={exports:{}},ve={},yi={exports:{}},gi={};/**
  * @license React
  * scheduler.production.min.js
  *
