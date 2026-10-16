@@ -6,8 +6,18 @@ export default defineConfig({
   plugins: [react()],
   base: './', // Ensures relative assets work on GitHub Pages whether at root or subpath
   build: {
-    outDir: 'dist',
+    outDir: 'docs', // Directly updates GitHub Pages deployment folder
     assetsDir: 'assets',
-    sourcemap: false
+    sourcemap: false,
+    emptyOutDir: true,
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          'vendor-react': ['react', 'react-dom'],
+          'vendor-framer': ['framer-motion'],
+          'vendor-lucide': ['lucide-react']
+        }
+      }
+    }
   }
 })

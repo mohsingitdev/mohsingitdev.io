@@ -104,7 +104,7 @@ export const submitLeadInquiry = async (lead: LeadInquiry): Promise<{ success: b
   const payload = {
     _subject: `[High-Intent Lead] ${lead.name || 'Visitor'} from ${lead.organization || 'Enterprise'} (${lead.inquiryType.toUpperCase()})`,
     _template: 'table',
-    _captcha: 'false',
+    _honey: '', // Anti-spam bot trap
     name: lead.name || 'Anonymous Technical Visitor',
     work_email: lead.email,
     company_or_org: lead.organization || 'Not Specified',

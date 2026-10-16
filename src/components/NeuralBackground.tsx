@@ -67,13 +67,35 @@ export const NeuralBackground: React.FC = () => {
       }
     };
 
+    let isHeroVisible = true;
+    let observer: IntersectionObserver | null = null;
+
     const handleVisibilityChange = () => {
-      if (document.hidden) {
+      if (document.hidden || !isHeroVisible) {
         cancelAnimationFrame(animationFrameId);
       } else if (!prefersReducedMotion) {
+        cancelAnimationFrame(animationFrameId);
         animationFrameId = requestAnimationFrame(render);
       }
     };
+
+    // Performance Optimization: Observe hero section to pause rendering off-screen
+    const heroEl = document.getElementById('hero');
+    if (heroEl && 'IntersectionObserver' in window) {
+      observer = new IntersectionObserver(
+        ([entry]) => {
+          isHeroVisible = entry.isIntersecting;
+          if (!isHeroVisible) {
+            cancelAnimationFrame(animationFrameId);
+          } else if (!prefersReducedMotion && !document.hidden) {
+            cancelAnimationFrame(animationFrameId);
+            animationFrameId = requestAnimationFrame(render);
+          }
+        },
+        { threshold: 0.05 }
+      );
+      observer.observe(heroEl);
+    }
 
     if (!prefersReducedMotion) {
       window.addEventListener('mousemove', handleMouseMove, { passive: true });
@@ -244,7 +266,7 @@ export const NeuralBackground: React.FC = () => {
         }
       }
 
-      if (!prefersReducedMotion) {
+      if (!prefersReducedMotion && isHeroVisible && !document.hidden) {
         animationFrameId = requestAnimationFrame(render);
       }
     };
@@ -252,6 +274,7 @@ export const NeuralBackground: React.FC = () => {
     render();
 
     return () => {
+      observer?.disconnect();
       if (!prefersReducedMotion) {
         window.removeEventListener('mousemove', handleMouseMove);
         document.removeEventListener('mouseleave', handleMouseLeave);

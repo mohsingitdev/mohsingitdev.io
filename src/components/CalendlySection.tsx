@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Calendar, Clock, CheckCircle2, ArrowUpRight, MessageSquare, Filter, ChevronDown, HelpCircle, ArrowRight, ShieldCheck, Zap, Globe, ExternalLink, Sparkles, Copy, Mail, Briefcase, Mic } from 'lucide-react';
 import { useTheme } from '../context/ThemeContext';
 
@@ -8,6 +8,23 @@ export const CalendlySection: React.FC = () => {
   const [selectedOpportunity, setSelectedOpportunity] = useState<string>('AI Engineer Role');
   const [openFaq, setOpenFaq] = useState<number | null>(null);
   const [activeTab, setActiveTab] = useState<'calendar' | 'directForm'>('calendar');
+
+  // Dynamic Lazy Loading of Calendly Popup Assets (Prevents Blocking Initial Page Load)
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+    if (!document.querySelector('script[src*="calendly.com/assets/external/widget.js"]')) {
+      const script = document.createElement('script');
+      script.src = 'https://assets.calendly.com/assets/external/widget.js';
+      script.async = true;
+      document.body.appendChild(script);
+    }
+    if (!document.querySelector('link[href*="calendly.com/assets/external/widget.css"]')) {
+      const link = document.createElement('link');
+      link.href = 'https://assets.calendly.com/assets/external/widget.css';
+      link.rel = 'stylesheet';
+      document.head.appendChild(link);
+    }
+  }, []);
 
   // Direct Form state
   const [clientName, setClientName] = useState<string>('');

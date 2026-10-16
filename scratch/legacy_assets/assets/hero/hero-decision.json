@@ -1,0 +1,90 @@
+{
+  "timestamp": "2026-10-16T12:28:35Z",
+  "classifier": "laya",
+  "rounds_run": 3,
+  "locked_decisions": {
+    "motion": "slow_push_in",
+    "subject": "dark_abstract_system_architecture",
+    "palette": [
+      "#121110",
+      "#181715",
+      "#24221E",
+      "#D97757",
+      "#B85D3E",
+      "#F5EBE6"
+    ],
+    "duration_seconds": 6.0,
+    "fps": 24,
+    "resolution": "1920x1080",
+    "prompt_template": "Cinematic still, Higgsfield-like image-to-video frame, slow_push_in, dark_abstract_system_architecture. Palette locked to #121110, #181715, #24221E, #D97757, #B85D3E, #F5EBE6. Low-key studio light, shallow depth, fine grain, physically plausible materials. No text, no letters, no logo, no watermark, no face, no hands. Dark lower third for HTML type. 16:9."
+  },
+  "raw_classifier_output": {
+    "round_3": {
+      "answers": {
+        "motion": {
+          "type": "choice",
+          "choice": "slow_push_in",
+          "probabilities": {
+            "slow_push_in": 0.4114,
+            "slow_lateral_drift": 0.2604,
+            "locked_off": 0.3282
+          },
+          "confidence": 0.0156,
+          "answer_confidence": 0.4114
+        },
+        "subject": {
+          "type": "choice",
+          "choice": "dark_abstract_system_architecture",
+          "probabilities": {
+            "dark_abstract_system_architecture": 0.7525,
+            "dim_engineering_workspace_no_people": 0.1514,
+            "material_light_study": 0.0961
+          },
+          "confidence": 0.3401,
+          "answer_confidence": 0.7525
+        },
+        "cinematic_fit": {
+          "type": "score",
+          "score": 2.1827,
+          "probabilities": {
+            "0": 0.1076,
+            "1": 0.1599,
+            "2": 0.321,
+            "3": 0.2653,
+            "4": 0.1462
+          }
+        },
+        "loop_first_frame_can_match_last_frame": {
+          "type": "noul",
+          "noul": 0.7494,
+          "confidence": 0.7494
+        },
+        "background_dark_enough_for_white_html_type": {
+          "type": "noul",
+          "noul": 0.7118,
+          "confidence": 0.7118
+        },
+        "no_text_no_logos_no_watermark": {
+          "type": "noul",
+          "noul": 0.8875,
+          "confidence": 0.8875
+        },
+        "no_real_person_likeness": {
+          "type": "noul",
+          "noul": 0.9714,
+          "confidence": 0.9714
+        },
+        "duration_is_6_seconds_not_58": {
+          "type": "noul",
+          "noul": 0.9018,
+          "confidence": 0.9018
+        }
+      },
+      "routing": {
+        "model": "english",
+        "repo": "convaiinnovations/laya",
+        "device": "cpu"
+      }
+    }
+  }
+}

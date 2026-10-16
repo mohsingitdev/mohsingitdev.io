@@ -123,6 +123,7 @@ export const StudioVideoSection: React.FC<StudioVideoSectionProps> = ({
                   ref={videoRef}
                   src="./video/intro.mp4"
                   poster="./images/steve_jobs_studio_cinematic_intro.webp"
+                  preload="metadata"
                   autoPlay
                   loop
                   muted={isMuted}

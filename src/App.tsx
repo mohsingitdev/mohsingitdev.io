@@ -1,20 +1,43 @@
-import React, { useState } from 'react';
+import React, { useState, Suspense, lazy } from 'react';
 import { Navbar } from './components/Navbar';
 import { NeuralBackground } from './components/NeuralBackground';
 import { Hero } from './components/Hero';
 import { LayaAssessmentMatrix } from './components/LayaAssessmentMatrix';
-import { ArchitectureProofLedger } from './components/ArchitectureProofLedger';
 import { PrototypeVsProduction } from './components/PrototypeVsProduction';
-import { InteractiveDemosSection } from './components/InteractiveDemosSection';
-import { DomainMatrix } from './components/DomainMatrix';
-import { ExperienceTimeline } from './components/ExperienceTimeline';
-import { BlogSection } from './components/BlogSection';
-import { OfferingsShowcase } from './components/OfferingsShowcase';
-import { CalendlySection } from './components/CalendlySection';
-import { ResumeRequestModal } from './components/ResumeRequestModal';
-import { WelcomingVideoWidget } from './components/WelcomingVideoWidget';
-import { StudioVideoSection } from './components/StudioVideoSection';
 import { Footer } from './components/Footer';
+
+// Code Splitting & Performance Optimization: Lazy load heavy interactive & off-screen sections
+const InteractiveDemosSection = lazy(() =>
+  import('./components/InteractiveDemosSection').then((m) => ({ default: m.InteractiveDemosSection }))
+);
+const DomainMatrix = lazy(() =>
+  import('./components/DomainMatrix').then((m) => ({ default: m.DomainMatrix }))
+);
+const ExperienceTimeline = lazy(() =>
+  import('./components/ExperienceTimeline').then((m) => ({ default: m.ExperienceTimeline }))
+);
+const BlogSection = lazy(() =>
+  import('./components/BlogSection').then((m) => ({ default: m.BlogSection }))
+);
+const OfferingsShowcase = lazy(() =>
+  import('./components/OfferingsShowcase').then((m) => ({ default: m.OfferingsShowcase }))
+);
+const CalendlySection = lazy(() =>
+  import('./components/CalendlySection').then((m) => ({ default: m.CalendlySection }))
+);
+const ResumeRequestModal = lazy(() =>
+  import('./components/ResumeRequestModal').then((m) => ({ default: m.ResumeRequestModal }))
+);
+
+// Minimalist Non-Blocking Loading Skeleton for Lazy Sections
+const SectionLoader: React.FC = () => (
+  <div className="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-center min-h-[260px]">
+    <div className="flex flex-col items-center gap-3 text-xs font-mono text-slate-400">
+      <div className="w-6 h-6 rounded-full border-2 border-terracotta border-t-transparent animate-spin" />
+      <span>Loading production module...</span>
+    </div>
+  </div>
+);
 
 export const App: React.FC = () => {
   const [isResumeModalOpen, setIsResumeModalOpen] = useState(false);
@@ -40,13 +63,6 @@ export const App: React.FC = () => {
     }
   };
 
-  const scrollToStudioIntro = () => {
-    const el = document.getElementById('studio-intro');
-    if (el) {
-      el.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
-
   return (
     <div className="relative min-h-screen bg-canvas text-slate-100 flex flex-col font-sans selection:bg-[#D97757] selection:text-white overflow-x-hidden w-full">
       {/* Accessible Skip Navigation Link */}
@@ -57,7 +73,7 @@ export const App: React.FC = () => {
         Skip to main content
       </a>
 
-      {/* Interactive AI Neural Background Canvas */}
+      {/* Interactive AI Neural Background Canvas (Throttled & Viewport Aware) */}
       <NeuralBackground />
 
       {/* Sticky Navigation */}
@@ -66,11 +82,15 @@ export const App: React.FC = () => {
         onRequestResume={() => setIsResumeModalOpen(true)}
       />
 
-      {/* Recruiter & Hiring Lead Unredacted Resume Modal */}
-      <ResumeRequestModal
-        isOpen={isResumeModalOpen}
-        onClose={() => setIsResumeModalOpen(false)}
-      />
+      {/* Recruiter & Hiring Lead Unredacted Resume Modal (Lazy Loaded) */}
+      {isResumeModalOpen && (
+        <Suspense fallback={null}>
+          <ResumeRequestModal
+            isOpen={isResumeModalOpen}
+            onClose={() => setIsResumeModalOpen(false)}
+          />
+        </Suspense>
+      )}
 
       {/* Main Content Sections: Production AI Architecture Portfolio */}
       <main id="main-content" className="flex-1 relative z-10">
@@ -79,50 +99,35 @@ export const App: React.FC = () => {
           onExploreDemos={scrollToDemos}
           onViewMatrix={scrollToMatrix}
           onRequestResume={() => setIsResumeModalOpen(true)}
-          onWatchVideo={scrollToStudioIntro}
         />
 
-        {/* Executive Studio Video Introduction & Keynote (Steve Jobs Aesthetic) */}
-        <StudioVideoSection
-          onBookCall={scrollToBooking}
-          onRequestResume={() => setIsResumeModalOpen(true)}
-          onExploreDemos={scrollToDemos}
-        />
-
-        {/* 1. Enterprise Architectural Benchmark Matrix */}
+        {/* 1. Unified Enterprise Architectural Benchmark Matrix & Audited Proof Ledger */}
         <LayaAssessmentMatrix onBookCall={scrollToBooking} />
 
-        {/* 2. Evidence Architecture & Benchmark Proof Ledger (Methodology & Baselines) */}
-        <ArchitectureProofLedger />
-
-        {/* 3. Production Philosophy (Prototype vs Production) */}
+        {/* 2. Production Philosophy (Prototype vs Production) */}
         <PrototypeVsProduction />
 
-        {/* 4. Tangible Interactive Evidence (Routing & Grounded RAG Sandboxes) */}
-        <InteractiveDemosSection />
+        {/* Lazy Loaded Lower Sections */}
+        <Suspense fallback={<SectionLoader />}>
+          {/* 3. Tangible Interactive Evidence (Routing & Grounded RAG Sandboxes) */}
+          <InteractiveDemosSection />
 
-        {/* 5. Domain Blueprints (Solt Wagner Folioblox Style) */}
-        <DomainMatrix onBookCall={scrollToBooking} onExploreDemo={scrollToDemos} />
+          {/* 4. Domain Blueprints (Solt Wagner Folioblox Style) */}
+          <DomainMatrix onBookCall={scrollToBooking} onExploreDemo={scrollToDemos} />
 
-        {/* 6. Enterprise Pedigree & Academic Track Record */}
-        <ExperienceTimeline />
+          {/* 5. Enterprise Pedigree & Academic Track Record */}
+          <ExperienceTimeline />
 
-        {/* 7. Software Craftsmanship & Thought Leadership Blog */}
-        <BlogSection onBookCall={scrollToBooking} />
+          {/* 6. Software Craftsmanship & Thought Leadership Blog */}
+          <BlogSection onBookCall={scrollToBooking} />
 
-        {/* 8. Topmate & Mentorship Offerings with Animated Banners */}
-        <OfferingsShowcase onBookCall={scrollToBooking} />
+          {/* 7. Topmate & Mentorship Offerings with Animated Banners */}
+          <OfferingsShowcase onBookCall={scrollToBooking} />
 
-        {/* 9. Direct Client Onboarding & High-Converting Booking Funnel */}
-        <CalendlySection />
+          {/* 8. Direct Client Onboarding & High-Converting Booking Funnel */}
+          <CalendlySection />
+        </Suspense>
       </main>
-
-      {/* Floating GenZ Welcoming Video Intro & Audio Tour Widget */}
-      <WelcomingVideoWidget
-        onBookCall={scrollToBooking}
-        onExploreDemos={scrollToDemos}
-        onRequestResume={() => setIsResumeModalOpen(true)}
-      />
 
       {/* Footer */}
       <Footer />

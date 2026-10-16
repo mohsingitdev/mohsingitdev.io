@@ -16,10 +16,12 @@ export const ResumeRequestModal: React.FC<ResumeRequestModalProps> = ({ isOpen, 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSent, setIsSent] = useState(false);
   const [copied, setCopied] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
 
   useEffect(() => {
     if (!isOpen) return;
     trackVisitorEvent('RESUME_MODAL_OPENED');
+    setErrorMessage('');
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === 'Escape') {
         onClose();
@@ -42,9 +44,10 @@ export const ResumeRequestModal: React.FC<ResumeRequestModalProps> = ({ isOpen, 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
+    setErrorMessage('');
 
     // Asynchronously dispatch via zero-loss form telemetry
-    await submitLeadInquiry({
+    const res = await submitLeadInquiry({
       name,
       email,
       organization,
@@ -54,7 +57,11 @@ export const ResumeRequestModal: React.FC<ResumeRequestModalProps> = ({ isOpen, 
     });
 
     setIsSubmitting(false);
-    setIsSent(true);
+    if (res.success) {
+      setIsSent(true);
+    } else {
+      setErrorMessage(res.message || 'Dispatch notice: Network response failed. Please click "Copy Summary" or connect via direct email.');
+    }
   };
 
   const handleCopy = () => {
@@ -214,6 +221,29 @@ export const ResumeRequestModal: React.FC<ResumeRequestModalProps> = ({ isOpen, 
                 className="w-full px-3 py-2 rounded-xl bg-neutral-50 dark:bg-canvas-surface border border-neutral-200 dark:border-canvas-border text-neutral-900 dark:text-white text-xs font-mono focus:border-terracotta focus:outline-none placeholder:text-neutral-400 dark:placeholder:text-slate-500 resize-none"
               />
             </div>
+
+            {errorMessage && (
+              <div className="p-3 rounded-xl bg-red-500/10 border border-red-500/30 text-xs font-mono text-red-400 space-y-2">
+                <p>{errorMessage}</p>
+                <div className="flex items-center gap-2">
+                  <button
+                    type="button"
+                    onClick={handleCopy}
+                    className="px-3 py-1 rounded-lg bg-red-500/20 text-red-300 hover:text-white transition-colors text-[11px]"
+                  >
+                    {copied ? 'Copied!' : 'Copy Summary'}
+                  </button>
+                  <a
+                    href={`mailto:mohsin.i.qureshi@hotmail.com?subject=${encodeURIComponent(`[CV Request] ${name} (${organization})`)}&body=${encodeURIComponent(
+                      `Name: ${name}\nOrganization: ${organization}\nEmail: ${email}\nRole: ${roleType}\nNotes: ${notes}`
+                    )}`}
+                    className="text-[11px] underline text-red-300 hover:text-white"
+                  >
+                    Send via Email Client
+                  </a>
+                </div>
+              </div>
+            )}
 
             <div className="pt-2 flex items-center justify-between gap-3 border-t border-neutral-200 dark:border-canvas-border">
               <span className="text-[10px] font-mono text-neutral-500 dark:text-slate-400">
