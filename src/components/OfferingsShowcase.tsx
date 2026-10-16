@@ -75,7 +75,7 @@ export const OfferingsShowcase: React.FC<OfferingsShowcaseProps> = ({ onBookCall
   ];
 
   return (
-    <section id="offerings" className="py-20 sm:py-24 bg-canvas border-t border-canvas-border relative overflow-hidden">
+    <section id="offerings" className="py-20 sm:py-24 bg-transparent border-t border-canvas-border relative overflow-hidden">
       {/* Subtle background ambient lighting */}
       <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[800px] h-[350px] bg-terracotta/5 blur-[120px] rounded-full pointer-events-none" />
 
@@ -88,8 +88,8 @@ export const OfferingsShowcase: React.FC<OfferingsShowcaseProps> = ({ onBookCall
               <Sparkles className="w-3.5 h-3.5" />
               <span>DIRECT 1:1 ADVISORY & ACCELERATION</span>
             </div>
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white tracking-tight">
-              Production AI Advisory <span className="font-serif italic font-normal text-terracotta">& Mentorship</span>
+            <h2 className="text-2xl sm:text-4xl lg:text-5xl font-extrabold text-white tracking-tight break-words">
+              Production AI Advisory <span className="font-serif italic font-normal text-terracotta block sm:inline">& Mentorship</span>
             </h2>
             <p className="text-slate-300 text-sm sm:text-base leading-relaxed">
               Book calibrated 1:1 sessions with Mohsin Qureshi. Verified live on Topmate with auto-localized currency (INR UPI for India, USD for global leaders).
@@ -126,7 +126,7 @@ export const OfferingsShowcase: React.FC<OfferingsShowcaseProps> = ({ onBookCall
             return (
               <div
                 key={offering.id}
-                className="group rounded-3xl bg-canvas-card border border-canvas-border hover:border-terracotta/50 transition-all duration-300 flex flex-col overflow-hidden shadow-lg hover:shadow-2xl hover:-translate-y-1"
+                className="group rounded-3xl apple-glass border border-white/10 hover:border-terracotta/50 transition-all duration-300 flex flex-col overflow-hidden shadow-apple-card hover:shadow-apple-elevated hover:-translate-y-1"
               >
                 {/* Banner Thumbnail with Mohsin's Image */}
                 <div className="relative w-full aspect-[16/9] overflow-hidden bg-[#0B0F17] border-b border-canvas-border">

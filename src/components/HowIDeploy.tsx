@@ -38,7 +38,7 @@ const DEPLOYMENT_LAYERS: ArchitectureLayer[] = [
     specs: [
       { label: 'Latency Budgeting', value: '< 40ms Bound', detail: 'SLM classification fast-path eliminates frontier model latency on 75%+ routine intents.' },
       { label: 'FinOps Target', value: '-72% Cloud Delta', detail: 'Caching, token-pruning, and schema routing reduce inference expenses systematically.' },
-      { label: 'Feasibility Audit', value: 'Zero Hallucination', detail: 'Strict boundary isolation between generative synthesis and deterministic business logic.' },
+      { label: 'Feasibility Audit', value: '< 0.5% Drift', detail: 'Strict boundary isolation between generative synthesis and deterministic business logic.' },
     ],
     technologies: ['FastAPI', 'Redis Cache', 'DistilBERT', 'Pydantic v2'],
   },
@@ -62,8 +62,8 @@ const DEPLOYMENT_LAYERS: ArchitectureLayer[] = [
     marker: '03 / DEPLOY',
     phase: 'Forward Deployment',
     title: 'In-Network Hardening & High-Concurrency Serving',
-    description: 'Deploy containerized vLLM and Triton Inference microservices inside client VPCs. Integrate Redis semantic caching and Kafka event streams for 100k+ req/sec scale.',
-    slaFocus: '100k+ Req/Sec & In-VPC Isolation',
+    description: 'Deploy containerized vLLM and Triton Inference microservices inside client VPCs. Integrate Redis semantic caching and Kafka event streams for high-concurrency surge traffic.',
+    slaFocus: 'Surge Concurrency & In-VPC Isolation',
     icon: Server,
     specs: [
       { label: 'Engine Optimization', value: 'vLLM / Triton Server', detail: 'PagedAttention, dynamic continuous batching, and FP8/AWQ quantization on GPU clusters.' },
@@ -78,7 +78,7 @@ const DEPLOYMENT_LAYERS: ArchitectureLayer[] = [
     phase: 'Production Handoff',
     title: 'Audited Regression Suites & Client Enablement',
     description: 'Implement automated CI/CD synthetic evaluation harnesses, wall-clock circuit breakers, and telemetry dashboards. Handoff complete architecture runbooks to internal teams.',
-    slaFocus: '100% Citation Grounding & Team Ownership',
+    slaFocus: 'Strict Citation Grounding & Team Ownership',
     icon: CheckCircle2,
     specs: [
       { label: 'Evaluation Harness', value: 'Automated CI/CD', detail: 'Synthetic test fixtures executed on every PR to prevent regression and semantic drift.' },
@@ -110,7 +110,7 @@ export const HowIDeploy: React.FC = () => {
   };
 
   return (
-    <section id="how-i-deploy" className="py-20 md:py-28 bg-canvas relative overflow-hidden border-t border-canvas-border">
+    <section id="how-i-deploy" className="py-20 md:py-28 bg-transparent relative overflow-hidden border-t border-canvas-border">
       {/* Background ambient lighting */}
       <div className="absolute top-1/3 left-0 w-96 h-96 bg-terracotta/10 rounded-full blur-[140px] pointer-events-none" />
       <div className="absolute bottom-10 right-0 w-96 h-96 bg-terracotta/5 rounded-full blur-[140px] pointer-events-none" />
@@ -124,9 +124,9 @@ export const HowIDeploy: React.FC = () => {
             <span>FORWARD DEPLOYMENT ARCHITECTURE</span>
           </div>
 
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white tracking-tight leading-tight font-sans">
+          <h2 className="text-2xl sm:text-4xl lg:text-5xl font-extrabold text-white tracking-tight leading-tight font-sans break-words">
             How I architect and deploy{' '}
-            <span className="font-serif italic font-normal text-luxury-champagne">Tier-1 AI systems.</span>
+            <span className="font-serif italic font-normal text-luxury-champagne block sm:inline">Tier-1 AI systems.</span>
           </h2>
 
           <p className="mt-4 text-slate-300 text-sm sm:text-base leading-relaxed">
@@ -154,7 +154,7 @@ export const HowIDeploy: React.FC = () => {
               >
                 {/* Node Anchor on the Signal Path */}
                 <div 
-                  aria-hidden="true"
+                  aria-hidden="true" 
                   className={`absolute -left-[23px] sm:-left-[31px] top-6 w-5 h-5 rounded-full border-2 transition-all duration-300 flex items-center justify-center ${
                     isExpanded 
                       ? 'border-terracotta bg-[#121110] shadow-[0_0_12px_rgba(217,119,87,0.8)] scale-110' 
@@ -174,8 +174,8 @@ export const HowIDeploy: React.FC = () => {
                   onKeyDown={(e) => handleKeyDown(e, index)}
                   className={`w-full text-left rounded-2xl transition-all duration-300 border focus:outline-none focus:ring-2 focus:ring-terracotta/50 ${
                     isExpanded
-                      ? 'bg-canvas-cardElevated border-terracotta/40 shadow-[0_20px_50px_rgba(0,0,0,0.85)] ring-1 ring-terracotta/20'
-                      : 'bg-canvas-card border-canvas-border hover:border-white/20 hover:bg-canvas-card/90'
+                      ? 'apple-glass border-terracotta/50 shadow-apple-elevated ring-1 ring-terracotta/30'
+                      : 'apple-glass border-canvas-border hover:border-terracotta/30 shadow-apple-card'
                   }`}
                 >
                   {/* Layer Header Bar */}
@@ -236,7 +236,7 @@ export const HowIDeploy: React.FC = () => {
                             {layer.specs.map((spec, i) => (
                               <div
                                 key={i}
-                                className="p-3.5 rounded-xl bg-canvas-card border border-canvas-border"
+                                className="p-3.5 rounded-xl apple-glass border border-white/10"
                               >
                                 <span className="text-[10px] font-mono text-terracotta uppercase tracking-wider block">
                                   {spec.label}

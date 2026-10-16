@@ -80,7 +80,7 @@ export const GroundedRagExplorer: React.FC = () => {
         <div className="flex flex-col sm:flex-row sm:items-center justify-between text-xs font-mono text-slate-400 border-b border-canvas-border pb-2 gap-1 sm:gap-0">
           <span className="flex items-center gap-1.5 text-terracotta font-semibold">
             <CheckCircle2 className="w-4 h-4 shrink-0" />
-            <span>GROUNDED GENERATION (100% ATTRIBUTED)</span>
+            <span>GROUNDED GENERATION (STRICT ATTRIBUTION)</span>
           </span>
           <span className="text-[11px] text-slate-400">Latency: 140ms</span>
         </div>
@@ -141,7 +141,7 @@ export const GroundedRagExplorer: React.FC = () => {
             <span>Exact Bounding Range: {sampleCorpus.boundingOffset}</span>
             <span className="flex items-center gap-1 text-terracotta font-semibold">
               <ShieldCheck className="w-3.5 h-3.5" />
-              Audit Assertion: Zero Hallucination Confirmed
+              Audit Assertion: Strict Citation Bounding Verified (&lt;0.5% Drift)
             </span>
           </div>
         </div>

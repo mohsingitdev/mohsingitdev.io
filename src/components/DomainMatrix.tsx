@@ -11,7 +11,14 @@ interface DomainMatrixProps {
 export const DomainMatrix: React.FC<DomainMatrixProps> = ({ onBookCall, onExploreDemo }) => {
   const [selectedDomain, setSelectedDomain] = useState<string>('All');
 
-  const domains = ['All', 'E-Commerce & High-Concurrency Systems', 'Life Sciences & Enterprise Knowledge', 'Telecommunications & Cyber Security', 'Computer Vision & Industrial IoT'];
+  const domains = [
+    'All',
+    'Enterprise AI Platform & Multi-Agent Systems',
+    'E-Commerce & High-Concurrency Systems',
+    'Life Sciences & Enterprise Knowledge',
+    'Telecommunications & Cyber Security',
+    'Computer Vision & Industrial IoT'
+  ];
 
   const filteredProjects = selectedDomain === 'All'
     ? DOMAIN_PROJECTS
@@ -44,8 +51,8 @@ export const DomainMatrix: React.FC<DomainMatrixProps> = ({ onBookCall, onExplor
               onClick={() => setSelectedDomain(d)}
               className={`px-3.5 py-1.5 rounded-full text-xs font-mono transition-all duration-300 shrink-0 whitespace-nowrap ${
                 selectedDomain === d
-                  ? 'bg-terracotta text-white font-semibold shadow-luxury-glow'
-                  : 'bg-canvas-card border border-canvas-border text-slate-300 hover:text-white'
+                  ? 'apple-glass-cta-terracotta font-semibold shadow-luxury-glow'
+                  : 'apple-glass border border-white/10 text-slate-300 hover:text-white hover:border-terracotta/40'
               }`}
             >
               {d === 'All' ? 'All Domains' : d.split('&')[0]}
@@ -63,11 +70,11 @@ export const DomainMatrix: React.FC<DomainMatrixProps> = ({ onBookCall, onExplor
             <Card3D
               key={project.id}
               className="h-full rounded-3xl"
-              maxRotation={5}
-              glareOpacity={0.12}
+              maxRotation={6}
+              glareOpacity={0.18}
             >
               <div
-                className="rounded-3xl bg-canvas-card border border-canvas-border hover:border-terracotta/50 transition-all duration-300 p-5 sm:p-8 lg:p-10 flex flex-col justify-between space-y-6 sm:space-y-7 group shadow-apple-card apple-card-hover relative overflow-hidden h-full"
+                className="rounded-3xl apple-glass border border-white/10 hover:border-terracotta/50 transition-all duration-300 p-5 sm:p-8 lg:p-10 flex flex-col justify-between space-y-6 sm:space-y-7 group shadow-apple-elevated relative overflow-hidden h-full"
               >
                 {/* Card Watermark Number */}
                 <div className="absolute top-4 right-5 sm:right-6 select-none pointer-events-none text-4xl sm:text-5xl font-mono font-bold text-neutral-900/[0.05] dark:text-white/[0.04]">
@@ -80,7 +87,7 @@ export const DomainMatrix: React.FC<DomainMatrixProps> = ({ onBookCall, onExplor
                     <span className="font-mono text-xs font-bold text-terracotta">
                       {formattedNumber}
                     </span>
-                    <span className="text-[10px] sm:text-[11px] font-mono uppercase px-2.5 sm:px-3 py-0.5 rounded-full bg-canvas-surface text-slate-300 border border-canvas-border">
+                    <span className="text-[10px] sm:text-[11px] font-mono uppercase px-2.5 sm:px-3 py-0.5 rounded-full apple-glass text-slate-300 border border-white/10">
                       {project.domain.split('&')[0]}
                     </span>
                   </div>
@@ -96,12 +103,12 @@ export const DomainMatrix: React.FC<DomainMatrixProps> = ({ onBookCall, onExplor
 
                 {/* Context & Architecture */}
                 <div className="space-y-3 text-xs text-slate-300 relative z-10">
-                  <div className="p-3.5 sm:p-4 rounded-2xl bg-canvas-surface border border-canvas-border space-y-1">
+                  <div className="p-3.5 sm:p-4 rounded-2xl apple-glass border border-white/10 space-y-1">
                     <div className="font-mono text-slate-500 uppercase text-[10px]">The Enterprise Bottleneck</div>
                     <div className="leading-relaxed">{project.challenge}</div>
                   </div>
 
-                  <div className="p-3.5 sm:p-4 rounded-2xl bg-canvas-subtle border border-terracotta/25 space-y-1">
+                  <div className="p-3.5 sm:p-4 rounded-2xl apple-glass border border-terracotta/30 space-y-1">
                     <div className="font-mono text-terracotta uppercase text-[10px]">Architectural Solution</div>
                     <div className="leading-relaxed">{project.architectureSolution}</div>
                   </div>
@@ -110,7 +117,7 @@ export const DomainMatrix: React.FC<DomainMatrixProps> = ({ onBookCall, onExplor
                 {/* Quantified Metrics Grid */}
                 <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 sm:gap-2.5 pt-1 relative z-10">
                   {project.metrics.map((m, mIdx) => (
-                    <div key={mIdx} className="p-2.5 sm:p-3 rounded-xl bg-canvas-surface border border-canvas-border text-center">
+                    <div key={mIdx} className="p-2.5 sm:p-3 rounded-xl apple-glass border border-white/10 text-center">
                       <div className="font-mono text-sm sm:text-base font-bold text-terracotta">{m.value}</div>
                       <div className="text-[10px] text-slate-400 mt-0.5 leading-tight">{m.label}</div>
                     </div>

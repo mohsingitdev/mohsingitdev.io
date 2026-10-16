@@ -141,7 +141,7 @@ export const CalendlySection: React.FC = () => {
   ];
 
   return (
-    <section id="calendly" className="py-20 sm:py-24 bg-canvas-subtle border-t border-canvas-border">
+    <section id="calendly" className="py-20 sm:py-24 bg-transparent border-t border-canvas-border">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
         
         {/* Header */}
@@ -150,9 +150,9 @@ export const CalendlySection: React.FC = () => {
             <Calendar className="w-3.5 h-3.5 text-terracotta" />
             <span>DIRECT CONNECT & SCHEDULING</span>
           </div>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white font-sans tracking-tight">
+          <h2 className="text-2xl sm:text-4xl lg:text-5xl font-extrabold text-white font-sans tracking-tight break-words">
             Initiate Collaboration &{' '}
-            <span className="font-serif italic font-normal text-terracotta">Interviews</span>
+            <span className="font-serif italic font-normal text-terracotta block sm:inline">Interviews</span>
           </h2>
           <p className="text-slate-300 text-sm sm:text-base leading-relaxed">
             Direct opportunity gateway with Mohsin Qureshi. Schedule an exploratory sync for full-time engineering roles, technical advisory, keynote invitations, or confidential inquiries.
@@ -179,7 +179,7 @@ export const CalendlySection: React.FC = () => {
               return (
                 <div
                   key={idx}
-                  className="p-5 sm:p-6 rounded-2xl bg-canvas-card border border-canvas-border space-y-4 hover:border-terracotta/40 transition-all duration-300 shadow-apple-card flex flex-col justify-between"
+                  className="p-5 sm:p-6 rounded-2xl apple-glass border border-white/10 space-y-4 hover:border-terracotta/40 transition-all duration-300 shadow-apple-card flex flex-col justify-between"
                 >
                   <div className="space-y-3">
                     <div className="flex items-center justify-between">
@@ -222,7 +222,7 @@ export const CalendlySection: React.FC = () => {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 items-start">
           
           {/* Left Column: Pre-Selection Filters */}
-          <div className="lg:col-span-5 rounded-3xl bg-canvas-card border border-canvas-border p-5 sm:p-8 space-y-5 sm:space-y-6 shadow-subtle-card apple-card-hover">
+          <div className="lg:col-span-5 rounded-3xl apple-glass border border-white/10 p-5 sm:p-8 space-y-5 sm:space-y-6 shadow-apple-card">
             
             <div className="space-y-2 border-b border-canvas-border pb-4 sm:pb-5">
               <span className="text-[11px] sm:text-xs font-mono text-terracotta uppercase tracking-wider font-semibold">
@@ -319,18 +319,18 @@ export const CalendlySection: React.FC = () => {
           </div>
 
           {/* Right Column: Calendly Embed Container & Opportunity Form */}
-          <div className="lg:col-span-7 rounded-3xl bg-canvas-card border border-canvas-border overflow-hidden shadow-subtle-card flex flex-col min-h-[580px]">
+          <div className="lg:col-span-7 rounded-3xl apple-glass border border-white/10 overflow-hidden shadow-apple-card flex flex-col min-h-[580px]">
             
             {/* Header Tabs: Switch between Instant Calendar & Direct Brief Form */}
-            <div className="p-4 sm:p-5 border-b border-canvas-border bg-canvas-surface flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+            <div className="p-4 sm:p-5 border-b border-white/10 apple-glass flex flex-col sm:flex-row sm:items-center justify-between gap-3">
               <div className="flex items-center gap-2">
                 <button
                   type="button"
                   onClick={() => setActiveTab('calendar')}
                   className={`px-3.5 py-1.5 rounded-full text-xs font-mono font-semibold transition-all ${
                     activeTab === 'calendar'
-                      ? 'bg-terracotta text-white shadow-sm'
-                      : 'text-slate-400 hover:text-white'
+                      ? 'apple-glass-cta-terracotta shadow-sm'
+                      : 'apple-glass border border-white/10 text-slate-400 hover:text-white'
                   }`}
                 >
                   Interactive Calendar
@@ -340,8 +340,8 @@ export const CalendlySection: React.FC = () => {
                   onClick={() => setActiveTab('directForm')}
                   className={`px-3.5 py-1.5 rounded-full text-xs font-mono font-semibold transition-all ${
                     activeTab === 'directForm'
-                      ? 'bg-terracotta text-white shadow-sm'
-                      : 'text-slate-400 hover:text-white'
+                      ? 'apple-glass-cta-terracotta shadow-sm'
+                      : 'apple-glass border border-white/10 text-slate-400 hover:text-white'
                   }`}
                 >
                   Direct Opportunity Form

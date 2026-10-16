@@ -83,6 +83,82 @@ html:not(.dark) .text-slate-500 {
   color: #78716C;
 }
 
+/* Contrast Guarantee: Preserve crisp light typography inside the dark cinematic Hero canvas in Light Mode */
+html:not(.dark) #hero .text-white,
+html:not(.dark) #hero [class*="text-white/"],
+html:not(.dark) #hero h1,
+html:not(.dark) #hero h1 *,
+html:not(.dark) #hero p,
+html:not(.dark) .apple-glass-cta-terracotta,
+html:not(.dark) .apple-glass-cta-terracotta * {
+  color: #FFFFFF !important;
+}
+
+/* Ensure secondary opacities stay proportional and readable against the dark scrim */
+html:not(.dark) #hero .text-white\/95 {
+  color: rgba(255, 255, 255, 0.95) !important;
+}
+html:not(.dark) #hero .text-white\/90 {
+  color: rgba(255, 255, 255, 0.9) !important;
+}
+html:not(.dark) #hero .text-white\/85 {
+  color: rgba(255, 255, 255, 0.85) !important;
+}
+html:not(.dark) #hero .text-white\/75 {
+  color: rgba(255, 255, 255, 0.75) !important;
+}
+html:not(.dark) #hero .text-white\/70 {
+  color: rgba(255, 255, 255, 0.7) !important;
+}
+html:not(.dark) #hero .text-white\/40 {
+  color: rgba(255, 255, 255, 0.4) !important;
+}
+
+/* But keep the primary Explore Case Studies button with crisp dark text on its white pill */
+html:not(.dark) #hero button.bg-white,
+html:not(.dark) #hero button.bg-white * {
+  color: #0A0A0A !important;
+}
+
+/* In light mode outside #hero, luxury champagne accents should have rich terracotta contrast */
+html:not(.dark) *:not(#hero):not(#hero *) .text-luxury-champagne,
+html:not(.dark) .text-luxury-champagne:not(#hero *) {
+  color: #D97757 !important;
+}
+html:not(.dark) #hero .text-luxury-champagne {
+  color: #F5EBE6 !important;
+}
+
+/* Apple Glass Light Mode internal element adaptation */
+html:not(.dark) .apple-glass .bg-black\/40 {
+  background: rgba(28, 25, 23, 0.06);
+  border-color: rgba(28, 25, 23, 0.1);
+}
+html:not(.dark) .apple-glass .bg-black\/20 {
+  background: rgba(28, 25, 23, 0.03);
+}
+html:not(.dark) .apple-glass .text-emerald-400 {
+  color: #059669;
+}
+
+/* Light mode high-contrast adaptations for accent metrics (outside dark hero canvas) */
+html:not(.dark) *:not(#hero):not(#hero *) .text-cyan-300,
+html:not(.dark) *:not(#hero):not(#hero *) .text-cyan-400 {
+  color: #0E7490 !important;
+}
+html:not(.dark) *:not(#hero):not(#hero *) .text-emerald-400,
+html:not(.dark) *:not(#hero):not(#hero *) .text-emerald-300 {
+  color: #047857 !important;
+}
+html:not(.dark) *:not(#hero):not(#hero *) .text-amber-400,
+html:not(.dark) *:not(#hero):not(#hero *) .text-amber-300 {
+  color: #B45309 !important;
+}
+html:not(.dark) .bg-emerald-950\/40 {
+  background-color: rgba(16, 185, 129, 0.12) !important;
+  border-color: rgba(16, 185, 129, 0.3) !important;
+}
+
 /* Preserve pure white text on solid terracotta cards & buttons */
 html:not(.dark) .bg-terracotta,
 html:not(.dark) .bg-terracotta *:not([class*="bg-"]):not([class*="text-terracotta"]):not([class*="text-neutral"]),
@@ -179,6 +255,67 @@ footer,
     background: rgba(38, 35, 30, 0.88);
     border-color: rgba(217, 119, 87, 0.35);
     transform: translateY(-2px);
+  }
+
+  /* Apple Pro Glassmorphism System */
+  .apple-glass {
+    background: rgba(24, 23, 21, 0.72);
+    backdrop-filter: blur(24px) saturate(190%);
+    -webkit-backdrop-filter: blur(24px) saturate(190%);
+    border: 1px solid rgba(240, 230, 215, 0.09);
+    box-shadow: 0 20px 45px -15px rgba(0, 0, 0, 0.7), inset 0 1px 0 rgba(255, 255, 255, 0.12);
+  }
+  html:not(.dark) .apple-glass {
+    background: rgba(255, 255, 255, 0.82);
+    border-color: rgba(28, 25, 23, 0.08);
+    box-shadow: 0 15px 35px -10px rgba(0, 0, 0, 0.07), inset 0 1px 0 rgba(255, 255, 255, 0.95);
+  }
+
+  .apple-glass-pill {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 9999px;
+    background: rgba(30, 28, 24, 0.65);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    border: 1px solid rgba(240, 230, 215, 0.12);
+    box-shadow: 0 8px 24px -6px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.14);
+    transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .apple-glass-pill:hover {
+    background: rgba(42, 38, 33, 0.85);
+    border-color: rgba(217, 119, 87, 0.5);
+    box-shadow: 0 12px 30px -8px rgba(0, 0, 0, 0.6), 0 0 25px -4px rgba(217, 119, 87, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    transform: translateY(-1px);
+  }
+  .apple-glass-pill:active {
+    transform: scale(0.98) translateY(0);
+  }
+  html:not(.dark) .apple-glass-pill {
+    background: rgba(255, 255, 255, 0.85);
+    border-color: rgba(28, 25, 23, 0.1);
+    box-shadow: 0 8px 20px -6px rgba(0, 0, 0, 0.06), inset 0 1px 0 rgba(255, 255, 255, 1);
+  }
+  html:not(.dark) .apple-glass-pill:hover {
+    background: #FFFFFF;
+    border-color: rgba(217, 119, 87, 0.6);
+    box-shadow: 0 12px 28px -6px rgba(0, 0, 0, 0.1), 0 0 20px rgba(217, 119, 87, 0.2);
+  }
+
+  .apple-glass-cta-terracotta {
+    background: linear-gradient(180deg, #E28264 0%, #D97757 45%, #BF5634 100%);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    box-shadow: 0 12px 30px -8px rgba(217, 119, 87, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.35);
+    color: #FFFFFF !important;
+    transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .apple-glass-cta-terracotta:hover {
+    box-shadow: 0 16px 36px -8px rgba(217, 119, 87, 0.65), 0 0 30px rgba(217, 119, 87, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.45);
+    transform: translateY(-1.5px);
+  }
+  .apple-glass-cta-terracotta:active {
+    transform: scale(0.98);
   }
 
   .luxury-border {

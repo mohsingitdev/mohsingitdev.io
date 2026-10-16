@@ -29,15 +29,15 @@ const INFRASTRUCTURE_CHAPTERS: Chapter[] = [
     id: 'ch-retrieval',
     chapterNumber: 'CHAPTER 01',
     title: 'Retrieval: RRF Hybrid RAG & Exact Citations',
-    subtitle: 'Zero-Hallucination Regulatory Grounding',
-    metric: '100%',
-    metricLabel: 'Attribution Recall',
+    subtitle: 'Regulatory Citation Grounding & Auditability',
+    metric: '< 0.5%',
+    metricLabel: 'Attribution Drift Rate',
     enterpriseProof: 'Accenture & Novartis Life Sciences',
     description: 'Fuses BM25 lexical precision with dense vector embeddings across Milvus and Qdrant. Every generated assertion is rigorously verified against source PDF bounding character offsets, eliminating regulatory citation risks.',
     technicalArchitecture: [
       'Reciprocal Rank Fusion (RRF) combining dense & lexical candidate pools',
       'Cross-encoder reranker pruning top-50 results down to top-5 verified chunks',
-      'Sentence-level bounding verification ensuring 100% grounded auditability',
+      'Sentence-level bounding verification ensuring strict grounded auditability',
       'Automated semantic drift tracking with alert thresholds under 0.5%',
     ],
     icon: Database,
@@ -87,7 +87,7 @@ const INFRASTRUCTURE_CHAPTERS: Chapter[] = [
     description: 'Containerized vLLM and Triton Inference microservices deployed directly inside client VPCs. Continuous batching and FP8/AWQ quantization yield 65–72% token cost reduction under high-concurrency surge loads.',
     technicalArchitecture: [
       'PagedAttention memory management maximizing GPU VRAM utilization',
-      'NVIDIA Triton dynamic batching scaling to 100k+ req/sec throughput',
+      'NVIDIA Triton dynamic batching surge-tested for 100k+ req/sec concurrency',
       'Isolated VPC air-gapped deployment guaranteeing proprietary data confidentiality',
       'Prometheus and Grafana GPU telemetry dashboards for active compute FinOps',
     ],
@@ -245,7 +245,7 @@ export const SystemsSection: React.FC = () => {
   const currentChapter = INFRASTRUCTURE_CHAPTERS[activeChapterIndex];
 
   return (
-    <section id="systems-section" ref={containerRef} className="py-20 md:py-28 bg-[#151412] relative overflow-hidden border-t border-canvas-border">
+    <section id="systems-section" ref={containerRef} className="py-20 md:py-28 bg-transparent relative overflow-hidden border-t border-canvas-border">
       {/* Background ambient lighting */}
       <div className="absolute top-1/4 right-0 w-[500px] h-[500px] bg-terracotta/10 rounded-full blur-[150px] pointer-events-none" />
       <div className="absolute bottom-10 left-10 w-[400px] h-[400px] bg-terracotta/5 rounded-full blur-[150px] pointer-events-none" />
@@ -259,9 +259,9 @@ export const SystemsSection: React.FC = () => {
             <span>PRODUCTION AI SYSTEMS TOPOLOGY</span>
           </div>
 
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white tracking-tight leading-tight font-sans">
+          <h2 className="text-2xl sm:text-4xl lg:text-5xl font-extrabold text-white tracking-tight leading-tight font-sans break-words">
             Enterprise schematic &{' '}
-            <span className="font-serif italic font-normal text-luxury-champagne">infrastructure chapters.</span>
+            <span className="font-serif italic font-normal text-luxury-champagne block sm:inline">infrastructure chapters.</span>
           </h2>
 
           <p className="mt-4 text-slate-300 text-sm sm:text-base leading-relaxed">
@@ -272,7 +272,7 @@ export const SystemsSection: React.FC = () => {
         {/* ========================================================= */}
         {/* INTERACTIVE ARCHITECTURAL SCHEMATIC CANVAS / SVG          */}
         {/* ========================================================= */}
-        <div className="relative rounded-2xl bg-canvas-card border border-canvas-border p-4 sm:p-6 mb-8 overflow-hidden shadow-[0_15px_40px_rgba(0,0,0,0.7)]">
+        <div className="relative rounded-2xl apple-glass border border-white/10 p-4 sm:p-6 mb-8 overflow-hidden shadow-apple-elevated">
           <div className="flex items-center justify-between pb-3 border-b border-white/10 mb-2">
             <div className="flex items-center gap-2">
               <span className="w-2 h-2 rounded-full bg-terracotta animate-pulse" />
@@ -355,8 +355,8 @@ export const SystemsSection: React.FC = () => {
                   onClick={() => setActiveChapterIndex(idx)}
                   className={`w-full p-4 sm:p-5 rounded-2xl text-left border transition-all duration-300 flex items-start gap-4 ${
                     isSelected
-                      ? 'bg-canvas-cardElevated border-terracotta/50 shadow-[0_10px_30px_rgba(0,0,0,0.8)] ring-1 ring-terracotta/30'
-                      : 'bg-canvas-card border-canvas-border hover:border-white/20 text-slate-400 hover:text-slate-200'
+                      ? 'apple-glass border-terracotta/50 shadow-apple-card ring-1 ring-terracotta/30'
+                      : 'apple-glass border-canvas-border hover:border-terracotta/30 text-slate-400 hover:text-slate-200'
                   }`}
                 >
                   <div className={`w-10 h-10 rounded-xl flex items-center justify-center shrink-0 border transition-colors ${
@@ -399,7 +399,7 @@ export const SystemsSection: React.FC = () => {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -12 }}
                 transition={{ duration: 0.3 }}
-                className="rounded-2xl bg-canvas-cardElevated border border-terracotta/30 p-6 sm:p-8 shadow-[0_20px_50px_rgba(0,0,0,0.85)] space-y-6"
+                className="rounded-2xl apple-glass border border-terracotta/30 p-6 sm:p-8 shadow-apple-elevated space-y-6"
               >
                 {/* Header Strip with Metrics */}
                 <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-5 border-b border-white/10">
@@ -440,7 +440,7 @@ export const SystemsSection: React.FC = () => {
                     {currentChapter.technicalArchitecture.map((item, i) => (
                       <div
                         key={i}
-                        className="p-3 rounded-xl bg-canvas-card border border-canvas-border flex items-start gap-3"
+                        className="p-3 rounded-xl apple-glass border border-white/10 flex items-start gap-3"
                       >
                         <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
                         <span className="text-xs text-slate-300 font-mono leading-relaxed">

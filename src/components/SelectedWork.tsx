@@ -9,7 +9,6 @@ import {
   Layers, 
   Cpu, 
   Database, 
-  ShieldCheck, 
   Sparkles
 } from 'lucide-react';
 import { DOMAIN_PROJECTS } from '../data/domainProjects';
@@ -21,20 +20,20 @@ interface SelectedWorkProps {
 
 const CAPABILITIES = [
   {
-    id: 'cap-arch',
-    title: 'AI Architecture',
-    tag: 'Core Paradigm',
-    icon: Layers,
-    description: 'Stateful LangGraph state machines, deterministic sub-40ms SLM routing gateways, and Pydantic schema bounding.',
-    points: ['LangGraph StateGraph', 'FastText/BERT Classifiers', 'Wall-Clock Timers'],
+    id: 'cap-finetuning',
+    title: 'Model Fine-Tuning',
+    tag: 'Open-Source Adaptation',
+    icon: Sparkles,
+    description: 'Hugging Face SFT and QLoRA adaptation of Gemma 8B/27B for deterministic tool-calling agents and structured outputs.',
+    points: ['Gemma 8B / 27B SFT', 'PyTorch & QLoRA', 'Synthetic Trajectory Tuning'],
   },
   {
-    id: 'cap-inference',
-    title: 'Inference Deployment',
-    tag: 'High Concurrency',
+    id: 'cap-platform',
+    title: 'Platform & Inference',
+    tag: 'Multi-Cloud Scale',
     icon: Cpu,
-    description: 'Containerized vLLM and NVIDIA Triton server orchestration with continuous batching and FP8/AWQ quantization.',
-    points: ['vLLM PagedAttention', 'NVIDIA Triton Server', 'PyTorch TensorRT'],
+    description: 'Containerized vLLM and NVIDIA Triton serving on AWS EKS and GCP GKE with continuous batching and dynamic scaling.',
+    points: ['AWS EKS & GCP GKE', 'vLLM PagedAttention', 'Triton Dynamic Batching'],
   },
   {
     id: 'cap-retrieval',
@@ -42,15 +41,15 @@ const CAPABILITIES = [
     tag: 'Factual Grounding',
     icon: Database,
     description: 'Hybrid Reciprocal Rank Fusion combining BM25 exact lexical precision with dense vector embeddings across Milvus/Qdrant.',
-    points: ['Reciprocal Rank Fusion', 'Cross-Encoder Rerankers', '100% Citation Grounding'],
+    points: ['Reciprocal Rank Fusion', 'Cross-Encoder Rerankers', 'Strict Citation Bounding'],
   },
   {
-    id: 'cap-llmops',
-    title: 'Production LLMOps',
-    tag: 'Enterprise SLA',
-    icon: ShieldCheck,
-    description: 'Automated CI/CD synthetic evaluation harnesses, semantic WAF jailbreak defenses, and real-time observability.',
-    points: ['Langfuse & MLflow', 'GitHub Actions Evals', 'Zero-Cascade Failover'],
+    id: 'cap-traditional-ml',
+    title: 'Traditional ML & Data Science',
+    tag: 'Statistical Rigor',
+    icon: Layers,
+    description: 'Classical ML pipelines, gradient-boosted decision trees (XGBoost), time-series anomaly detection, and streaming telemetry.',
+    points: ['XGBoost & Scikit-Learn', 'Isolation Forests', 'Kafka Feature Stores'],
   },
 ];
 
@@ -99,7 +98,7 @@ export const SelectedWork: React.FC<SelectedWorkProps> = ({ onExploreDemo }) => 
       id="selected-work" 
       onKeyDown={handleKeyDown}
       tabIndex={0}
-      className="py-20 md:py-28 bg-canvas relative overflow-hidden border-t border-canvas-border focus:outline-none"
+      className="py-20 md:py-28 bg-transparent relative overflow-hidden border-t border-canvas-border focus:outline-none"
     >
       {/* Background ambient lighting */}
       <div className="absolute top-1/4 left-1/3 w-[550px] h-[550px] bg-terracotta/10 rounded-full blur-[160px] pointer-events-none" />
@@ -115,9 +114,9 @@ export const SelectedWork: React.FC<SelectedWorkProps> = ({ onExploreDemo }) => 
               <span>SELECTED PRODUCTION SYSTEMS</span>
             </div>
 
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white tracking-tight leading-tight font-sans">
+            <h2 className="text-2xl sm:text-4xl lg:text-5xl font-extrabold text-white tracking-tight leading-tight font-sans break-words">
               Hardened architectures for{' '}
-              <span className="font-serif italic font-normal text-luxury-champagne">tier-1 enterprise scale.</span>
+              <span className="font-serif italic font-normal text-luxury-champagne block sm:inline">tier-1 enterprise scale.</span>
             </h2>
 
             <p className="mt-4 text-slate-300 text-sm sm:text-base leading-relaxed">
@@ -191,7 +190,7 @@ export const SelectedWork: React.FC<SelectedWorkProps> = ({ onExploreDemo }) => 
                       zIndex: zIndex,
                       pointerEvents: isHidden ? 'none' : 'auto',
                     }}
-                    className={`absolute inset-0 rounded-[28px] bg-[#24221E] border border-white/10 shadow-[0_25px_60px_rgba(0,0,0,0.85)] p-8 sm:p-10 flex flex-col justify-between cursor-pointer transition-colors duration-300 ${
+                    className={`absolute inset-0 rounded-[28px] apple-glass border border-white/15 shadow-apple-elevated p-8 sm:p-10 flex flex-col justify-between cursor-pointer transition-colors duration-300 ${
                       isCurrent ? 'ring-1 ring-terracotta/40' : 'hover:border-white/20'
                     }`}
                   >
@@ -228,7 +227,7 @@ export const SelectedWork: React.FC<SelectedWorkProps> = ({ onExploreDemo }) => 
                       {project.metrics.map((m, mIdx) => (
                         <div
                           key={mIdx}
-                          className="p-3 rounded-xl bg-[#1A1815] border border-white/5"
+                          className="p-3 rounded-xl apple-glass border border-white/10"
                         >
                           <div className="text-xl font-bold font-mono text-terracotta">
                             {m.value}
@@ -394,7 +393,7 @@ export const SelectedWork: React.FC<SelectedWorkProps> = ({ onExploreDemo }) => 
               return (
                 <div
                   key={cap.id}
-                  className="rounded-2xl bg-canvas-card border border-canvas-border p-5 hover:border-terracotta/40 hover:bg-canvas-cardElevated transition-all duration-300 flex flex-col justify-between"
+                  className="rounded-2xl apple-glass border-canvas-border p-5 hover:border-terracotta/40 transition-all duration-300 flex flex-col justify-between shadow-apple-card"
                 >
                   <div>
                     <div className="flex items-center justify-between mb-3">

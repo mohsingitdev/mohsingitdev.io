@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { Terminal, Menu, X, ArrowUpRight, Github, Linkedin, Sun, Moon, FileText } from 'lucide-react';
+import { Menu, X, ArrowUpRight, Github, Linkedin, Sun, Moon, FileText } from 'lucide-react';
 import { useTheme } from '../context/ThemeContext';
+import { BrandOrbs } from '@designcodeio/threeui';
 
 interface NavbarProps {
   onBookCall: () => void;
@@ -36,19 +37,21 @@ export const Navbar: React.FC<NavbarProps> = ({ onBookCall, onRequestResume }) =
         ? 'translate-y-0 opacity-100' 
         : '-translate-y-8 opacity-0 pointer-events-none'
     }`}>
-      <div className="pointer-events-auto max-w-5xl w-full rounded-full px-4 sm:px-6 py-2 sm:py-2.5 bg-canvas-card/90 dark:bg-[#161513]/90 backdrop-blur-2xl border border-canvas-border shadow-2xl shadow-black/5 dark:shadow-black/50 flex items-center justify-between transition-all duration-300">
+      <div className="pointer-events-auto max-w-5xl w-full rounded-full px-4 sm:px-6 py-2 sm:py-2.5 apple-glass border border-white/10 shadow-2xl flex items-center justify-between transition-all duration-300">
         
-        {/* Brand */}
+        {/* Brand with 3D Claude Orb */}
         <a href="#hero" className="flex items-center gap-2.5 group shrink-0">
-          <div className="w-8 h-8 rounded-xl bg-canvas-subtle border border-canvas-border flex items-center justify-center group-hover:border-terracotta/50 transition-colors shadow-xs">
-            <Terminal className="w-4 h-4 text-terracotta" />
+          <div className="w-8 h-8 rounded-xl apple-glass flex items-center justify-center group-hover:border-terracotta/50 transition-colors shadow-xs">
+            <div className="w-5 h-5 rounded-full overflow-hidden">
+              <BrandOrbs variant="claude" size="small" mode={theme === 'dark' ? 'dark' : 'light'} />
+            </div>
           </div>
           <div className="leading-tight">
             <div className="font-sans text-xs sm:text-sm font-bold text-neutral-900 dark:text-white flex items-center gap-1.5">
               Mohsin Qureshi
               <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
             </div>
-            <div className="text-[10px] font-mono text-slate-500 dark:text-slate-400">AI Engineer & FDE</div>
+            <div className="text-[10px] font-mono text-slate-500 dark:text-slate-400">AI Platform Engineer & FDE | Senior Data Scientist</div>
           </div>
         </a>
 
@@ -102,7 +105,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onBookCall, onRequestResume }) =
           {onRequestResume && (
             <button
               onClick={onRequestResume}
-              className="px-3.5 py-1.5 text-xs font-semibold rounded-full bg-neutral-100 hover:bg-neutral-200/80 dark:bg-canvas-card dark:hover:bg-canvas-cardElevated border border-neutral-200/90 dark:border-canvas-border text-neutral-800 dark:text-neutral-100 hover:text-neutral-950 dark:hover:text-white transition-all shadow-sm flex items-center gap-1.5 apple-spring hover:scale-[1.03] active:scale-[0.98]"
+              className="apple-glass-pill px-3.5 py-1.5 text-xs font-semibold text-neutral-800 dark:text-neutral-100 flex items-center gap-1.5"
             >
               <FileText className="w-3.5 h-3.5 text-terracotta shrink-0" />
               <span>Request CV</span>
@@ -111,7 +114,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onBookCall, onRequestResume }) =
 
           <button
             onClick={onBookCall}
-            className="px-4 py-1.5 text-xs font-semibold rounded-full bg-terracotta text-white hover:bg-terracotta-dark transition-all shadow-sm flex items-center gap-1.5 apple-spring hover:scale-[1.03] active:scale-[0.98]"
+            className="apple-glass-cta-terracotta px-4 py-1.5 text-xs font-semibold rounded-full flex items-center gap-1.5"
           >
             <span>Schedule Sync</span>
             <ArrowUpRight className="w-3.5 h-3.5" />

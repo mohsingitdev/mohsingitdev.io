@@ -3,7 +3,7 @@ import { Terminal, Github, Linkedin, Mail, ArrowUpRight, Sparkles } from 'lucide
 
 export const Footer: React.FC = () => {
   return (
-    <footer className="bg-canvas border-t border-canvas-border py-16 text-slate-400 text-xs">
+    <footer className="bg-canvas/50 backdrop-blur-lg border-t border-canvas-border py-16 text-slate-400 text-xs">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
         
         {/* Top Grid */}

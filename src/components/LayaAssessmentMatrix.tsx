@@ -156,9 +156,9 @@ export const LayaAssessmentMatrix: React.FC<{ onBookCall: () => void }> = ({ onB
           <span>PRODUCTION AI STANDARDS & VERIFICATION</span>
         </div>
         
-        <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white font-sans tracking-tight leading-tight">
+        <h2 className="text-2xl sm:text-4xl lg:text-5xl font-extrabold text-white font-sans tracking-tight leading-tight break-words">
           Architectural Benchmark Matrix &{' '}
-          <span className="font-serif italic font-normal text-terracotta">Proof Ledger</span>
+          <span className="font-serif italic font-normal text-terracotta block sm:inline">Proof Ledger</span>
         </h2>
         
         <p className="text-slate-300 text-sm sm:text-base leading-relaxed max-w-2xl mx-auto">
@@ -167,7 +167,7 @@ export const LayaAssessmentMatrix: React.FC<{ onBookCall: () => void }> = ({ onB
 
         {/* View Mode Toggle: Executive Matrix vs Audited Proof Ledger */}
         <div className="pt-2 flex justify-center">
-          <div className="inline-flex p-1 rounded-2xl bg-canvas-card border border-canvas-border shadow-md">
+          <div className="inline-flex p-1 rounded-2xl apple-glass border border-white/10 shadow-apple-card">
             <button
               onClick={() => setViewMode('matrix')}
               className={`px-4 sm:px-5 py-2 rounded-xl text-xs font-mono font-semibold transition-all flex items-center gap-2 ${
@@ -195,7 +195,7 @@ export const LayaAssessmentMatrix: React.FC<{ onBookCall: () => void }> = ({ onB
       </div>
 
       {/* Aggregate Score Ribbon */}
-      <div className="p-4 sm:p-8 rounded-3xl bg-canvas-card border border-canvas-border grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-6 shadow-xl relative overflow-hidden">
+      <div className="p-4 sm:p-8 rounded-3xl apple-glass border border-white/10 grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-6 shadow-apple-elevated relative overflow-hidden">
         <div className="absolute top-0 right-1/4 w-96 h-32 bg-terracotta/10 blur-[80px] pointer-events-none" />
 
         <div className="space-y-1 sm:space-y-1.5 border-r border-canvas-border/70 pr-2 sm:pr-4">
@@ -234,7 +234,7 @@ export const LayaAssessmentMatrix: React.FC<{ onBookCall: () => void }> = ({ onB
         <div className="space-y-8 animate-fadeIn">
           {/* Filter Tabs */}
           <div className="flex justify-center -mx-4 px-4 sm:mx-0 sm:px-0">
-            <div className="inline-flex p-1.5 rounded-2xl bg-canvas-card border border-canvas-border gap-1 overflow-x-auto max-w-full no-scrollbar touch-scroll">
+            <div className="inline-flex p-1.5 rounded-2xl apple-glass border border-white/10 gap-1 overflow-x-auto max-w-full no-scrollbar touch-scroll shadow-apple-card">
               <button
                 onClick={() => setSelectedFilter('all')}
                 className={`px-3.5 sm:px-4 py-2 rounded-xl text-xs font-mono whitespace-nowrap transition-all shrink-0 ${
@@ -291,7 +291,7 @@ export const LayaAssessmentMatrix: React.FC<{ onBookCall: () => void }> = ({ onB
                   initial={{ opacity: 0, y: 15 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.3 }}
-                  className={`p-5 sm:p-8 rounded-3xl bg-canvas-surface border border-canvas-border hover:border-terracotta/40 transition-all space-y-5 shadow-lg group relative flex flex-col justify-between apple-card-hover ${
+                  className={`p-5 sm:p-8 rounded-3xl apple-glass border border-white/10 hover:border-terracotta/40 transition-all space-y-5 shadow-apple-card group relative flex flex-col justify-between apple-card-hover ${
                     item.id === 'cross-domain' && selectedFilter === 'all' ? 'md:col-span-2' : ''
                   }`}
                 >
@@ -402,7 +402,7 @@ export const LayaAssessmentMatrix: React.FC<{ onBookCall: () => void }> = ({ onB
             return (
               <div
                 key={item.id}
-                className={`rounded-2xl bg-canvas-card border transition-all duration-300 overflow-hidden ${
+                className={`rounded-2xl apple-glass border transition-all duration-300 overflow-hidden ${
                   isExpanded ? 'border-terracotta/60 shadow-apple-card' : 'border-canvas-border hover:border-slate-500'
                 }`}
               >

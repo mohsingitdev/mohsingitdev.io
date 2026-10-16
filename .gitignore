@@ -26,5 +26,6 @@ pnpm-debug.log*
 .env.test.local
 .env.production.local
 
-# Local Screenshots
+# Local Screenshots & Scratch Scripts
 screenshot_*.png
+scratch/

@@ -12,9 +12,9 @@ export const ExperienceTimeline: React.FC = () => {
           <Briefcase className="w-3.5 h-3.5 text-terracotta" />
           <span>PRODUCTION PEDIGREE</span>
         </div>
-        <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white font-sans tracking-tight">
+        <h2 className="text-2xl sm:text-4xl lg:text-5xl font-extrabold text-white font-sans tracking-tight break-words">
           Enterprise{' '}
-          <span className="font-serif italic font-normal text-terracotta">Track Record</span>
+          <span className="font-serif italic font-normal text-terracotta block sm:inline">Track Record</span>
         </h2>
         <p className="text-slate-300 text-sm sm:text-base leading-relaxed">
           Proven history designing, hardening, and deploying enterprise-scale AI systems across global technology, life sciences, and consulting leaders.
@@ -26,7 +26,7 @@ export const ExperienceTimeline: React.FC = () => {
         {EXPERIENCES.map((exp) => (
           <div
             key={exp.id}
-            className="rounded-3xl bg-canvas-surface border border-canvas-border p-5 sm:p-8 space-y-5 sm:space-y-6 hover:border-terracotta/40 transition-all duration-300 shadow-subtle-card apple-card-hover"
+            className="rounded-3xl apple-glass border border-white/10 p-5 sm:p-8 space-y-5 sm:space-y-6 hover:border-terracotta/40 transition-all duration-300 shadow-apple-card apple-card-hover"
           >
             {/* Header row */}
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2.5 sm:gap-3 border-b border-canvas-border/80 pb-3.5 sm:pb-4">
@@ -86,7 +86,7 @@ export const ExperienceTimeline: React.FC = () => {
           {EDUCATION.map((edu, idx) => (
             <div
               key={idx}
-              className="p-4 sm:p-5 rounded-2xl bg-canvas-surface border border-canvas-border space-y-1.5 hover:border-terracotta/40 transition-all duration-300 shadow-apple-card apple-card-hover"
+              className="p-4 sm:p-5 rounded-2xl apple-glass border border-white/10 space-y-1.5 hover:border-terracotta/40 transition-all duration-300 shadow-apple-card apple-card-hover"
             >
               <div className="text-xs font-mono text-terracotta">{edu.period}</div>
               <div className="font-semibold text-xs sm:text-sm text-white font-sans">{edu.degree}</div>

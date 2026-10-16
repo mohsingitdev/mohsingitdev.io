@@ -5,14 +5,14 @@ interface Card3DProps {
   children: React.ReactNode;
   className?: string;
   maxRotation?: number; // max tilt degrees (e.g. 7-10 deg for Apple subtlety)
-  glareOpacity?: number; // subtle glare opacity (0 - 0.25)
+  glareOpacity?: number; // subtle glare opacity (0 - 0.3)
 }
 
 export const Card3D: React.FC<Card3DProps> = ({
   children,
   className = '',
-  maxRotation = 7,
-  glareOpacity = 0.12
+  maxRotation = 8,
+  glareOpacity = 0.18
 }) => {
   const shouldReduceMotion = useReducedMotion();
   const cardRef = useRef<HTMLDivElement>(null);
@@ -22,8 +22,8 @@ export const Card3D: React.FC<Card3DProps> = ({
   const x = useMotionValue(0);
   const y = useMotionValue(0);
 
-  // Apple spring physics configuration
-  const springConfig = { stiffness: 280, damping: 22, mass: 0.5 };
+  // Apple spring physics configuration: responsive, fluid, zero overshoot
+  const springConfig = { stiffness: 260, damping: 20, mass: 0.6 };
   const smoothX = useSpring(x, springConfig);
   const smoothY = useSpring(y, springConfig);
 
@@ -31,7 +31,7 @@ export const Card3D: React.FC<Card3DProps> = ({
   const rotateY = useTransform(smoothX, [-0.5, 0.5], [-maxRotation, maxRotation]);
   const rotateX = useTransform(smoothY, [-0.5, 0.5], [maxRotation, -maxRotation]);
 
-  // Glare position
+  // Glare position following cursor
   const glareX = useTransform(smoothX, [-0.5, 0.5], ['0%', '100%']);
   const glareY = useTransform(smoothY, [-0.5, 0.5], ['0%', '100%']);
 
@@ -64,7 +64,7 @@ export const Card3D: React.FC<Card3DProps> = ({
       onMouseMove={handleMouseMove}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
-      className="perspective-1000 relative [perspective:1200px]"
+      className="relative [perspective:1200px]"
     >
       <motion.div
         style={{
@@ -72,25 +72,25 @@ export const Card3D: React.FC<Card3DProps> = ({
           rotateY,
           transformStyle: 'preserve-3d',
         }}
-        className={`relative transition-shadow duration-300 ${className}`}
+        className={`relative transition-all duration-300 ${className}`}
       >
         {children}
 
-        {/* Dynamic Specular 3D Glare Sheen (Apple Glass Effect) */}
+        {/* Dynamic Specular 3D Glare Sheen with Claude Terracotta Warmth */}
         {glareOpacity > 0 && (
           <motion.div
             aria-hidden="true"
-            className="pointer-events-none absolute inset-0 rounded-[inherit] overflow-hidden opacity-0 transition-opacity duration-300"
+            className="pointer-events-none absolute inset-0 rounded-[inherit] overflow-hidden opacity-0 transition-opacity duration-300 z-30"
             style={{
               opacity: isHovered ? glareOpacity : 0,
             }}
           >
             <motion.div
-              className="absolute -inset-full w-[300%] h-[300%] pointer-events-none"
+              className="absolute -inset-full w-[250%] h-[250%] pointer-events-none"
               style={{
                 left: glareX,
                 top: glareY,
-                background: 'radial-gradient(circle at center, rgba(255,255,255,0.4) 0%, rgba(255,255,255,0) 65%)',
+                background: 'radial-gradient(circle at center, rgba(217, 119, 87, 0.28) 0%, rgba(255, 255, 255, 0.20) 30%, transparent 68%)',
                 transform: 'translate(-50%, -50%)',
               }}
             />

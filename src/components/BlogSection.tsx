@@ -103,9 +103,9 @@ export const BlogSection: React.FC<BlogSectionProps> = ({ onBookCall }) => {
           <BookOpen className="w-3.5 h-3.5 text-terracotta" />
           <span>TECHNICAL THOUGHT LEADERSHIP</span>
         </div>
-        <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white font-sans tracking-tight">
+        <h2 className="text-2xl sm:text-4xl lg:text-5xl font-extrabold text-white font-sans tracking-tight break-words">
           Production AI{' '}
-          <span className="font-serif italic font-normal text-terracotta">Architectural Notes</span>
+          <span className="font-serif italic font-normal text-terracotta block sm:inline">Architectural Notes</span>
         </h2>
         <p className="text-slate-300 text-sm sm:text-base leading-relaxed">
           Deep-dive field notes, latency optimizations, and production war stories from deploying multi-agent systems and enterprise RAG at scale.

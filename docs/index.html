@@ -5,7 +5,9 @@
     <script>
       (function() {
         try {
-          var t = localStorage.getItem('theme');
+          var params = new URLSearchParams(window.location.search);
+          var p = params.get('theme');
+          var t = p || localStorage.getItem('theme');
           if (t === 'light') {
             document.documentElement.classList.remove('dark');
             document.documentElement.classList.add('light');
@@ -23,28 +25,28 @@
     <link rel="canonical" href="https://mohsingitdev.github.io/mohsingitdev.io/" />
 
     <!-- Primary Meta Tags -->
-    <title>Mohsin Qureshi — AI Architect & Forward Deployment Engineer</title>
-    <meta name="title" content="Mohsin Qureshi — AI Architect & Forward Deployment Engineer" />
-    <meta name="description" content="Forward Deployment Engineer & AI Architect specializing in deterministic sub-40ms model routing, zero-hallucination enterprise RAG (<0.5%), and cloud cost reduction (-72%). Proven at Flipkart, Accenture, Novartis." />
-    <meta name="keywords" content="Mohsin Qureshi, AI Architect, Forward Deployment Engineer, Generative AI, Grounded RAG, SLM Router, LLMOps, Enterprise Benchmark Matrix" />
+    <title>Mohsin Qureshi — AI Platform Engineer & Forward Deployment Engineer (FDE) | Senior Data Scientist</title>
+    <meta name="title" content="Mohsin Qureshi — AI Platform Engineer & Forward Deployment Engineer (FDE) | Senior Data Scientist" />
+    <meta name="description" content="AI Platform Engineer, FDE & Senior Data Scientist specializing in fine-tuning open-source Hugging Face models (Gemma 8B/27B) for task-specific agent fleets, traditional ML (XGBoost, anomaly detection), sub-40ms model routing, and production scalability on AWS & GCP. Proven at Flipkart, Accenture, Novartis." />
+    <meta name="keywords" content="Mohsin Qureshi, AI Platform Engineer, Forward Deployment Engineer, Data Scientist, Traditional ML, XGBoost, Gemma 8B, Gemma 27B, Hugging Face Fine-Tuning, LoRA, AWS EKS, GCP GKE, vLLM, Grounded RAG, SLM Router, LLMOps" />
     <meta name="author" content="Mohsin Qureshi" />
     <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
 
     <!-- Open Graph / LinkedIn -->
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://mohsingitdev.github.io/mohsingitdev.io/" />
-    <meta property="og:title" content="Mohsin Qureshi — AI Architect & Forward Deployment Engineer" />
-    <meta property="og:description" content="Engineering AI that survives production scale. Sub-40ms model routing, zero-hallucination grounded RAG, 72% inference cost reduction. Flipkart • Accenture • Novartis." />
+    <meta property="og:title" content="Mohsin Qureshi — AI Platform Engineer & FDE | Senior Data Scientist" />
+    <meta property="og:description" content="Engineering AI that survives production scale. Fine-tuned open-source Gemma 8B/27B agent fleets, traditional ML, sub-40ms routing, and AWS/GCP cloud scalability. Flipkart • Accenture • Novartis." />
     <meta property="og:image" content="https://mohsingitdev.github.io/mohsingitdev.io/images/linkedin_banner_ai_fde.jpg" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
-    <meta property="og:image:alt" content="Mohsin Qureshi — AI Architecture & Forward Deployment" />
-    <meta property="og:site_name" content="Mohsin Qureshi — AI Architect" />
+    <meta property="og:image:alt" content="Mohsin Qureshi — AI Platform Engineering & Forward Deployment" />
+    <meta property="og:site_name" content="Mohsin Qureshi — AI Platform Engineer & FDE" />
 
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Mohsin Qureshi — AI Architect & Forward Deployment Engineer" />
-    <meta name="twitter:description" content="Engineering AI that survives production scale. Sub-40ms routing, zero-hallucination RAG, 72% cost cut. Flipkart, Accenture, Novartis." />
+    <meta name="twitter:title" content="Mohsin Qureshi — AI Platform Engineer & Forward Deployment Engineer (FDE)" />
+    <meta name="twitter:description" content="Fine-tuned Gemma 8B/27B agent fleets, traditional ML, sub-40ms routing, and AWS/GCP cloud scalability. Flipkart, Accenture, Novartis." />
     <meta name="twitter:image" content="https://mohsingitdev.github.io/mohsingitdev.io/images/linkedin_banner_ai_fde.jpg" />
 
     <!-- JSON-LD Structured Data for Google Rich Snippets & LLM Crawlers -->
@@ -131,11 +133,12 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <script type="module" crossorigin src="./assets/index-D51vNulQ.js"></script>
-    <link rel="modulepreload" crossorigin href="./assets/vendor-lucide-LgKdAFRU.js">
-    <link rel="modulepreload" crossorigin href="./assets/vendor-framer-CXtxW7zU.js">
-    <link rel="modulepreload" crossorigin href="./assets/vendor-react-Y7LfwO3E.js">
-    <link rel="stylesheet" crossorigin href="./assets/index-CS9DBrcy.css">
+    <script type="module" crossorigin src="./assets/index-BXFnXEtG.js"></script>
+    <link rel="modulepreload" crossorigin href="./assets/vendor-lucide-JewSVzjz.js">
+    <link rel="modulepreload" crossorigin href="./assets/vendor-three-C_AvIKiQ.js">
+    <link rel="modulepreload" crossorigin href="./assets/vendor-react-6Xy4cmK9.js">
+    <link rel="modulepreload" crossorigin href="./assets/vendor-framer-CvQ7Pr4u.js">
+    <link rel="stylesheet" crossorigin href="./assets/index-MjbiJRWF.css">
   </head>
   <body class="bg-canvas text-slate-100 font-sans antialiased selection:bg-luxury-gold selection:text-black">
     <div id="root"></div>
