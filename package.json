@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc && vite build && node -e \"require('fs').cpSync('docs', 'dist', {recursive: true, force: true})\"",
+    "build": "tsc && vite build && node scripts/generate-static-routes.js && node -e \"require('fs').rmSync('dist', {recursive: true, force: true}); require('fs').cpSync('docs', 'dist', {recursive: true, force: true})\"",
     "preview": "vite preview"
   },
   "dependencies": {

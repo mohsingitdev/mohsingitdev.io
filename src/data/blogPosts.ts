@@ -5,7 +5,7 @@ export const BLOG_POSTS: BlogPost[] = [
     id: '1',
     slug: 'architecting-sub-100ms-multi-agent-routing',
     title: 'Architecting Sub-100ms Multi-Agent Routing in High-Concurrency Platforms',
-    description: 'Why invoking monolithic LLMs directly for every request is an enterprise anti-pattern, and how a deterministic fast-path + SLM gateway reduces inference bills by 70%.',
+    description: 'Why invoking monolithic LLMs directly for every request is an enterprise anti-pattern, and how a deterministic fast-path + SLM gateway reduces inference bills by 72%.',
     date: 'Oct 2026',
     readingTime: '6 min read',
     tags: ['Multi-Agent', 'LLMOps', 'System Architecture', 'Flipkart FDE'],
@@ -22,7 +22,7 @@ export const BLOG_POSTS: BlogPost[] = [
           caption: 'Intent Gateway with Strict Wall-Clock Retry Budget',
           code: `@app.post("/v1/agent/route")
 async def route_enterprise_intent(request: CustomerQueryRequest):
-    # Tier 1: Deterministic Schema & Fast-Path Classifier (<35ms)
+    # Tier 1: Deterministic Schema & Fast-Path Classifier (<33ms)
     fast_result = await fast_intent_classifier.predict(request.text)
     
     if fast_result.confidence >= 0.88:
@@ -56,9 +56,9 @@ async def route_enterprise_intent(request: CustomerQueryRequest):
   },
   {
     id: '2',
-    slug: 'zero-hallucination-enterprise-rag',
-    title: 'Zero-Hallucination Enterprise RAG: Hybrid Search, Reranking & Strict Citation Grounding',
-    description: 'A technical blueprint for eliminating hallucinations in compliance-heavy healthcare, legal, and enterprise corpora.',
+    slug: 'production-rag-retrieval-grounding',
+    title: 'Production RAG Engineering: Hybrid Search, Reranking & Verifiable Citation Grounding',
+    description: 'Moving beyond naive vector search: an empirical guide to Reciprocal Rank Fusion, cross-encoder rerankers, and measuring groundedness without hyperbole.',
     date: 'Sep 2026',
     readingTime: '8 min read',
     tags: ['Advanced RAG', 'Vector DB', 'Enterprise Search', 'Accenture Strategy'],
@@ -92,14 +92,14 @@ async def route_enterprise_intent(request: CustomerQueryRequest):
       },
       {
         sectionTitle: 'Production Results',
-        body: 'Deploying this multi-stage retrieval architecture for global research clients reduced complex document discovery from hours to seconds while reducing hallucination rates to less than 1%.'
+        body: 'Deploying this multi-stage retrieval architecture for global research clients reduced complex document discovery from hours to seconds while reducing hallucination rates to less than 0.5%.'
       }
     ]
   },
   {
     id: '3',
     slug: 'production-llmops-eval-guardrails',
-    title: 'Production LLMOps: Per-Field Confidence Scoring and CI/CD Drift Detection',
+    title: 'Production LLMOps: CI/CD Evaluation Gates & Automated Drift Detection',
     description: 'Moving beyond prompt engineering into rigorous continuous evaluation, automated regression tests, and schema guardrails.',
     date: 'Aug 2026',
     readingTime: '5 min read',
@@ -134,6 +134,44 @@ jobs:
           python -m pytest tests/eval_benchmarks.py --benchmark-json output.json
           python scripts/verify_sla.py --max-latency-ms 450 --min-accuracy 0.94`
         }
+      }
+    ]
+  },
+  {
+    id: '4',
+    slug: 'what-forward-deployed-ai-engineers-own',
+    title: 'What a Forward-Deployed AI Engineer Actually Owns: From Discovery to Adoption',
+    description: 'Why AI projects fail at the client boundary, and how an FDE bridges executive trade-offs, stakeholder evaluation criteria, and production code.',
+    date: 'Jul 2026',
+    readingTime: '7 min read',
+    tags: ['Forward-Deployed', 'Engineering Strategy', 'Enterprise AI'],
+    content: [
+      {
+        sectionTitle: 'The Gap Between ML Research and Client Reality',
+        body: 'Most AI initiatives fail not because model weights lack capability, but because the deployment fails to integrate with enterprise IT, compliance boundaries, and existing operational workflows. A Forward-Deployed AI Engineer operates at the intersection of architecture, customer engineering, and deployment delivery.'
+      },
+      {
+        sectionTitle: 'The 4 Ownership Stages of an FDE',
+        body: '1. Scoping Before Code: Establishing quantitative acceptance criteria with business stakeholders before spinning up GPU clusters. 2. Architectural Co-Design: Integrating with customer VPCs, legacy databases, and identity providers. 3. Evaluation Defense: Defending model failure modes and trade-offs under executive scrutiny. 4. Post-Launch Ownership: Building runbooks so client teams can independently maintain and monitor the system.'
+      }
+    ]
+  },
+  {
+    id: '5',
+    slug: 'voice-ai-at-the-crm-boundary',
+    title: 'Voice AI at the CRM Boundary: Low-Latency Streaming & Graceful Handoffs',
+    description: 'Deconstructing sub-700ms conversational audio pipelines, full-duplex WebSocket architecture, and deterministic CRM state synchronizations.',
+    date: 'Jun 2026',
+    readingTime: '6 min read',
+    tags: ['Voice AI', 'WebSockets', 'CRM Integration', 'Telephony'],
+    content: [
+      {
+        sectionTitle: 'Why Voice AI Fails Over Telephony',
+        body: 'Conventional conversational bots route audio through discrete REST APIs: audio recording -> transcription -> LLM generation -> speech synthesis. Over cellular lines, this cumulative chain regularly produces 2.5–4.0 second latencies, causing jarring conversational interruptions and caller abandonment.'
+      },
+      {
+        sectionTitle: 'Streaming WebSocket Pipelines with Speculative Execution',
+        body: 'Production voice systems require streaming full-duplex WebSockets. As the caller speaks, streaming STT emits partial tokens; speculative tool execution starts querying CRM databases before the caller even completes their sentence. If an interruption (barge-in) occurs, the audio output buffer is immediately flushed in <80ms.'
       }
     ]
   }

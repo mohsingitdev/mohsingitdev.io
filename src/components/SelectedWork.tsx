@@ -9,9 +9,11 @@ import {
   Layers, 
   Cpu, 
   Database, 
-  Sparkles
+  Sparkles,
+  FileText
 } from 'lucide-react';
 import { DOMAIN_PROJECTS } from '../data/domainProjects';
+import { useRouter } from '../context/RouterContext';
 
 interface SelectedWorkProps {
   onBookCall?: () => void;
@@ -54,8 +56,15 @@ const CAPABILITIES = [
 ];
 
 export const SelectedWork: React.FC<SelectedWorkProps> = ({ onExploreDemo }) => {
+  const { navigate } = useRouter();
   const [activeIndex, setActiveIndex] = useState<number>(0);
   const [isDesktop, setIsDesktop] = useState<boolean>(true);
+
+  const getCaseStudySlug = (projectId: string) => {
+    if (projectId === 'citation-rag') return 'production-rag-evaluation';
+    if (projectId === 'agentic-router') return 'llm-routing-cost-latency';
+    return 'production-rag-evaluation';
+  };
 
   useEffect(() => {
     const handleResize = () => {
@@ -253,6 +262,17 @@ export const SelectedWork: React.FC<SelectedWorkProps> = ({ onExploreDemo }) => 
                       </div>
 
                       <div className="flex items-center gap-2 shrink-0">
+                        <button
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            navigate(`/case-studies/${getCaseStudySlug(project.id)}`);
+                          }}
+                          className="px-3.5 py-2 rounded-full bg-white/10 hover:bg-white/20 border border-white/15 text-slate-200 font-mono text-xs font-medium transition-colors flex items-center gap-1.5"
+                        >
+                          <FileText className="w-3.5 h-3.5 text-terracotta" />
+                          <span>Case Study</span>
+                        </button>
+
                         {project.hasInteractiveDemo && (
                           <button
                             onClick={(e) => {
@@ -345,6 +365,13 @@ export const SelectedWork: React.FC<SelectedWorkProps> = ({ onExploreDemo }) => 
                   </div>
 
                   <div className="flex items-center gap-2">
+                    <button
+                      onClick={() => navigate(`/case-studies/${getCaseStudySlug(project.id)}`)}
+                      className="px-3 py-1.5 rounded-full bg-white/10 hover:bg-white/20 text-slate-200 font-mono text-xs flex items-center gap-1 border border-white/10"
+                    >
+                      <FileText className="w-3 h-3 text-terracotta" />
+                      <span>Study</span>
+                    </button>
                     {project.hasInteractiveDemo && (
                       <button
                         onClick={scrollToDemos}

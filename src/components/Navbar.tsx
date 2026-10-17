@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Menu, X, ArrowUpRight, Github, Linkedin, Sun, Moon, FileText } from 'lucide-react';
 import { useTheme } from '../context/ThemeContext';
+import { useRouter } from '../context/RouterContext';
 import { BrandOrbs } from '@designcodeio/threeui';
 
 interface NavbarProps {
@@ -12,6 +13,21 @@ export const Navbar: React.FC<NavbarProps> = ({ onBookCall, onRequestResume }) =
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const { theme, toggleTheme } = useTheme();
+  const { currentPath, navigate } = useRouter();
+
+  const handleNavClick = (target: string) => {
+    setMobileMenuOpen(false);
+    if (target.startsWith('#')) {
+      if (currentPath === '/') {
+        const el = document.getElementById(target.slice(1));
+        if (el) el.scrollIntoView({ behavior: 'smooth' });
+      } else {
+        navigate('/' + target);
+      }
+    } else {
+      navigate(target);
+    }
+  };
 
   useEffect(() => {
     const handleScroll = () => {
@@ -40,7 +56,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onBookCall, onRequestResume }) =
       <div className="pointer-events-auto max-w-5xl w-full rounded-full px-4 sm:px-6 py-2 sm:py-2.5 apple-glass border border-white/10 shadow-2xl flex items-center justify-between transition-all duration-300">
         
         {/* Brand with 3D Claude Orb */}
-        <a href="#hero" className="flex items-center gap-2.5 group shrink-0">
+        <button onClick={() => navigate('/')} className="flex items-center gap-2.5 group shrink-0 text-left">
           <div className="w-8 h-8 rounded-xl apple-glass flex items-center justify-center group-hover:border-terracotta/50 transition-colors shadow-xs">
             <div className="w-5 h-5 rounded-full overflow-hidden">
               <BrandOrbs variant="claude" size="small" mode={theme === 'dark' ? 'dark' : 'light'} />
@@ -51,18 +67,48 @@ export const Navbar: React.FC<NavbarProps> = ({ onBookCall, onRequestResume }) =
               Mohsin Qureshi
               <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
             </div>
-            <div className="text-[10px] font-mono text-slate-500 dark:text-slate-400">AI Platform Engineer & FDE | Senior Data Scientist</div>
+            <div className="text-[10px] font-mono text-slate-500 dark:text-slate-400">AI Platform Engineer &amp; FDE</div>
           </div>
-        </a>
+        </button>
 
         {/* Desktop Navigation Links */}
         <nav className="hidden lg:flex items-center space-x-6 text-xs font-medium text-slate-600 dark:text-slate-400">
-          <a href="#assessment-matrix" className="hover:text-terracotta dark:hover:text-white transition-colors">Architecture</a>
-          <a href="#evidence-ledger" className="hover:text-terracotta dark:hover:text-white transition-colors">Evidence</a>
-          <a href="#domains" className="hover:text-terracotta dark:hover:text-white transition-colors">Solutions</a>
-          <a href="#interactive-demos" className="hover:text-terracotta dark:hover:text-white transition-colors">Sandboxes</a>
-          <a href="#experience" className="hover:text-terracotta dark:hover:text-white transition-colors">Track Record</a>
-          <a href="#blog" className="hover:text-terracotta dark:hover:text-white transition-colors">Blog</a>
+          <button 
+            onClick={() => handleNavClick('/case-studies')} 
+            className={`transition-colors ${currentPath.startsWith('/case-studies') ? 'text-terracotta font-bold' : 'hover:text-terracotta dark:hover:text-white'}`}
+          >
+            Case Studies
+          </button>
+          <button 
+            onClick={() => handleNavClick('/remote-ai-engineer')} 
+            className={`transition-colors ${currentPath === '/remote-ai-engineer' ? 'text-terracotta font-bold' : 'hover:text-terracotta dark:hover:text-white'}`}
+          >
+            Remote Roles
+          </button>
+          <button 
+            onClick={() => handleNavClick('/services')} 
+            className={`transition-colors ${currentPath.startsWith('/services') ? 'text-terracotta font-bold' : 'hover:text-terracotta dark:hover:text-white'}`}
+          >
+            Services &amp; Advisory
+          </button>
+          <button 
+            onClick={() => handleNavClick('/blog')} 
+            className={`transition-colors ${currentPath.startsWith('/blog') ? 'text-terracotta font-bold' : 'hover:text-terracotta dark:hover:text-white'}`}
+          >
+            Field Notes
+          </button>
+          <button 
+            onClick={() => handleNavClick('#assessment-matrix')} 
+            className="hover:text-terracotta dark:hover:text-white transition-colors"
+          >
+            Architecture
+          </button>
+          <button 
+            onClick={() => handleNavClick('#experience')} 
+            className="hover:text-terracotta dark:hover:text-white transition-colors"
+          >
+            Track Record
+          </button>
         </nav>
 
         {/* Action Controls Cluster */}
@@ -175,58 +221,52 @@ export const Navbar: React.FC<NavbarProps> = ({ onBookCall, onRequestResume }) =
             id="mobile-nav-drawer"
             className="pointer-events-auto fixed top-16 left-4 right-4 max-w-md mx-auto bg-canvas-card/95 dark:bg-[#161513]/95 backdrop-blur-2xl border border-canvas-border rounded-3xl p-5 space-y-2 text-sm font-medium shadow-2xl animate-in slide-in-from-top-4 duration-200 z-50"
           >
-            <a 
-              href="#assessment-matrix" 
-              onClick={() => setMobileMenuOpen(false)}
-              className="flex items-center justify-between text-neutral-800 dark:text-slate-200 hover:text-terracotta py-2 px-1 rounded-xl transition-colors"
+            <button 
+              onClick={() => handleNavClick('/case-studies')} 
+              className="w-full flex items-center justify-between text-neutral-800 dark:text-slate-200 hover:text-terracotta py-2 px-1 rounded-xl transition-colors text-left"
+            >
+              <span>Production Case Studies</span>
+              <span className="text-[10px] font-mono bg-terracotta/20 text-terracotta px-1.5 py-0.5 rounded">12-Point</span>
+            </button>
+            <button 
+              onClick={() => handleNavClick('/remote-ai-engineer')} 
+              className="w-full flex items-center justify-between text-neutral-800 dark:text-slate-200 hover:text-terracotta py-2 px-1 rounded-xl transition-colors text-left"
+            >
+              <span>Remote AI Engineer (US/UK)</span>
+              <span className="text-[10px] font-mono bg-emerald-500/15 text-emerald-400 px-1.5 py-0.5 rounded">Available</span>
+            </button>
+            <button 
+              onClick={() => handleNavClick('/services')} 
+              className="w-full block text-neutral-800 dark:text-slate-200 hover:text-terracotta py-2 px-1 rounded-xl transition-colors text-left"
+            >
+              Services &amp; Readiness Audit
+            </button>
+            <button 
+              onClick={() => handleNavClick('/blog')} 
+              className="w-full block text-neutral-800 dark:text-slate-200 hover:text-terracotta py-2 px-1 rounded-xl transition-colors text-left"
+            >
+              Production AI Field Notes
+            </button>
+            <button 
+              onClick={() => handleNavClick('#assessment-matrix')} 
+              className="w-full flex items-center justify-between text-neutral-800 dark:text-slate-200 hover:text-terracotta py-2 px-1 rounded-xl transition-colors text-left"
             >
               <span>Architecture Matrix</span>
               <span className="text-xs font-mono text-terracotta font-semibold">&lt;40ms SLA</span>
-            </a>
-            <a 
-              href="#evidence-ledger" 
-              onClick={() => setMobileMenuOpen(false)}
-              className="flex items-center justify-between text-neutral-800 dark:text-slate-200 hover:text-terracotta py-2 px-1 rounded-xl transition-colors"
-            >
-              <span>Evidence Ledger</span>
-              <span className="text-[10px] font-mono bg-emerald-500/15 text-emerald-400 px-1.5 py-0.5 rounded">Verified</span>
-            </a>
-            <a 
-              href="#philosophy" 
-              onClick={() => setMobileMenuOpen(false)}
-              className="block text-neutral-800 dark:text-slate-200 hover:text-terracotta py-2 px-1 rounded-xl transition-colors"
-            >
-              Production Philosophy
-            </a>
-            <a 
-              href="#domains" 
-              onClick={() => setMobileMenuOpen(false)}
-              className="block text-neutral-800 dark:text-slate-200 hover:text-terracotta py-2 px-1 rounded-xl transition-colors"
-            >
-              Domain Blueprints
-            </a>
-            <a 
-              href="#interactive-demos" 
-              onClick={() => setMobileMenuOpen(false)}
-              className="flex items-center justify-between text-neutral-800 dark:text-slate-200 hover:text-terracotta py-2 px-1 rounded-xl transition-colors"
+            </button>
+            <button 
+              onClick={() => handleNavClick('#interactive-demos')} 
+              className="w-full flex items-center justify-between text-neutral-800 dark:text-slate-200 hover:text-terracotta py-2 px-1 rounded-xl transition-colors text-left"
             >
               <span>Live Sandboxes</span>
               <span className="text-[10px] font-mono bg-terracotta/20 text-terracotta px-1.5 py-0.5 rounded">Live</span>
-            </a>
-            <a 
-              href="#experience" 
-              onClick={() => setMobileMenuOpen(false)}
-              className="block text-neutral-800 dark:text-slate-200 hover:text-terracotta py-2 px-1 rounded-xl transition-colors"
+            </button>
+            <button 
+              onClick={() => handleNavClick('#experience')} 
+              className="w-full block text-neutral-800 dark:text-slate-200 hover:text-terracotta py-2 px-1 rounded-xl transition-colors text-left"
             >
               Enterprise Track Record
-            </a>
-            <a 
-              href="#blog" 
-              onClick={() => setMobileMenuOpen(false)}
-              className="block text-neutral-800 dark:text-slate-200 hover:text-terracotta py-2 px-1 rounded-xl transition-colors"
-            >
-              Technical Blog & Insights
-            </a>
+            </button>
             
             <div className="pt-3 border-t border-canvas-border flex items-center justify-between">
               <div className="flex space-x-2">

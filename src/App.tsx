@@ -1,4 +1,5 @@
 import React, { useState, Suspense, lazy } from 'react';
+import { useRouter } from './context/RouterContext';
 import { Navbar } from './components/Navbar';
 import { NeuralBackground } from './components/NeuralBackground';
 import { Hero } from './components/Hero';
@@ -28,6 +29,20 @@ const ResumeRequestModal = lazy(() =>
   import('./components/ResumeRequestModal').then((m) => ({ default: m.ResumeRequestModal }))
 );
 
+// Route Pages
+const RemoteAIEngineerPage = lazy(() =>
+  import('./pages/RemoteAIEngineerPage').then((m) => ({ default: m.RemoteAIEngineerPage }))
+);
+const CaseStudiesPage = lazy(() =>
+  import('./pages/CaseStudiesPage').then((m) => ({ default: m.CaseStudiesPage }))
+);
+const ServicesPage = lazy(() =>
+  import('./pages/ServicesPage').then((m) => ({ default: m.ServicesPage }))
+);
+const BlogPage = lazy(() =>
+  import('./pages/BlogPage').then((m) => ({ default: m.BlogPage }))
+);
+
 // Minimalist Non-Blocking Loading Skeleton for Lazy Sections
 const SectionLoader: React.FC = () => (
   <div className="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-center min-h-[260px]">
@@ -39,12 +54,15 @@ const SectionLoader: React.FC = () => (
 );
 
 export const App: React.FC = () => {
+  const { currentPath, navigate } = useRouter();
   const [isResumeModalOpen, setIsResumeModalOpen] = useState(false);
 
   const scrollToBooking = () => {
     const el = document.getElementById('calendly');
     if (el) {
       el.scrollIntoView({ behavior: 'smooth' });
+    } else {
+      navigate('/#calendly');
     }
   };
 
@@ -52,6 +70,8 @@ export const App: React.FC = () => {
     const el = document.getElementById('interactive-demos');
     if (el) {
       el.scrollIntoView({ behavior: 'smooth' });
+    } else {
+      navigate('/#interactive-demos');
     }
   };
 
@@ -59,6 +79,8 @@ export const App: React.FC = () => {
     const el = document.getElementById('assessment-matrix');
     if (el) {
       el.scrollIntoView({ behavior: 'smooth' });
+    } else {
+      navigate('/#assessment-matrix');
     }
   };
 
@@ -91,48 +113,82 @@ export const App: React.FC = () => {
         </Suspense>
       )}
 
-      {/* Main Content Sections: Production AI Architecture Portfolio */}
+      {/* Main Content Router */}
       <main id="main-content" className="flex-1 relative z-10">
-        {/* 1. Cinematic Higgsfield Hero */}
-        <Hero
-          onBookCall={scrollToBooking}
-          onExploreDemos={scrollToDemos}
-          onViewMatrix={scrollToMatrix}
-          onRequestResume={() => setIsResumeModalOpen(true)}
-        />
+        {currentPath === '/remote-ai-engineer' ? (
+          <Suspense fallback={<SectionLoader />}>
+            <RemoteAIEngineerPage
+              onRequestResume={() => setIsResumeModalOpen(true)}
+              onBookCall={scrollToBooking}
+            />
+            <CalendlySection />
+          </Suspense>
+        ) : currentPath.startsWith('/case-studies') ? (
+          <Suspense fallback={<SectionLoader />}>
+            <CaseStudiesPage
+              slug={currentPath.replace(/^\/case-studies\/?/, '') || undefined}
+              onBookCall={scrollToBooking}
+            />
+            <CalendlySection />
+          </Suspense>
+        ) : currentPath.startsWith('/services') ? (
+          <Suspense fallback={<SectionLoader />}>
+            <ServicesPage onBookCall={scrollToBooking} />
+            <CalendlySection />
+          </Suspense>
+        ) : currentPath.startsWith('/blog') ? (
+          <Suspense fallback={<SectionLoader />}>
+            <BlogPage
+              slug={currentPath.replace(/^\/blog\/?/, '') || undefined}
+              onBookCall={scrollToBooking}
+            />
+            <CalendlySection />
+          </Suspense>
+        ) : (
+          /* Primary Home Showcase */
+          <>
+            {/* 1. Cinematic Higgsfield Hero */}
+            <Hero
+              onBookCall={scrollToBooking}
+              onExploreDemos={scrollToDemos}
+              onViewMatrix={scrollToMatrix}
+              onRequestResume={() => setIsResumeModalOpen(true)}
+            />
 
-        {/* 2. Section 1: How I Deploy (4 Stacked Architecture Layers + Signal Path) */}
-        <HowIDeploy />
+            {/* 2. Section 1: How I Deploy (4 Stacked Architecture Layers + Signal Path) */}
+            <HowIDeploy />
 
-        {/* 3. Section 2: Systems Section (Topological Schematic + 4 Infrastructure Chapters) */}
-        <SystemsSection />
+            {/* 3. Section 2: Systems Section (Topological Schematic + 4 Infrastructure Chapters) */}
+            <SystemsSection />
 
-        {/* 4. Section 3: Selected Work (3D Fanned Card Stack + Capabilities Row) */}
-        <SelectedWork 
-          onBookCall={scrollToBooking}
-          onExploreDemo={scrollToDemos}
-        />
+            {/* 4. Section 3: Selected Work (3D Fanned Card Stack + Capabilities Row) */}
+            <SelectedWork 
+              onBookCall={scrollToBooking}
+              onExploreDemo={scrollToDemos}
+            />
 
-        {/* 5. Unified Enterprise Architectural Benchmark Matrix & Audited Proof Ledger */}
-        <LayaAssessmentMatrix onBookCall={scrollToBooking} />
+            {/* 5. Unified Enterprise Architectural Benchmark Matrix & Audited Proof Ledger */}
+            <LayaAssessmentMatrix onBookCall={scrollToBooking} />
 
-        {/* Lazy Loaded Lower Sections */}
-        <Suspense fallback={<SectionLoader />}>
-          {/* 6. Tangible Interactive Evidence (Routing & Grounded RAG Sandboxes) */}
-          <InteractiveDemosSection />
+            {/* Lazy Loaded Lower Sections */}
+            <Suspense fallback={<SectionLoader />}>
+              {/* 6. Tangible Interactive Evidence (Routing & Grounded RAG Sandboxes) */}
+              <InteractiveDemosSection />
 
-          {/* 7. Enterprise Pedigree & Academic Track Record */}
-          <ExperienceTimeline />
+              {/* 7. Enterprise Pedigree & Academic Track Record */}
+              <ExperienceTimeline />
 
-          {/* 8. Software Craftsmanship & Thought Leadership Blog */}
-          <BlogSection onBookCall={scrollToBooking} />
+              {/* 8. Software Craftsmanship & Thought Leadership Blog */}
+              <BlogSection onBookCall={scrollToBooking} />
 
-          {/* 9. Topmate & Mentorship Offerings with Animated Banners */}
-          <OfferingsShowcase onBookCall={scrollToBooking} />
+              {/* 9. Topmate & Mentorship Offerings with Animated Banners */}
+              <OfferingsShowcase onBookCall={scrollToBooking} />
 
-          {/* 10. Direct Client Onboarding & High-Converting Booking Funnel */}
-          <CalendlySection />
-        </Suspense>
+              {/* 10. Direct Client Onboarding & High-Converting Booking Funnel */}
+              <CalendlySection />
+            </Suspense>
+          </>
+        )}
       </main>
 
       {/* Footer */}

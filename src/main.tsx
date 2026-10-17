@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App';
 import { ThemeProvider } from './context/ThemeContext';
+import { RouterProvider } from './context/RouterContext';
 import { getVisitorIntel } from './utils/visitorTelemetry';
 import './index.css';
 import '@designcodeio/threeui/style.css';
@@ -12,7 +13,9 @@ getVisitorIntel();
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
     <ThemeProvider>
-      <App />
+      <RouterProvider>
+        <App />
+      </RouterProvider>
     </ThemeProvider>
   </React.StrictMode>,
 );

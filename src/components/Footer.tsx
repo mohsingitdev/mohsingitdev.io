@@ -1,7 +1,10 @@
 import React from 'react';
 import { Terminal, Github, Linkedin, Mail, ArrowUpRight, Sparkles } from 'lucide-react';
+import { useRouter } from '../context/RouterContext';
 
 export const Footer: React.FC = () => {
+  const { navigate } = useRouter();
+
   return (
     <footer className="bg-canvas/50 backdrop-blur-lg border-t border-canvas-border py-16 text-slate-400 text-xs">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
@@ -11,7 +14,7 @@ export const Footer: React.FC = () => {
           
           {/* Brand Info */}
           <div className="md:col-span-2 space-y-4">
-            <div className="flex items-center space-x-3">
+            <div className="flex items-center space-x-3 cursor-pointer" onClick={() => navigate('/')}>
               <div className="w-8 h-8 rounded-lg bg-canvas-card border border-canvas-border flex items-center justify-center">
                 <Terminal className="w-4 h-4 text-luxury-gold" />
               </div>
@@ -20,10 +23,10 @@ export const Footer: React.FC = () => {
               </span>
             </div>
             <p className="text-xs text-slate-400 max-w-md leading-relaxed">
-              Forward Deployment Engineer (FDE) & AI Architect specializing in multi-agent orchestration, grounded enterprise RAG, and production LLMOps.
+              AI Platform Engineer &amp; Forward-Deployed AI Engineer (FDE) specializing in production LLM/RAG, high-concurrency model routing, and evaluation gates.
             </p>
             <div className="font-mono text-[11px] text-slate-500">
-              Remote • Available Worldwide for Enterprise Advisory & Engineering Contracts
+              Remote US/UK Collaboration • Fixed-Scope Production AI Advisory
             </div>
           </div>
 
@@ -33,13 +36,13 @@ export const Footer: React.FC = () => {
               Navigation
             </div>
             <ul className="space-y-2 font-mono text-xs">
-              <li><a href="#hero" className="hover:text-terracotta transition-colors">Overview</a></li>
-              <li><a href="#assessment-matrix" className="hover:text-terracotta transition-colors">Architecture Benchmark Matrix</a></li>
-              <li><a href="#philosophy" className="hover:text-terracotta transition-colors">Production Philosophy</a></li>
-              <li><a href="#domains" className="hover:text-terracotta transition-colors">Domain Matrix</a></li>
-              <li><a href="#interactive-demos" className="hover:text-terracotta transition-colors">Interactive Demos</a></li>
-              <li><a href="#experience" className="hover:text-terracotta transition-colors">Enterprise Track Record</a></li>
-              <li><a href="#blog" className="hover:text-terracotta transition-colors">Technical Blog</a></li>
+              <li><button onClick={() => navigate('/')} className="hover:text-terracotta transition-colors text-left">Overview</button></li>
+              <li><button onClick={() => navigate('/case-studies')} className="hover:text-terracotta transition-colors text-left">Production Case Studies</button></li>
+              <li><button onClick={() => navigate('/remote-ai-engineer')} className="hover:text-terracotta transition-colors text-left">Remote AI Roles (US/UK)</button></li>
+              <li><button onClick={() => navigate('/services')} className="hover:text-terracotta transition-colors text-left">Readiness Assessment &amp; Sprints</button></li>
+              <li><button onClick={() => navigate('/blog')} className="hover:text-terracotta transition-colors text-left">Production Field Notes</button></li>
+              <li><button onClick={() => navigate('/#assessment-matrix')} className="hover:text-terracotta transition-colors text-left">Architecture Benchmark Matrix</button></li>
+              <li><button onClick={() => navigate('/#interactive-demos')} className="hover:text-terracotta transition-colors text-left">Interactive Sandboxes</button></li>
             </ul>
           </div>
 

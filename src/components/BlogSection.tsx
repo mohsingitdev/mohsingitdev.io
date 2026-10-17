@@ -4,12 +4,14 @@ import { BlogPost } from '../types';
 import { BookOpen, Clock, Calendar, ArrowRight, X, Copy, Check, Sparkles, Terminal, Share2, Download, ExternalLink, CheckCircle2, Loader2 } from 'lucide-react';
 import { Card3D } from './common/Card3D';
 import { submitLeadInquiry, trackVisitorEvent } from '../utils/visitorTelemetry';
+import { useRouter } from '../context/RouterContext';
 
 interface BlogSectionProps {
   onBookCall: () => void;
 }
 
 export const BlogSection: React.FC<BlogSectionProps> = ({ onBookCall }) => {
+  const { navigate } = useRouter();
   const [activePost, setActivePost] = useState<BlogPost | null>(null);
   const [copiedCodeId, setCopiedCodeId] = useState<string | null>(null);
   const [copiedLink, setCopiedLink] = useState(false);
@@ -167,7 +169,13 @@ export const BlogSection: React.FC<BlogSectionProps> = ({ onBookCall }) => {
                   ))}
                 </div>
 
-                <div className="pt-3 border-t border-canvas-border flex items-center justify-between text-xs font-mono text-terracotta font-semibold">
+                <div 
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    navigate(`/blog/${post.slug}`);
+                  }}
+                  className="pt-3 border-t border-canvas-border flex items-center justify-between text-xs font-mono text-terracotta font-semibold hover:text-white transition-colors"
+                >
                   <span>Read Full Blueprint</span>
                   <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
                 </div>
@@ -175,6 +183,17 @@ export const BlogSection: React.FC<BlogSectionProps> = ({ onBookCall }) => {
             </article>
           </Card3D>
         ))}
+      </div>
+
+      {/* Explore All Articles Button */}
+      <div className="text-center pt-2">
+        <button
+          onClick={() => navigate('/blog')}
+          className="px-6 py-3 rounded-full apple-glass border border-white/15 hover:border-terracotta text-slate-200 font-mono text-xs font-medium transition-all hover:scale-105 active:scale-95 inline-flex items-center gap-2"
+        >
+          <span>Explore All 5 Production AI Field Notes &amp; Clusters</span>
+          <ArrowRight className="w-3.5 h-3.5 text-terracotta" />
+        </button>
       </div>
 
       {/* Active Post Reader Modal */}
