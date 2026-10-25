@@ -86,10 +86,10 @@ export const OfferingsShowcase: React.FC<OfferingsShowcaseProps> = ({ onBookCall
           <div className="space-y-3 max-w-2xl">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-canvas-card border border-terracotta/40 text-xs font-mono text-terracotta shadow-sm">
               <Sparkles className="w-3.5 h-3.5" />
-              <span>DIRECT 1:1 ADVISORY & ACCELERATION</span>
+              <span>DIRECT 1:1 ADVISORY &amp; ACCELERATION</span>
             </div>
             <h2 className="text-2xl sm:text-4xl lg:text-5xl font-extrabold text-white tracking-tight break-words">
-              Production AI Advisory <span className="font-serif italic font-normal text-terracotta block sm:inline">& Mentorship</span>
+              Production AI Advisory <span className="font-serif italic font-normal text-terracotta block sm:inline">&amp; Mentorship</span>
             </h2>
             <p className="text-slate-300 text-sm sm:text-base leading-relaxed">
               Book calibrated 1:1 sessions with Mohsin Qureshi. Verified live on Topmate with auto-localized currency (INR UPI for India, USD for global leaders).
@@ -226,14 +226,23 @@ export const OfferingsShowcase: React.FC<OfferingsShowcaseProps> = ({ onBookCall
           })}
         </div>
 
-        {/* Trust Banner Strip */}
+        {/* Trust Banner Strip with Verified Reviews link */}
         <div className="p-4 sm:p-5 rounded-2xl bg-canvas-card border border-canvas-border flex flex-col md:flex-row items-center justify-between gap-4 text-xs font-mono text-slate-400">
           <div className="flex items-center gap-3">
             <ShieldCheck className="w-5 h-5 text-terracotta shrink-0" />
             <span>Mutual Enterprise NDA Protected • Zero AI Training on Client Code • Direct 1:1 Mohsin Qureshi Access</span>
           </div>
           <div className="flex items-center gap-4 shrink-0">
-            <span className="text-slate-300 font-bold">Topmate 5.0 Rating</span>
+            <a
+              href="https://topmate.io/mohsin_qureshi"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-slate-300 hover:text-white font-bold flex items-center gap-1.5 transition-colors"
+              aria-label="View verified client reviews on Topmate"
+            >
+              <span>Verified Topmate Reviews (5.0★)</span>
+              <ExternalLink className="w-3 h-3 text-terracotta" />
+            </a>
             <span className="text-slate-600">|</span>
             <button
               onClick={onBookCall}

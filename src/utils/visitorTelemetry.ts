@@ -2,6 +2,7 @@
  * Visitor Intelligence & Real-Time Lead Capture Utility
  * Tracks UTM attribution, social referrers (LinkedIn, X.com), session behavior,
  * and handles zero-loss form submissions for recruiter CV requests and architecture blueprints.
+ * Respects user consent under GDPR/DPDP.
  */
 
 export interface VisitorIntel {
@@ -23,9 +24,36 @@ export interface LeadInquiry {
   inquiryType: 'cv_request' | 'blueprint_download' | 'audit_booking';
   notes?: string;
   articleSlug?: string;
+  consentGiven?: boolean;
 }
 
+export const CONSENT_STORAGE_KEY = 'mh_consent_choice'; // 'all' | 'essential' | null
 const STORAGE_KEY = 'mh_visitor_intel';
+
+/**
+ * Retrieve user's consent choice: 'all' (analytics + storage) or 'essential' (theme only)
+ */
+export const getConsentChoice = (): 'all' | 'essential' | null => {
+  if (typeof window === 'undefined') return null;
+  try {
+    return localStorage.getItem(CONSENT_STORAGE_KEY) as 'all' | 'essential' | null;
+  } catch {
+    return null;
+  }
+};
+
+/**
+ * Set user's consent choice
+ */
+export const setConsentChoice = (choice: 'all' | 'essential'): void => {
+  if (typeof window === 'undefined') return;
+  try {
+    localStorage.setItem(CONSENT_STORAGE_KEY, choice);
+    if (choice === 'essential') {
+      localStorage.removeItem(STORAGE_KEY);
+    }
+  } catch {}
+};
 
 /**
  * Initialize or retrieve stored visitor intelligence from localStorage
@@ -44,16 +72,20 @@ export const getVisitorIntel = (): VisitorIntel => {
     };
   }
 
-  const existing = localStorage.getItem(STORAGE_KEY);
-  if (existing) {
-    try {
-      return JSON.parse(existing);
-    } catch {
-      // Fallback if malformed
+  const consent = getConsentChoice();
+
+  if (consent === 'all') {
+    const existing = localStorage.getItem(STORAGE_KEY);
+    if (existing) {
+      try {
+        return JSON.parse(existing);
+      } catch {
+        // Fallback if malformed
+      }
     }
   }
 
-  // Parse current query parameters for UTM attribution
+  // Parse current query parameters for UTM attribution in memory
   const params = new URLSearchParams(window.location.search);
   const intel: VisitorIntel = {
     utmSource: params.get('utm_source') || (document.referrer.includes('linkedin.com') ? 'linkedin' : document.referrer.includes('t.co') || document.referrer.includes('x.com') ? 'x' : null),
@@ -66,9 +98,12 @@ export const getVisitorIntel = (): VisitorIntel => {
     eventsTriggered: [],
   };
 
-  try {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(intel));
-  } catch {}
+  // Only persist to localStorage if affirmative consent was granted
+  if (consent === 'all') {
+    try {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(intel));
+    } catch {}
+  }
 
   return intel;
 };
@@ -79,12 +114,16 @@ export const getVisitorIntel = (): VisitorIntel => {
 export const trackVisitorEvent = (eventName: string, metadata?: Record<string, any>) => {
   if (typeof window === 'undefined') return;
 
+  const consent = getConsentChoice();
   const intel = getVisitorIntel();
+
   if (!intel.eventsTriggered.includes(eventName)) {
     intel.eventsTriggered.push(eventName);
-    try {
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(intel));
-    } catch {}
+    if (consent === 'all') {
+      try {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(intel));
+      } catch {}
+    }
   }
 
   // Log to console in dev mode
@@ -112,6 +151,7 @@ export const submitLeadInquiry = async (lead: LeadInquiry): Promise<{ success: b
     inquiry_type: lead.inquiryType,
     article_referenced: lead.articleSlug || 'N/A',
     notes: lead.notes || 'Interested in technical track record and architecture blueprints.',
+    consent_confirmed: lead.consentGiven ? 'YES (Confirmed)' : 'Implied Direct Inquiry',
     utm_source: intel.utmSource || 'direct',
     utm_campaign: intel.utmCampaign || 'organic',
     referrer_domain: intel.referrer || 'direct',

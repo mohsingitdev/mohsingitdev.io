@@ -7,6 +7,7 @@ import { HowIDeploy } from './components/HowIDeploy';
 import { SystemsSection } from './components/SystemsSection';
 import { SelectedWork } from './components/SelectedWork';
 import { LayaAssessmentMatrix } from './components/LayaAssessmentMatrix';
+import { CookieConsentBanner } from './components/CookieConsentBanner';
 import { Footer } from './components/Footer';
 
 // Code Splitting & Performance Optimization: Lazy load lower interactive & off-screen sections
@@ -41,6 +42,9 @@ const ServicesPage = lazy(() =>
 );
 const BlogPage = lazy(() =>
   import('./pages/BlogPage').then((m) => ({ default: m.BlogPage }))
+);
+const LegalPage = lazy(() =>
+  import('./pages/LegalPage').then((m) => ({ default: m.LegalPage }))
 );
 
 // Minimalist Non-Blocking Loading Skeleton for Lazy Sections
@@ -144,6 +148,10 @@ export const App: React.FC = () => {
             />
             <CalendlySection />
           </Suspense>
+        ) : (currentPath === '/privacy' || currentPath === '/terms' || currentPath === '/cookies' || currentPath === '/refunds') ? (
+          <Suspense fallback={<SectionLoader />}>
+            <LegalPage />
+          </Suspense>
         ) : (
           /* Primary Home Showcase */
           <>
@@ -190,6 +198,9 @@ export const App: React.FC = () => {
           </>
         )}
       </main>
+
+      {/* Cookie & Local Storage Consent Banner */}
+      <CookieConsentBanner />
 
       {/* Footer */}
       <Footer />

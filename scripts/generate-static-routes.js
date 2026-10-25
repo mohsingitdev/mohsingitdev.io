@@ -105,6 +105,38 @@ const routes = [
     h1: 'Voice AI at the CRM Boundary: Low-Latency Streaming & Graceful Handoffs',
     bodyText: 'Conventional conversational bots route audio through discrete REST APIs with 2.5-4s latency. Production voice systems require streaming full-duplex WebSockets with speculative tool execution and sub-80ms barge-in buffer flushes.',
     schemaType: 'Article'
+  },
+  {
+    path: 'privacy',
+    title: 'Privacy Policy | Mohsin Qureshi AI Platform & Engineering Advisory',
+    description: 'Privacy Policy covering data protection under India Digital Personal Data Protection (DPDP) Act 2023, EU/UK GDPR, and California CCPA/CPRA. Transparent data handling and zero unauthorized selling.',
+    h1: 'Privacy Policy & Data Protection Governance',
+    bodyText: 'Comprehensive privacy policy detailing personal data processing, lawful basis, third-party processors (Calendly, GitHub Pages, Formspree), consent management, and data subject rights including access, rectification, and erasure.',
+    schemaType: 'WebPage'
+  },
+  {
+    path: 'terms',
+    title: 'Terms & Conditions | Mohsin Qureshi Sovereign AI Portfolio',
+    description: 'Terms and conditions governing portfolio browsing, sample architecture teardowns, technical advisory sessions, and contractual intellectual property boundaries.',
+    h1: 'Terms and Conditions of Use & Engagement',
+    bodyText: 'Binding terms covering website usage, open-source sample code licenses (MIT), fixed-scope advisory statements of work, intellectual property warranties, and limitations of liability.',
+    schemaType: 'WebPage'
+  },
+  {
+    path: 'cookies',
+    title: 'Cookie & Local Storage Policy | Mohsin Qureshi',
+    description: 'Detailed disclosure of essential and functional local storage items, affirmative cookie consent mechanism, and third-party embed disclosures.',
+    h1: 'Cookie & Browser Local Storage Policy',
+    bodyText: 'Transparent breakdown of local storage keys used across this portfolio (such as theme preferences and consent-governed visitor telemetry), third-party scheduling cookies, and instructions on how to revoke consent.',
+    schemaType: 'WebPage'
+  },
+  {
+    path: 'refunds',
+    title: 'Refund & Cancellation Policy | Mohsin Qureshi Technical Advisory',
+    description: 'Clear refund, rescheduling, and cancellation terms for fixed-scope AI engineering advisory, sprint engagements, and Topmate mentorship sessions.',
+    h1: 'Refund, Rescheduling & Cancellation Policy',
+    bodyText: 'Transparent terms governing cancellations, 100% pre-kickoff refunds for advisory sprints notified >48 hours in advance, Topmate platform policy delegation, and mutual satisfaction checkpoints.',
+    schemaType: 'WebPage'
   }
 ];
 

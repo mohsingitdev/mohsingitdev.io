@@ -34,6 +34,7 @@ export const CalendlySection: React.FC = () => {
   const [notes, setNotes] = useState<string>('');
   const [copied, setCopied] = useState<boolean>(false);
   const [isDispatched, setIsDispatched] = useState<boolean>(false);
+  const [consentChecked, setConsentChecked] = useState<boolean>(false);
 
   const [userTimezone] = useState<string>(() => {
     try {
@@ -70,6 +71,8 @@ export const CalendlySection: React.FC = () => {
 
   const handleDispatchForm = (e: React.FormEvent) => {
     e.preventDefault();
+    if (!consentChecked) return;
+
     const mailto = `mailto:mohsin.i.qureshi@hotmail.com?subject=${encodeURIComponent(
       `[Opportunity Brief] ${selectedOpportunity} - ${clientName || 'Partner'} (${organization || 'Organization'})`
     )}&body=${encodeURIComponent(
@@ -81,7 +84,8 @@ export const CalendlySection: React.FC = () => {
       `Target Timeline: ${selectedTimeline}\n` +
       `Timezone: ${userTimezone}\n` +
       `Preferred Meeting Window: ${preferredSlot || 'Flexible / First Available'}\n\n` +
-      `Opportunity Overview / Job Description / Event Brief:\n${notes || 'Looking forward to scheduling an introductory sync.'}\n`
+      `Opportunity Overview / Job Description / Event Brief:\n${notes || 'Looking forward to scheduling an introductory sync.'}\n\n` +
+      `[Data Protection Notice: Consent granted by sender under DPDP / GDPR for opportunity evaluation.]\n`
     )}`;
     window.location.href = mailto;
     setIsDispatched(true);
@@ -148,10 +152,10 @@ export const CalendlySection: React.FC = () => {
         <div className="text-center max-w-3xl mx-auto space-y-4">
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-canvas-card border border-terracotta/40 text-xs font-mono text-terracotta shadow-sm">
             <Calendar className="w-3.5 h-3.5 text-terracotta" />
-            <span>DIRECT CONNECT & SCHEDULING</span>
+            <span>DIRECT CONNECT &amp; SCHEDULING</span>
           </div>
           <h2 className="text-2xl sm:text-4xl lg:text-5xl font-extrabold text-white font-sans tracking-tight break-words">
-            Initiate Collaboration &{' '}
+            Initiate Collaboration &amp;{' '}
             <span className="font-serif italic font-normal text-terracotta block sm:inline">Interviews</span>
           </h2>
           <p className="text-slate-300 text-sm sm:text-base leading-relaxed">
@@ -297,15 +301,15 @@ export const CalendlySection: React.FC = () => {
               <ul className="space-y-2.5 text-xs text-slate-300">
                 <li className="flex items-start gap-2.5">
                   <CheckCircle2 className="w-4 h-4 text-terracotta mt-0.5 flex-shrink-0" />
-                  <span><strong>Technical Defense & Alignment:</strong> In-depth walkthrough of production AI architectures, P99 latency bounds, and scaling patterns.</span>
+                  <span><strong>Technical Defense &amp; Alignment:</strong> In-depth walkthrough of production AI architectures, P99 latency bounds, and scaling patterns.</span>
                 </li>
                 <li className="flex items-start gap-2.5">
                   <CheckCircle2 className="w-4 h-4 text-terracotta mt-0.5 flex-shrink-0" />
-                  <span><strong>Role & Mandate Scope:</strong> Establishing clear mutual expectations for AI Engineer deliverables, FDE deployment, or advisory roadmap.</span>
+                  <span><strong>Role &amp; Mandate Scope:</strong> Establishing clear mutual expectations for AI Engineer deliverables, FDE deployment, or advisory roadmap.</span>
                 </li>
                 <li className="flex items-start gap-2.5">
                   <CheckCircle2 className="w-4 h-4 text-terracotta mt-0.5 flex-shrink-0" />
-                  <span><strong>Next Steps & Logistics:</strong> Rapid progression to formal interview loops, mutual NDAs, or contract scheduling.</span>
+                  <span><strong>Next Steps &amp; Logistics:</strong> Rapid progression to formal interview loops, mutual NDAs, or contract scheduling.</span>
                 </li>
               </ul>
             </div>
@@ -357,6 +361,17 @@ export const CalendlySection: React.FC = () => {
             {/* TAB 1: Calendly iFrame Embed */}
             {activeTab === 'calendar' && (
               <div className="relative flex-1 w-full bg-canvas-card dark:bg-[#161513] transition-colors duration-300 min-h-[520px] sm:min-h-[580px] flex flex-col">
+                {/* Third-Party Embed Disclosure (Check #7) */}
+                <div className="p-2.5 px-4 bg-canvas-surface/90 border-b border-canvas-border flex flex-col sm:flex-row sm:items-center justify-between gap-2 text-[11px] font-mono text-slate-300">
+                  <span className="flex items-center gap-1.5">
+                    <ShieldCheck className="w-3.5 h-3.5 text-terracotta shrink-0" />
+                    <span>Third-Party Embed Disclosure: Calendly loads interactive booking scripts &amp; cookies.</span>
+                  </span>
+                  <span className="text-slate-400">
+                    Prefer zero third-party cookies? Use the <strong className="text-terracotta">Direct Opportunity Form</strong> tab.
+                  </span>
+                </div>
+
                 <iframe
                   key={`${theme}-${selectedOpportunity}`}
                   src={currentCalendlyEmbedUrl}
@@ -424,7 +439,7 @@ export const CalendlySection: React.FC = () => {
                   {/* Form Fields */}
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
                     <div className="space-y-1.5">
-                      <label htmlFor="brief-client-name" className="text-[11px] font-mono text-slate-300 uppercase cursor-pointer">Your Name & Title *</label>
+                      <label htmlFor="brief-client-name" className="text-[11px] font-mono text-slate-300 uppercase cursor-pointer">Your Name &amp; Title *</label>
                       <input
                         id="brief-client-name"
                         type="text"
@@ -487,6 +502,23 @@ export const CalendlySection: React.FC = () => {
                       className="w-full px-3.5 py-2.5 rounded-xl bg-canvas-surface border border-canvas-border text-white text-xs font-mono focus:border-terracotta focus:outline-none transition-colors resize-none"
                     />
                   </div>
+
+                  {/* Form Affirmative Consent Checkbox (Check #5 & #6) */}
+                  <div className="p-3 rounded-xl bg-canvas-surface border border-canvas-border space-y-2">
+                    <label htmlFor="brief-consent" className="flex items-start gap-2.5 cursor-pointer text-xs font-mono text-slate-300">
+                      <input
+                        id="brief-consent"
+                        type="checkbox"
+                        required
+                        checked={consentChecked}
+                        onChange={(e) => setConsentChecked(e.target.checked)}
+                        className="mt-0.5 rounded border-canvas-border text-terracotta focus:ring-terracotta cursor-pointer accent-[#D97757]"
+                      />
+                      <span className="leading-relaxed">
+                        I consent to Mohsin Qureshi collecting and processing my name, work email, and submitted details solely to evaluate and respond to this opportunity brief, in compliance with the <a href="./privacy" className="text-terracotta hover:underline font-semibold" target="_blank" rel="noopener noreferrer">Privacy Policy</a> (GDPR &amp; DPDP Act 2023).
+                      </span>
+                    </label>
+                  </div>
                 </div>
 
                 <div className="pt-4 border-t border-canvas-border space-y-2">
@@ -500,14 +532,15 @@ export const CalendlySection: React.FC = () => {
                         <Copy className="w-3.5 h-3.5 text-terracotta" />
                         <span>{copied ? 'Copied to Clipboard!' : 'Copy Brief'}</span>
                       </button>
-                      <span className="text-[11px] font-mono text-slate-500">
+                      <span className="text-[11px] font-mono text-slate-400">
                         Direct to: mohsin.i.qureshi@hotmail.com
                       </span>
                     </div>
 
                     <button
                       type="submit"
-                      className="w-full sm:w-auto px-6 py-2.5 rounded-xl bg-terracotta text-white font-bold text-xs font-sans hover:bg-terracotta/90 flex items-center justify-center gap-1.5 shadow-md"
+                      disabled={!consentChecked}
+                      className="w-full sm:w-auto px-6 py-2.5 rounded-xl bg-terracotta text-white font-bold text-xs font-sans hover:bg-terracotta/90 flex items-center justify-center gap-1.5 shadow-md disabled:opacity-50 disabled:cursor-not-allowed transition-all"
                     >
                       <Mail className="w-3.5 h-3.5" />
                       <span>Dispatch Opportunity Brief</span>
@@ -536,7 +569,7 @@ export const CalendlySection: React.FC = () => {
               <span>FREQUENTLY ANSWERED QUESTIONS</span>
             </div>
             <h3 className="text-2xl sm:text-3xl font-extrabold text-white font-sans">
-              Recruiter & Opportunity FAQ
+              Recruiter &amp; Opportunity FAQ
             </h3>
           </div>
 
@@ -550,6 +583,8 @@ export const CalendlySection: React.FC = () => {
                 >
                   <button
                     onClick={() => setOpenFaq(isOpen ? null : idx)}
+                    aria-expanded={isOpen}
+                    aria-controls={`faq-answer-${idx}`}
                     className="w-full p-4 sm:p-5 text-left flex items-center justify-between gap-4 font-sans font-bold text-sm sm:text-base text-white hover:text-terracotta transition-colors"
                   >
                     <span>{faq.q}</span>
@@ -561,7 +596,10 @@ export const CalendlySection: React.FC = () => {
                   </button>
 
                   {isOpen && (
-                    <div className="px-4 sm:px-5 pb-5 pt-1 text-xs sm:text-sm text-slate-300 leading-relaxed border-t border-canvas-border/60 bg-canvas-surface/50 font-sans">
+                    <div 
+                      id={`faq-answer-${idx}`}
+                      className="px-4 sm:px-5 pb-5 pt-1 text-xs sm:text-sm text-slate-300 leading-relaxed border-t border-canvas-border/60 bg-canvas-surface/50 font-sans"
+                    >
                       {faq.a}
                     </div>
                   )}

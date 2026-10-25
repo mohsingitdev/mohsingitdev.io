@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { X, FileText, Send, CheckCircle2, ShieldCheck, Copy, Building2, Mail, User, Loader2 } from 'lucide-react';
 import { submitLeadInquiry, trackVisitorEvent } from '../utils/visitorTelemetry';
+import { useRouter } from '../context/RouterContext';
 
 interface ResumeRequestModalProps {
   isOpen: boolean;
@@ -8,11 +9,13 @@ interface ResumeRequestModalProps {
 }
 
 export const ResumeRequestModal: React.FC<ResumeRequestModalProps> = ({ isOpen, onClose }) => {
+  const { navigate } = useRouter();
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [organization, setOrganization] = useState('');
   const [roleType, setRoleType] = useState('Full-Time AI Engineer Role');
   const [notes, setNotes] = useState('');
+  const [consentGiven, setConsentGiven] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSent, setIsSent] = useState(false);
   const [copied, setCopied] = useState(false);
@@ -43,6 +46,11 @@ export const ResumeRequestModal: React.FC<ResumeRequestModalProps> = ({ isOpen, 
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (!consentGiven) {
+      setErrorMessage('Please consent to the privacy policy to submit your inquiry.');
+      return;
+    }
+
     setIsSubmitting(true);
     setErrorMessage('');
 
@@ -54,6 +62,7 @@ export const ResumeRequestModal: React.FC<ResumeRequestModalProps> = ({ isOpen, 
       roleType,
       notes,
       inquiryType: 'cv_request',
+      consentGiven: true,
     });
 
     setIsSubmitting(false);
@@ -92,12 +101,13 @@ export const ResumeRequestModal: React.FC<ResumeRequestModalProps> = ({ isOpen, 
                 <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
               </h3>
               <p className="text-xs font-mono text-neutral-500 dark:text-slate-400">
-                Direct Recruiter & Opportunity Ingress
+                Direct Recruiter &amp; Opportunity Ingress
               </p>
             </div>
           </div>
           <button
             onClick={onClose}
+            aria-label="Close modal"
             className="w-8 h-8 rounded-full bg-neutral-100 dark:bg-canvas-card border border-neutral-200 dark:border-canvas-border flex items-center justify-center text-neutral-500 dark:text-slate-400 hover:text-neutral-900 dark:hover:text-white transition-colors"
           >
             <X className="w-4 h-4" />
@@ -222,6 +232,33 @@ export const ResumeRequestModal: React.FC<ResumeRequestModalProps> = ({ isOpen, 
               />
             </div>
 
+            {/* Affirmative Consent Checkbox (GDPR / DPDP Compliance) */}
+            <div className="p-2.5 rounded-xl bg-neutral-50 dark:bg-canvas-surface border border-neutral-200 dark:border-canvas-border">
+              <label className="flex items-start gap-2.5 cursor-pointer text-left">
+                <input
+                  type="checkbox"
+                  required
+                  checked={consentGiven}
+                  onChange={(e) => setConsentGiven(e.target.checked)}
+                  className="mt-0.5 w-4 h-4 rounded border-neutral-300 dark:border-canvas-border accent-terracotta shrink-0"
+                />
+                <span className="text-[11px] text-neutral-600 dark:text-slate-300 font-sans leading-snug">
+                  I consent to Mohsin Qureshi processing my contact details to deliver the requested CV and discuss professional engagements, in accordance with the{' '}
+                  <button
+                    type="button"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      onClose();
+                      navigate('/privacy');
+                    }}
+                    className="text-terracotta underline hover:text-white transition-colors"
+                  >
+                    Privacy Policy
+                  </button>.
+                </span>
+              </label>
+            </div>
+
             {errorMessage && (
               <div className="p-3 rounded-xl bg-red-500/10 border border-red-500/30 text-xs font-mono text-red-400 space-y-2">
                 <p>{errorMessage}</p>
@@ -251,8 +288,8 @@ export const ResumeRequestModal: React.FC<ResumeRequestModalProps> = ({ isOpen, 
               </span>
               <button
                 type="submit"
-                disabled={isSubmitting}
-                className="px-5 py-2.5 rounded-xl bg-terracotta text-white font-bold text-xs font-sans hover:bg-terracotta-dark flex items-center gap-1.5 shadow-md disabled:opacity-75 transition-all"
+                disabled={isSubmitting || !consentGiven}
+                className="px-5 py-2.5 rounded-xl bg-terracotta text-white font-bold text-xs font-sans hover:bg-terracotta-dark flex items-center gap-1.5 shadow-md disabled:opacity-50 disabled:cursor-not-allowed transition-all"
               >
                 {isSubmitting ? (
                   <>
@@ -262,7 +299,7 @@ export const ResumeRequestModal: React.FC<ResumeRequestModalProps> = ({ isOpen, 
                 ) : (
                   <>
                     <Send className="w-3.5 h-3.5" />
-                    <span>Submit & Dispatch</span>
+                    <span>Submit &amp; Dispatch</span>
                   </>
                 )}
               </button>
