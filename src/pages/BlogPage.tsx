@@ -42,7 +42,7 @@ export const BlogPage: React.FC<BlogPageProps> = ({ slug, onBookCall }) => {
   };
 
   const handleCopyArticleLink = (post: BlogPost) => {
-    const url = `https://mohsinqureshi.io/blog/${post.slug}`;
+    const url = `https://mohsingitdev.github.io/mohsingitdev.io/blog/${post.slug}`;
     navigator.clipboard.writeText(url);
     setCopiedLink(true);
     setTimeout(() => setCopiedLink(false), 2000);

@@ -7,7 +7,7 @@ const __dirname = path.dirname(__filename);
 const rootDir = path.resolve(__dirname, '..');
 const docsDir = path.resolve(rootDir, 'docs');
 
-const baseCanonical = 'https://mohsinqureshi.io';
+const baseCanonical = 'https://mohsingitdev.github.io/mohsingitdev.io';
 
 const routes = [
   {

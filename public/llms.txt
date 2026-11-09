@@ -38,8 +38,8 @@ Contracts are invoiced in USD or GBP. NDA and IP assignment before work starts.
 
 ## Links
 
-- Website: https://mohsinqureshi.io/
-- Reference architectures: https://mohsinqureshi.io/case-studies
+- Website: https://mohsingitdev.github.io/mohsingitdev.io/
+- Reference architectures: https://mohsingitdev.github.io/mohsingitdev.io/case-studies
 - LinkedIn: https://www.linkedin.com/in/mohd-mohsin-qureshi
 - GitHub: https://github.com/mohsingitdev
 - Book a call: https://calendly.com/mohsin-qureshi
