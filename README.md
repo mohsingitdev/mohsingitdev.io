@@ -1,46 +1,63 @@
-# Mohsin Qureshi — Personal AI Architect & FDE Portfolio
+# Mohsin Qureshi · Forward-deployed AI engineer
 
-> Enterprise-grade personal website for **Mohsin Qureshi**, Forward Deployment Engineer (FDE) & AI Architect specializing in Agentic Systems, Advanced RAG, and Production LLMOps.
+Source for **[mohsinqureshi.io](https://mohsinqureshi.io/)**: an enquiry-led portfolio for remote, USD-paid AI engineering, forward-deployed engineering (FDE) and consulting work, plus the business toolkit behind it.
 
----
+**Stack:** React 18 · TypeScript · Vite 6 · Tailwind CSS · framer-motion · static prerendered routes · GitHub Pages
 
-## ⚡ Tech Stack & Architecture
-- **Framework**: React 18 + TypeScript + Vite
-- **Styling**: Tailwind CSS with custom Dark Cyber-Neon design system (`#08090C`, `#00FF87` luminous accents)
-- **Icons**: Lucide Icons
-- **Deployment**: Static build optimized for GitHub Pages with relative paths (`./`)
-- **Interactive Demonstrations**:
-  1. **Multi-Agent Intent Router**: Real-time comparison between naive monolithic LLMs and two-tier deterministic + SLM routing (latency, cost per 10k queries, and execution telemetry).
-  2. **Citation-Grounded Enterprise RAG**: Interactive BM25 + dense retrieval + cross-encoder reranking with 100% sentence-level source attribution and zero-hallucination verification.
-- **Thought Leadership Blog**: In-depth technical articles with syntax-highlighted code blocks, copy-to-clipboard, tags, and in-article booking CTAs.
-- **Client Conversion Funnel**: Direct Calendly scheduling interface with pre-qualification intake questions for 30-minute Architecture Audits.
+## What's in this repo
 
----
+| Path | Purpose |
+|---|---|
+| `src/v3/` | Home and services pages. Copy and data live in `content.ts`, styles in `v3.css` |
+| `src/pages`, `src/components` | Case studies, blog, remote-roles page, legal pages, calendar and resume modals |
+| `index.html`, `public/llms.txt` | SEO and GEO metadata. The FAQ is mirrored in `content.ts`, `index.html` (JSON-LD and static HTML) and `llms.txt`; update all three together |
+| `scripts/generate-static-routes.js` | Prerenders each route to its own `index.html` for Pages |
+| `docs/` | Build output served by GitHub Pages (generated, do not edit by hand) |
+| `business/` | Go-to-market and client-delivery assets (below) |
+| `deploy.sh` | One-command build and publish |
 
-## 🚀 Local Development
+## Business toolkit (`business/`)
+
+- **`GTM_STRATEGY.md`**: positioning, ICP, offers, channels and pipeline plan for AI consulting, FDE and contract roles.
+- **`LINKEDIN_PLAYBOOK.md`**: profile, content and outreach playbook aligned with the site copy.
+- **`client-pack/`**: 12 editable Word templates covering the whole engagement lifecycle:
+
+  | # | Document |
+  |---|---|
+  | 00 | Client Pack Index |
+  | 01 | Proposal and Statement of Work |
+  | 02 | Consulting Services Agreement |
+  | 03 | Mutual Non-Disclosure Agreement |
+  | 04 | Onboarding and Kickoff Pack |
+  | 05 | Discovery Questionnaire |
+  | 06 | Architecture Document (HLD and LLD) |
+  | 07 | Weekly Status Report |
+  | 08 | Change Request |
+  | 09 | Acceptance and Handover Certificate |
+  | 10 | Invoice |
+  | 11 | Close-out Review and Feedback |
+
+> The agreement and NDA are templates, not legal advice. Have counsel review them before use.
+
+## Develop
 
 ```bash
-# 1. Install dependencies
 npm install
-
-# 2. Run local development server
-npm run dev
-
-# 3. Build for production (outputs to dist/ and docs/)
-npm run build
+npm run dev        # http://localhost:5173
+npm run build      # type-check, build to docs/, prerender routes
+npm run preview    # serve the production build
 ```
 
----
+## Deploy (GitHub Pages: branch `main`, folder `/docs`)
 
-## 🌐 Deploying to GitHub Pages
+```bash
+./deploy.sh
+```
 
-### Method 1: Deploy from `/docs` branch (Fastest & Zero Setup)
-1. In your GitHub repository: Go to **Settings** -> **Pages**.
-2. Under **Build and deployment** -> **Source**: Select **Deploy from a branch**.
-3. Under **Branch**: Select `main` and set the folder to `/docs`.
-4. Click **Save**. Your site will be live in 1-2 minutes!
+The script clones the repo, replaces its contents with this folder, builds, commits (including `docs/`) and pushes to `main`. Pages refreshes in about a minute. Requires Git credentials for `mohsingitdev/mohsingitdev.io` and Node 18+.
 
-### Method 2: Deploy from Custom Domain
-If you link your custom domain (e.g. `mohsingitdev.io` or `mohsinqureshi.ai`):
-1. In **Settings** -> **Pages**, enter your custom domain under **Custom domain**.
-2. Configure your DNS provider with the GitHub Pages A records (`185.199.108.153`, etc.).
+**One-time Pages setting:** Settings → Pages → Source: *Deploy from a branch* → `main` / `/docs`.
+
+## License
+
+All rights reserved unless a license file says otherwise. Contact via the site for reuse.

@@ -9,7 +9,7 @@ export default {
     extend: {
       colors: {
         canvas: {
-          DEFAULT: 'var(--bg-canvas, #121110)',
+          DEFAULT: 'var(--bg-canvas, #0F0E0C)',
           subtle: 'var(--bg-canvas-subtle, #181715)',
           surface: 'var(--bg-canvas-surface, #1E1D1A)',
           card: 'var(--bg-canvas-card, #24221E)',
@@ -19,23 +19,23 @@ export default {
           borderHover: 'var(--border-canvas-hover, rgba(217, 119, 87, 0.35))',
         },
         luxury: {
-          gold: '#DA7756',
-          amber: '#E28743',
-          bronze: '#BF5634',
-          champagne: '#F5EBE6',
-          platinum: '#EDE4DE',
-          silver: '#A8A199',
-          charcoal: '#282522',
-          indigo: '#D97757',
-          violet: '#C15F3D',
+          gold: 'rgb(var(--accent-rgb) / <alpha-value>)',
+          amber: 'rgb(var(--accent-rgb) / <alpha-value>)',
+          bronze: '#A8834A',
+          champagne: '#ECE8E1',
+          platinum: '#ECE8E1',
+          silver: '#9AA2AD',
+          charcoal: '#1E242C',
+          indigo: '#CFA86A',
+          violet: '#A8834A',
         },
         terracotta: {
-          DEFAULT: '#D97757',
-          dark: '#B85D3E',
-          deep: '#8A3E25',
-          light: '#E88E72',
-          soft: '#F5B8A5',
-          glow: 'rgba(217, 119, 87, 0.35)',
+          DEFAULT: 'rgb(var(--accent-rgb) / <alpha-value>)',
+          dark: '#A8834A',
+          deep: '#7A5520',
+          light: '#DDBE8A',
+          soft: '#E8D3AE',
+          glow: 'rgba(240, 163, 58, 0.35)',
         },
         cardLight: {
           DEFAULT: '#FAF7F2',
@@ -47,8 +47,8 @@ export default {
         }
       },
       fontFamily: {
-        sans: ['"Plus Jakarta Sans"', 'Inter', 'system-ui', 'sans-serif'],
-        serif: ['"Playfair Display"', 'Georgia', 'serif'],
+        sans: ['Newsreader', 'Georgia', 'serif'],
+        serif: ['"Instrument Serif"', 'Georgia', 'serif'],
         mono: ['"JetBrains Mono"', 'monospace']
       },
       boxShadow: {

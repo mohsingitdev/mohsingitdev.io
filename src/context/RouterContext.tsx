@@ -68,11 +68,19 @@ export const RouterProvider: React.FC<{ children: React.ReactNode }> = ({ childr
 
     const targetInternal = normalizePath(to, basePath);
     const targetUrl = `${basePath}${targetInternal === '/' ? '/' : targetInternal}`;
+    // Keep the #anchor (normalizePath strips it) so '/#work' lands on the section.
+    const hash = to.split('#')[1];
+    const scrollToHash = () => {
+      if (hash) document.getElementById(hash)?.scrollIntoView({ behavior: 'smooth' });
+    };
 
     if (targetInternal !== currentPath) {
-      window.history.pushState(null, '', targetUrl);
+      window.history.pushState(null, '', targetUrl + (hash ? `#${hash}` : ''));
       setCurrentPath(targetInternal);
-      window.scrollTo({ top: 0, behavior: 'instant' });
+      if (hash) window.setTimeout(scrollToHash, 80);
+      else window.scrollTo({ top: 0, behavior: 'instant' });
+    } else {
+      scrollToHash();
     }
   }, [basePath, currentPath]);
 
@@ -83,7 +91,15 @@ export const RouterProvider: React.FC<{ children: React.ReactNode }> = ({ childr
     };
 
     window.addEventListener('popstate', handlePopState);
-    return () => window.removeEventListener('popstate', handlePopState);
+    // Deep links like /#contact: scroll once the page has rendered.
+    const initialHash = window.location.hash.slice(1);
+    const t = initialHash
+      ? window.setTimeout(() => document.getElementById(initialHash)?.scrollIntoView(), 120)
+      : undefined;
+    return () => {
+      window.removeEventListener('popstate', handlePopState);
+      if (t) window.clearTimeout(t);
+    };
   }, [basePath]);
 
   return (

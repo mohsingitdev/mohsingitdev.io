@@ -5,10 +5,10 @@ export const BLOG_POSTS: BlogPost[] = [
     id: '1',
     slug: 'architecting-sub-100ms-multi-agent-routing',
     title: 'Architecting Sub-100ms Multi-Agent Routing in High-Concurrency Platforms',
-    description: 'Why invoking monolithic LLMs directly for every request is an enterprise anti-pattern, and how a deterministic fast-path + SLM gateway reduces inference bills by 72%.',
+    description: 'Why invoking monolithic LLMs directly for every request is an enterprise anti-pattern, and how a deterministic fast-path + SLM gateway keeps inference cost and latency under control.',
     date: 'Oct 2026',
     readingTime: '6 min read',
-    tags: ['Multi-Agent', 'LLMOps', 'System Architecture', 'Flipkart FDE'],
+    tags: ['Multi-Agent', 'LLMOps', 'System Architecture', 'Forward deployment'],
     content: [
       {
         sectionTitle: 'The Monolithic LLM Bottleneck',
@@ -22,7 +22,7 @@ export const BLOG_POSTS: BlogPost[] = [
           caption: 'Intent Gateway with Strict Wall-Clock Retry Budget',
           code: `@app.post("/v1/agent/route")
 async def route_enterprise_intent(request: CustomerQueryRequest):
-    # Tier 1: Deterministic Schema & Fast-Path Classifier (<33ms)
+    # Tier 1: deterministic schema and fast-path classifier
     fast_result = await fast_intent_classifier.predict(request.text)
     
     if fast_result.confidence >= 0.88:
@@ -61,7 +61,7 @@ async def route_enterprise_intent(request: CustomerQueryRequest):
     description: 'Moving beyond naive vector search: an empirical guide to Reciprocal Rank Fusion, cross-encoder rerankers, and measuring groundedness without hyperbole.',
     date: 'Sep 2026',
     readingTime: '8 min read',
-    tags: ['Advanced RAG', 'Vector DB', 'Enterprise Search', 'Accenture Strategy'],
+    tags: ['Advanced RAG', 'Vector DB', 'Enterprise Search'],
     content: [
       {
         sectionTitle: 'The Fallacy of Naive Vector Search',
@@ -92,7 +92,7 @@ async def route_enterprise_intent(request: CustomerQueryRequest):
       },
       {
         sectionTitle: 'Production Results',
-        body: 'Deploying this multi-stage retrieval architecture for global research clients reduced complex document discovery from hours to seconds while reducing hallucination rates to less than 0.5%.'
+        body: 'Deploying this multi-stage retrieval architecture for a global research client cut document discovery from hours to minutes.'
       }
     ]
   },

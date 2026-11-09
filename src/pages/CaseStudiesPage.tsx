@@ -63,14 +63,14 @@ export const CaseStudiesPage: React.FC<CaseStudiesPageProps> = ({ slug, onBookCa
           className="inline-flex items-center gap-2 text-xs font-mono text-slate-400 hover:text-white mb-6 group transition-colors"
         >
           <ArrowLeft className="w-3.5 h-3.5 group-hover:-translate-x-1 transition-transform" />
-          All Production Case Studies
+          All reference architectures
         </button>
 
         {/* Header Block */}
         <div className="border-b border-white/10 pb-8 mb-10">
           <div className="flex flex-wrap items-center gap-2 mb-4">
             <span className="px-3 py-1 rounded-full text-xs font-mono border border-terracotta/40 bg-terracotta/10 text-terracotta">
-              Production Architecture Teardown
+              Reference architecture
             </span>
             <span className="text-xs font-mono text-slate-500">• {activeStudy.date}</span>
           </div>
@@ -85,8 +85,8 @@ export const CaseStudiesPage: React.FC<CaseStudiesPageProps> = ({ slug, onBookCa
           <div className="p-4 rounded-xl bg-white/5 border border-white/10 text-xs font-mono text-slate-400 flex items-start gap-3">
             <ShieldCheck className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
             <div>
-              <strong className="text-slate-200 block mb-0.5">Relationship &amp; Workload Disclosure:</strong>
-              {activeStudy.relationshipDisclosure}. Numbers reflect verified test conditions and empirical benchmarks.
+              <strong className="text-slate-200 block mb-0.5">How to read this:</strong>
+              {activeStudy.relationshipDisclosure}.
             </div>
           </div>
         </div>
@@ -123,24 +123,24 @@ export const CaseStudiesPage: React.FC<CaseStudiesPageProps> = ({ slug, onBookCa
         <div className="mb-14">
           <h2 className="text-lg font-bold text-white mb-4 flex items-center gap-2">
             <Cpu className="w-5 h-5 text-terracotta" />
-            Empirical Results &amp; Quantitative Disclosures
+            What changes, and how it is tested
           </h2>
           <div className="overflow-x-auto rounded-xl border border-white/10 apple-glass">
             <table className="w-full text-left text-xs font-mono">
               <thead className="bg-white/5 text-slate-400 border-b border-white/10">
                 <tr>
-                  <th className="p-3.5">Metric Tracked</th>
-                  <th className="p-3.5">Previous Baseline</th>
-                  <th className="p-3.5 text-emerald-400">Achieved Result</th>
-                  <th className="p-3.5">Benchmark Test Conditions</th>
+                  <th className="p-3.5">What we measure</th>
+                  <th className="p-3.5">Usual starting point</th>
+                  <th className="p-3.5">Design change</th>
+                  <th className="p-3.5">How it is tested</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-white/5 text-slate-300">
                 {activeStudy.quantitativeResults.map((row, idx) => (
                   <tr key={idx} className="hover:bg-white/[0.02]">
                     <td className="p-3.5 font-bold text-white">{row.metric}</td>
-                    <td className="p-3.5 text-slate-400 line-through">{row.baseline}</td>
-                    <td className="p-3.5 text-emerald-400 font-bold">{row.achieved}</td>
+                    <td className="p-3.5 text-slate-400">{row.baseline}</td>
+                    <td className="p-3.5 text-white">{row.achieved}</td>
                     <td className="p-3.5 text-slate-400">{row.testConditions}</td>
                   </tr>
                 ))}
@@ -242,7 +242,7 @@ export const CaseStudiesPage: React.FC<CaseStudiesPageProps> = ({ slug, onBookCa
             )}
             <button
               onClick={onBookCall}
-              className="px-5 py-2 rounded-lg bg-terracotta hover:bg-[#c4684a] text-white text-xs font-mono font-medium transition-all shadow-md"
+              className="px-5 py-2 rounded-lg bg-terracotta hover:bg-[#C9822A] text-white text-xs font-mono font-medium transition-all shadow-md"
             >
               Discuss Architecture Audit
             </button>
@@ -269,10 +269,10 @@ export const CaseStudiesPage: React.FC<CaseStudiesPageProps> = ({ slug, onBookCa
 
       <div className="mb-12 border-b border-white/10 pb-8">
         <h1 className="text-3xl sm:text-5xl font-extrabold text-white mb-4 tracking-tight">
-          Production AI <span className="gradient-text">Case Studies</span>
+          Reference architectures
         </h1>
         <p className="text-base text-slate-300 max-w-2xl leading-relaxed">
-          Audit-grade engineering teardowns of retrieval systems, model routing gateways, and voice AI integrations moving from prototype to reliable enterprise scale.
+          How I build the two systems clients ask for most: retrieval that cites its sources, and routing that keeps cost and latency under control. Patterns from delivered work, without client data.
         </p>
       </div>
 
@@ -290,7 +290,7 @@ export const CaseStudiesPage: React.FC<CaseStudiesPageProps> = ({ slug, onBookCa
             </div>
 
             <div className="border-t border-white/10 pt-4 flex items-center justify-between">
-              <span className="text-[10px] font-mono text-slate-500">12-Point Empirical Teardown</span>
+              <span className="text-[10px] font-mono text-slate-500">Reference architecture</span>
               <button
                 onClick={() => navigate(`/case-studies/${study.slug}`)}
                 className="text-xs font-mono font-medium text-terracotta hover:text-white flex items-center gap-1.5 transition-colors"

@@ -1,5 +1,21 @@
-# robots.txt for https://mohsingitdev.github.io/mohsingitdev.io/
+# https://mohsinqureshi.io/
 User-agent: *
 Allow: /
 
-Sitemap: https://mohsingitdev.github.io/mohsingitdev.io/sitemap.xml
+# Answer engines and AI search
+User-agent: GPTBot
+Allow: /
+User-agent: OAI-SearchBot
+Allow: /
+User-agent: ChatGPT-User
+Allow: /
+User-agent: ClaudeBot
+Allow: /
+User-agent: Claude-SearchBot
+Allow: /
+User-agent: PerplexityBot
+Allow: /
+User-agent: Google-Extended
+Allow: /
+
+Sitemap: https://mohsinqureshi.io/sitemap.xml

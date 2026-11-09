@@ -5,27 +5,29 @@
 @layer base {
   :root {
     /* Light Theme (Claude warm cream & editorial paper) */
-    --bg-canvas: #FAF7F2;
-    --bg-canvas-subtle: #F4EFEA;
-    --bg-canvas-surface: #FFFFFF;
-    --bg-canvas-card: #FFFFFF;
-    --bg-canvas-card-elevated: #FDFBF7;
+    --bg-canvas: #F4F0E8;
+    --bg-canvas-subtle: #EDE8DE;
+    --bg-canvas-surface: #FBF9F4;
+    --bg-canvas-card: #FBF9F4;
+    --bg-canvas-card-elevated: #FFFFFF;
+    --accent-rgb: 185 138 67;
     --border-canvas: rgba(28, 25, 23, 0.09);
     --border-canvas-subtle: rgba(28, 25, 23, 0.05);
-    --border-canvas-hover: rgba(217, 119, 87, 0.45);
+    --border-canvas-hover: rgba(207, 168, 106, 0.45);
     color-scheme: light;
   }
 
   .dark {
     /* Dark Theme (Claude warm obsidian & carbon) */
-    --bg-canvas: #121110;
-    --bg-canvas-subtle: #181715;
-    --bg-canvas-surface: #1E1D1A;
-    --bg-canvas-card: #24221E;
-    --bg-canvas-card-elevated: #2E2A24;
-    --border-canvas: rgba(240, 230, 215, 0.08);
+    --bg-canvas: #0F0E0C;
+    --bg-canvas-subtle: #151411;
+    --bg-canvas-surface: #1A1916;
+    --bg-canvas-card: #1A1916;
+    --bg-canvas-card-elevated: #211F1B;
+    --accent-rgb: 207 168 106;
+    --border-canvas: rgba(236, 232, 225, 0.09);
     --border-canvas-subtle: rgba(240, 230, 215, 0.04);
-    --border-canvas-hover: rgba(217, 119, 87, 0.35);
+    --border-canvas-hover: rgba(207, 168, 106, 0.35);
     color-scheme: dark;
   }
 
@@ -36,7 +38,7 @@
 
   body {
     background-color: var(--bg-canvas);
-    color: #F7F4EE;
+    color: #ECE6DA;
     transition: background-color 0.3s ease, color 0.3s ease;
   }
 
@@ -59,7 +61,7 @@
     background: #D8D2C7;
   }
   ::-webkit-scrollbar-thumb:hover {
-    background: #D97757;
+    background: #CFA86A;
   }
 }
 
@@ -123,7 +125,7 @@ html:not(.dark) #hero button.bg-white * {
 /* In light mode outside #hero, luxury champagne accents should have rich terracotta contrast */
 html:not(.dark) *:not(#hero):not(#hero *) .text-luxury-champagne,
 html:not(.dark) .text-luxury-champagne:not(#hero *) {
-  color: #D97757 !important;
+  color: #CFA86A !important;
 }
 html:not(.dark) #hero .text-luxury-champagne {
   color: #F5EBE6 !important;
@@ -172,13 +174,13 @@ html:not(.dark) .keep-white * {
 /* Explicitly preserve terracotta accent color on transparent terracotta badges */
 html:not(.dark) [class*="bg-terracotta/"] .text-terracotta,
 html:not(.dark) [class*="bg-terracotta/"][class*="text-terracotta"] {
-  color: #D97757 !important;
+  color: #CFA86A !important;
 }
 
 /* Ensure dark text on white buttons inside terracotta gradient in light mode */
 html:not(.dark) .terracotta-gradient .bg-white,
 html:not(.dark) .terracotta-gradient .bg-white * {
-  color: #121110 !important;
+  color: #12161B !important;
 }
 
 /* Preserve crisp terminal text on code blocks and terminal wrappers */
@@ -191,7 +193,7 @@ html:not(.dark) .terminal-text {
 
 /* Light mode gradient text overrides for crisp contrast */
 html:not(.dark) .text-gradient-gold {
-  background: linear-gradient(135deg, #D97757 0%, #C26243 50%, #8C3A27 100%) !important;
+  background: linear-gradient(135deg, #CFA86A 0%, #A8834A 50%, #8A5A1C 100%) !important;
   -webkit-background-clip: text !important;
   -webkit-text-fill-color: transparent !important;
 }
@@ -210,7 +212,7 @@ html:not(.dark) .shadow-apple-elevated {
   box-shadow: 0 20px 45px -12px rgba(0, 0, 0, 0.1), 0 0 0 1px rgba(28, 25, 23, 0.08);
 }
 html:not(.dark) .apple-card-hover:hover {
-  box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.1), 0 0 20px rgba(217, 119, 87, 0.12);
+  box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.1), 0 0 20px rgba(207, 168, 106, 0.12);
 }
 
 /* Smooth background & border theme transitions on surface elements */
@@ -244,7 +246,7 @@ footer,
     background: rgba(30, 28, 24, 0.75);
     backdrop-filter: blur(20px) saturate(180%);
     -webkit-backdrop-filter: blur(20px) saturate(180%);
-    border: 1px solid rgba(240, 230, 215, 0.08);
+    border: 1px solid rgba(236, 232, 225, 0.09);
     box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
   }
 
@@ -253,7 +255,7 @@ footer,
   }
   .glass-card-hover:hover {
     background: rgba(38, 35, 30, 0.88);
-    border-color: rgba(217, 119, 87, 0.35);
+    border-color: rgba(207, 168, 106, 0.35);
     transform: translateY(-2px);
   }
 
@@ -285,8 +287,8 @@ footer,
   }
   .apple-glass-pill:hover {
     background: rgba(42, 38, 33, 0.85);
-    border-color: rgba(217, 119, 87, 0.5);
-    box-shadow: 0 12px 30px -8px rgba(0, 0, 0, 0.6), 0 0 25px -4px rgba(217, 119, 87, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    border-color: rgba(207, 168, 106, 0.5);
+    box-shadow: 0 12px 30px -8px rgba(0, 0, 0, 0.6), 0 0 25px -4px rgba(207, 168, 106, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2);
     transform: translateY(-1px);
   }
   .apple-glass-pill:active {
@@ -299,19 +301,19 @@ footer,
   }
   html:not(.dark) .apple-glass-pill:hover {
     background: #FFFFFF;
-    border-color: rgba(217, 119, 87, 0.6);
-    box-shadow: 0 12px 28px -6px rgba(0, 0, 0, 0.1), 0 0 20px rgba(217, 119, 87, 0.2);
+    border-color: rgba(207, 168, 106, 0.6);
+    box-shadow: 0 12px 28px -6px rgba(0, 0, 0, 0.1), 0 0 20px rgba(207, 168, 106, 0.2);
   }
 
   .apple-glass-cta-terracotta {
-    background: linear-gradient(180deg, #E28264 0%, #D97757 45%, #BF5634 100%);
+    background: linear-gradient(180deg, #DDBE8A 0%, #CFA86A 45%, #A8834A 100%);
     border: 1px solid rgba(255, 255, 255, 0.25);
-    box-shadow: 0 12px 30px -8px rgba(217, 119, 87, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.35);
+    box-shadow: 0 12px 30px -8px rgba(207, 168, 106, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.35);
     color: #FFFFFF !important;
     transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
   }
   .apple-glass-cta-terracotta:hover {
-    box-shadow: 0 16px 36px -8px rgba(217, 119, 87, 0.65), 0 0 30px rgba(217, 119, 87, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.45);
+    box-shadow: 0 16px 36px -8px rgba(207, 168, 106, 0.65), 0 0 30px rgba(207, 168, 106, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.45);
     transform: translateY(-1.5px);
   }
   .apple-glass-cta-terracotta:active {
@@ -319,15 +321,15 @@ footer,
   }
 
   .luxury-border {
-    border: 1px solid rgba(240, 230, 215, 0.08);
+    border: 1px solid rgba(236, 232, 225, 0.09);
   }
 
   .luxury-border-gold {
-    border: 1px solid rgba(217, 119, 87, 0.35);
+    border: 1px solid rgba(207, 168, 106, 0.35);
   }
 
   .text-gradient-gold {
-    background: linear-gradient(135deg, #FFFFFF 0%, #F5C6B5 45%, #D97757 100%);
+    background: linear-gradient(135deg, #FFFFFF 0%, #E8D3AE 45%, #CFA86A 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
   }
@@ -339,15 +341,15 @@ footer,
   }
 
   .mesh-glow-warm {
-    background: radial-gradient(circle at 50% 50%, rgba(217, 119, 87, 0.12) 0%, rgba(18, 17, 16, 0) 70%);
+    background: radial-gradient(circle at 50% 50%, rgba(207, 168, 106, 0.12) 0%, rgba(18, 17, 16, 0) 70%);
   }
 
   .mesh-glow-indigo {
-    background: radial-gradient(circle at 50% 50%, rgba(217, 119, 87, 0.08) 0%, rgba(18, 17, 16, 0) 70%);
+    background: radial-gradient(circle at 50% 50%, rgba(207, 168, 106, 0.08) 0%, rgba(18, 17, 16, 0) 70%);
   }
 
   .terracotta-gradient {
-    background: linear-gradient(145deg, #DE5A35 0%, #C84E29 45%, #9E3717 100%);
+    background: linear-gradient(145deg, f0a33a 0%, #C84E29 45%, #9E3717 100%);
   }
 
   .watermark-text {
@@ -355,13 +357,13 @@ footer,
     font-weight: 900;
     line-height: 0.85;
     letter-spacing: -0.05em;
-    color: #FFA584;
+    color: #DDBE8A;
     opacity: 0.28;
     text-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
   }
 
   .hero-pill-glow {
-    box-shadow: 0 4px 30px rgba(255, 255, 255, 0.45), 0 0 20px rgba(217, 119, 87, 0.3);
+    box-shadow: 0 4px 30px rgba(255, 255, 255, 0.45), 0 0 20px rgba(207, 168, 106, 0.3);
   }
 
   .scroll-offset-nav {
@@ -378,7 +380,7 @@ footer,
   }
   .apple-card-hover:hover {
     transform: translateY(-4px) scale(1.008);
-    border-color: rgba(217, 119, 87, 0.4);
+    border-color: rgba(207, 168, 106, 0.4);
   }
 
   /* Touch & mobile scroll optimization */
@@ -393,3 +395,9 @@ footer,
     -webkit-overflow-scrolling: touch;
   }
 }
+
+/* v3: dark text on amber fills (white on amber fails contrast) */
+.bg-terracotta.text-white, .bg-terracotta .text-white, .apple-glass-cta-terracotta, .apple-glass-cta-terracotta * { color: #1a1206 !important; }
+
+/* Accent as text on light backgrounds needs a deeper tone for contrast */
+html:not(.dark) .text-terracotta, html:not(.dark) .text-luxury-gold { color: #7A5520; }

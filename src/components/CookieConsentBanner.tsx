@@ -51,7 +51,7 @@ export const CookieConsentBanner: React.FC = () => {
         </div>
 
         <p className="text-xs text-slate-300 leading-relaxed font-sans">
-          This site uses client-side local storage for theme persistence and anonymized session telemetry to understand inbound recruiter visits. No advertising cookies or third-party trackers are used.
+          This site saves your theme in your browser. If you allow it, it also remembers how you arrived (for example, from LinkedIn), only in your browser. That detail is included if you send a request through a form. No advertising or analytics trackers are used.
         </p>
 
         <div className="text-[11px] font-mono text-slate-400 pt-1">
@@ -74,7 +74,7 @@ export const CookieConsentBanner: React.FC = () => {
         <div className="flex items-center gap-2 pt-2 border-t border-white/10">
           <button
             onClick={handleAcceptAll}
-            className="flex-1 px-3.5 py-2 rounded-xl bg-terracotta hover:bg-[#c4684a] text-white text-xs font-mono font-bold transition-all shadow-md active:scale-95 text-center"
+            className="flex-1 px-3.5 py-2 rounded-xl bg-terracotta hover:bg-[#C9822A] text-white text-xs font-mono font-bold transition-all shadow-md active:scale-95 text-center"
           >
             Accept All
           </button>

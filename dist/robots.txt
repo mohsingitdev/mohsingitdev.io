@@ -1,5 +1,0 @@
-# robots.txt for https://mohsingitdev.github.io/mohsingitdev.io/
-User-agent: *
-Allow: /
-
-Sitemap: https://mohsingitdev.github.io/mohsingitdev.io/sitemap.xml

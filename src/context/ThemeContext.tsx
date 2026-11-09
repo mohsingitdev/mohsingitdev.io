@@ -8,40 +8,39 @@ interface ThemeContextType {
   setTheme: (theme: Theme) => void;
 }
 
+const KEY = 'theme-v2'; // new key so the old forced-dark value doesn't override the system default
 const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 
-export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const [theme, setThemeState] = useState<Theme>(() => {
-    if (typeof window !== 'undefined') {
-      const urlParams = new URLSearchParams(window.location.search);
-      const paramTheme = urlParams.get('theme') as Theme;
-      if (paramTheme === 'light' || paramTheme === 'dark') return paramTheme;
+const apply = (t: Theme) => {
+  const c = document.documentElement.classList;
+  c.toggle('dark', t === 'dark');
+  c.toggle('light', t === 'light');
+  document.querySelector('meta[name="theme-color"]')?.setAttribute('content', t === 'dark' ? '#0f0e0c' : '#f4f0e8');
+};
 
-      const saved = localStorage.getItem('theme') as Theme;
-      if (saved === 'light' || saved === 'dark') return saved;
-    }
-    return 'dark';
-  });
+// Follows the system setting until the visitor picks one; the inline script in index.html sets it before paint.
+export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+  const [theme, setThemeState] = useState<Theme>(() =>
+    document.documentElement.classList.contains('dark') ? 'dark' : 'light'
+  );
+
+  useEffect(() => { apply(theme); }, [theme]);
 
   useEffect(() => {
-    const root = document.documentElement;
-    if (theme === 'dark') {
-      root.classList.add('dark');
-      root.classList.remove('light');
-    } else {
-      root.classList.remove('dark');
-      root.classList.add('light');
-    }
-    localStorage.setItem('theme', theme);
-  }, [theme]);
-
-  const toggleTheme = () => {
-    setThemeState((prev) => (prev === 'dark' ? 'light' : 'dark'));
-  };
+    let stored: string | null = null;
+    try { stored = localStorage.getItem(KEY); } catch { /* storage unavailable */ }
+    if (stored) return;
+    const mq = window.matchMedia('(prefers-color-scheme: light)');
+    const on = () => setThemeState(mq.matches ? 'light' : 'dark');
+    mq.addEventListener('change', on);
+    return () => mq.removeEventListener('change', on);
+  }, []);
 
   const setTheme = (t: Theme) => {
     setThemeState(t);
+    try { localStorage.setItem(KEY, t); } catch { /* storage unavailable */ }
   };
+  const toggleTheme = () => setTheme(theme === 'dark' ? 'light' : 'dark');
 
   return (
     <ThemeContext.Provider value={{ theme, toggleTheme, setTheme }}>
@@ -52,8 +51,6 @@ export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ childre
 
 export const useTheme = () => {
   const context = useContext(ThemeContext);
-  if (!context) {
-    throw new Error('useTheme must be used within a ThemeProvider');
-  }
+  if (!context) throw new Error('useTheme must be used within a ThemeProvider');
   return context;
 };

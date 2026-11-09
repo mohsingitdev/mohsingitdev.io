@@ -1,45 +1,26 @@
-import React, { useState, Suspense, lazy } from 'react';
+import React, { useState, useEffect, Suspense, lazy } from 'react';
 import { useRouter } from './context/RouterContext';
-import { Navbar } from './components/Navbar';
-import { NeuralBackground } from './components/NeuralBackground';
-import { Hero } from './components/Hero';
-import { HowIDeploy } from './components/HowIDeploy';
-import { SystemsSection } from './components/SystemsSection';
-import { SelectedWork } from './components/SelectedWork';
-import { LayaAssessmentMatrix } from './components/LayaAssessmentMatrix';
 import { CookieConsentBanner } from './components/CookieConsentBanner';
-import { Footer } from './components/Footer';
+import { SiteNav } from './v3/SiteNav';
+import { SiteFooter } from './v3/SiteFooter';
+import { Home } from './v3/Home';
+import { Backdrop } from './v3/Backdrop';
+import { LINKS } from './v3/content';
 
-// Code Splitting & Performance Optimization: Lazy load lower interactive & off-screen sections
-const InteractiveDemosSection = lazy(() =>
-  import('./components/InteractiveDemosSection').then((m) => ({ default: m.InteractiveDemosSection }))
-);
-const ExperienceTimeline = lazy(() =>
-  import('./components/ExperienceTimeline').then((m) => ({ default: m.ExperienceTimeline }))
-);
-const BlogSection = lazy(() =>
-  import('./components/BlogSection').then((m) => ({ default: m.BlogSection }))
-);
-const OfferingsShowcase = lazy(() =>
-  import('./components/OfferingsShowcase').then((m) => ({ default: m.OfferingsShowcase }))
-);
+// Sub-pages keep their existing components and load on demand.
 const CalendlySection = lazy(() =>
   import('./components/CalendlySection').then((m) => ({ default: m.CalendlySection }))
 );
 const ResumeRequestModal = lazy(() =>
   import('./components/ResumeRequestModal').then((m) => ({ default: m.ResumeRequestModal }))
 );
-
-// Route Pages
 const RemoteAIEngineerPage = lazy(() =>
   import('./pages/RemoteAIEngineerPage').then((m) => ({ default: m.RemoteAIEngineerPage }))
 );
 const CaseStudiesPage = lazy(() =>
   import('./pages/CaseStudiesPage').then((m) => ({ default: m.CaseStudiesPage }))
 );
-const ServicesPage = lazy(() =>
-  import('./pages/ServicesPage').then((m) => ({ default: m.ServicesPage }))
-);
+const ServicesV3 = lazy(() => import('./v3/ServicesV3').then((m) => ({ default: m.ServicesV3 })));
 const BlogPage = lazy(() =>
   import('./pages/BlogPage').then((m) => ({ default: m.BlogPage }))
 );
@@ -47,163 +28,73 @@ const LegalPage = lazy(() =>
   import('./pages/LegalPage').then((m) => ({ default: m.LegalPage }))
 );
 
-// Minimalist Non-Blocking Loading Skeleton for Lazy Sections
-const SectionLoader: React.FC = () => (
-  <div className="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-center min-h-[260px]">
-    <div className="flex flex-col items-center gap-3 text-xs font-mono text-slate-400">
-      <div className="w-6 h-6 rounded-full border-2 border-terracotta border-t-transparent animate-spin" />
-      <span>Loading production module...</span>
-    </div>
-  </div>
+const PageLoader: React.FC = () => (
+  <div className="v3" style={{ minHeight: '60vh' }} aria-busy="true" />
 );
 
-export const App: React.FC = () => {
-  const { currentPath, navigate } = useRouter();
-  const [isResumeModalOpen, setIsResumeModalOpen] = useState(false);
+const LEGAL = ['/privacy', '/terms', '/cookies', '/refunds'];
 
+export const App: React.FC = () => {
+  const { currentPath } = useRouter();
+  const [isResumeModalOpen, setIsResumeModalOpen] = useState(false);
+  const openResume = () => setIsResumeModalOpen(true);
+
+  // Per-route tab/search title (legal pages set their own).
+  useEffect(() => {
+    if (LEGAL.includes(currentPath)) return;
+    const base = 'Mohsin Qureshi | Forward-deployed AI engineer';
+    const t = currentPath.startsWith('/services') ? 'AI engineering engagements'
+      : currentPath.startsWith('/case-studies') ? 'Reference architectures'
+      : currentPath.startsWith('/blog') ? 'Production AI field notes'
+      : currentPath === '/remote-ai-engineer' ? 'Remote AI engineer for hire' : '';
+    document.title = t ? `${t} | Mohsin Qureshi` : base;
+  }, [currentPath]);
+
+  // Sub-pages render a Calendly section; fall back to the booking page if it isn't on screen.
   const scrollToBooking = () => {
     const el = document.getElementById('calendly');
-    if (el) {
-      el.scrollIntoView({ behavior: 'smooth' });
-    } else {
-      navigate('/#calendly');
-    }
+    if (el) el.scrollIntoView({ behavior: 'smooth' });
+    else window.open(LINKS.calendly, '_blank', 'noopener');
   };
 
-  const scrollToDemos = () => {
-    const el = document.getElementById('interactive-demos');
-    if (el) {
-      el.scrollIntoView({ behavior: 'smooth' });
-    } else {
-      navigate('/#interactive-demos');
-    }
-  };
-
-  const scrollToMatrix = () => {
-    const el = document.getElementById('assessment-matrix');
-    if (el) {
-      el.scrollIntoView({ behavior: 'smooth' });
-    } else {
-      navigate('/#assessment-matrix');
-    }
-  };
+  let page: React.ReactNode;
+  if (currentPath === '/remote-ai-engineer') {
+    page = (<><RemoteAIEngineerPage onRequestResume={openResume} onBookCall={scrollToBooking} /><CalendlySection /></>);
+  } else if (currentPath.startsWith('/case-studies')) {
+    page = (<><CaseStudiesPage slug={currentPath.replace(/^\/case-studies\/?/, '') || undefined} onBookCall={scrollToBooking} /><CalendlySection /></>);
+  } else if (currentPath.startsWith('/services')) {
+    page = <ServicesV3 onRequestResume={openResume} />;
+  } else if (currentPath.startsWith('/blog')) {
+    page = (<><BlogPage slug={currentPath.replace(/^\/blog\/?/, '') || undefined} onBookCall={scrollToBooking} /><CalendlySection /></>);
+  } else if (LEGAL.includes(currentPath)) {
+    page = <LegalPage />;
+  }
 
   return (
-    <div className="relative min-h-screen bg-canvas text-slate-100 flex flex-col font-sans selection:bg-[#D97757] selection:text-white overflow-x-hidden w-full">
-      {/* Accessible Skip Navigation Link */}
+    <div className="relative min-h-screen flex flex-col overflow-x-hidden w-full">
+      <Backdrop />
       <a
         href="#main-content"
-        className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2.5 focus:bg-terracotta focus:text-white focus:rounded-full focus:shadow-2xl font-mono text-xs focus:ring-2 focus:ring-white transition-all pointer-events-auto"
+        className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2.5 focus:rounded-md"
+        style={{ background: 'var(--v3-signal)', color: 'var(--v3-signal-ink)' }}
       >
         Skip to main content
       </a>
 
-      {/* Interactive AI Neural Background Canvas (Throttled & Viewport Aware) */}
-      <NeuralBackground />
+      <SiteNav />
 
-      {/* Sticky Navigation */}
-      <Navbar 
-        onBookCall={scrollToBooking} 
-        onRequestResume={() => setIsResumeModalOpen(true)}
-      />
-
-      {/* Recruiter & Hiring Lead Unredacted Resume Modal (Lazy Loaded) */}
       {isResumeModalOpen && (
         <Suspense fallback={null}>
-          <ResumeRequestModal
-            isOpen={isResumeModalOpen}
-            onClose={() => setIsResumeModalOpen(false)}
-          />
+          <ResumeRequestModal isOpen={isResumeModalOpen} onClose={() => setIsResumeModalOpen(false)} />
         </Suspense>
       )}
 
-      {/* Main Content Router */}
       <main id="main-content" className="flex-1 relative z-10">
-        {currentPath === '/remote-ai-engineer' ? (
-          <Suspense fallback={<SectionLoader />}>
-            <RemoteAIEngineerPage
-              onRequestResume={() => setIsResumeModalOpen(true)}
-              onBookCall={scrollToBooking}
-            />
-            <CalendlySection />
-          </Suspense>
-        ) : currentPath.startsWith('/case-studies') ? (
-          <Suspense fallback={<SectionLoader />}>
-            <CaseStudiesPage
-              slug={currentPath.replace(/^\/case-studies\/?/, '') || undefined}
-              onBookCall={scrollToBooking}
-            />
-            <CalendlySection />
-          </Suspense>
-        ) : currentPath.startsWith('/services') ? (
-          <Suspense fallback={<SectionLoader />}>
-            <ServicesPage onBookCall={scrollToBooking} />
-            <CalendlySection />
-          </Suspense>
-        ) : currentPath.startsWith('/blog') ? (
-          <Suspense fallback={<SectionLoader />}>
-            <BlogPage
-              slug={currentPath.replace(/^\/blog\/?/, '') || undefined}
-              onBookCall={scrollToBooking}
-            />
-            <CalendlySection />
-          </Suspense>
-        ) : (currentPath === '/privacy' || currentPath === '/terms' || currentPath === '/cookies' || currentPath === '/refunds') ? (
-          <Suspense fallback={<SectionLoader />}>
-            <LegalPage />
-          </Suspense>
-        ) : (
-          /* Primary Home Showcase */
-          <>
-            {/* 1. Cinematic Higgsfield Hero */}
-            <Hero
-              onBookCall={scrollToBooking}
-              onExploreDemos={scrollToDemos}
-              onViewMatrix={scrollToMatrix}
-              onRequestResume={() => setIsResumeModalOpen(true)}
-            />
-
-            {/* 2. Section 1: How I Deploy (4 Stacked Architecture Layers + Signal Path) */}
-            <HowIDeploy />
-
-            {/* 3. Section 2: Systems Section (Topological Schematic + 4 Infrastructure Chapters) */}
-            <SystemsSection />
-
-            {/* 4. Section 3: Selected Work (3D Fanned Card Stack + Capabilities Row) */}
-            <SelectedWork 
-              onBookCall={scrollToBooking}
-              onExploreDemo={scrollToDemos}
-            />
-
-            {/* 5. Unified Enterprise Architectural Benchmark Matrix & Audited Proof Ledger */}
-            <LayaAssessmentMatrix onBookCall={scrollToBooking} />
-
-            {/* Lazy Loaded Lower Sections */}
-            <Suspense fallback={<SectionLoader />}>
-              {/* 6. Tangible Interactive Evidence (Routing & Grounded RAG Sandboxes) */}
-              <InteractiveDemosSection />
-
-              {/* 7. Enterprise Pedigree & Academic Track Record */}
-              <ExperienceTimeline />
-
-              {/* 8. Software Craftsmanship & Thought Leadership Blog */}
-              <BlogSection onBookCall={scrollToBooking} />
-
-              {/* 9. Topmate & Mentorship Offerings with Animated Banners */}
-              <OfferingsShowcase onBookCall={scrollToBooking} />
-
-              {/* 10. Direct Client Onboarding & High-Converting Booking Funnel */}
-              <CalendlySection />
-            </Suspense>
-          </>
-        )}
+        {page ? <Suspense fallback={<PageLoader />}>{page}</Suspense> : <Home onRequestResume={openResume} />}
       </main>
 
-      {/* Cookie & Local Storage Consent Banner */}
       <CookieConsentBanner />
-
-      {/* Footer */}
-      <Footer />
+      <SiteFooter />
     </div>
   );
 };

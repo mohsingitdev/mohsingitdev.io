@@ -131,7 +131,7 @@ export const LegalPage: React.FC<LegalPageProps> = ({ initialTab = 'privacy' }) 
             <Card3D className="p-6 sm:p-8 apple-glass rounded-2xl border border-white/10">
               <h2 className="text-xl font-bold text-white mb-4">1. Data Controller &amp; Scope</h2>
               <p className="mb-4">
-                This Privacy Policy applies to the sovereign website of <strong>Mohsin Qureshi</strong> (<a href="https://mohsingitdev.github.io/mohsingitdev.io/" className="text-terracotta underline">mohsingitdev.io</a>), operating in an individual professional capacity as an AI Platform Engineer &amp; Forward-Deployed AI Engineer.
+                This Privacy Policy applies to the sovereign website of <strong>Mohsin Qureshi</strong> (<a href="https://mohsinqureshi.io/" className="text-terracotta underline">mohsingitdev.io</a>), operating in an individual professional capacity as an AI Platform Engineer &amp; Forward-Deployed AI Engineer.
               </p>
               <p>
                 Direct contact for all data privacy requests: <a href="mailto:mohsin.i.qureshi@hotmail.com" className="text-terracotta underline">mohsin.i.qureshi@hotmail.com</a>.
@@ -236,7 +236,7 @@ export const LegalPage: React.FC<LegalPageProps> = ({ initialTab = 'privacy' }) 
             <Card3D className="p-6 sm:p-8 apple-glass rounded-2xl border border-white/10">
               <h2 className="text-xl font-bold text-white mb-4">1. Acceptance of Terms</h2>
               <p>
-                By accessing or navigating <a href="https://mohsingitdev.github.io/mohsingitdev.io/" className="text-terracotta underline">mohsingitdev.io</a>, you agree to comply with and be bound by these Terms and Conditions. If you do not agree, please discontinue use of this site.
+                By accessing or navigating <a href="https://mohsinqureshi.io/" className="text-terracotta underline">mohsingitdev.io</a>, you agree to comply with and be bound by these Terms and Conditions. If you do not agree, please discontinue use of this site.
               </p>
             </Card3D>
 
@@ -263,7 +263,7 @@ export const LegalPage: React.FC<LegalPageProps> = ({ initialTab = 'privacy' }) 
             <Card3D className="p-6 sm:p-8 apple-glass rounded-2xl border border-white/10">
               <h2 className="text-xl font-bold text-white mb-4">4. Intellectual Property &amp; Brand Rights</h2>
               <p>
-                The visual design system, custom 3D neural assets, original technical articles, and brand marks are the intellectual property of Mohsin Qureshi. Third-party brand names (e.g. Flipkart, Novartis, Ericsson, Accenture Strategy, Anthropic Claude, OpenAI, Meta Gemma) belong to their respective trademark holders and are cited solely under nominative fair use to describe verified employment, advisory history, or technological integrations.
+                The visual design system, custom 3D neural assets, original technical articles, and brand marks are the intellectual property of Mohsin Qureshi. Third-party brand names (e.g. Anthropic Claude, OpenAI, Meta Gemma) belong to their respective trademark holders and are cited solely under nominative fair use to describe technological integrations.
               </p>
             </Card3D>
 

@@ -7,47 +7,39 @@ const __dirname = path.dirname(__filename);
 const rootDir = path.resolve(__dirname, '..');
 const docsDir = path.resolve(rootDir, 'docs');
 
-const baseCanonical = 'https://mohsingitdev.github.io/mohsingitdev.io';
+const baseCanonical = 'https://mohsinqureshi.io';
 
 const routes = [
   {
     path: 'remote-ai-engineer',
-    title: 'Mohsin Qureshi | Remote AI Platform Engineer & Forward-Deployed AI Engineer',
+    title: 'Remote forward-deployed AI engineer for US and UK teams | Mohsin Qureshi',
     description: 'Production AI and Forward-Deployed Engineering available for remote US/UK teams. Specializing in high-concurrency model routing, RAG evaluation gates, and vLLM cloud deployment.',
     h1: 'Remote AI Platform Engineer & Forward-Deployed AI Engineer (US/UK)',
-    bodyText: 'Bridging the gap between frontier research prototypes and mission-critical production systems. Available for remote US/UK roles with 4-5 hours synchronous daily overlap (EST/GMT). Proven track record across Flipkart, Novartis, Accenture Strategy, and Ericsson.',
+    bodyText: 'Bridging the gap between frontier research prototypes and mission-critical production systems. Available for remote US and UK engagements, with working-hours overlap agreed per engagement. Client work across e-commerce, pharma, telecom and industrial sectors.',
     schemaType: 'ProfilePage'
   },
   {
     path: 'case-studies',
-    title: 'Production AI Case Studies & Architecture Teardowns | Mohsin Qureshi',
-    description: '12-point audit-grade engineering teardowns of retrieval systems, model routing gateways, and voice AI integrations moving from prototype to reliable enterprise scale.',
-    h1: 'Production AI Case Studies',
-    bodyText: 'Explore reproducible benchmarks, architecture decisions, failure modes, and quantitative disclosures across enterprise RAG, high-concurrency model routing, and conversational telephony voice systems.',
+    title: 'Reference architectures | Mohsin Qureshi',
+    description: 'How I design production RAG and LLM routing systems: architecture, evaluation, failure modes and trade-offs.',
+    h1: 'Reference architectures',
+    bodyText: 'Architecture decisions, evaluation methods and failure modes for production RAG and LLM routing. Client figures are confidential.',
     schemaType: 'CollectionPage'
   },
   {
     path: 'case-studies/production-rag-evaluation',
     title: 'Case Study: Production RAG Evaluation & Groundedness Testing | Mohsin Qureshi',
-    description: 'Hybrid retrieval (BM25 + Dense RRF), cross-encoder reranking, and citation attribution cutting ungrounded responses to <0.5% drift over 500k compliance documents.',
+    description: 'Hybrid retrieval, cross-encoder reranking and per-sentence citation checks for regulated documents.',
     h1: 'Production RAG Evaluation: Hybrid Retrieval, Reranking, and Groundedness Testing',
-    bodyText: 'A technical teardown of two-stage hybrid search, reciprocal rank fusion (k=60), cross-encoder validation gates, and empirical latency percentiles (380ms p95). Deployed for regulated enterprise research contexts at Novartis and Accenture Strategy.',
+    bodyText: 'Two-stage hybrid search, rank fusion, reranking and a groundedness evaluation gate. The pattern comes from research-knowledge work for global pharma clients.',
     schemaType: 'TechArticle'
   },
   {
     path: 'case-studies/llm-routing-cost-latency',
     title: 'Case Study: Designing an LLM Routing Layer for Latency & FinOps | Mohsin Qureshi',
-    description: 'Two-tier routing architecture with <33ms deterministic fast-path classification reducing cloud generative AI inference spend by 72% under 15k RPS flash concurrency.',
+    description: 'A deterministic fast path, confidence scoring and budgeted fallbacks that keep routine requests off large models.',
     h1: 'Designing an LLM Routing Layer for Latency, Cost, and Reliability',
     bodyText: 'How decoupling routine intent extraction from multi-step probabilistic reasoning insulates enterprise platforms from frontier LLM rate-limiting, p99 latency spikes, and exorbitant token bills.',
-    schemaType: 'TechArticle'
-  },
-  {
-    path: 'case-studies/voice-ai-crm-integration',
-    title: 'Case Study: Voice AI & CRM Integration at the Telephony Boundary | Mohsin Qureshi',
-    description: 'Full-duplex WebSocket audio streaming, sub-700ms Time-to-First-Audio, speculative CRM lookups, and graceful human handoff protocols.',
-    h1: 'Voice AI and CRM Integration: Architecture, Failure Modes, and Handoffs',
-    bodyText: 'Architecture post-mortem on solving the 2.5s+ telephony latency bottleneck using streaming STT, vLLM generation, and transactional CRM checkpoints with zero lost caller context.',
     schemaType: 'TechArticle'
   },
   {
@@ -69,7 +61,7 @@ const routes = [
   {
     path: 'blog/architecting-sub-100ms-multi-agent-routing',
     title: 'Architecting Sub-100ms Multi-Agent Routing in High-Concurrency Platforms',
-    description: 'Why invoking monolithic LLMs directly for every request is an enterprise anti-pattern, and how a deterministic fast-path + SLM gateway reduces inference bills by 72%.',
+    description: 'Why invoking monolithic LLMs directly for every request is an enterprise anti-pattern, and how a deterministic fast-path + SLM gateway keeps inference cost and latency under control.',
     h1: 'Architecting Sub-100ms Multi-Agent Routing in High-Concurrency Platforms',
     bodyText: 'In early GenAI implementations, engineering teams frequently route all incoming traffic through a single frontier LLM. To achieve strict p99 latencies under 60ms, production architectures must decouple simple intent extraction from complex multi-step reasoning.',
     schemaType: 'Article'
@@ -108,7 +100,7 @@ const routes = [
   },
   {
     path: 'privacy',
-    title: 'Privacy Policy | Mohsin Qureshi AI Platform & Engineering Advisory',
+    title: 'Privacy policy | Mohsin Qureshi',
     description: 'Privacy Policy covering data protection under India Digital Personal Data Protection (DPDP) Act 2023, EU/UK GDPR, and California CCPA/CPRA. Transparent data handling and zero unauthorized selling.',
     h1: 'Privacy Policy & Data Protection Governance',
     bodyText: 'Comprehensive privacy policy detailing personal data processing, lawful basis, third-party processors (Calendly, GitHub Pages, Formspree), consent management, and data subject rights including access, rectification, and erasure.',
@@ -116,7 +108,7 @@ const routes = [
   },
   {
     path: 'terms',
-    title: 'Terms & Conditions | Mohsin Qureshi Sovereign AI Portfolio',
+    title: 'Terms and conditions | Mohsin Qureshi',
     description: 'Terms and conditions governing portfolio browsing, sample architecture teardowns, technical advisory sessions, and contractual intellectual property boundaries.',
     h1: 'Terms and Conditions of Use & Engagement',
     bodyText: 'Binding terms covering website usage, open-source sample code licenses (MIT), fixed-scope advisory statements of work, intellectual property warranties, and limitations of liability.',
@@ -132,7 +124,7 @@ const routes = [
   },
   {
     path: 'refunds',
-    title: 'Refund & Cancellation Policy | Mohsin Qureshi Technical Advisory',
+    title: 'Refund and cancellation policy | Mohsin Qureshi',
     description: 'Clear refund, rescheduling, and cancellation terms for fixed-scope AI engineering advisory, sprint engagements, and Topmate mentorship sessions.',
     h1: 'Refund, Rescheduling & Cancellation Policy',
     bodyText: 'Transparent terms governing cancellations, 100% pre-kickoff refunds for advisory sprints notified >48 hours in advance, Topmate platform policy delegation, and mutual satisfaction checkpoints.',
@@ -181,24 +173,29 @@ function generateStaticRoutes() {
     html = html.replace(/<link rel="canonical" href=".*?" \/>/, `<link rel="canonical" href="${canonicalUrl}" />`);
     html = html.replace(/<meta property="og:url" content=".*?" \/>/, `<meta property="og:url" content="${canonicalUrl}" />`);
 
-    // Inject Crawlable Noscript / Pre-rendered Semantic Content for Search Engines
-    const preRenderedContent = `
-    <noscript>
-      <div style="max-width: 800px; margin: 40px auto; padding: 20px; font-family: sans-serif; color: #e2e8f0; background: #0f172a;">
-        <header>
-          <a href="${baseCanonical}/" style="color: #d97757;">← Back to Mohsin Qureshi Sovereign Portfolio</a>
-          <h1 style="color: #ffffff; font-size: 28px; margin-top: 16px;">${route.h1}</h1>
-          <p style="color: #cbd5e1; font-size: 16px; line-height: 1.6;">${route.description}</p>
-        </header>
-        <main style="margin-top: 24px; line-height: 1.7; color: #94a3b8;">
-          <p>${route.bodyText}</p>
-          <p>Contact: <a href="https://www.linkedin.com/in/mohd-mohsin-qureshi" style="color: #d97757;">LinkedIn</a> | <a href="https://github.com/mohsingitdev" style="color: #d97757;">GitHub</a></p>
-        </main>
-      </div>
-    </noscript>
-    `;
+    // Home-only structured data (FAQPage) shouldn't repeat on every route.
+    html = html.replace(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/, (_m, json) => {
+      try {
+        const data = JSON.parse(json);
+        data['@graph'] = data['@graph'].filter((n) => n['@type'] !== 'FAQPage');
+        return `<script type="application/ld+json">${JSON.stringify(data)}</script>`;
+      } catch {
+        return _m;
+      }
+    });
 
-    html = html.replace('<div id="root"></div>', `<div id="root"></div>\n${preRenderedContent}`);
+    // Route-specific content inside #root: readable by crawlers that don't run JavaScript
+    // (most AI crawlers), and replaced by React when the app loads.
+    const routeContent = `<div id="root">
+      <main style="max-width:760px;margin:0 auto;padding:48px 20px;font-family:system-ui,sans-serif;color:#ece8e1;background:#12161b">
+        <p><a href="${baseCanonical}/" style="color:#f0a33a">Mohsin Qureshi, forward-deployed AI engineer</a></p>
+        <h1>${route.h1}</h1>
+        <p>${route.description}</p>
+        <p>${route.bodyText}</p>
+        <p><a href="https://calendly.com/mohsin-qureshi" style="color:#f0a33a">Book a 15-minute call</a> or connect on <a href="https://www.linkedin.com/in/mohd-mohsin-qureshi" style="color:#f0a33a">LinkedIn</a>.</p>
+      </main>
+    </div>`;
+    html = html.replace(/<div id="root">[\s\S]*?<\/main>\s*<\/div>/, routeContent);
 
     const targetFile = path.join(routeDir, 'index.html');
     fs.writeFileSync(targetFile, html, 'utf-8');

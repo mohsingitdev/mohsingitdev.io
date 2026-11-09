@@ -58,7 +58,7 @@ export const RemoteAIEngineerPage: React.FC<RemoteAIEngineerPageProps> = ({
         <div className="flex flex-wrap items-center gap-4">
           <button
             onClick={onRequestResume}
-            className="px-6 py-3 rounded-full bg-terracotta hover:bg-[#c4684a] text-white font-medium text-sm transition-all duration-200 shadow-lg shadow-terracotta/20 flex items-center gap-2 apple-spring hover:scale-105 active:scale-95"
+            className="px-6 py-3 rounded-full bg-terracotta hover:bg-[#C9822A] text-white font-medium text-sm transition-all duration-200 shadow-lg shadow-terracotta/20 flex items-center gap-2 apple-spring hover:scale-105 active:scale-95"
           >
             <FileText className="w-4 h-4" />
             Request Unredacted Resume
@@ -134,7 +134,7 @@ export const RemoteAIEngineerPage: React.FC<RemoteAIEngineerPageProps> = ({
             <li className="flex items-start gap-2.5">
               <Clock className="w-4 h-4 text-blue-400 shrink-0 mt-0.5" />
               <div>
-                <strong className="text-white">Timezone Synchronous Overlap:</strong> Dedicated 4-5 hour daily synchronous working window covering London (GMT/BST) and New York (EST).
+                <strong className="text-white">Timezone Synchronous Overlap:</strong> Overlap with London and New York working hours, agreed per engagement.
               </div>
             </li>
             <li className="flex items-start gap-2.5">
@@ -152,7 +152,7 @@ export const RemoteAIEngineerPage: React.FC<RemoteAIEngineerPageProps> = ({
             <li className="flex items-start gap-2.5">
               <CheckCircle2 className="w-4 h-4 text-blue-400 shrink-0 mt-0.5" />
               <div>
-                <strong className="text-white">Turnkey Hardware &amp; Tooling:</strong> High-bandwidth fiber connection, dedicated secure workstations, and active familiarity with enterprise stacks (AWS, GCP, Linear, GitHub, Datadog).
+                <strong className="text-white">Tooling:</strong> Working familiarity with enterprise stacks (AWS, GCP, Linear, GitHub, Datadog).
               </div>
             </li>
           </ul>
@@ -161,39 +161,39 @@ export const RemoteAIEngineerPage: React.FC<RemoteAIEngineerPageProps> = ({
 
       {/* Enterprise Pedigree Proof Grid */}
       <div className="mb-16">
-        <h2 className="text-xl font-bold text-white mb-2">Verified Enterprise Track Record</h2>
-        <p className="text-xs font-mono text-slate-400 mb-6">Deploying mission-critical AI systems at global enterprise scale</p>
+        <h2 className="text-xl font-bold text-white mb-2">Where I have worked</h2>
+        <p className="text-xs font-mono text-slate-400 mb-6">Sectors only. Client and employer names are confidential.</p>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
           <div className="p-5 apple-glass rounded-xl border border-white/10 hover:border-terracotta/40 transition-colors">
-            <div className="text-base font-bold text-white mb-1">Flipkart</div>
-            <div className="text-xs font-mono text-terracotta mb-2">E-Commerce Concurrency</div>
+            <div className="text-base font-bold text-white mb-1">E-commerce</div>
+            <div className="text-xs font-mono text-terracotta mb-2">Marketplace operations</div>
             <p className="text-xs text-slate-300 leading-relaxed">
-              Designed two-tier model routing and fast-path intent caching (&lt;33ms) sustaining peak flash sales and cutting inference bills by 72%.
+              Multi-agent platform for business-critical operations: deterministic and LLM routing, RAG with citation grounding, confidence scoring and fallbacks.
             </p>
           </div>
 
           <div className="p-5 apple-glass rounded-xl border border-white/10 hover:border-terracotta/40 transition-colors">
-            <div className="text-base font-bold text-white mb-1">Novartis</div>
-            <div className="text-xs font-mono text-terracotta mb-2">Regulated Life Sciences</div>
+            <div className="text-base font-bold text-white mb-1">Pharma</div>
+            <div className="text-xs font-mono text-terracotta mb-2">Life sciences</div>
             <p className="text-xs text-slate-300 leading-relaxed">
-              Architected hybrid RAG (BM25 + Dense RRF) with cross-encoder reranking and citation attribution over 500k+ pages of compliance clinical data.
+              Conversational AI and agentic techniques for enterprise use cases, as part of a distributed remote team.
             </p>
           </div>
 
           <div className="p-5 apple-glass rounded-xl border border-white/10 hover:border-terracotta/40 transition-colors">
-            <div className="text-base font-bold text-white mb-1">Accenture Strategy</div>
-            <div className="text-xs font-mono text-terracotta mb-2">Enterprise Advisory</div>
+            <div className="text-base font-bold text-white mb-1">Research</div>
+            <div className="text-xs font-mono text-terracotta mb-2">Scientific knowledge</div>
             <p className="text-xs text-slate-300 leading-relaxed">
-              Embedded as Forward-Deployed AI Architect guiding C-level technical teams on production LLM readiness, evaluation gates, and FinOps budgeting.
+              Agentic RAG knowledge platform for a global scientific research client. Document discovery went from hours to minutes.
             </p>
           </div>
 
           <div className="p-5 apple-glass rounded-xl border border-white/10 hover:border-terracotta/40 transition-colors">
-            <div className="text-base font-bold text-white mb-1">Ericsson</div>
-            <div className="text-xs font-mono text-terracotta mb-2">High-Throughput Telco</div>
+            <div className="text-base font-bold text-white mb-1">Telecom equipment</div>
+            <div className="text-xs font-mono text-terracotta mb-2">Telecom</div>
             <p className="text-xs text-slate-300 leading-relaxed">
-              Engineered streaming anomaly detection pipeline processing 50k+ events/second using Kafka, XGBoost, and Isolation Forests with sub-3min MTTD.
+              RAG-based Q&amp;A over technical documentation for engineering teams, plus data science on network datasets.
             </p>
           </div>
         </div>
@@ -250,7 +250,7 @@ export const RemoteAIEngineerPage: React.FC<RemoteAIEngineerPageProps> = ({
         <div className="flex items-center gap-3 shrink-0">
           <button
             onClick={onRequestResume}
-            className="px-5 py-2.5 rounded-full bg-terracotta hover:bg-[#c4684a] text-white text-xs font-mono font-medium transition-all shadow-md"
+            className="px-5 py-2.5 rounded-full bg-terracotta hover:bg-[#C9822A] text-white text-xs font-mono font-medium transition-all shadow-md"
           >
             Request Full CV
           </button>

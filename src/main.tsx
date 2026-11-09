@@ -5,7 +5,7 @@ import { ThemeProvider } from './context/ThemeContext';
 import { RouterProvider } from './context/RouterContext';
 import { getVisitorIntel } from './utils/visitorTelemetry';
 import './index.css';
-import '@designcodeio/threeui/style.css';
+import './v3/v3.css';
 
 // Initialize session intelligence and UTM attribution
 getVisitorIntel();

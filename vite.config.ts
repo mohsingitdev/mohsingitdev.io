@@ -15,8 +15,7 @@ export default defineConfig({
         manualChunks: {
           'vendor-react': ['react', 'react-dom'],
           'vendor-framer': ['framer-motion'],
-          'vendor-lucide': ['lucide-react'],
-          'vendor-three': ['three', '@designcodeio/threeui']
+          'vendor-lucide': ['lucide-react']
         }
       }
     }

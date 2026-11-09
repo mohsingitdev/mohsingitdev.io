@@ -2,42 +2,27 @@
 <html lang="en" class="dark scroll-smooth">
   <head>
     <meta charset="UTF-8" />
-    <script>
-      (function() {
-        try {
-          var params = new URLSearchParams(window.location.search);
-          var p = params.get('theme');
-          var t = p || localStorage.getItem('theme');
-          if (t === 'light') {
-            document.documentElement.classList.remove('dark');
-            document.documentElement.classList.add('light');
-          } else {
-            document.documentElement.classList.add('dark');
-            document.documentElement.classList.remove('light');
-          }
-        } catch (e) {}
-      })();
-    </script>
+    <script>(function(){var t;try{t=localStorage.getItem('theme-v2')}catch(e){}if(t!=='light'&&t!=='dark'){t=window.matchMedia&&window.matchMedia('(prefers-color-scheme: light)').matches?'light':'dark'}var c=document.documentElement.classList;c.toggle('dark',t==='dark');c.toggle('light',t==='light');})();</script>
     <link rel="icon" type="image/png" href="./images/mohsin_cutout.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     
     <!-- Canonical URL -->
-    <link rel="canonical" href="https://mohsingitdev.github.io/mohsingitdev.io/" />
+    <link rel="canonical" href="https://mohsinqureshi.io/" />
 
     <!-- Primary Meta Tags -->
-    <title>Mohsin Qureshi | AI Platform &amp; Forward-Deployed AI Engineer</title>
-    <meta name="title" content="Mohsin Qureshi | AI Platform &amp; Forward-Deployed AI Engineer" />
-    <meta name="description" content="Production AI engineer building reliable LLM, RAG, voice, and agentic systems. Explore case studies, architecture notes, and remote US/UK collaboration options." />
+    <title>Mohsin Qureshi | Forward-deployed AI engineer</title>
+    <meta name="title" content="Mohsin Qureshi | Forward-deployed AI engineer" />
+    <meta name="description" content="Forward-deployed AI engineer taking agentic RAG, LLM inference and AI-first products from pilot to production for US and UK teams." />
     <meta name="keywords" content="Mohsin Qureshi, AI Platform Engineer, Forward-Deployed AI Engineer, Applied AI, Production RAG, LLM Evaluation, LLMOps, Voice AI, ML Platform, FastAPI, PyTorch, vLLM, AWS, GCP" />
     <meta name="author" content="Mohsin Qureshi" />
     <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
 
     <!-- Open Graph / LinkedIn -->
     <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://mohsingitdev.github.io/mohsingitdev.io/" />
-    <meta property="og:title" content="Mohsin Qureshi | AI Platform &amp; Forward-Deployed AI Engineer" />
-    <meta property="og:description" content="Production AI engineer building reliable LLM, RAG, voice, and agentic systems. Explore case studies, architecture notes, and remote US/UK collaboration options." />
-    <meta property="og:image" content="https://mohsingitdev.github.io/mohsingitdev.io/images/linkedin_banner_ai_fde.jpg" />
+    <meta property="og:url" content="https://mohsinqureshi.io/" />
+    <meta property="og:title" content="Mohsin Qureshi | Forward-deployed AI engineer" />
+    <meta property="og:description" content="Forward-deployed AI engineer taking agentic RAG, LLM inference and AI-first products from pilot to production for US and UK teams." />
+    <meta property="og:image" content="https://mohsinqureshi.io/images/linkedin_banner_ai_fde.jpg" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
     <meta property="og:image:alt" content="Mohsin Qureshi — AI Platform Engineering &amp; Forward Deployment" />
@@ -45,103 +30,286 @@
 
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Mohsin Qureshi | AI Platform &amp; Forward-Deployed AI Engineer" />
-    <meta name="twitter:description" content="Production AI engineer building reliable LLM, RAG, voice, and agentic systems. Explore case studies, architecture notes, and remote US/UK collaboration options." />
-    <meta name="twitter:image" content="https://mohsingitdev.github.io/mohsingitdev.io/images/linkedin_banner_ai_fde.jpg" />
+    <meta name="twitter:title" content="Mohsin Qureshi | Forward-deployed AI engineer" />
+    <meta name="twitter:description" content="Forward-deployed AI engineer taking agentic RAG, LLM inference and AI-first products from pilot to production for US and UK teams." />
+    <meta name="twitter:image" content="https://mohsinqureshi.io/images/linkedin_banner_ai_fde.jpg" />
 
     <!-- JSON-LD Structured Data for Google Rich Snippets & LLM Crawlers -->
     <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
     {
-      "@context": "https://schema.org",
-      "@graph": [
+      "@type": "Person",
+      "@id": "https://mohsinqureshi.io/#person",
+      "name": "Mohsin Qureshi",
+      "jobTitle": "Forward-deployed AI engineer",
+      "description": "Forward-deployed AI engineer who takes agentic RAG, LLM inference and AI-first products from pilot to production for US and UK teams.",
+      "url": "https://mohsinqureshi.io/",
+      "email": "mailto:mohsin.i.qureshi@hotmail.com",
+      "address": {
+        "@type": "PostalAddress",
+        "addressCountry": "IN"
+      },
+      "alumniOf": [
         {
-          "@type": "Person",
-          "@id": "https://mohsingitdev.github.io/mohsingitdev.io/#person",
-          "name": "Mohsin Qureshi",
-          "jobTitle": "AI Platform Engineer and Forward-Deployed AI Engineer",
-          "url": "https://mohsingitdev.github.io/mohsingitdev.io/",
-          "image": "https://mohsingitdev.github.io/mohsingitdev.io/images/mohsin_cutout.png",
-          "sameAs": [
-            "https://www.linkedin.com/in/mohd-mohsin-qureshi",
-            "https://github.com/mohsingitdev"
-          ],
-          "knowsAbout": [
-            "AI Platform Engineering",
-            "Forward-Deployed Engineering",
-            "Retrieval-Augmented Generation",
-            "LLM Evaluation",
-            "LLMOps",
-            "Machine Learning Engineering",
-            "Voice AI",
-            "Cloud Infrastructure (AWS & GCP)"
-          ],
-          "alumniOf": [
-            {
-              "@type": "Organization",
-              "name": "Flipkart"
-            },
-            {
-              "@type": "Organization",
-              "name": "Accenture Strategy"
-            },
-            {
-              "@type": "Organization",
-              "name": "Novartis"
-            }
-          ]
+          "@type": "CollegeOrUniversity",
+          "name": "Shri Ramdeobaba College of Engineering and Management"
         },
         {
-          "@type": "ProfessionalService",
-          "@id": "https://mohsingitdev.github.io/mohsingitdev.io/#service",
-          "name": "Mohsin Qureshi Production AI Engineering & Advisory",
-          "url": "https://mohsingitdev.github.io/mohsingitdev.io/",
-          "provider": {
-            "@id": "https://mohsingitdev.github.io/mohsingitdev.io/#person"
+          "@type": "EducationalOrganization",
+          "name": "Masters' Union"
+        }
+      ],
+      "knowsAbout": [
+        "Forward-deployed engineering",
+        "Agentic RAG",
+        "Retrieval-augmented generation",
+        "LLM evaluation",
+        "LLMOps",
+        "LLM inference",
+        "Multi-agent systems",
+        "Computer vision",
+        "MLOps",
+        "Python",
+        "FastAPI",
+        "LangGraph",
+        "vLLM",
+        "AWS",
+        "GCP"
+      ],
+      "sameAs": [
+        "https://www.linkedin.com/in/mohd-mohsin-qureshi",
+        "https://github.com/mohsingitdev",
+        "https://topmate.io/mohsin_qureshi"
+      ]
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://mohsinqureshi.io/#website",
+      "url": "https://mohsinqureshi.io/",
+      "name": "Mohsin Qureshi",
+      "publisher": {
+        "@id": "https://mohsinqureshi.io/#person"
+      },
+      "inLanguage": "en"
+    },
+    {
+      "@type": "ProfessionalService",
+      "@id": "https://mohsinqureshi.io/#service",
+      "name": "Mohsin Qureshi, forward-deployed AI engineering",
+      "url": "https://mohsinqureshi.io/",
+      "provider": {
+        "@id": "https://mohsinqureshi.io/#person"
+      },
+      "areaServed": [
+        "United States",
+        "United Kingdom",
+        "Europe"
+      ],
+      "serviceType": [
+        "Production AI engineering",
+        "AI pilot to production",
+        "RAG and agent systems",
+        "LLM inference optimization"
+      ],
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "Engagements",
+        "itemListElement": [
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Production readiness audit",
+              "description": "1–2 weeks, fixed price. A ranked list of what will break when a RAG or agent system meets real users, and how to fix it."
+            }
           },
-          "serviceType": "Production AI Architecture & Forward-Deployed Engineering",
-          "areaServed": ["US", "UK", "Global"],
-          "hasOfferCatalog": {
-            "@type": "OfferCatalog",
-            "name": "Production AI Engineering Services",
-            "itemListElement": [
-              {
-                "@type": "Offer",
-                "itemOffered": {
-                  "@type": "Service",
-                  "name": "Production AI Readiness Assessment",
-                  "description": "Comprehensive review of LLM/RAG/Voice architecture, evaluation benchmarks, latency, cost, and operational risks with a prioritized 30-day roadmap."
-                }
-              },
-              {
-                "@type": "Offer",
-                "itemOffered": {
-                  "@type": "Service",
-                  "name": "RAG Evaluation Sprint",
-                  "description": "Rigorous evaluation and optimization of retrieval-augmented generation pipelines using hybrid search, cross-encoder reranking, and citation attribution."
-                }
-              },
-              {
-                "@type": "Offer",
-                "itemOffered": {
-                  "@type": "Service",
-                  "name": "Fractional Forward-Deployed Engineering",
-                  "description": "Embedded senior forward-deployed AI engineering for US/UK teams deploying customer-facing AI workflows into enterprise environments."
-                }
-              }
-            ]
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Pilot to production build",
+              "description": "4–8 weeks. One use case taken from a working pilot to a system users rely on, with evals, monitoring and handoff."
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Embedded forward-deployed engineer",
+              "description": "Monthly. Part-time or full-time inside the client team, owning delivery from architecture to go-live."
+            }
+          }
+        ]
+      }
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://mohsinqureshi.io/#faq",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What does a forward-deployed AI engineer do?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "A forward-deployed AI engineer works inside a client team to take an AI system from prototype to production. That covers scoping the use case, designing the architecture, building the agents and retrieval, adding evals and guardrails, deploying in the client cloud, and handing over code and runbooks the team can run."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "We built a prototype with Claude or another AI tool. Can you make it production-ready?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. Prototypes built with Claude, Cursor, Lovable or similar tools usually prove the idea but miss authentication, data handling, guardrails, evaluation, monitoring and cost limits. I review what you have, keep what works, and rebuild the parts that will not hold up with real users. A readiness audit shows which is which in 1 to 2 weeks."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "We are an early-stage startup. Why not hire a full-time AI engineer?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "A senior AI hire usually takes months and adds a large fixed cost. An engagement gets the first production version live while you hire, and the handover documentation makes that hire productive from the first week."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can you work as a vendor or contractor through our procurement?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. I have delivered as a vendor and as a contract hire inside large organisations. I can work under your MSA, NDA and security questionnaires, or contract through the platform or agency you already use."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How long does it take to move an AI pilot to production?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "For one well-scoped use case, usually 4 to 8 weeks: about a week to diagnose and agree a success metric, then design, build behind evaluation gates and a staged rollout. A readiness audit of an existing system takes 1 to 2 weeks."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Do you work with US, UK and Canadian teams from India?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. I have delivered fully remote for US, UK and European clients since 2021. Daily overlap with US, UK or Canadian working hours is agreed at the start of each engagement."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Will you work alongside our in-house engineers?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes, that is the default. I pair with your team, review their code, document design decisions, and leave runbooks so your engineers own the system after handover."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How are engagements priced?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Audits and builds are fixed price with a written scope. Embedded work is a monthly retainer. A quote follows a 15-minute call, and invoices are in USD or GBP."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How do you handle confidentiality, data and IP?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "I sign an NDA and an IP assignment before work starts and work inside your cloud, repositories and tools, so your data stays in your environment. Client work is only described publicly at the level the contract allows."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What do you need from us to start?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "A named business owner, access to the relevant data and systems, and one success metric. A kickoff checklist covers accounts, environments and stakeholders in the first week."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What happens after handover?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "You get the code in your repositories, architecture documents, runbooks, dashboards and the evaluation set. Ongoing support or an embedded retainer is available but not required."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What do you build with?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Python, FastAPI, LangGraph and LangChain for agents; hybrid search with Milvus or Qdrant and cross-encoder reranking for RAG; vLLM and containerized inference on AWS or GCP; PyTorch for fine-tuning and computer vision; and evaluation harnesses as release gates."
           }
         }
       ]
     }
+  ]
+}
     </script>
 
     <!-- Google Fonts: Plus Jakarta Sans & Playfair Display & JetBrains Mono -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Newsreader:ital,opsz,wght@0,6..72,300..600;1,6..72,300..500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <meta name="theme-color" content="#0f0e0c" />
   </head>
   <body class="bg-canvas text-slate-100 font-sans antialiased selection:bg-luxury-gold selection:text-black">
-    <div id="root"></div>
+    <div id="root">
+      <main style="max-width:760px;margin:0 auto;padding:48px 20px;font-family:Georgia,serif">
+        <h1>Mohsin Qureshi, forward-deployed AI engineer</h1>
+        <p>I take AI systems from demo to production. Forward-deployed engineer for agentic RAG, LLM inference and AI-first products, working inside client teams and clouds for US and UK companies. Client work since 2021 across e-commerce, pharma, telecom and industrial sectors.</p>
+        <h2>What I do</h2>
+        <ul>
+          <li>Forward-deployed engineering: discovery, integration and handover inside your team.</li>
+          <li>Agents and retrieval: hybrid search, reranking, tool calling, guardrails and evals.</li>
+          <li>MLOps and inference: serving, CI/CD, drift detection, tracing and cost control.</li>
+          <li>AI automation and GTM engineering: enrichment, scoring and CRM workflows with approval gates.</li>
+        </ul>
+        <h2>Ways to work together</h2>
+        <ul>
+          <li>Production readiness audit: 1–2 weeks, fixed price.</li>
+          <li>Pilot to production build: 4–8 weeks for one use case.</li>
+          <li>Embedded forward-deployed engineer: monthly.</li>
+        </ul>
+        <h2>Selected work</h2>
+        <ul>
+          <li>Agentic RAG for scientific research: document discovery went from hours to minutes.</li>
+          <li>Multi-agent platform for e-commerce operations: manual review workflows replaced by automated synthesis.</li>
+          <li>Documentation Q&amp;A for telecom engineering teams.</li>
+          <li>Computer vision, NLP and MLOps: 50% less manual oversight, 90%+ entity extraction accuracy, 40% shorter release cycles.</li>
+        </ul>
+        <h2>Questions clients ask</h2>
+        <h3>What does a forward-deployed AI engineer do?</h3>
+        <p>A forward-deployed AI engineer works inside a client team to take an AI system from prototype to production. That covers scoping the use case, designing the architecture, building the agents and retrieval, adding evals and guardrails, deploying in the client cloud, and handing over code and runbooks the team can run.</p>
+        <h3>We built a prototype with Claude or another AI tool. Can you make it production-ready?</h3>
+        <p>Yes. Prototypes built with Claude, Cursor, Lovable or similar tools usually prove the idea but miss authentication, data handling, guardrails, evaluation, monitoring and cost limits. I review what you have, keep what works, and rebuild the parts that will not hold up with real users. A readiness audit shows which is which in 1 to 2 weeks.</p>
+        <h3>We are an early-stage startup. Why not hire a full-time AI engineer?</h3>
+        <p>A senior AI hire usually takes months and adds a large fixed cost. An engagement gets the first production version live while you hire, and the handover documentation makes that hire productive from the first week.</p>
+        <h3>Can you work as a vendor or contractor through our procurement?</h3>
+        <p>Yes. I have delivered as a vendor and as a contract hire inside large organisations. I can work under your MSA, NDA and security questionnaires, or contract through the platform or agency you already use.</p>
+        <h3>How long does it take to move an AI pilot to production?</h3>
+        <p>For one well-scoped use case, usually 4 to 8 weeks: about a week to diagnose and agree a success metric, then design, build behind evaluation gates and a staged rollout. A readiness audit of an existing system takes 1 to 2 weeks.</p>
+        <h3>Do you work with US, UK and Canadian teams from India?</h3>
+        <p>Yes. I have delivered fully remote for US, UK and European clients since 2021. Daily overlap with US, UK or Canadian working hours is agreed at the start of each engagement.</p>
+        <h3>Will you work alongside our in-house engineers?</h3>
+        <p>Yes, that is the default. I pair with your team, review their code, document design decisions, and leave runbooks so your engineers own the system after handover.</p>
+        <h3>How are engagements priced?</h3>
+        <p>Audits and builds are fixed price with a written scope. Embedded work is a monthly retainer. A quote follows a 15-minute call, and invoices are in USD or GBP.</p>
+        <h3>How do you handle confidentiality, data and IP?</h3>
+        <p>I sign an NDA and an IP assignment before work starts and work inside your cloud, repositories and tools, so your data stays in your environment. Client work is only described publicly at the level the contract allows.</p>
+        <h3>What do you need from us to start?</h3>
+        <p>A named business owner, access to the relevant data and systems, and one success metric. A kickoff checklist covers accounts, environments and stakeholders in the first week.</p>
+        <h3>What happens after handover?</h3>
+        <p>You get the code in your repositories, architecture documents, runbooks, dashboards and the evaluation set. Ongoing support or an embedded retainer is available but not required.</p>
+        <h3>What do you build with?</h3>
+        <p>Python, FastAPI, LangGraph and LangChain for agents; hybrid search with Milvus or Qdrant and cross-encoder reranking for RAG; vLLM and containerized inference on AWS or GCP; PyTorch for fine-tuning and computer vision; and evaluation harnesses as release gates.</p>
+        <h2>Contact</h2>
+        <p><a href="https://calendly.com/mohsin-qureshi">Book a 15-minute call</a>, <a href="mailto:mohsin.i.qureshi@hotmail.com">email</a>, <a href="https://www.linkedin.com/in/mohd-mohsin-qureshi">LinkedIn</a>, <a href="https://github.com/mohsingitdev">GitHub</a>.</p>
+      </main>
+    </div>
     <script type="module" src="./src/main.tsx"></script>
   </body>
 </html>

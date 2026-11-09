@@ -90,7 +90,7 @@ export const Card3D: React.FC<Card3DProps> = ({
               style={{
                 left: glareX,
                 top: glareY,
-                background: 'radial-gradient(circle at center, rgba(217, 119, 87, 0.28) 0%, rgba(255, 255, 255, 0.20) 30%, transparent 68%)',
+                background: 'radial-gradient(circle at center, rgba(240, 163, 58, 0.28) 0%, rgba(255, 255, 255, 0.20) 30%, transparent 68%)',
                 transform: 'translate(-50%, -50%)',
               }}
             />

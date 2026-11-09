@@ -42,7 +42,7 @@ export const BlogPage: React.FC<BlogPageProps> = ({ slug, onBookCall }) => {
   };
 
   const handleCopyArticleLink = (post: BlogPost) => {
-    const url = `https://mohsingitdev.github.io/mohsingitdev.io/blog/${post.slug}`;
+    const url = `https://mohsinqureshi.io/blog/${post.slug}`;
     navigator.clipboard.writeText(url);
     setCopiedLink(true);
     setTimeout(() => setCopiedLink(false), 2000);
@@ -231,7 +231,7 @@ export const BlogPage: React.FC<BlogPageProps> = ({ slug, onBookCall }) => {
               <button
                 type="submit"
                 disabled={isSubscribing}
-                className="px-5 py-2 rounded-lg bg-terracotta hover:bg-[#c4684a] text-white text-xs font-mono font-medium transition-all shrink-0 flex items-center gap-1.5"
+                className="px-5 py-2 rounded-lg bg-terracotta hover:bg-[#C9822A] text-white text-xs font-mono font-medium transition-all shrink-0 flex items-center gap-1.5"
               >
                 {isSubscribing ? <Loader2 className="w-3.5 h-3.5 animate-spin" /> : <Mail className="w-3.5 h-3.5" />}
                 Subscribe
@@ -308,7 +308,7 @@ export const BlogPage: React.FC<BlogPageProps> = ({ slug, onBookCall }) => {
               <button
                 type="submit"
                 disabled={isSubscribing}
-                className="px-3 py-1.5 rounded-lg bg-terracotta hover:bg-[#c4684a] text-white text-xs font-mono font-medium transition-all shrink-0"
+                className="px-3 py-1.5 rounded-lg bg-terracotta hover:bg-[#C9822A] text-white text-xs font-mono font-medium transition-all shrink-0"
               >
                 Join
               </button>

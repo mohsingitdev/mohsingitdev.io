@@ -1,37 +1,45 @@
-# Mohsin Qureshi — AI Platform Engineer & Forward-Deployed AI Engineer
+# Mohsin Qureshi — Forward-deployed AI engineer
 
-> Mohsin Qureshi is an AI Platform Engineer and Forward-Deployed AI Engineer (FDE). Available for remote US/UK roles and fixed-scope production AI engagements. Specializes in production LLM, RAG, voice AI, and agentic systems moving from prototype to reliable operation. Track record includes Flipkart, Accenture, Novartis, and Ericsson.
+> Mohsin Qureshi is a forward-deployed AI engineer based in India who works remotely with US and UK teams. He takes agentic RAG, LLM inference and AI-first products from pilot to production. Client work since 2021 across e-commerce, pharma, telecom and industrial sectors. Client and employer names are confidential.
 
-## Core Specializations & Architecture Pillars
+## What he does
 
-- **High-Concurrency Model Routing**: Two-tier routing architecture isolating lightweight deterministic SLM classifiers (<33ms p99) from frontier LLMs, delivering 72% reduction in cloud inference costs under high concurrency (Flipkart scale).
-- **Production RAG & Evaluation**: Reciprocal Rank Fusion (BM25 lexical + dense vector embeddings) with cross-encoder reranking, synthetic regression evaluation suites, and verifiable citation bounding (<0.5% hallucination drift at Novartis & Accenture).
-- **LLMOps & CI/CD Release Gates**: Automated eval gates for prompt/model regressions, Pydantic schema guardrails, Redis caching, and latency SLA verification before deployment.
-- **Voice AI & CRM Integration**: Low-latency conversational boundaries, state handoffs, and customer escalation protocols.
-- **ML Platform & Data Engineering**: Feature & embedding pipeline versioning, Kafka streaming anomaly detection (50k eps at Ericsson), and PyTorch model serving with vLLM on AWS EKS & GCP GKE.
+- **Agentic RAG**: hybrid retrieval (BM25 and dense vectors), reranking, citation grounding and guardrails for regulated documents. For a global research client, document discovery went from hours to minutes.
+- **LLM routing and LLMOps**: deterministic and LLM-based routing, per-field confidence scoring, automated fallbacks and retry budgets, staged dev-to-prod releases.
+- **Inference**: model benchmarking against accuracy, latency and cost limits; containerized inference APIs; GPU serving optimization.
+- **Computer vision, NLP and MLOps**: real-time video analytics (50% less manual oversight), custom NER (90%+ accuracy), CI/CD with drift detection (40% shorter release cycles).
 
-## Production Benchmarks & Quantitative Disclosures
+## Ways to work together
 
-- Fast-Path P99 Latency: < 33ms (Edge Classifier / SLM)
-- Hallucination Drift: < 0.5% (RRF + Cross-Encoder + Citation Attributions)
-- Concurrency Throughput: 1.2M+ daily query capacity
-- Inference FinOps Reduction: -72% (Deterministic Fast-Path Gateway)
+- **Strategy session**: use-case review and a build, buy or fix recommendation.
+- **Production readiness audit**: 1–2 weeks, fixed scope. Ranked list of what blocks launch and how to fix it.
+- **Pilot to production build**: 4–8 weeks for one use case, with evaluation gates and handover.
+- **Embedded AI engineer**: monthly, part-time or full-time, for contract and remote roles.
+- **GTM and workflow automation**: enrichment, scoring and CRM workflows with human approval.
 
-## Interactive Sandboxes & Demos
+Enquiries by email or LinkedIn; commercials are agreed after a short call.
 
-- [Deterministic SLM Router Simulator](https://mohsingitdev.github.io/mohsingitdev.io/#interactive-demos): Real-time interactive latency and token cost simulation comparing monolithic LLM calls against two-tier SLM routing.
-- [Grounded RAG Explorer](https://mohsingitdev.github.io/mohsingitdev.io/#interactive-demos): Interactive visualization of hybrid retrieval, cross-encoder reranking, and citation bounding box verification.
-- [Benchmark Matrix](https://mohsingitdev.github.io/mohsingitdev.io/#assessment-matrix): Empirical comparison of latency, token cost, accuracy, and reliability across frontier and fine-tuned open-source models.
+Contracts are invoiced in USD or GBP. NDA and IP assignment before work starts.
 
-## Production Services & Employment
+## Questions clients ask
 
-- **Remote AI Engineering (US/UK Collaboration)**: Available for remote AI Platform Engineer, Forward-Deployed Engineer, and ML Platform roles with US/UK timezone overlap.
-- **Production AI Readiness Assessment**: Fixed-scope 30-day architectural audit reviewing LLM/RAG latency, evaluation, data privacy, and cost bottlenecks.
-- **RAG Evaluation Sprint**: 2-week engineering sprint deploying hybrid search, reranking, and synthetic test suites.
+- **What does a forward-deployed AI engineer do?** A forward-deployed AI engineer works inside a client team to take an AI system from prototype to production. That covers scoping the use case, designing the architecture, building the agents and retrieval, adding evals and guardrails, deploying in the client cloud, and handing over code and runbooks the team can run.
+- **We built a prototype with Claude or another AI tool. Can you make it production-ready?** Yes. Prototypes built with Claude, Cursor, Lovable or similar tools usually prove the idea but miss authentication, data handling, guardrails, evaluation, monitoring and cost limits. I review what you have, keep what works, and rebuild the parts that will not hold up with real users. A readiness audit shows which is which in 1 to 2 weeks.
+- **We are an early-stage startup. Why not hire a full-time AI engineer?** A senior AI hire usually takes months and adds a large fixed cost. An engagement gets the first production version live while you hire, and the handover documentation makes that hire productive from the first week.
+- **Can you work as a vendor or contractor through our procurement?** Yes. I have delivered as a vendor and as a contract hire inside large organisations. I can work under your MSA, NDA and security questionnaires, or contract through the platform or agency you already use.
+- **How long does it take to move an AI pilot to production?** For one well-scoped use case, usually 4 to 8 weeks: about a week to diagnose and agree a success metric, then design, build behind evaluation gates and a staged rollout. A readiness audit of an existing system takes 1 to 2 weeks.
+- **Do you work with US, UK and Canadian teams from India?** Yes. I have delivered fully remote for US, UK and European clients since 2021. Daily overlap with US, UK or Canadian working hours is agreed at the start of each engagement.
+- **Will you work alongside our in-house engineers?** Yes, that is the default. I pair with your team, review their code, document design decisions, and leave runbooks so your engineers own the system after handover.
+- **How are engagements priced?** Audits and builds are fixed price with a written scope. Embedded work is a monthly retainer. A quote follows a 15-minute call, and invoices are in USD or GBP.
+- **How do you handle confidentiality, data and IP?** I sign an NDA and an IP assignment before work starts and work inside your cloud, repositories and tools, so your data stays in your environment. Client work is only described publicly at the level the contract allows.
+- **What do you need from us to start?** A named business owner, access to the relevant data and systems, and one success metric. A kickoff checklist covers accounts, environments and stakeholders in the first week.
+- **What happens after handover?** You get the code in your repositories, architecture documents, runbooks, dashboards and the evaluation set. Ongoing support or an embedded retainer is available but not required.
+- **What do you build with?** Python, FastAPI, LangGraph and LangChain for agents; hybrid search with Milvus or Qdrant and cross-encoder reranking for RAG; vLLM and containerized inference on AWS or GCP; PyTorch for fine-tuning and computer vision; and evaluation harnesses as release gates.
 
-## Contact & Profiles
+## Links
 
-- Website: https://mohsingitdev.github.io/mohsingitdev.io/
+- Website: https://mohsinqureshi.io/
+- Reference architectures: https://mohsinqureshi.io/case-studies
 - LinkedIn: https://www.linkedin.com/in/mohd-mohsin-qureshi
 - GitHub: https://github.com/mohsingitdev
-- Schedule Sync: https://mohsingitdev.github.io/mohsingitdev.io/#calendly
+- Book a call: https://calendly.com/mohsin-qureshi

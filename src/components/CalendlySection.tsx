@@ -53,16 +53,16 @@ export const CalendlySection: React.FC = () => {
     'Casual Tech Connect'
   ];
 
-  const calendlyBg = theme === 'dark' ? '161513' : 'faf7f2';
+  const calendlyBg = theme === 'dark' ? '181d24' : 'faf7f2';
   const calendlyText = theme === 'dark' ? 'ffffff' : '1c1917';
 
-  const currentCalendlyEmbedUrl = `https://calendly.com/mohsin-qureshi/15min?embed_type=Inline&background_color=${calendlyBg}&text_color=${calendlyText}&primary_color=de5a35&hide_gdpr_banner=1&a1=${encodeURIComponent(selectedOpportunity)}`;
+  const currentCalendlyEmbedUrl = `https://calendly.com/mohsin-qureshi/15min?embed_type=Inline&background_color=${calendlyBg}&text_color=${calendlyText}&primary_color=cfa86a&hide_gdpr_banner=1&a1=${encodeURIComponent(selectedOpportunity)}`;
   const directCalendlyLink = `https://calendly.com/mohsin-qureshi`;
 
   const openCalendlyPopup = () => {
     if (typeof window !== 'undefined' && (window as any).Calendly) {
       (window as any).Calendly.initPopupWidget({
-        url: `https://calendly.com/mohsin-qureshi/15min?background_color=${calendlyBg}&text_color=${calendlyText}&primary_color=de5a35&a1=${encodeURIComponent(selectedOpportunity)}`
+        url: `https://calendly.com/mohsin-qureshi/15min?background_color=${calendlyBg}&text_color=${calendlyText}&primary_color=cfa86a&a1=${encodeURIComponent(selectedOpportunity)}`
       });
     } else {
       window.open(directCalendlyLink, '_blank', 'noopener,noreferrer');
@@ -104,7 +104,7 @@ export const CalendlySection: React.FC = () => {
       title: 'Recruiter & Hiring Lead Sync',
       timing: '30 Mins • Google Meet / Zoom',
       icon: Briefcase,
-      description: 'Direct alignment for AI Engineer and Forward Deployment Engineer roles with Tier-1 AI startups and enterprises.',
+      description: 'Direct alignment for AI Engineer and Forward Deployment Engineer roles with AI startups and enterprises.',
       deliverable: 'Mutual Fit Evaluation, Technical Defense & Compensation Calibration'
     },
     {
@@ -132,7 +132,7 @@ export const CalendlySection: React.FC = () => {
     },
     {
       q: 'How can recruiters and talent partners access the official unredacted resume?',
-      a: 'You can request the official CV directly via the "Request Official Resume" button in the navigation or submit the opportunity form below. Verified role briefs receive a tailored, ATS-compliant CV and relevant project dossier within 4–6 hours.'
+      a: 'You can request the official CV directly via the "Request Official Resume" button in the navigation or submit the opportunity form below. I reply to role briefs with my CV.'
     },
     {
       q: 'How are intellectual property and confidentiality handled for advisory conversations?',
@@ -360,7 +360,7 @@ export const CalendlySection: React.FC = () => {
 
             {/* TAB 1: Calendly iFrame Embed */}
             {activeTab === 'calendar' && (
-              <div className="relative flex-1 w-full bg-canvas-card dark:bg-[#161513] transition-colors duration-300 min-h-[520px] sm:min-h-[580px] flex flex-col">
+              <div className="relative flex-1 w-full bg-canvas-card dark:bg-[#181D24] transition-colors duration-300 min-h-[520px] sm:min-h-[580px] flex flex-col">
                 {/* Third-Party Embed Disclosure (Check #7) */}
                 <div className="p-2.5 px-4 bg-canvas-surface/90 border-b border-canvas-border flex flex-col sm:flex-row sm:items-center justify-between gap-2 text-[11px] font-mono text-slate-300">
                   <span className="flex items-center gap-1.5">
@@ -512,7 +512,7 @@ export const CalendlySection: React.FC = () => {
                         required
                         checked={consentChecked}
                         onChange={(e) => setConsentChecked(e.target.checked)}
-                        className="mt-0.5 rounded border-canvas-border text-terracotta focus:ring-terracotta cursor-pointer accent-[#D97757]"
+                        className="mt-0.5 rounded border-canvas-border text-terracotta focus:ring-terracotta cursor-pointer accent-[#F0A33A]"
                       />
                       <span className="leading-relaxed">
                         I consent to Mohsin Qureshi collecting and processing my name, work email, and submitted details solely to evaluate and respond to this opportunity brief, in compliance with the <a href="./privacy" className="text-terracotta hover:underline font-semibold" target="_blank" rel="noopener noreferrer">Privacy Policy</a> (GDPR &amp; DPDP Act 2023).

@@ -124,7 +124,7 @@ export const ResumeRequestModal: React.FC<ResumeRequestModalProps> = ({ isOpen, 
               Request Dispatched Directly
             </h4>
             <p className="text-xs text-neutral-600 dark:text-slate-300 leading-relaxed max-w-sm mx-auto">
-              Your confidential inquiry has been logged directly to Mohsin Qureshi. You will receive the official verified CV, project dossier, and calibrated case studies directly in your inbox.
+              Your confidential inquiry has been logged directly to Mohsin Qureshi. I will reply with my CV by email.
             </p>
             <div className="flex items-center justify-center gap-3 pt-2">
               <button
@@ -149,7 +149,7 @@ export const ResumeRequestModal: React.FC<ResumeRequestModalProps> = ({ isOpen, 
             <div className="p-3 rounded-xl bg-neutral-100/80 dark:bg-canvas-surface border border-neutral-200/90 dark:border-canvas-border text-[11px] font-mono text-neutral-600 dark:text-slate-300 flex items-start gap-2">
               <ShieldCheck className="w-4 h-4 text-terracotta shrink-0 mt-0.5" />
               <span>
-                To preserve enterprise NDA compliance, verified ATS resumes and unredacted architecture dossiers are shared directly upon verified role request.
+                Client work is under NDA, so details beyond the CV are shared on a call.
               </span>
             </div>
 

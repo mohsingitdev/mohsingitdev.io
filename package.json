@@ -5,26 +5,14 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc && vite build && node scripts/generate-static-routes.js && node -e \"require('fs').rmSync('dist', {recursive: true, force: true}); require('fs').cpSync('docs', 'dist', {recursive: true, force: true})\"",
+    "build": "tsc && vite build && node scripts/generate-static-routes.js",
     "preview": "vite preview"
   },
   "dependencies": {
-    "@designcodeio/threeui": "^1.2.0",
-    "@react-three/drei": "^9.122.0",
-    "@react-three/fiber": "^8.18.0",
-    "@react-three/postprocessing": "^3.2.0",
-    "@types/three": "^0.186.0",
-    "clsx": "^2.1.1",
     "framer-motion": "^14.0.0",
-    "lamina": "^1.2.2",
-    "leva": "^0.10.1",
     "lucide-react": "^0.475.0",
-    "postprocessing": "^6.39.5",
     "react": "^18.3.1",
-    "react-dom": "^18.3.1",
-    "tailwind-merge": "^2.6.0",
-    "three": "^0.186.1",
-    "three-stdlib": "^2.36.1"
+    "react-dom": "^18.3.1"
   },
   "devDependencies": {
     "@types/react": "^18.3.18",
